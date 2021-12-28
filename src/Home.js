@@ -8,30 +8,26 @@ import {
   Pressable,
 } from 'react-native';
 
-import SQLite from 'react-native-sqlite-storage'; 
+import SqliteInterface from './SqliteInterface';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { setDisabled } from 'react-native/Libraries/LogBox/Data/LogBoxData';
 
-const db = SQLite.openDatabase(
-  { name: 'MainDB', location: 'default', },
-  () => { },
-  error => { console.log(error) }
-);
 
+const sqliteInterface = new SqliteInterface();
+const db = sqliteInterface.createDB()
 
 let egg = require('../assets/egg.png');
 let backEgg = require('../assets/egg.png');
  
-
-
 const key = 'totalBreaks';
-
+const prizeTable = 'PrizeHistory';
 
 const Home = ( {navigation} ) =>  {
   const [tap, setTap] = useState(0);
   const [totalBreaks, setTotalBreaks] = useState(0);
+  const [retrieved, setRetrieved] = useState({});
 
   useEffect(() => { 
+    sqliteInterface.createPrizeHistoryTable(db, prizeTable);
     setCounter();
   }, []);
 
@@ -75,21 +71,15 @@ const Home = ( {navigation} ) =>  {
     }
   }
 
-  // const createPrizeHistoryTable = () => {
-  //   db.transaction((tx) => {
-  //       tx.executeSql(
-  //           "CREATE TABLE IF NOT EXISTS "
-  //           + "PrizeHistory "
-  //           + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, Type TEXT, PrizeID Text);"
-  //       )
-  //   })
-  // }
-
   const displayEgg = async () => {
     setTap(tap + 1);
  
     if(tap === 1) {
       egg = require('../assets/egg_tap_1.png');
+      if((totalBreaks % 10) === 0 && tap) { // TODO - and taps == 2 
+        sqliteInterface.addToPrizeHistoryTable(db, prizeTable, "$20 gift card", "abcdef1234")
+      }
+
     } else if(tap == 2) {
       egg = require('../assets/egg_tap_2.png');
       //Crack animation
@@ -103,6 +93,9 @@ const Home = ( {navigation} ) =>  {
       egg = require('../assets/egg.png');
       setTap(1);
     }
+    
+    // sqliteInterface.getAllPrizes(db, prizeTable, setRetrieved);
+    // console.log("retrieved: " + retrieved);
   }
 
   return (
