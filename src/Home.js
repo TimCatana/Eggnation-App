@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Component} from 'react';
+import React, {useContext, createContext, useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import SqliteInterface from './SqliteInterface';
 import AsyncStorageInterface from './AsyncStorageInterface';
@@ -14,15 +14,51 @@ let egg = require('../assets/egg.png');
 let backEgg = require('../assets/egg.png');
 
 
+
+const CounterContext = createContext(0);
+const useCounter = () => useContext(CounterContext);
+
+const CounterContextProvider = ({ children }) => {
+  const [count, setCount] = useState(0);
+  const increment = () => {
+    setCount((value) => value + 1);
+  };
+  const decrement = () => setCount((value) => value - 1);
+  
+  useEffect(() => {
+    if (count !== 0) {
+      AsyncStorage.setItem('COUNTER_APP::COUNT_VALUE', `${count}`);
+    }
+  }, [count]);
+  useEffect(() => {
+    AsyncStorage.getItem('COUNTER_APP::COUNT_VALUE')
+    .then((value) => {
+      if (value) {
+        setCount(parseInt(value));
+      }
+    });
+  }, []);
+  
+  return (
+    <CounterContext.Provider
+      value={{
+        count,
+        increment,
+        decrement,
+      }}>
+      {children}
+    </CounterContext.Provider>
+  );
+};
+
+
 /**
  * Home Page
  * @param navigtion The navigation object 
  * @returns 
  */
-
 const Home = ( {navigation} ) =>  {
   const [tap, setTap] = useState(0);
-  const [totalBreaks, setTotalBreaks] = useState(0);
 
   useEffect(() => { 
       sqliteInterface.createPrizeHistoryTable(db, prizeTable);
@@ -34,7 +70,7 @@ const Home = ( {navigation} ) =>  {
       if(tap === 1) {
         egg = require('../assets/egg_tap_1.png');
 
-        if((totalBreaks % 10) === 0 && tap) { 
+        if((count % 10) === 0 && tap) { 
                 sqliteInterface.addToPrizeHistoryTable(db, prizeTable, "$20 gift card", "abcdef1234")
         }
       } else if (tap === 2) {
@@ -44,7 +80,7 @@ const Home = ( {navigation} ) =>  {
         egg = require('../assets/egg.png');
         
         setTap(1);
-        setTotalBreaks(totalBreaks + 1);
+        setCount(count + 1);
       }
 
       console.log(tap);
@@ -53,6 +89,7 @@ const Home = ( {navigation} ) =>  {
       // console.log("retrieved: " + retrieved);
     }
 
+    const { count, increment, decrement } = useCounter();
     return (
             <>
             <View  style={styles.page}>
@@ -65,10 +102,10 @@ const Home = ( {navigation} ) =>  {
                 </Pressable>
               </View>
               <View style={styles.counter}>
-                <Text style={styles.text}>{totalBreaks}</Text>
+                <Text style={styles.text}>{count}</Text>
               </View>
               <View style={styles.body}>
-                <Pressable style={styles.press} onPress={displayEgg} >
+                <Pressable style={styles.press} onPress={increment} >
                   <View style = {styles.backgroundContainer}>
                     <Image style={styles.egg} source={backEgg}/>
                   </View>
@@ -124,4 +161,8 @@ const styles = StyleSheet.create({
    }
 });
 
-export default Home;
+export default () => (
+  <CounterContextProvider>
+    <Home />
+  </CounterContextProvider>
+);
