@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 /**
  * Abstraction used for access to AsyncStorage
  */
+
 class AsyncStorageInterface {
 
   /**
@@ -11,11 +12,17 @@ class AsyncStorageInterface {
    * @param {string} value the value of the total break counter
    */
   async storeData(key, value) {
-    try {
-      AsyncStorage.setItem(key, value)
-    } catch (e) {
-      console.log("AsyncStorage setData: error: " + e);
-    }
+    return new Promise((resolve, reject) => {
+      async function settingData() {
+        try {
+          await AsyncStorage.setItem(key, value);
+          console.log("set Item");
+        } catch (err) {
+          reject(Error("AsyncStorage setData: error: " + err));
+        }
+      }
+      settingData();
+    });
   }
 
   /**
@@ -25,22 +32,25 @@ class AsyncStorageInterface {
    * @returns the value at the key in AsyncStorage
    */
   async getData(key) {
-    // const result = await AsyncStorage.getItem(key);
-    // await setHook(result);
-    try {
-      const result = await AsyncStorage.getItem(key);
-      console.log("result in getdada: " + result);
-      if(result === null) {
-        this.storeData(key, '0');
-        return '0';
-      } else {
-        return(result);
-      }
-    } catch(e) {
-      console.log("AsyncStorage getData: error: " + e);
-    }
+    return new Promise((resolve, reject) => {
+       async function gettingData() {
+          try {
+            let result = await AsyncStorage.getItem(key);
+            console.log("res2: " + result);
+            result === null ? resolve(null) : resolve(JSON.stringify(result).replace(/"/g,"")); // get rid of te surrounding "" for the parseInt used on the result later on
+          } catch(err) {
+            reject(Error("AsyncStorage getData: error: " + err));
+          }
+       }
+
+       gettingData();
+        
+    });
   }
 
+  /**
+   * clears the data in AsyncStorage
+   */
   async clearStorage() {
     AsyncStorage.clear();
   }

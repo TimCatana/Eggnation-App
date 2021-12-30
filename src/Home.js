@@ -1,122 +1,96 @@
 import React, {useContext, createContext, useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import SqliteInterface from './SqliteInterface';
-import AsyncStorageInterface from './AsyncStorageInterface';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorageInterface from './AsyncStorageInterface';
 
-const asyncStorageInterface = new AsyncStorageInterface();
+const asInterface = new AsyncStorageInterface(); 
 const sqliteInterface = new SqliteInterface();
-const db = sqliteInterface.createDB()
+const db = sqliteInterface.createDB();
 const key = 'counter';
-const key2 = 'firstOpen'
 const prizeTable = 'PrizeHistory';
+
 let egg = require('../assets/egg.png');
 let backEgg = require('../assets/egg.png');
 
-
-
-const CounterContext = createContext(0);
-const useCounter = () => useContext(CounterContext);
-
-const CounterContextProvider = ({ children }) => {
-  const [count, setCount] = useState(0);
-  const increment = () => {
-    setCount((value) => value + 1);
-  };
-  const decrement = () => setCount((value) => value - 1);
-  
-  useEffect(() => {
-    if (count !== 0) {
-      AsyncStorage.setItem('COUNTER_APP::COUNT_VALUE', `${count}`);
-    }
-  }, [count]);
-  useEffect(() => {
-    AsyncStorage.getItem('COUNTER_APP::COUNT_VALUE')
-    .then((value) => {
-      if (value) {
-        setCount(parseInt(value));
-      }
-    });
-  }, []);
-  
-  return (
-    <CounterContext.Provider
-      value={{
-        count,
-        increment,
-        decrement,
-      }}>
-      {children}
-    </CounterContext.Provider>
-  );
-};
-
-
 /**
  * Home Page
- * @param navigtion The navigation object 
+ * @param navigation The navigation object
  * @returns 
  */
 const Home = ( {navigation} ) =>  {
-  const [tap, setTap] = useState(0);
+  const [count, setCount] = useState(0);
+  const increment = () => { setCount((value) => value + 1); };
 
-  useEffect(() => { 
+  useEffect(() => {
+    if (count !== 0) {
+      asInterface.storeData(key, `${count}`);
+    }
+  }, [count]);
+
+  useEffect(() => {
+    // asInterface.clearStorage();
+    // sqliteInterface.deleteTable(db, prizeTable);
+    async function setHome() {
       sqliteInterface.createPrizeHistoryTable(db, prizeTable);
+
+      try {
+        let result = await asInterface.getData(key);
+        result == null ? console.log("res is null") : setCount(parseInt(result));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    setHome();
   }, []);
 
   const displayEgg = async () => {
-      setTap(tap + 1);
- 
-      if(tap === 1) {
-        egg = require('../assets/egg_tap_1.png');
-
-        if((count % 10) === 0 && tap) { 
-                sqliteInterface.addToPrizeHistoryTable(db, prizeTable, "$20 gift card", "abcdef1234")
-        }
-      } else if (tap === 2) {
-        egg = require('../assets/egg_tap_2.png');
-        //Crack animation
-
-        egg = require('../assets/egg.png');
-        
-        setTap(1);
-        setCount(count + 1);
-      }
-
-      console.log(tap);
-
-      // sqliteInterface.getAllPrizes(db, prizeTable, setRetrieved);
-      // console.log("retrieved: " + retrieved);
+    increment();
+    
+    if ((count % 5) === 0) {
+      //play ad
     }
 
-    const { count, increment, decrement } = useCounter();
-    return (
-            <>
-            <View  style={styles.page}>
-              <View style={styles.header}>
-                <Pressable  onPress={() => navigation.navigate('PrizeHistory')}>
-                  <Image style={styles.storeIcon} source={require('../assets/present.png')}/>
-                </Pressable>
-                <Pressable onPress={() => navigation.navigate('Store')} >
-                  <Image style={styles.storeIcon} source={require('../assets/house.png')}/>
-                </Pressable>
-              </View>
-              <View style={styles.counter}>
-                <Text style={styles.text}>{count}</Text>
-              </View>
-              <View style={styles.body}>
-                <Pressable style={styles.press} onPress={increment} >
-                  <View style = {styles.backgroundContainer}>
-                    <Image style={styles.egg} source={backEgg}/>
-                  </View>
-                  <View>
-                    <Image style={styles.egg} source={egg}/>
-                  </View>
-                </Pressable>
-              </View>
-            </View>
-            </>
-          );
+    // TODO - delete this in prod, used for test
+    if((count % 10) === 0) {
+      try {
+        await sqliteInterface.addToPrizeHistoryTable(db, prizeTable, "$20 gift card", "abcd1234");
+        let lol = await sqliteInterface.getAllPrizes(db, prizeTable); 
+        console.log("retrieved: " + lol);
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
+  return (
+    <>
+    <View  style={styles.page}>
+      <View style={styles.header}>
+        <Pressable  onPress={() => navigation.navigate('PrizeHistory')}>
+          <Image style={styles.storeIcon} source={require('../assets/icons/histoory.png')}/>
+        </Pressable>
+        <Pressable onPress={() => navigation.navigate('Store')} >
+          <Image style={styles.storeIcon} source={require('../assets/icons/bag.png')}/>
+        </Pressable>
+      </View>
+      <View style={styles.counter}>
+        <Text style={styles.text}>{count}</Text>
+      </View>
+      <View style={styles.body}>
+        <Pressable style={styles.press} onPress={displayEgg} >
+          <View style = {styles.backgroundContainer}>
+            <Image style={styles.egg} source={backEgg}/>
+          </View>
+          <View>
+            <Image style={styles.egg} source={egg}/>
+          </View>
+        </Pressable>
+      </View>
+    </View>
+    </>
+  );
 
     }
 
@@ -131,6 +105,7 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     flexDirection: "column",
+    backgroundColor: 'white'
   },
   header: {
     flex: 1,
@@ -158,11 +133,8 @@ const styles = StyleSheet.create({
    storeIcon: {
     width: 50,
     height: 50,
+    margin: 3,
    }
 });
 
-export default () => (
-  <CounterContextProvider>
-    <Home />
-  </CounterContextProvider>
-);
+export default Home; 

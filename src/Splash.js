@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import sqliteInterface from './SqliteInterface';
  
 /**
  * Splash Page
@@ -8,9 +9,9 @@ import {View, Text, StyleSheet} from 'react-native';
 const Splash = ({navigation}) =>  {
 
   useEffect(() => { 
-    setTimeout(() => {
-      navigation.replace('Home');
-    }, 1000);
+      setTimeout(() => {
+        navigation.replace('Home');
+      }, 1000);
   }, []);
 
   return (
