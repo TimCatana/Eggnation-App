@@ -16,7 +16,6 @@ class AsyncStorageInterface {
       async function settingData() {
         try {
           await AsyncStorage.setItem(key, value);
-          console.log("set Item");
         } catch (err) {
           reject(Error("AsyncStorage setData: error: " + err));
         }
@@ -37,7 +36,7 @@ class AsyncStorageInterface {
           try {
             let result = await AsyncStorage.getItem(key);
             console.log("res2: " + result);
-            result === null ? resolve(null) : resolve(JSON.stringify(result).replace(/"/g,"")); // get rid of te surrounding "" for the parseInt used on the result later on
+            result === null ? resolve(null) : resolve(result);
           } catch(err) {
             reject(Error("AsyncStorage getData: error: " + err));
           }

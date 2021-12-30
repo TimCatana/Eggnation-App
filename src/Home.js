@@ -36,7 +36,10 @@ const Home = ( {navigation} ) =>  {
 
       try {
         let result = await asInterface.getData(key);
-        result == null ? console.log("res is null") : setCount(parseInt(result));
+        if(result !== null) {
+          result = JSON.stringify(result).replace(/"/g,""); // get rid of te surrounding "" for the parseInt used on the result later on
+          setCount(parseInt(result));
+        }
       } catch (err) {
         console.log(err);
       }
@@ -49,14 +52,15 @@ const Home = ( {navigation} ) =>  {
     increment();
     
     if ((count % 5) === 0) {
-      //play ad
+      // play ad
     }
 
     // TODO - delete this in prod, used for test
     if((count % 10) === 0) {
       try {
-        await sqliteInterface.addToPrizeHistoryTable(db, prizeTable, "$20 gift card", "abcd1234");
+        await sqliteInterface.addToPrizeHistoryTable(db, prizeTable, "gift card", "$20 gift card", "abcd1234");
         let lol = await sqliteInterface.getAllPrizes(db, prizeTable); 
+        lol = lol.map((res) => JSON.stringify(res));
         console.log("retrieved: " + lol);
       } catch (err) {
         console.log(err)

@@ -29,7 +29,7 @@ class SqliteInterface {
     return new Promise((resolve, reject) => {
       db.transaction((tx) => {
         tx.executeSql(
-          `CREATE TABLE IF NOT EXISTS ${tableName} (ID INTEGER PRIMARY KEY AUTOINCREMENT, Type TEXT, PrizeID TEXT);`,
+          `CREATE TABLE IF NOT EXISTS ${tableName} (ID INTEGER PRIMARY KEY AUTOINCREMENT, PrizeType TEXT, PrizeTitle TEXT, PrizeID TEXT);`,
           [],
           (tx, res) => resolve(),
           (error) =>  reject(Error(`SQLite createPrizeHistoryTable: failed to create ${tableName}: ` + error))
@@ -46,17 +46,17 @@ class SqliteInterface {
    * @param {string} prizeID The special ID used to redeem your prize (should be a very long string)
    * @return logs whether the function was successful or not 
    */
-  addToPrizeHistoryTable(db, tableName, prizeType, prizeID) {
+  addToPrizeHistoryTable(db, tableName, prizeType, prizeTitle, prizeID) {
     return new Promise((resolve, reject) => {
       db.transaction((tx) => {
         tx.executeSql(
-          `INSERT INTO ${tableName} (Type, PrizeID) VALUES (?,?);`, 
-          [prizeType, prizeID],
+          `INSERT INTO ${tableName} (PrizeType, PrizeTitle, PrizeID) VALUES (?,?,?);`, 
+          [prizeType, prizeTitle, prizeID],
           (tx, res) => {
             resolve();
           },
           (error) => {
-            reject(Error(`SQLite addToPrizeHistoryTable: failed to add '${prizeType}' '${prizeID}' to ${tableName}: ` + error));
+            reject(Error(`SQLite addToPrizeHistoryTable: failed to add '${prizeType}' '${prizeTitle}' '${prizeID}' to ${tableName}: ` + error));
           }
         );
       });
@@ -87,7 +87,7 @@ class SqliteInterface {
                 results.push(res.rows.item(i));
               }
             } 
-            resolve(JSON.stringify(results));
+            resolve(results);
           },
           (error) => {
             reject(Error(`SQLite getAllPrizes: failed to get '*' from ${tableName}: ` + error));
@@ -110,7 +110,7 @@ class SqliteInterface {
     return new Promise((resolve, reject) => {
       db.transaction((tx) => {
         tx.executeSql(
-          `SELECT * FROM ${tableName} WHERE Type=${prizeType};`, 
+          `SELECT * FROM ${tableName} WHERE PrizeType=${prizeType};`, 
           [],
           (tx, res) => {
             let len = res.rows.length;
@@ -121,10 +121,10 @@ class SqliteInterface {
                 results.push(res.rows.item(i));
               }
             } 
-            resolve(JSON.stringify(results));
+            resolve(results);
           },
           (error) => {
-            reject(Error(`SQLite getPrizeByType: failed to get '*' from ${tableName} where Type=${prizeType}: ` + error));
+            reject(Error(`SQLite getPrizeByType: failed to get '*' from ${tableName} where PrizeType=${prizeType}: ` + error));
           }
         );
       }); 
@@ -140,11 +140,11 @@ class SqliteInterface {
    * @return returns the retrieved data via the setHook hook
    * @return logs whether the function was successful or not 
    */
-  getPrizeByID(db, tableName, prizeID, setHook) {
+  getPrizeByID(db, tableName, prizeID) {
     return new Promise((resolve, reject) => {
       db.transaction((tx) => {
         tx.executeSql(
-          `SELECT * FROM ${tableName} WHERE prizeID=${prizeID};`, 
+          `SELECT * FROM ${tableName} WHERE PrizeID=${prizeID};`, 
           [],
           (tx, res) => {
             let len = res.rows.length;
@@ -155,10 +155,10 @@ class SqliteInterface {
                 results.push(res.rows.item(i));
               }              
             } 
-            resolve(JSON.stringify(results));
+            resolve(results);
           },
           (error) => {
-            reject(Error(`SQLite getPrizeByID: failed to get '*' from ${tableName} where prizeID=${prizeID}: ` + error));
+            reject(Error(`SQLite getPrizeByID: failed to get '*' from ${tableName} where PrizeID=${prizeID}: ` + error));
           }
         );
       }); 
