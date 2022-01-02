@@ -5,6 +5,8 @@ import Home from './Home';
 import Store from './Store';
 import PrizeHistory from './PrizeHistory';
 import Splash from './Splash';
+import Login from './Login';
+import CreateAccount from './CreateAccount';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +20,8 @@ const App = () =>  {
           }}
           > 
           <Stack.Screen name="Splash" component={Splash} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="CreateAccount" component={CreateAccount} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Store" component={Store} />
           <Stack.Screen name="PrizeHistory" component={PrizeHistory} />

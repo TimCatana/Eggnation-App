@@ -1,8 +1,9 @@
 import React, {useContext, createContext, useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable, Button} from 'react-native';
 import SqliteInterface from './SqliteInterface';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AsyncStorageInterface from './AsyncStorageInterface';
+import auth from '@react-native-firebase/auth';
 
 const asInterface = new AsyncStorageInterface(); 
 const sqliteInterface = new SqliteInterface();
@@ -13,20 +14,29 @@ const prizeTable = 'PrizeHistory';
 let egg = require('../assets/egg.png');
 let backEgg = require('../assets/egg.png');
 
+
+// const user = auth().currentUser;
+
 /**
  * Home Page
  * @param navigation The navigation object
  * @returns 
  */
 const Home = ( {navigation} ) =>  {
+  const [user, setUser] = useState("");
   const [count, setCount] = useState(0);
-  const increment = () => { setCount((value) => value + 1); };
+  const increment = () => { setCount((value) => value + 1) };
 
   useEffect(() => {
     if (count !== 0) {
       asInterface.storeData(key, `${count}`);
     }
   }, [count]);
+
+  // useEffect(() => {
+  //   console
+  //   console.log("useremail: " + user.email);
+  // }, [user]);
 
   useEffect(() => {
     // asInterface.clearStorage();
@@ -40,6 +50,7 @@ const Home = ( {navigation} ) =>  {
           result = JSON.stringify(result).replace(/"/g,""); // get rid of te surrounding "" for the parseInt used on the result later on
           setCount(parseInt(result));
         }
+        setUser(auth().currentUser);
       } catch (err) {
         console.log(err);
       }
@@ -75,6 +86,15 @@ const Home = ( {navigation} ) =>  {
         <Pressable  onPress={() => navigation.navigate('PrizeHistory')}>
           <Image style={styles.storeIcon} source={require('../assets/icons/histoory.png')}/>
         </Pressable>
+        <Text>{user.email}</Text>
+        <Button title="log out" onPress={() => {
+
+auth()
+  .signOut()
+  .then(() => console.log('User signed out!'));
+  navigation.navigate("Login");
+
+        }}/>
         <Pressable onPress={() => navigation.navigate('Store')} >
           <Image style={styles.storeIcon} source={require('../assets/icons/bag.png')}/>
         </Pressable>

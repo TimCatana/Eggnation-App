@@ -9,8 +9,8 @@ import sqliteInterface from './SqliteInterface';
 const Splash = ({navigation}) =>  {
 
   useEffect(() => { 
-      setTimeout(() => {
-        navigation.replace('Home');
+      setTimeout(() => { // TODO - change this to animation.then(navigate...)
+        navigation.replace('Login');
       }, 1000);
   }, []);
 

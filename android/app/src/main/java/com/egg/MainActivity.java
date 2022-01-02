@@ -1,4 +1,4 @@
-package com.egg;
+package com.applicnation.eggnation;
 
 import com.facebook.react.ReactActivity;
 

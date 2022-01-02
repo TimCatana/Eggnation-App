@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "133418656514",
+    "project_id": "egg-nation",
+    "storage_bucket": "egg-nation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133418656514:android:176e8534d3052a3c3a581b",
+        "android_client_info": {
+          "package_name": "com.applicnation.eggnation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133418656514-55vcab6mhlap1qj3vk9ggvln38tsjq4i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.applicnation.eggnation",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "133418656514-1garq9l92gca90piat7a5amupbng4p63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMZd3wZOyBAqZHLu6aYT6p2KAiYrxaNCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "133418656514-1garq9l92gca90piat7a5amupbng4p63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
