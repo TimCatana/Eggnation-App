@@ -1,4 +1,4 @@
-package com.applicnation.eggnation;
+package com.applicnation.eggnation2;
 
 import com.facebook.react.ReactActivity;
 

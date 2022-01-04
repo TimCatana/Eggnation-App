@@ -26,17 +26,23 @@ let backEgg = require('../../assets/egg.png');
  */
 const HomeScreen = ( {navigation, route} ) =>  {
 
-  const {logout, userName, user, setUserName} = useContext(AuthContext);
+  const {logout, user} = useContext(AuthContext);
 
   const [count, setCount] = useState(0);
   const increment = () => { setCount((value) => value + 1) };
+  
+  const incrementGlobal = () => {
+    database().ref('global').update({
+       count: database.ServerValue.increment(1),
+    });
+  }
 
   useEffect(() => {
     console.log("count is in count useffect: " + count);
     if (count !== 0) {
       database()
-        .ref(`users/${userName}`)
-        .update({clicks: count})
+        .ref(`users/${user.uid}`)
+        .update({count: count})
     }
   }, [count]);
 
@@ -47,10 +53,10 @@ const HomeScreen = ( {navigation, route} ) =>  {
       sqliteInterface.createPrizeHistoryTable(db, prizeTable);
 
       try {
-        let clicks =  await database().ref(`users/${userName}/clicks`).once('value');
-        // clicks = JSON.stringify(clicks).replace(/"/g,"");
-        console.log(clicks)
-        // setCount(parseInt(clicks));
+        let count =  await database().ref(`users/${user.uid}/count`).once('value');
+        count = JSON.stringify(count);
+        console.log(count);
+        setCount(parseInt(count));
       } catch (err) {
         console.log(err);
       }
@@ -59,9 +65,11 @@ const HomeScreen = ( {navigation, route} ) =>  {
     setHome();
   }, []);
 
+
+
   const displayEgg = async () => {
     increment();
-    database().ref('global').update({count: 0});
+    incrementGlobal();
 
     if ((count % 5) === 0) {
       // play ad
@@ -88,7 +96,7 @@ const HomeScreen = ( {navigation, route} ) =>  {
         <Pressable  onPress={() => navigation.navigate('PrizeHistoryScreen')}>
           <Image style={styles.storeIcon} source={require('../../assets/icons/histoory.png')}/>
         </Pressable>
-        <Text>{userName}</Text>
+        <Text>username goes here</Text>
         <Button title="log out" onPress={() => {logout()}}/>
         <Pressable onPress={() => navigation.navigate('StoreScreen')} >
           <Image style={styles.storeIcon} source={require('../../assets/icons/bag.png')}/>

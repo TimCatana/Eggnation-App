@@ -32,18 +32,24 @@ export const AuthProvider = ({children}) => {
               //with the appropriate details.
               firestore().collection('users').doc(auth().currentUser.uid)
               .set({
-                userName: username,
+                username: username,
                 email: email,
                 // userImg: null,
                 // clicks: 0,
-                wonPrizes: '',
-                createdAt: firestore.Timestamp.fromDate(new Date()),
+                emailVerified: false,
+                prizes: '',
+                created: firestore.Timestamp.fromDate(new Date()),
               })
               .catch(error => {
                   console.log('Something went wrong with added user to firestore: ', error);
               });
-              database().ref(`users/${username}`).set({count: 0}).then('count set').catch(error => console.log('Something went wrong with adding user to realtime database: ', error));
-              RNRestart.Restart();
+              
+              database().ref(`users/${auth().currentUser.uid}`)
+              .set({count: 0, username: username})
+              .then(() => console.log('count set'))
+              .catch(error => console.log('Something went wrong with adding user to realtime database: ', error));
+              
+              // RNRestart.Restart();
             })
             .catch(error => {
                 console.log('Something went wrong with sign up: ', error);
