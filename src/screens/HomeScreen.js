@@ -1,9 +1,11 @@
 import React, {useContext, createContext, useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, Pressable, Button} from 'react-native';
-import SqliteInterface from './SqliteInterface';
+import SqliteInterface from '../SqliteInterface';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import AsyncStorageInterface from './AsyncStorageInterface';
-import auth from '@react-native-firebase/auth';
+import AsyncStorageInterface from '../AsyncStorageInterface';
+import database from '@react-native-firebase/database';
+import {AuthContext} from '../navigation/AuthProvider';
+
 
 const asInterface = new AsyncStorageInterface(); 
 const sqliteInterface = new SqliteInterface();
@@ -11,8 +13,8 @@ const db = sqliteInterface.createDB();
 const key = 'counter';
 const prizeTable = 'PrizeHistory';
 
-let egg = require('../assets/egg.png');
-let backEgg = require('../assets/egg.png');
+let egg = require('../../assets/egg.png');
+let backEgg = require('../../assets/egg.png');
 
 
 // const user = auth().currentUser;
@@ -22,21 +24,21 @@ let backEgg = require('../assets/egg.png');
  * @param navigation The navigation object
  * @returns 
  */
-const Home = ( {navigation} ) =>  {
-  const [user, setUser] = useState("");
+const HomeScreen = ( {navigation, route} ) =>  {
+
+  const {logout, userName, user, setUserName} = useContext(AuthContext);
+
   const [count, setCount] = useState(0);
   const increment = () => { setCount((value) => value + 1) };
 
   useEffect(() => {
+    console.log("count is in count useffect: " + count);
     if (count !== 0) {
-      asInterface.storeData(key, `${count}`);
+      database()
+        .ref(`users/${userName}`)
+        .update({clicks: count})
     }
   }, [count]);
-
-  // useEffect(() => {
-  //   console
-  //   console.log("useremail: " + user.email);
-  // }, [user]);
 
   useEffect(() => {
     // asInterface.clearStorage();
@@ -45,12 +47,10 @@ const Home = ( {navigation} ) =>  {
       sqliteInterface.createPrizeHistoryTable(db, prizeTable);
 
       try {
-        let result = await asInterface.getData(key);
-        if(result !== null) {
-          result = JSON.stringify(result).replace(/"/g,""); // get rid of te surrounding "" for the parseInt used on the result later on
-          setCount(parseInt(result));
-        }
-        setUser(auth().currentUser);
+        let clicks =  await database().ref(`users/${userName}/clicks`).once('value');
+        // clicks = JSON.stringify(clicks).replace(/"/g,"");
+        console.log(clicks)
+        // setCount(parseInt(clicks));
       } catch (err) {
         console.log(err);
       }
@@ -61,7 +61,8 @@ const Home = ( {navigation} ) =>  {
 
   const displayEgg = async () => {
     increment();
-    
+    database().ref('global').update({count: 0});
+
     if ((count % 5) === 0) {
       // play ad
     }
@@ -82,21 +83,15 @@ const Home = ( {navigation} ) =>  {
   return (
     <>
     <View  style={styles.page}>
+      <Text>Logged in</Text>
       <View style={styles.header}>
-        <Pressable  onPress={() => navigation.navigate('PrizeHistory')}>
-          <Image style={styles.storeIcon} source={require('../assets/icons/histoory.png')}/>
+        <Pressable  onPress={() => navigation.navigate('PrizeHistoryScreen')}>
+          <Image style={styles.storeIcon} source={require('../../assets/icons/histoory.png')}/>
         </Pressable>
-        <Text>{user.email}</Text>
-        <Button title="log out" onPress={() => {
-
-auth()
-  .signOut()
-  .then(() => console.log('User signed out!'));
-  navigation.navigate("Login");
-
-        }}/>
-        <Pressable onPress={() => navigation.navigate('Store')} >
-          <Image style={styles.storeIcon} source={require('../assets/icons/bag.png')}/>
+        <Text>{userName}</Text>
+        <Button title="log out" onPress={() => {logout()}}/>
+        <Pressable onPress={() => navigation.navigate('StoreScreen')} >
+          <Image style={styles.storeIcon} source={require('../../assets/icons/bag.png')}/>
         </Pressable>
       </View>
       <View style={styles.counter}>
@@ -161,4 +156,4 @@ const styles = StyleSheet.create({
    }
 });
 
-export default Home; 
+export default HomeScreen; 

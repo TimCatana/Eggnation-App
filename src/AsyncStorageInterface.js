@@ -35,7 +35,6 @@ class AsyncStorageInterface {
        async function gettingData() {
           try {
             let result = await AsyncStorage.getItem(key);
-            console.log("res2: " + result);
             result === null ? resolve(null) : resolve(result);
           } catch(err) {
             reject(Error("AsyncStorage getData: error: " + err));

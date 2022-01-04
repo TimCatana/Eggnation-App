@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import sqliteInterface from './SqliteInterface';
  
 /**
  * Splash Page
  * @param navigation the navigation object
  */
-const Splash = ({navigation}) =>  {
+const SplashScreen = ({navigation}) =>  {
 
   useEffect(() => { 
       setTimeout(() => { // TODO - change this to animation.then(navigate...)
@@ -36,4 +35,4 @@ const styles = StyleSheet.create({
    },
 });
 
-export default Splash;
+export default SplashScreen;

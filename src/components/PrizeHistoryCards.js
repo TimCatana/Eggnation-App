@@ -1,9 +1,9 @@
 import React from 'react';
 import {Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
 
-const images = {"gift card": "../assets/icons/gift-card.png"};
+const images = {"gift card": "../../assets/icons/gift-card.png"};
 
-const giftCard = require("../assets/icons/gift-card.png");
+const giftCard = require("../../assets/icons/gift-card.png");
 
 /**
  * Represents a single card in the NavCards component
@@ -41,8 +41,6 @@ const SingleStoreCard = ({ name, type }) => {
  */
 const StoreCards = ( props ) => {
   const {data} = props;
-
-  console.log(data[0]);
 
   const renderItem = ({ item }) => {
     let parsedItem = JSON.parse(item);    

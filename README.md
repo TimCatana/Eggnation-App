@@ -6,6 +6,8 @@ expo.io
 
 ## Setting up
 
+- used some of this: https://github.com/itzpradip/react-native-firebase-social-app 
+
 ## Problems
 
 - Node V17 does not work, you get a error 500 and mentions a problem with the metro package. Using node version 16.10.0 fixed this problem

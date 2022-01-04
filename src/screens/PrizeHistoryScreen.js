@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, StatusBar} from 'react-native';
 import { useEffect, useState } from 'react/cjs/react.development';
-import SqliteInterface from './SqliteInterface';
-import StoreCards from './PrizeHistoryCards';
+import SqliteInterface from '../SqliteInterface';
+import StoreCards from '../components/PrizeHistoryCards';
 
 const sqliteInterface = new SqliteInterface();
 const db = sqliteInterface.createDB()
@@ -11,7 +11,7 @@ const prizeTable = 'PrizeHistory';
 /**
  * PrizeHistory Page
  */
-const PrizeHistory = () =>  {
+const PrizeHistoryScreen = () =>  {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
    }
 });
 
-export default PrizeHistory;
+export default PrizeHistoryScreen;
