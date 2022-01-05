@@ -6,18 +6,23 @@ import AsyncStorageInterface from '../AsyncStorageInterface';
 import database from '@react-native-firebase/database';
 import {AuthContext} from '../navigation/AuthProvider';
 
+import { useInterstitialAd, TestIds } from '@react-native-admob/admob';
+import { loadOptions } from '@babel/core';
 
-const asInterface = new AsyncStorageInterface(); 
+
+// const asInterface = new AsyncStorageInterface(); 
 const sqliteInterface = new SqliteInterface();
 const db = sqliteInterface.createDB();
-const key = 'counter';
+// const key = 'counter';
 const prizeTable = 'PrizeHistory';
 
 let egg = require('../../assets/egg.png');
 let backEgg = require('../../assets/egg.png');
 
 
-// const user = auth().currentUser;
+
+
+
 
 /**
  * Home Page
@@ -25,6 +30,15 @@ let backEgg = require('../../assets/egg.png');
  * @returns 
  */
 const HomeScreen = ( {navigation, route} ) =>  {
+
+  const { adLoaded, adPresented, adDismissed, show, load } = useInterstitialAd(
+    TestIds.INTERSTITIAL,
+    {
+      requestOptions: {
+        requestNonPersonalizedAdsOnly: true,
+      },
+    }
+  );
 
   const {logout, user} = useContext(AuthContext);
 
@@ -43,6 +57,20 @@ const HomeScreen = ( {navigation, route} ) =>  {
       database()
         .ref(`users/${user.uid}`)
         .update({count: count})
+    }
+
+    if ((count % 5 === 0) && adLoaded) {
+      // run ad animation
+      
+      console.log("Showing Ad!");
+      console.log(adLoaded);
+      console.log(adPresented);
+      // play ad
+      show();
+      // adLoaded = false;
+      console.log(adPresented);
+      // load();  
+      console.log(adLoaded);
     }
   }, [count]);
 
@@ -70,10 +98,6 @@ const HomeScreen = ( {navigation, route} ) =>  {
   const displayEgg = async () => {
     increment();
     incrementGlobal();
-
-    if ((count % 5) === 0) {
-      // play ad
-    }
 
     // TODO - delete this in prod, used for test
     if((count % 10) === 0) {

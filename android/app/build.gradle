@@ -131,6 +131,11 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    // when out of JVM memory uncomment
+    // dexOptions {
+    //   javaMaxHeapSize "4g"
+    // }
+
     defaultConfig {
         applicationId "com.applicnation.eggnation2"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -195,6 +200,9 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+
+    // for admob
+    implementation 'com.google.android.gms:play-services-ads:20.5.0'
 
     // for firebase, may be needed...
     // implementation platform('com.google.firebase:firebase-bom:29.0.3')
