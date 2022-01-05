@@ -30,8 +30,9 @@ let backEgg = require('../../assets/egg.png');
  * @returns 
  */
 const HomeScreen = ( {navigation, route} ) =>  {
+  const [isAdLoaded, setIsAdLoaded] = useState(false);
 
-  const { adLoaded, adPresented, adDismissed, show, load } = useInterstitialAd(
+  const {adLoaded, adDismissed, show, load, adPresented} = useInterstitialAd(
     TestIds.INTERSTITIAL,
     {
       requestOptions: {
@@ -52,7 +53,7 @@ const HomeScreen = ( {navigation, route} ) =>  {
   }
 
   useEffect(() => {
-    console.log("count is in count useffect: " + count);
+    // console.log("count is in count useffect: " + count);
     if (count !== 0) {
       database()
         .ref(`users/${user.uid}`)
@@ -61,16 +62,17 @@ const HomeScreen = ( {navigation, route} ) =>  {
 
     if ((count % 5 === 0) && adLoaded) {
       // run ad animation
-      
-      console.log("Showing Ad!");
-      console.log(adLoaded);
-      console.log(adPresented);
+   
       // play ad
-      show();
-      // adLoaded = false;
-      console.log(adPresented);
-      // load();  
-      console.log(adLoaded);
+      try {
+        console.log("Ad shown!");
+        show();
+        // setIsAdLoaded(false);
+      } catch (err) {
+        console.log("Ad failed to show! " + err);
+      }
+
+      console.log("Ad shown!");
     }
   }, [count]);
 
@@ -98,6 +100,16 @@ const HomeScreen = ( {navigation, route} ) =>  {
   const displayEgg = async () => {
     increment();
     incrementGlobal();
+
+    console.log(adLoaded);
+
+    console.log("Ad dismissed: " + adDismissed);
+    console.log("Ad loaded: " + adLoaded);
+    console.log("Ad Presented: " + adPresented);
+    
+    if(adPresented) {
+      load();
+    }
 
     // TODO - delete this in prod, used for test
     if((count % 10) === 0) {
