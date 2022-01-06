@@ -3,37 +3,37 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Item
 } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-// import SocialButton from '../components/SocialButton';
 import {AuthContext} from '../navigation/AuthProvider';
-import SignupScreen from './SignupScreen';
+// import SocialButton from '../components/SocialButton'; // TODO - get this from the guys gitHub when I implement Google button
 
-
-
-
+/**
+ * The login screen used to login to egg account
+ * @param navigation  
+ */
 const LoginScreen = ({navigation}) =>  {
-  // const [userName, setUserName] = useState();
    const [email, setEmail] = useState();
    const [password, setPassword] = useState();
 
    const {login} = useContext(AuthContext);
 
+  return (
+    <View style={styles.body}>
 
-    return (
-      <View style={styles.body}>
-
-      <FormInput
-        labelValue={email}
-        onChangeText={(userEmail) => setEmail(userEmail)}
-        placeholderText="Email"
-        // iconType="user"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
+        <FormInput
+          labelValue={email}
+          onChangeText={(userEmail) => setEmail(userEmail)}
+          placeholderText="Email"
+          // iconType="user"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+      {/* </Item> */}
 
       <FormInput
         labelValue={password}
@@ -58,12 +58,12 @@ const LoginScreen = ({navigation}) =>  {
       </TouchableOpacity>
 
       {/* TODO - make button nicer */}
-      <TouchableOpacity style={styles.forgotButton} onPress={() => {navigation.navigate('SignupScreen')}}>
+      <TouchableOpacity style={styles.forgotButton} onPress={() => {navigation.navigate('Signup')}}>
         <Text style={styles.navButtonText}>Create Account</Text>
       </TouchableOpacity>
 
     </View>
-   );
+  );
 }
 
 const styles = StyleSheet.create({
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
      flex: 1,
      justifyContent: 'center',
      alignItems: 'center',
+     color: '#000'
    },
    text: {
      fontSize: 50,

@@ -2,6 +2,9 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import StoreCards from '../components/StoreCards';
 
+// TODO - add "availableSkins" to user data in firestore
+// TODO - I was thinking I need a header, but I don't since I want to use tab stack for the appstack.
+
 /**
  * The egg skins
  */

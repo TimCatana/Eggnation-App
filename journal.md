@@ -1,4 +1,4 @@
-## January 5 2021, 
+## January 5, 2021, 
 
 ## Modified Android SDK Versions
 
@@ -21,3 +21,5 @@
 
 - Problem: the `adLoaded` variable is not getting set properly. I opened an issue on the `react-native-firebase/admob` repository
 - Soloution: none yet, I'm waiting for someone to potentially fix the error on the repo. While the error exists, I'm using a different way to reload ads
+
+## January 5, 2021

@@ -1,16 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignupScreen from '../screens/SignupScreen';
 import LoginScreen from '../screens/LoginScreen';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 const Stack = createNativeStackNavigator();
-
-
-
 
 const AuthStack = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
@@ -24,7 +19,7 @@ const AuthStack = () => {
       } else {
         setIsFirstLaunch(false);
       }
-    }); // Add some error handling, also you can simply do setIsFirstLaunch(null)
+    }); // TODO - Add some error handling, also you can simply do setIsFirstLaunch(null)
   
   }, []);
 
@@ -38,14 +33,14 @@ const AuthStack = () => {
 
   return (
       <Stack.Navigator 
-        initialRouteName={routeName}
+        initialRouteName='onBoarding' // TODO - change this to {routeName}
         screenOptions={{
           header: () => null
         }}
       >
-        <Stack.Screen name="OnboardingScreen" component={OnboardingScreen}/>
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="SignupScreen" component={SignupScreen} />
+        <Stack.Screen name="Onboarding" component={OnboardingScreen}/>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Signup" component={SignupScreen} />
       </Stack.Navigator>
   );
 };

@@ -1,7 +1,7 @@
 import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import database from '@react-native-firebase/database'
+import database from '@react-native-firebase/database';
 // import { GoogleSignin } from '@react-native-community/google-signin';
 import RNRestart from 'react-native-restart';
 
@@ -20,7 +20,7 @@ export const AuthProvider = ({children}) => {
             await auth().signInWithEmailAndPassword(email, password);
             RNRestart.Restart();
           } catch (e) {
-            // Add specific error messages to user somewhere
+            // TODO - add UI message to user
             console.log(e);
           }
         },
@@ -28,36 +28,37 @@ export const AuthProvider = ({children}) => {
           try {
             await auth().createUserWithEmailAndPassword(email, password)
             .then(() => {
-              //Once the user creation has happened successfully, we can add the currentUser into firestore
-              //with the appropriate details.
               firestore().collection('users').doc(auth().currentUser.uid)
               .set({
                 username: username,
                 email: email,
                 // userImg: null,
-                // clicks: 0,
                 emailVerified: false,
                 prizes: '',
                 created: firestore.Timestamp.fromDate(new Date()),
               })
               .catch(error => {
+                // TODO - add UI message to user (probably down below)
                   console.log('Something went wrong with added user to firestore: ', error);
               });
               
               database().ref(`users/${auth().currentUser.uid}`)
               .set({count: 0, username: username})
               .then(() => console.log('count set'))
-              .catch(error => console.log('Something went wrong with adding user to realtime database: ', error));
+              .catch(error => console.log('Something went wrong with adding user to realtime database: ', error)); // TODO - set UI error to user (probably down below)
               
+              // TODO - fix this, the UI should change automatically when user becomes not null...
               // RNRestart.Restart();
             })
             .catch(error => {
                 console.log('Something went wrong with sign up: ', error);
             });
           } catch (e) {
+            // TODO - error message to user should go here...
             console.log(e);
           }
         },
+        // TODO - google login...
         // googleLogin: async () => {
         //   try {
         //     // Get the users ID token
@@ -99,6 +100,7 @@ export const AuthProvider = ({children}) => {
           try {
             await auth().signOut();
           } catch (e) {
+            // TODO - add error to user 
             console.log(e);
           }
         },

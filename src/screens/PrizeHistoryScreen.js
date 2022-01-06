@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react/cjs/react.development';
 import SqliteInterface from '../SqliteInterface';
 import StoreCards from '../components/PrizeHistoryCards';
 
+// TODO - change this to use firestore rather than local sqlite
+
 const sqliteInterface = new SqliteInterface();
 const db = sqliteInterface.createDB()
 const prizeTable = 'PrizeHistory';
