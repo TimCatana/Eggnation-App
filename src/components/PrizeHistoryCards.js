@@ -1,8 +1,6 @@
 import React from 'react';
 import {Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
 
-const images = {"gift card": "../../assets/icons/gift-card.png"};
-
 const giftCard = require("../../assets/icons/gift-card.png");
 
 /**
@@ -12,6 +10,8 @@ const giftCard = require("../../assets/icons/gift-card.png");
  * @importantNote The name MUST be equal to a Stack.Screen name in App.js or else it will fail when pressed
  */
 // TODO - probably add a switch case for images
+// TODO - maybe move to its own js file
+// TODO - add "claim" button that is only clickable if the "prizeClaimed" item in the database is false.
 const SingleStoreCard = ({ name, type }) => {
   let img;
   if(type === "gift card") {
@@ -35,28 +35,29 @@ const SingleStoreCard = ({ name, type }) => {
 
 /**
  * Takes an array of objects representing screens that can be navigated 
- * @param { {name: string}[] } props.data A manually created object that should be passed from the screen component that these cards will be rendered on
+ * @param { {prizeName: string, prizeType: string, dateCreated: date, prizeID: string}[] } props.data A manually created object that should be passed from the screen component that these cards will be rendered on
  * @param props.navigation The navigation object
  * @returns A 2*n array of cards each of which navigates to its specified screen
  */
-const StoreCards = ( props ) => {
+const PrizeHistoryCards = ( props ) => {
   const {data} = props;
 
   const renderItem = ({ item }) => {
-    let parsedItem = JSON.parse(item);    
+    let parsedItem = JSON.parse(item);
+    
     return (
     <SingleStoreCard 
-      name={parsedItem.PrizeTitle} 
-      type={parsedItem.PrizeType}
+      name={parsedItem.prizeName} 
+      type={parsedItem.prizeType}
     />
   )};
 
   return (
-    <View >
+    <View>
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={item => JSON.parse(item).ID} // TODO - consider making this the prize ID
+        keyExtractor={item => JSON.parse(item).prizeID} // TODO - consider making this the prize ID
         numColumns={2}
       />
     </View> 
@@ -111,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StoreCards;
+export default PrizeHistoryCards;

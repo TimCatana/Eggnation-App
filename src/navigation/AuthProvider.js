@@ -34,7 +34,7 @@ export const AuthProvider = ({children}) => {
                 email: email,
                 // userImg: null,
                 emailVerified: false,
-                prizes: '',
+                // prizes: '',
                 created: firestore.Timestamp.fromDate(new Date()),
               })
               .catch(error => {

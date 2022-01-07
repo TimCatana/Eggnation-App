@@ -1,21 +1,22 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, Pressable, Button} from 'react-native';
-import SqliteInterface from '../SqliteInterface';
 import database from '@react-native-firebase/database';
 import {AuthContext} from '../navigation/AuthProvider';
 import { useInterstitialAd, TestIds } from '@react-native-admob/admob';
+
+import FirestoreInterface from '../FirestoreInterface';
+
+import firestore from '@react-native-firebase/firestore';
+
 
 // TODO - get splashscreen working again
 
 // TODO - I'm thinking of using tabs instead of stack since I want 5 screens: Home, store, wonPrizes, AvailablePrize, MostTapsLeaderboard
 
-// TODO - get rid of sqlite and use firebase database for prizes
-const sqliteInterface = new SqliteInterface();
-const db = sqliteInterface.createDB();
-const prizeTable = 'PrizeHistory';
-
 let egg = require('../../assets/egg.png');
 let backEgg = require('../../assets/egg.png');
+
+const fsi = new FirestoreInterface();
 
 
 /**
@@ -31,19 +32,65 @@ const HomeScreen = ( {navigation} ) =>  {
   const [initialized, setInitialized] = useState(false);
 
   const {adLoaded, adDismissed, show, load, adPresented} = useInterstitialAd(TestIds.INTERSTITIAL, { requestOptions: { requestNonPersonalizedAdsOnly: true, } } );
-
+  
+  /**
+   * Increment local and global
+   */
   const increment = () => {
-    // increment local
     setCount((value) => value + 1) 
 
-    //increment global
     database().ref('global').update({
       count: database.ServerValue.increment(1),
      });
-    
   };
 
+
+
+
+
+
+
+
+
+  const getRNGDocument = async (rng) => {
+    try {
+      let result = await fsi.getAvailablePrizes(rng);
+
+      if(result) {
+        // await fsi.removePrize(rng); // TODO - uncomment this in production
+        console.log('removing prize');
+      } else {
+        result = null;
+      }
+
+      return result;
+    } catch (error) {
+      console.log("Failed to test winner " + error);
+      return null;
+    }
+  }
+
+
+
+
+
+
+
+  const modifyPrizes = async (rng) => {
+    const prize = await getRNGDocument(rng);
+    console.log('modifyPrizes prize: ' + prize);
+
+    if(!prize) {
+      console.log('prize is null - running lose animation');
+    } else {
+      console.log('prize exists - adding prize to user prize history');
+      fsi.addPrizeToHistory(user.uid, prize.prizeName, prize.prizeType, prize.prizeID);
+    }
+  }
+
+
   useEffect(() => {
+
     if (count !== 0) {
       database()
         .ref(`users/${user.uid}`)
@@ -65,15 +112,22 @@ const HomeScreen = ( {navigation} ) =>  {
       }
 
       console.log("Ad shown!");
+    } else {
+      let rng = Math.floor((Math.random() * 5) + 1);
+      console.log(rng);
+      modifyPrizes(rng);
     }
+
   }, [count]);
+
+
+
+
+
 
   useEffect(() => {
     // asInterface.clearStorage();
-    // sqliteInterface.deleteTable(db, prizeTable);
     async function setHome() {
-      sqliteInterface.createPrizeHistoryTable(db, prizeTable);
-
       try {
         let count =  await database().ref(`users/${user.uid}/count`).once('value');
         count = JSON.stringify(count);
@@ -89,35 +143,28 @@ const HomeScreen = ( {navigation} ) =>  {
   }, []);
 
 
-  const displayEgg = async () => { 
+
+
+
+
+  /**
+   * @note once increment runs, the count useEffect begins to run. all the main logic should run in there? 
+   */
+  const displayEgg = async () => {    
     if(isFirstTap) { 
       setIsFirstTap(false);
     }
 
+    if(adDismissed || !adLoaded) {
+      load();
+    }
+    
     increment();
 
     console.log("Ad dismissed: " + adDismissed);
     console.log("Ad loaded: " + adLoaded);
-    console.log("Ad Presented: " + adPresented);
-    
-    if(adDismissed || !adLoaded) {
-      load();
-    }
-
-    // TODO - delete this in prod, used for test
-    // TODO - make this update in firestore
-    if((count % 10) === 0) {
-      // try {
-      //   await sqliteInterface.addToPrizeHistoryTable(db, prizeTable, "gift card", "$20 gift card", "abcd1234");
-      //   let lol = await sqliteInterface.getAllPrizes(db, prizeTable); 
-      //   lol = lol.map((res) => JSON.stringify(res));
-      //   console.log("retrieved: " + lol);
-      // } catch (err) {
-      //   console.log(err)
-      // }
-    }
+    console.log("Ad Presented: " + adPresented);   
   }
-
 
   // TODO probably run initialization while splashscreen is being loaded if possible?  
   if(!initialized) return null;

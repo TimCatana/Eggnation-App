@@ -1,20 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {View, Text, StyleSheet, StatusBar} from 'react-native';
-import { useEffect, useState } from 'react/cjs/react.development';
-import SqliteInterface from '../SqliteInterface';
-import StoreCards from '../components/PrizeHistoryCards';
+import PrizeHistoryCards from '../components/PrizeHistoryCards';
+import {AuthContext} from '../navigation/AuthProvider';
+import firestore from '@react-native-firebase/firestore';
 
-// TODO - change this to use firestore rather than local sqlite
-
-const sqliteInterface = new SqliteInterface();
-const db = sqliteInterface.createDB()
-const prizeTable = 'PrizeHistory';
+// TODO - add shimmering effect while prizes are loading
 
 /**
  * PrizeHistory Page
  */
 const PrizeHistoryScreen = () =>  {
   const [history, setHistory] = useState([]);
+  const {user} = useContext(AuthContext);
 
   useEffect(() => {
     console.log("history " + history);
@@ -22,12 +19,18 @@ const PrizeHistoryScreen = () =>  {
 
   useEffect(() => {
     async function getHistory () {
+
       try {
-        let result = await sqliteInterface.getAllPrizes(db, prizeTable);
+        let result = await firestore().collection('users').doc(user.uid)// .collection('prizes').doc("prizeID2")
+        .get()
+        .then(documentSnapshot => documentSnapshot.get('prizes'))
+        .catch(error => {
+            console.log('Something went wrong fetching prize to firestore: ', error);
+        });
         result = await result.map((res) => JSON.stringify(res)); 
         result === null ? console.log("res is null") : setHistory(result); 
       } catch (err) {
-        console.log(err);
+        console.log('Something went wrong fetching prize to firestore: ', err);
       }
     }
     getHistory();
@@ -36,7 +39,7 @@ const PrizeHistoryScreen = () =>  {
   return (
     <View style={styles.body}>
       <Text style={styles.text}>Prize History</Text>
-      <StoreCards
+      <PrizeHistoryCards
         data={history}
       />
     </View>
