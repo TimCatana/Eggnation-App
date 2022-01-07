@@ -12,8 +12,8 @@ class FirestoreInterface {
   addPrizeToHistory(userId, name, type, id) {
     try {
       firestore()
-      .collection(usersCollection)
-      .doc(userId)
+      .collection(`${usersCollection}`)
+      .doc(`${userId}`)
       .update({
         prizes: firestore.FieldValue.arrayUnion({
           prizeName: name, 
@@ -38,9 +38,6 @@ class FirestoreInterface {
       .doc(`${documentName}`)
       .get()
       .then(documentSnapshot => documentSnapshot.data())
-
-      console.log('result in getAvailablePrizes: ' + JSON.stringify(result));
-
       return result;
     } catch (err) {
       console.log(`Failed to get prize from ${prizesCollection} collection: `, err);
@@ -53,7 +50,7 @@ class FirestoreInterface {
   removePrize(documentName) {
     try {
       firestore()
-      .collection(prizesCollection)
+      .collection(`${prizesCollection}`)
       .doc(`${documentName}`)
       .delete()
     } catch (err) {

@@ -22,7 +22,7 @@ const Routes = () => {
 
   if (initializing) return null;
 
-  console.log("user is: " + JSON.stringify(user));
+  // console.log("user is: " + JSON.stringify(user));
 
   return (
     <NavigationContainer>
