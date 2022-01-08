@@ -12,7 +12,7 @@ const giftCard = require("../../assets/icons/gift-card.png");
 // TODO - probably add a switch case for images
 // TODO - maybe move to its own js file
 // TODO - add "claim" button that is only clickable if the "prizeClaimed" item in the database is false.
-const SingleStoreCard = ({ name, type }) => {
+const SinglePrizeCard = ({ name, type }) => {
   let img;
   if(type === "gift card") {
     img = giftCard;
@@ -35,18 +35,19 @@ const SingleStoreCard = ({ name, type }) => {
 
 /**
  * Takes an array of objects representing screens that can be navigated 
- * @param { {prizeName: string, prizeType: string, dateCreated: date, prizeID: string}[] } props.data A manually created object that should be passed from the screen component that these cards will be rendered on
+ * @param { {prizeName: string, prizeType: string, prizeClaimed: 0 || 1, prizeID: string}[] } props.data A manually created object that should be passed from the screen component that these cards will be rendered on
  * @param props.navigation The navigation object
  * @returns A 2*n array of cards each of which navigates to its specified screen
  */
 const PrizeHistoryCards = ( props ) => {
   const {data} = props;
+  // console.log('data : ' + data)
 
   const renderItem = ({ item }) => {
     let parsedItem = JSON.parse(item);
     
     return (
-    <SingleStoreCard 
+    <SinglePrizeCard 
       name={parsedItem.prizeName} 
       type={parsedItem.prizeType}
     />
@@ -57,7 +58,7 @@ const PrizeHistoryCards = ( props ) => {
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={item => JSON.parse(item).prizeID} // TODO - consider making this the prize ID
+        keyExtractor={item => JSON.parse(item).prizeID}
         numColumns={2}
       />
     </View> 

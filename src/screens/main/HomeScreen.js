@@ -1,19 +1,18 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, Pressable, Button} from 'react-native';
 import database from '@react-native-firebase/database';
-import {AuthContext} from '../navigation/AuthProvider';
 import { useInterstitialAd, TestIds } from '@react-native-admob/admob';
 
-import FirestoreInterface from '../FirestoreInterface';
-import RealtimeInterface from '../RealtimeInterface';
+import FirestoreInterface from '../../FirestoreInterface';
+import RealtimeInterface from '../../RealtimeInterface';
 
+import {useSelector, useDispatch} from 'react-redux'
+import {setCount, logout} from '../../redux/actions'
 
 // TODO - get splashscreen working again
 
-// TODO - I'm thinking of using tabs instead of stack since I want 5 screens: Home, store, wonPrizes, AvailablePrize, MostTapsLeaderboard
-
-let egg = require('../../assets/egg.png');
-let backEgg = require('../../assets/egg.png');
+let egg = require('../../../assets/egg.png');
+let backEgg = require('../../../assets/egg.png');
 
 const fsi = new FirestoreInterface();
 const rti = new RealtimeInterface();
@@ -24,8 +23,8 @@ const rti = new RealtimeInterface();
  * @returns 
  */
 const HomeScreen = ( {navigation} ) =>  {
-  const {logout, user} = useContext(AuthContext);
-  const [count, setCount] = useState(0);
+  const {count, user} = useSelector(state => state.userReducer)
+  const dispatch = useDispatch();
 
   const [isFirstTap, setIsFirstTap] = useState(true); // first tap for when user opens/reopens the app.
   const [initialized, setInitialized] = useState(false);
@@ -52,7 +51,7 @@ const HomeScreen = ( {navigation} ) =>  {
       const onValueChange = database()
       .ref(`users/${user.uid}/count`)
       .on('value', snapshot => {
-        setCount(snapshot.val());
+        dispatch(setCount(snapshot.val()))
       })
       setInitialized(true);
       return () => database().ref(`users/${user.uid}/count`).off('value', onValueChange); // stop listening on unmount
@@ -87,7 +86,7 @@ const HomeScreen = ( {navigation} ) =>  {
     }
   }, [count]);
 
-  /**
+/**
  * This function is only won when a user wins a prize.
  * Deletes prize from available prizes collection.
  * Adds prize to users prize history array.
@@ -154,16 +153,9 @@ const HomeScreen = ( {navigation} ) =>  {
   return (
     <>
     <View  style={styles.page}>
-      <Text>Logged in</Text>
       <View style={styles.header}>
-        <Pressable  onPress={() => navigation.navigate('PrizeHistory')}>
-          <Image style={styles.storeIcon} source={require('../../assets/icons/histoory.png')}/>
-        </Pressable>
         <Text>username goes here</Text>
-        <Button title="log out" onPress={() => {logout()}}/>
-        <Pressable onPress={() => navigation.navigate('Store')} >
-          <Image style={styles.storeIcon} source={require('../../assets/icons/bag.png')}/>
-        </Pressable>
+        <Button title="log out" onPress={() => {dispatch(logout())}}/>
       </View>
       <View style={styles.counter}>
         <Text style={styles.text}>{count}</Text>

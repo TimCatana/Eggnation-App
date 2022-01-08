@@ -1,30 +1,30 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-import HomeScreen from '../screens/HomeScreen';
-import StoreScreen from '../screens/StoreScreen';
-import PrizeHistoryScreen from '../screens/PrizeHistoryScreen';
-import LoginScreen from '../screens/LoginScreen';
-import SplashScreen from '../screens/SplashScreen';
-import SignupScreen from '../screens/SignupScreen';
+import HomeScreen from '../screens/main/HomeScreen';
+import StoreScreen from '../screens/main/StoreScreen';
+import PrizeHistoryScreen from '../screens/main/PrizeHistoryScreen';
+import LeaderboardScreen from '../screens/main/LeaderboardScreen';
+import AvailablaPrizesScreen from '../screens/main/AvailablePrizesScreen';
+// import SplashScreen from '../screens/SplashScreen';
 
-const Stack = createNativeStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 const App = () =>  {
   return(
-      <Stack.Navigator 
+      <Tab.Navigator 
         initialRouteName='Home'
-        screenOptions={{
-          header: () => null
-        }}
+        activeColor="#f3a"
+        inactiveColor="#2a1"
+        barStyle={{ backgroundColor: '#694fad' }}
       > 
-        <Stack.Screen name="Splash" component={SplashScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Signup" component={SignupScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Store" component={StoreScreen} />
-        <Stack.Screen name="PrizeHistory" component={PrizeHistoryScreen} />
-      </Stack.Navigator>
+        {/* <Tab.Screen name="Splash" component={SplashScreen} /> */}
+        <Tab.Screen name="AvailablaPrizesScreen" component={AvailablaPrizesScreen} />
+        <Tab.Screen name="PrizeHistory" component={PrizeHistoryScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Store" component={StoreScreen} />
+        <Tab.Screen name="LeaderboardScreen" component={LeaderboardScreen} />
+      </Tab.Navigator>
   );
 }
 

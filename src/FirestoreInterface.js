@@ -1,11 +1,25 @@
 import firestore from '@react-native-firebase/firestore';
 
-
 const usersCollection = 'users';
 const prizesCollection = 'AvailablePrizes';
 
+// TODO - return ERROR objects.
 
 class FirestoreInterface {
+
+  createUser(userID, username, email) {
+    firestore()
+    .collection(usersCollection)
+    .doc(userID)
+    .set({
+      username: username,
+      email: email,
+      // userImg: null,
+      emailVerified: false,
+      created: firestore.Timestamp.fromDate(new Date()),
+    })
+  }
+
 
 
 

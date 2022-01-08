@@ -9,7 +9,6 @@ import Onboarding from 'react-native-onboarding-swiper';
  */
 const Dots = ({selected}) => {
   let backgroundColor = selected ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.3)';
-
   return (
     <View style={{ width:6, height: 6, marginHorizontal: 3, backgroundColor }} />
   );
@@ -73,19 +72,19 @@ const OnboardingScreen = ({navigation}) => {
     pages={[
       {
         backgroundColor: '#a6e4d0', // TODO - change colours to something nicer
-        image: <Image style={styles.image} source={require('../../assets/egg.png')} />,
+        image: <Image style={styles.image} source={require('../../../assets/egg.png')} />,
         title: 'Eggs,',
         subtitle: 'Eggs!',
       },
       {
         backgroundColor: '#e9bcbe', // TODO - change colours to something nicer
-        image: <Image style={styles.image}  source={require('../../assets/egg_tap_1.png')} />,
+        image: <Image style={styles.image}  source={require('../../../assets/egg_tap_1.png')} />,
         title: 'Eggs,',
         subtitle: 'Eggs!',
       },
       {
         backgroundColor: '#fdeb93', // TODO - change colours to something nicer
-        image: <Image style={styles.image}  source={require('../../assets/egg_tap_2.png')} />,
+        image: <Image style={styles.image}  source={require('../../../assets/egg_tap_2.png')} />,
         title: 'And more eggs!',
         subtitle: "More eggs!",
       },

@@ -1,25 +1,21 @@
-import React, {useState, useContext} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Item
-} from 'react-native';
-import FormInput from '../components/FormInput';
-import FormButton from '../components/FormButton';
-import {AuthContext} from '../navigation/AuthProvider';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import FormInput from '../../components/FormInput';
+import FormButton from '../../components/FormButton';
 // import SocialButton from '../components/SocialButton'; // TODO - get this from the guys gitHub when I implement Google button
+
+import {useDispatch} from 'react-redux'
+import { login } from '../../redux/actions'
 
 /**
  * The login screen used to login to egg account
  * @param navigation  
  */
 const LoginScreen = ({navigation}) =>  {
+   const dispatch = useDispatch();
+
    const [email, setEmail] = useState();
    const [password, setPassword] = useState();
-
-   const {login} = useContext(AuthContext);
 
   return (
     <View style={styles.body}>
@@ -33,7 +29,6 @@ const LoginScreen = ({navigation}) =>  {
           autoCapitalize="none"
           autoCorrect={false}
         />
-      {/* </Item> */}
 
       <FormInput
         labelValue={password}
@@ -48,7 +43,7 @@ const LoginScreen = ({navigation}) =>  {
         buttonTitle="Login"
         onPress={() => {
           console.log("logging in!");
-          login(email, password)
+          dispatch(login(email, password));
         } }
       />
 

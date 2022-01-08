@@ -1,12 +1,11 @@
-import React, {useContext, useState} from 'react';
-import {View, Text, TouchableOpacity, Platform, StyleSheet} from 'react-native';
-import FormInput from '../components/FormInput';
-import FormButton from '../components/FormButton';
+import React, {useState} from 'react';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import FormInput from '../../components/FormInput';
+import FormButton from '../../components/FormButton';
 // import SocialButton from '../components/SocialButton';
-import {AuthContext} from '../navigation/AuthProvider';
 
-
-
+import {useDispatch} from 'react-redux'
+import { register } from '../../redux/actions'
 
 const SignupScreen = () => {
   const [userName, setUserName] = useState('');
@@ -14,8 +13,7 @@ const SignupScreen = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const {register} = useContext(AuthContext);
-
+  const dispatch = useDispatch();
 
   const createUser = () => {
     let goodToGo = true;
@@ -58,15 +56,9 @@ const SignupScreen = () => {
 
     if(goodToGo) {
       console.log("registering email!");
-      register(userName, email, password); // TODO - need to check if this throws an error (specifically email already exists error)
+      dispatch(register(userName, email, password)); // TODO - need to check if this throws an error (specifically email already exists error)
     }
   }
-
-
-
-
-
-
 
   return (
     <View style={styles.body}>

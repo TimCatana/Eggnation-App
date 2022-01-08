@@ -3,7 +3,24 @@ import database from '@react-native-firebase/database';
 const globalCollection = 'global';
 const usersCollection = 'users';
 
+// TODO - return ERROR objects.
 class RealtimeInterface {
+
+
+  createUser(userId, username) {
+    try {
+      database()
+      .ref(`${usersCollection}/${userId}`)
+      .set({
+        count: 0, 
+        username: username
+      })
+    } catch (err) {
+      return Error('failed to create user count: ' + err);
+    }
+  }
+
+
 
   updateGlobalCount() {
     try {
@@ -13,7 +30,7 @@ class RealtimeInterface {
         count: database.ServerValue.increment(1),
       })
     } catch (err) {
-      console.log('failed to increment global count: ' + err);
+      return Error('failed to increment global count: ' + err);
     }
   }
 
@@ -27,7 +44,7 @@ class RealtimeInterface {
         count: database.ServerValue.increment(1),
       })
     } catch (err) {
-      console.log('failed to increment global count: ' + err);
+      return Error('failed to increment user count: ' + err);
     }
   }
 

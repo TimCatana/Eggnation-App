@@ -29,9 +29,9 @@ class SqliteInterface {
     return new Promise((resolve, reject) => {
       db.transaction((tx) => {
         tx.executeSql(
-          `CREATE TABLE IF NOT EXISTS ${tableName} (ID INTEGER PRIMARY KEY AUTOINCREMENT, PrizeType TEXT, PrizeTitle TEXT, PrizeID TEXT);`,
+          `CREATE TABLE IF NOT EXISTS ${tableName} (prizeType TEXT, prizeName TEXT, prizeID TEXT, prizeClaimed INTEGER);`,
           [],
-          (tx, res) => resolve(),
+          (tx, res) => {console.log('created table correctly'); resolve();},
           (error) =>  reject(Error(`SQLite createPrizeHistoryTable: failed to create ${tableName}: ` + error))
         );
       });
@@ -46,17 +46,18 @@ class SqliteInterface {
    * @param {string} prizeID The special ID used to redeem your prize (should be a very long string)
    * @return logs whether the function was successful or not 
    */
-  addToPrizeHistoryTable(db, tableName, prizeType, prizeTitle, prizeID) {
+  addToPrizeHistoryTable(db, tableName, prizeType, prizeTitle, prizeID, prizeClaimed) {
     return new Promise((resolve, reject) => {
       db.transaction((tx) => {
         tx.executeSql(
-          `INSERT INTO ${tableName} (PrizeType, PrizeTitle, PrizeID) VALUES (?,?,?);`, 
-          [prizeType, prizeTitle, prizeID],
+          `INSERT INTO ${tableName} (prizeType, prizeName, prizeID, prizeClaimed) VALUES (?,?,?,?);`, 
+          [prizeType, prizeTitle, prizeID, prizeClaimed],
           (tx, res) => {
             resolve();
           },
           (error) => {
-            reject(Error(`SQLite addToPrizeHistoryTable: failed to add '${prizeType}' '${prizeTitle}' '${prizeID}' to ${tableName}: ` + error));
+            console.log(error);
+            reject(Error(`SQLite addToPrizeHistoryTable: failed to add '${prizeType}' '${prizeTitle}' '${prizeID}' '${prizeClaimed}' to ${tableName}: ` + error));
           }
         );
       });

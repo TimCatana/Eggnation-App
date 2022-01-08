@@ -7,7 +7,7 @@ import {Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View} from 're
  * @param {string} name The name and navigation string of the card    
  * @importantNote The name MUST be equal to a Stack.Screen name in App.js or else it will fail when pressed
  */
-const SingleStoreCard = ({ name, img, price }) => (
+const RewardSkinCard = ({ name, img, price }) => (
   <Pressable 
     style={styles.card}
     onPress={() => console.log("go to buy page")}
@@ -22,6 +22,24 @@ const SingleStoreCard = ({ name, img, price }) => (
   </Pressable>
 );
 
+
+const PurchaseSkinCard = ({ name, img, taps }) => (
+  <Pressable 
+    style={styles.card}
+    onPress={() => {
+      // if()
+      console.log("go to buy page")}}
+  >
+    <View style={styles.cardBody}>
+      <Text style={styles.title}>{name}</Text>
+      <View style={styles.body}>
+        <Image style={styles.image} source={img} />
+      </View>
+      <Text style={styles.desc}>taps: {taps}</Text>
+    </View>
+  </Pressable>
+);
+
 /**
  * Takes an array of objects representing screens that can be navigated 
  * @param { {name: string}[] } props.data A manually created object that should be passed from the screen component that these cards will be rendered on 
@@ -32,14 +50,24 @@ const StoreCards = ( props ) => {
   const {data} = props;
 
   const renderItem = ({ item }) => {
-
-    return (
-    <SingleStoreCard 
+    if (item.purchasable === false) {
+      return(
+      <PurchaseSkinCard 
       name={item.name} 
       img={item.img}
-      price={item.price}
+      taps={item.taps}
     />
-  )};
+      );
+    } else {
+      return (
+        <RewardSkinCard 
+          name={item.name} 
+          img={item.img}
+          price={item.price}
+        />
+      )};
+    }
+
 
   return (
     <View>
