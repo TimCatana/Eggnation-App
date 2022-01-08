@@ -40,8 +40,7 @@ const SinglePrizeCard = ({ name, type }) => {
  * @returns A 2*n array of cards each of which navigates to its specified screen
  */
 const PrizeHistoryCards = ( props ) => {
-  const {data} = props;
-  // console.log('data : ' + data)
+  const {data, getHistoryFunc, refreshing} = props;
 
   const renderItem = ({ item }) => {
     let parsedItem = JSON.parse(item);
@@ -53,6 +52,7 @@ const PrizeHistoryCards = ( props ) => {
     />
   )};
 
+  // TODO - add pull to refresh in flatlist to reload prizes
   return (
     <View>
       <FlatList
@@ -60,6 +60,8 @@ const PrizeHistoryCards = ( props ) => {
         renderItem={renderItem}
         keyExtractor={item => JSON.parse(item).prizeID}
         numColumns={2}
+        refreshing={refreshing}
+        onRefresh={getHistoryFunc}
       />
     </View> 
   );
