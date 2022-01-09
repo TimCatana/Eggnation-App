@@ -43,12 +43,10 @@ const PrizeHistoryCards = ( props ) => {
   const {data, getHistoryFunc, refreshing} = props;
 
   const renderItem = ({ item }) => {
-    let parsedItem = JSON.parse(item);
-    
     return (
     <SinglePrizeCard 
-      name={parsedItem.prizeName} 
-      type={parsedItem.prizeType}
+      name={item.prizeName} 
+      type={item.prizeType}
     />
   )};
 
@@ -58,7 +56,7 @@ const PrizeHistoryCards = ( props ) => {
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={item => JSON.parse(item).prizeID}
+        keyExtractor={item => item.prizeID}
         numColumns={2}
         refreshing={refreshing}
         onRefresh={getHistoryFunc}

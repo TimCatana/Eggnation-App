@@ -2,14 +2,52 @@ import database from '@react-native-firebase/database';
 
 const globalCollection = 'global';
 const usersCollection = 'users';
+const prizeCollection = 'prizes';
 
 // TODO - return ERROR objects.
 class RealtimeInterface {
 
-
-  createUser(userId, username) {
+  async getAvailablePrizes() {
     try {
-      database()
+      const result = await database()
+      .ref(`${prizeCollection}`)
+      .once('value')
+      .then(snapshot => { return snapshot.val() });
+      return result;
+    } catch (error) {
+      console.log('failed to get available prizess ' + err);
+    }
+  }
+
+
+  async checkIfPrizeAvailable(rng) {
+    try {
+      const result = await database()
+      .ref(`${prizeCollection}/${rng}`)
+      .once('value')
+      .then(snapshot => { return snapshot.val() });
+      return result;
+    } catch (err) {
+      console.log('failed to read prizesr ' + err);
+      return Error('failed to get prize document: ' + err);
+    }
+  }
+
+
+  async removePrize(rng) {
+    try {
+      await database()
+      .ref(`${prizeCollection}/${rng}`)
+      .remove();
+    } catch (err) {
+      console.log(`failed to remove ${rng} from ${prizesCollection}: ` + err); 
+    }
+  }
+
+
+ async createUser(userId, username) {
+    try {
+      await database()
       .ref(`${usersCollection}/${userId}`)
       .set({
         count: 0, 
@@ -21,10 +59,9 @@ class RealtimeInterface {
   }
 
 
-
-  updateGlobalCount() {
+  async updateGlobalCount() {
     try {
-      database()
+      await database()
       .ref(`${globalCollection}`)
       .update({
         count: database.ServerValue.increment(1),
@@ -35,10 +72,9 @@ class RealtimeInterface {
   }
 
 
-
-  updateUserCount(userId) {
+  async updateUserCount(userId) {
     try {
-      database()
+      await database()
       .ref(`${usersCollection}/${userId}`)
       .update({
         count: database.ServerValue.increment(1),
@@ -47,8 +83,6 @@ class RealtimeInterface {
       return Error('failed to increment user count: ' + err);
     }
   }
-
-
 
 }
 

@@ -45,6 +45,7 @@ const HomeScreen = ( {navigation} ) =>  {
    * onMount subscribe to firestore 'users/<userID>/count' value to set local count equal to firestore value.
    * Count is set when mounted and when subscription value is changed. 
    * @return unsubscribe from listening to 'users/<userID>/count'
+   * @note had some problems moving the listener to the RealtimeDatabaseInterface. The return value is off. I need to "pass by reference" as it were, but I'm not sure how to do that.
    */
   useEffect(() => {
     try {
@@ -94,12 +95,12 @@ const HomeScreen = ( {navigation} ) =>  {
  */
   const modifyPrizes = async (rng) => {
     const prize = await getRNGDocument(rng);
-
+    
     if(!prize) {
       console.log('prize is null - running lose animation');
-    } else {
+     } else {
       console.log('prize exists - adding prize to user prize history');
-      fsi.addPrizeToHistory(user.uid, prize.prizeName, prize.prizeType, prize.prizeID);
+      // fsi.addPrizeToHistory(user.uid, prize.prizeName, prize.prizeType, prize.prizeID); // TODO - uncomment in production
     }
   }
 
@@ -112,13 +113,11 @@ const HomeScreen = ( {navigation} ) =>  {
    */
   const getRNGDocument = async (rng) => {
     try {
-      let result = await fsi.getAvailablePrizes(rng);
-
+      let result = await rti.checkIfPrizeAvailable(rng);
+     
       if(result) {
         console.log('removing prize');
-        await fsi.removePrize(rng); // TODO - uncomment this in production
-      } else {
-        result = null;
+        // await rti.removePrize(rng); // TODO - uncomment in production
       }
 
       return result;

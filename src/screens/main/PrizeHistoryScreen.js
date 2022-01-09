@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import {View, Text, StyleSheet, StatusBar} from 'react-native';
 import PrizeHistoryCards from '../../components/PrizeHistoryCards';
-import firestore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux'
+import FirestoreInterface from '../../FirestoreInterface';
 
-
+const fsi = new FirestoreInterface();
 
 // TODO - add shimmering effect while prizes are loading
 
@@ -21,17 +21,15 @@ const PrizeHistoryScreen = () =>  {
   }, []);
 
   useEffect(() => {
-    console.log("history " + history);
+    return console.log("history " + history);
   }, [history]);
 
 
   const getHistory = async() => {
     setRefreshing(true);
     try {
-      let result = await firestore().collection('users').doc(user.uid)
-      .get()
-      .then(documentSnapshot => documentSnapshot.get('prizes'))
-      result = await result.map((res) => JSON.stringify(res)); 
+      let result = await fsi.getPrizeHistory(user.uid) 
+      result = await result.map((res) => res); 
       result === null ? console.log("res is null") : setHistory(result); 
     } catch (err) {
       console.log('Something went wrong fetching prize to firestore: ', err);
