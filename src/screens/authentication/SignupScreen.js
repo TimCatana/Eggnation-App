@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import FormInput from '../../components/FormInput';
 import FormButton from '../../components/FormButton';
-// import SocialButton from '../components/SocialButton';
+// import SocialButton from '../components/SocialButton'; // TODO - get this from the guys gitHub when I implement Google button
 
 import {useDispatch} from 'react-redux'
 import { register } from '../../redux/actions'
@@ -15,7 +15,15 @@ const SignupScreen = () => {
 
   const dispatch = useDispatch();
 
-  const createUser = () => {
+  
+  /**
+   * Creates a user with the given input.
+   * Also Checks to make sure that the input is valid.
+   * @importantNote This does NOT set the redux state, this simply creates the user which firebase somehow stores locally.
+   *                The redux state is changed in the Routes screen. when auth changes, the subscriber in Routes sees that and fires 
+   *                the callback which sets the user. 
+   */
+  const onCreateUser = () => {
     let goodToGo = true;
 
     let whitespaceChars = /\s/;
@@ -104,7 +112,7 @@ const SignupScreen = () => {
 
       <FormButton
         buttonTitle="Create Account"
-        onPress={createUser}
+        onPress={onCreateUser}
       />
 
       

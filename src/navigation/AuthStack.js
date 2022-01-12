@@ -7,24 +7,46 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator();
 
+/**
+ * The authentication stack is only shown if the user is currently 
+ * not logged in to their account
+ */
 const AuthStack = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
-  let routeName;
+  let routeName; 
 
+  /**
+   * When the user enters the app, check if it is the users first time opening (this instance of) 
+   * the app.
+   * @firstTime The app goes to the onboarding screen
+   * @notFirstTime The app goes to the login screen 
+   // TODO - I need to think of a beter way to handle the error, if something goes wrong on first launch, then the user will never see the onboarding screen. I guess this is a risk I'll take 
+   */
   useEffect(() => {
-    AsyncStorage.getItem('alreadyLaunched').then((value) => {
-      if (value == null) {
-        AsyncStorage.setItem('alreadyLaunched', 'true'); // No need to wait for `setItem` to finish, although you might want to handle errors
-        setIsFirstLaunch(true);
-      } else {
+    try {
+      const result = AsyncStorage.getItem('alreadyLaunched')
+      
+      if(result) {
         setIsFirstLaunch(false);
+      } else {
+        AsyncStorage.setItem('alreadyLaunched', 'true');
+        setIsFirstLaunch(true);
       }
-    }); // TODO - Add some error handling, also you can simply do setIsFirstLaunch(null)
-  
+    } catch (err) {
+      console.log('something went wrong in the onboarding screen: ' + err);
+      AsyncStorage.setItem('alreadyLaunched', 'true');
+      setIsFirstLaunch(false);
+    }
   }, []);
 
+  /**
+   * Make sure that nothing is shown to the user before determined route is set.
+   * This ensures that the user is not redirected to route 'undefined' which will
+   * crash the users app.
+   * @routeName is going to be determined by whether this is the users first launch or not
+   */
   if (isFirstLaunch === null) {
-    return null; // This is the 'tricky' part: The query to AsyncStorage is not finished, but we have to present something to the user. Null will just render nothing, so you can also put a placeholder of some sort, but effectively the interval between the first mount and AsyncStorage retrieving your data won't be noticeable to the user. But if you want to display anything then you can use a LOADER here
+    return null;
   } else if (isFirstLaunch == true) {
     routeName = 'Onboarding';
   } else {

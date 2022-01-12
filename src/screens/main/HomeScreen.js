@@ -17,6 +17,11 @@ let backEgg = require('../../../assets/egg.png');
 const fsi = new FirestoreInterface();
 const rti = new RealtimeInterface();
 
+// TODO - get rid of usercount in database. I will only have a local count
+// TODO - the user will only have 1000 clicks a day to ensure they don't waste their time on this app but also ensures that I make money
+// TODO - This also helps with the potential database connectivity issues I was worried about and make the code look nicer as a whole. 
+// TODO - The current database user count way I'm doing this is not necessarily a useful feature that provides value to my app.
+
 /**
  * Home Page
  * @param navigation
@@ -37,7 +42,7 @@ const HomeScreen = ( {navigation} ) =>  {
    * Increment user and global count
    */
   const increment = () => {
-    rti.updateUserCount(user.uid);
+    rti.updateUserCount(user.uid); // TODO - use async storage since I'm going to get rid of the database user count functionality since count will reset every 24 hours
     rti.updateGlobalCount();
   };
 
@@ -49,7 +54,7 @@ const HomeScreen = ( {navigation} ) =>  {
    */
   useEffect(() => {
     try {
-      const onValueChange = database()
+      const onValueChange = database() // TODO - get rid of this as I'm going to get rid of the database user count functionality since count will reset every 24 hours
       .ref(`users/${user.uid}/count`)
       .on('value', snapshot => {
         dispatch(setCount(snapshot.val()))

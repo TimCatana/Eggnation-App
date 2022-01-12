@@ -7,6 +7,7 @@ import {
 import database from '@react-native-firebase/database';
 import LeaderboardCards from '../../components/LeaderboardCards';
 
+// TODO - I will no longer have a count leaderboard. Maybe I'll change it to a global prizes one history board
  
 const LeaderboardScreen = () =>  {
   const [globalCountBoard, setGlobalCountBoard] = useState(0);
@@ -50,6 +51,7 @@ const LeaderboardScreen = () =>  {
           if(userInfo.count > winner.count) {
             let indexToSwap = topCounts.indexOf(winner);
             topCounts[indexToSwap] = userInfo;
+            break;
           }
         }
 

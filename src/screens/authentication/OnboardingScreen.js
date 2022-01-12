@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 /**
  * The set of dots at the bottom of the onboarding page representing which page
  * the user is currently on.
- * @param {Boolean} selected Represents whether we are on the current page or not 
+ * @param {boolean} selected Represents whether we are on the current page or not 
  */
 const Dots = ({selected}) => {
   let backgroundColor = selected ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.3)';
@@ -57,7 +57,7 @@ const Done = ({...props}) => (
 
 /**
  * The onboarding screen which should appear when the user first opens the app.
- * The user should always end up on the login screen from here.
+ * The user should always end up on the login screen once they are done with this screen
  * @param navigation 
  */
 const OnboardingScreen = ({navigation}) => {
@@ -68,7 +68,7 @@ const OnboardingScreen = ({navigation}) => {
     DoneButtonComponent={Done}
     DotComponent={Dots}
     onSkip={() => navigation.replace("Login")}
-    onDone={() => navigation.navigate("Login")}
+    onDone={() => navigation.relace("Login")}
     pages={[
       {
         backgroundColor: '#a6e4d0', // TODO - change colours to something nicer

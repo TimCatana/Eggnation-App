@@ -24,7 +24,6 @@ const PrizeHistoryScreen = () =>  {
     return console.log("history " + history);
   }, [history]);
 
-
   const getHistory = async() => {
     setRefreshing(true);
     try {
