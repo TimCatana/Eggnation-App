@@ -1,5 +1,8 @@
 import React from 'react';
 import {Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import { useSelector } from 'react-redux';
+import auth from '@react-native-firebase/auth';
+
 
 const giftCard = require("../../assets/icons/gift-card.png");
 
@@ -13,6 +16,9 @@ const giftCard = require("../../assets/icons/gift-card.png");
 // TODO - maybe move to its own js file
 // TODO - add "claim" button that is only clickable if the "prizeClaimed" item in the database is false.
 const SinglePrizeCard = ({ name, type }) => {
+  const {user} = useSelector(state => state.userReducer)
+  console.log(user.emailVerified);
+
   let img;
   if(type === "gift card") {
     img = giftCard;
@@ -29,6 +35,16 @@ const SinglePrizeCard = ({ name, type }) => {
           <Image style={styles.image} source={img} />
         </View>
         <Text style={styles.desc}>{name}</Text>
+        <Pressable style={styles.button} onPress={async () => {
+          if(!user.emailVerified) {
+            console.log('you need to verify your email to claim your prize! Please verify your email in settings');
+          } else {
+            console.log('claimed, we will update you on the status of your prize in around 1 business day') 
+          }
+        }}>
+          
+          <Text >Claim</Text>
+        </Pressable>
     </View>
   </Pressable>
 )};
@@ -111,6 +127,15 @@ const styles = StyleSheet.create({
     color: 'black'
     // backgroundColor: 'blue',
   },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'blue',
+  }
 });
 
 export default PrizeHistoryCards;

@@ -10,8 +10,6 @@ function userReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return {...state, user: action.payload}
-    // case SET_LOCAL_TAPS:
-    //   return {...state, count: action.payload}
     default:
       return state;
   }

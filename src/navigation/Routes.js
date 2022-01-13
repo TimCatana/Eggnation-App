@@ -19,7 +19,7 @@ const Routes = () => {
    * @return on unMount, unsubscribe to the firebase authentication state.
    */
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    const subscriber = auth().onUserChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
   }, []);
 
@@ -54,6 +54,10 @@ const Routes = () => {
    * @reduxStateChange The user is set to the user param
    */
   const onAuthStateChanged = (user) => {
+    // console.log('user changed: ');
+    console.log(user);
+    // console.log('provider data: ');
+    // console.log(user.providerData);
     dispatch(setUser(user))
     if (initializing) setInitializing(false);
   };

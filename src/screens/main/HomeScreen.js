@@ -50,6 +50,16 @@ const HomeScreen = ( {navigation} ) =>  {
   };
 
   /**
+   * Stores the user count to keep it persistent even if the
+   * user leaves the app.
+   */
+  useEffect(() => {
+    if (count !== 1000) {
+      AsyncStorage.setItem('counter', `${count}`);
+    }
+  }, [count])
+
+  /**
    * onMount, if it passed 12 hours, reset the counter to 1000.
    * if it has not passed 12 hours, then continue from where the user left off
    * once the user has 0 clicks left, they must wait until the 12 hour period has passed for their taps to reset 
@@ -115,21 +125,6 @@ const HomeScreen = ( {navigation} ) =>  {
       setInitialized(true);
     }
   }
-
-
-
-
-
-
-
-
-
-
-  useEffect(() => {
-    if (count !== 1000) {
-      AsyncStorage.setItem('counter', `${count}`);
-    }
-  }, [count])
   
   /**
    * Whenever count increases, it means the screen was tapped.
@@ -170,7 +165,7 @@ const HomeScreen = ( {navigation} ) =>  {
       console.log('prize is null - running lose animation');
      } else {
       console.log('prize exists - adding prize to user prize history');
-      // fsi.addPrizeToHistory(user.uid, prize.prizeName, prize.prizeType, prize.prizeID); // TODO - uncomment in production
+      fsi.addPrizeToHistory(user.uid, prize.prizeName, prize.prizeType, prize.prizeID); // TODO - uncomment in production
     }
   }
 
@@ -187,7 +182,7 @@ const HomeScreen = ( {navigation} ) =>  {
      
       if(result) {
         console.log('removing prize');
-        // await rti.removePrize(rng); // TODO - uncomment in production
+        await rti.removePrize(rng); // TODO - uncomment in production
       }
 
       return result;
