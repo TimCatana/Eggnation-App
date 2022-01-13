@@ -19,6 +19,7 @@
     "@react-navigation/material-bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
+    "dayjs": "^1.10.7",
     "react": "17.0.2",
     "react-native": "0.66.4",
     "react-native-onboarding-swiper": "^1.1.4",

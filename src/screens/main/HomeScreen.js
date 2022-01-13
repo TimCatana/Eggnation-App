@@ -1,15 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, Pressable, Button} from 'react-native';
-import database from '@react-native-firebase/database';
 import { useInterstitialAd, TestIds } from '@react-native-admob/admob';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import dayjs from 'dayjs';
 
 import FirestoreInterface from '../../FirestoreInterface';
 import RealtimeInterface from '../../RealtimeInterface';
 
 import {useSelector, useDispatch} from 'react-redux'
-import {setCount, logout} from '../../redux/actions'
+import {logout} from '../../redux/actions'
 
 // TODO - get splashscreen working again
+
+const dateKey = 'date';
 
 let egg = require('../../../assets/egg.png');
 let backEgg = require('../../../assets/egg.png');
@@ -28,11 +31,11 @@ const rti = new RealtimeInterface();
  * @returns 
  */
 const HomeScreen = ( {navigation} ) =>  {
-  const {count, user} = useSelector(state => state.userReducer)
   const dispatch = useDispatch();
 
   const [isFirstTap, setIsFirstTap] = useState(true); // first tap for when user opens/reopens the app.
   const [initialized, setInitialized] = useState(false);
+  const [count, setCount] = useState(1000);
 
   const {adLoaded, adDismissed, show, load, adPresented} = useInterstitialAd(
     TestIds.INTERSTITIAL, 
@@ -41,30 +44,92 @@ const HomeScreen = ( {navigation} ) =>  {
   /**
    * Increment user and global count
    */
-  const increment = () => {
-    rti.updateUserCount(user.uid); // TODO - use async storage since I'm going to get rid of the database user count functionality since count will reset every 24 hours
-    rti.updateGlobalCount();
+  const doCountUpdates = () => {
+  setCount((count) => count + -1);  
+  rti.updateGlobalCount();
   };
 
   /**
-   * onMount subscribe to firestore 'users/<userID>/count' value to set local count equal to firestore value.
-   * Count is set when mounted and when subscription value is changed. 
-   * @return unsubscribe from listening to 'users/<userID>/count'
-   * @note had some problems moving the listener to the RealtimeDatabaseInterface. The return value is off. I need to "pass by reference" as it were, but I'm not sure how to do that.
+   * onMount, if it passed 12 hours, reset the counter to 1000.
+   * if it has not passed 12 hours, then continue from where the user left off
+   * once the user has 0 clicks left, they must wait until the 12 hour period has passed for their taps to reset 
    */
   useEffect(() => {
-    try {
-      const onValueChange = database() // TODO - get rid of this as I'm going to get rid of the database user count functionality since count will reset every 24 hours
-      .ref(`users/${user.uid}/count`)
-      .on('value', snapshot => {
-        dispatch(setCount(snapshot.val()))
-      })
-      setInitialized(true);
-      return () => database().ref(`users/${user.uid}/count`).off('value', onValueChange); // stop listening on unmount
-    } catch (err) {
-      console.log('Failed to initialize home screen: ' + err);
-    }
+    initCounter();
   }, []); 
+  
+  /**
+   * The timer will reset to 1000 every 12 hours. 
+   * I need to keep track of how long it's been since the user last opened the app. I use AsyncStorage and dayjs for that.
+   * When the user first logs in, asyncStorage is empty so I store the current time in there and don't do anything else.
+   * When user logs in again after that, i fetch the date from async storage and compare it to the current time. 
+   * If the hour difference between the two times is greater or equal to 12 hours, then reset counter to 1000 and store new current date in asyncStorage.
+   * If the hour difference between the teo times is less thatn  
+   */
+  const initCounter = async () => {
+    try {
+      let resetCounter;
+      let storedTime = await AsyncStorage.getItem(dateKey); 
+  
+      if(!storedTime) {
+        await AsyncStorage.setItem(dateKey, dayjs().toString()); 
+      } else {
+        let pastTime = dayjs(storedTime);
+        let curTime = dayjs();
+        let dateDif = pastTime.diff(curTime, 'hours');
+        console.log(dateDif);
+
+        resetCounter = (dateDif <= -12) ? true : false 
+        doSetCounter(resetCounter);
+      }
+    } catch (err) {
+      console.log('Something went wrong while checking date difference. Not resetting counter: ' + err);
+      doSetCounter(false);
+    }
+  }
+
+
+  /**
+   * Initializes the counter for the user.
+   * If it's time to reset the counter, then this function sets the counter to 1000
+   * If it's not time to reset the counter, then this function sets the counter to where the user left off.
+   * @param {boolean} resetCounter Represents whether its time to reset the counter or not.  
+   */
+  const doSetCounter = async (resetCounter) => {
+    try {
+      if(resetCounter) {
+        setCount(1000);
+        await AsyncStorage.setItem('counter', '1000'); // need to figure a nicer soloution for this in the count hook
+        await AsyncStorage.setItem(dateKey, dayjs().toString()); 
+      } else {
+        let result = await AsyncStorage.getItem('counter');
+        console.log(result);
+        result == null ? console.log("res is null") : setCount(parseInt(result));
+      } 
+    } catch (err) {
+      console.log('Failed to init counter. Resetting to 1000');
+      setCount(1000);
+      await AsyncStorage.setItem('counter', '1000');
+      await AsyncStorage.setItem(dateKey, dayjs().toString()); 
+    } finally {
+      setInitialized(true);
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+  useEffect(() => {
+    if (count !== 1000) {
+      AsyncStorage.setItem('counter', `${count}`);
+    }
+  }, [count])
   
   /**
    * Whenever count increases, it means the screen was tapped.
@@ -75,7 +140,7 @@ const HomeScreen = ( {navigation} ) =>  {
   useEffect(() => {
     // TODO - on the first add, show a screen showing that ads will be shown and the reason for them etc...
     if(initialized && !isFirstTap) {
-      if ((count !==0) && (count % 5 === 0) && adLoaded) {
+      if ((count !== 1000) && (count % 10 === 0) && adLoaded) {
         // TODO - run ad animation
         // TODO - pause clicking
         // TODO - play ad
@@ -144,7 +209,7 @@ const HomeScreen = ( {navigation} ) =>  {
       load();
     }
     
-    increment();
+    doCountUpdates();
 
     console.log("Ad dismissed: " + adDismissed);
     console.log("Ad loaded: " + adLoaded);
