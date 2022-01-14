@@ -23,9 +23,11 @@ export const login = (email, password) => async () => {
 export const register = (username, email, password) => async () => {
   try {
     await auth().createUserWithEmailAndPassword(email, password)
-    .then(() => {
-      fsi.createUser(auth().currentUser.uid, username, email);
-      // rti.createUser(auth().currentUser.uid, username);
+    .then((userCredentials) => {
+      fsi.createUser(userCredentials.user, username, email);
+      userCredentials.user.updateProfile({
+        displayName: username,
+      });
     })
   } catch (err) {
     // TODO - User should also get a UI message

@@ -214,73 +214,73 @@ const HomeScreen = ( {navigation} ) =>  {
   // TODO probably run initialization while splashscreen is being loaded if possible?  
   if(!initialized) return null;
 
+  //TODO - use react native fast images for the image
   return (
     <>
-    <View  style={styles.page}>
-      <View style={styles.header}>
-        <Text>username goes here</Text>
-        <Button title="log out" onPress={() => {dispatch(logout())}}/>
-      </View>
-      <View style={styles.counter}>
-        <Text style={styles.text}>{count}</Text>
-      </View>
-      <View style={styles.body}>
-        <Pressable style={styles.press} onPress={displayEgg} >
-          <View style = {styles.backgroundContainer}>
-            <Image style={styles.egg} source={backEgg}/>
+      <View  style={styles.pageView}>
+        <View style={styles.headerView}>
+          {/* // TODO add setting icon? */}
+        </View>
+        <View style={styles.bodyView}>
+          <View style={styles.counterView}>
+            <Text style={styles.text}>{count}</Text>
           </View>
-          <View>
-            <Image style={styles.egg} source={egg}/>
+          <View style={styles.eggView}>
+            <Pressable style={styles.eggPressable} onPress={displayEgg}>
+              <Image style={styles.egg} source={egg}/>
+            </Pressable>
           </View>
-        </Pressable>
+        </View>
       </View>
-    </View>
     </>
   );
 
     }
 
 const styles = StyleSheet.create({
-  backgroundContainer: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  page: {
+  pageView: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: 'white'
+    // backgroundColor: "blue"
   },
-  header: {
+  headerView: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    // backgroundColor: "red"
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
   },
-   body: {
-     flex: 1,
-     justifyContent: 'flex-start',
-     alignItems: 'center',
-   },
-   counter: {
+  bodyView: {
+    flex: 9,
+    // backgroundColor: "green"
+  },
+  counterView: {
+    flex: 2,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "yellow"
+  },
+  eggView: {
+    flex: 4,
+    // backgroundColor: "orange"
+  },
+  eggPressable: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-   }, 
-   egg: {
-    height: 250,
-    width: 200
-   },
-   text: {
-     fontSize: 50,
-     color: 'black'
-   },
-   storeIcon: {
-    width: 50,
-    height: 50,
-    margin: 3,
-   }
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  egg: {
+   height: 280,
+   width: 230
+  },
+  counter: {
+   flex: 1,
+   alignItems: 'center',
+   justifyContent: 'center',
+  }, 
+  text: {
+    fontSize: 50,
+    color: 'black'
+  },
 });
 
 export default HomeScreen; 

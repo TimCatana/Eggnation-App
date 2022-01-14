@@ -69,14 +69,16 @@ const LeaderboardScreen = () =>  {
   return (
     <View style={styles.body}>
       <Text style={styles.text}>{globalCountBoard}</Text>
-      <LeaderboardCards
-        data={leaderboard}
-        getHistoryFunc={getTopFive}
-        refreshing={false}
-      />      
     </View>
   );
 }
+
+// TODO - change to prize winners history which gets the list of prizes won globally
+{/* <LeaderboardCards
+  data={leaderboard}
+  getHistoryFunc={getTopFive}
+  refreshing={false}
+/>       */}
 
 const styles = StyleSheet.create({
    body: {
@@ -86,6 +88,7 @@ const styles = StyleSheet.create({
    },
    text: {
      fontSize: 50,
+     color: "black"
    }
 });
 

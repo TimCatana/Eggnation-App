@@ -38,13 +38,17 @@ const PrizeHistoryScreen = () =>  {
   } 
 
   return (
-    <View style={styles.body}>
-      <Text style={styles.text}>Prize History</Text>
-      <PrizeHistoryCards
-        data={history}
-        getHistoryFunc={getHistory}
-        refreshing={refreshing}
-      />
+    <View style={styles.page}>
+      <View style={styles.header}>
+        <Text style={styles.text}>Prize History</Text>
+      </View>
+      <View style={styles.body}>
+        <PrizeHistoryCards
+          data={history}
+          getHistoryFunc={getHistory}
+          refreshing={refreshing}
+        />
+      </View>
     </View>
   );
 }
@@ -53,17 +57,26 @@ const PrizeHistoryScreen = () =>  {
  * Styles
  */
 const styles = StyleSheet.create({
-   body: {
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0, // TODO - add this to global style
-     flex: 1,
-     backgroundColor: 'white',
-     justifyContent: 'center',
-     alignItems: 'center',
-   },
-   text: {
-     fontSize: 50,
-     color: 'black'
-   }
+  page: {
+    // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0, // TODO - add this to global style
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: 'white',
+  },
+  header: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "red"
+  },
+  body: {
+    flex: 7,
+    // backgroundColor: "yellow"
+  },
+  text: {
+    fontSize: 50,
+    color: 'black'
+  }
 });
 
 export default PrizeHistoryScreen;

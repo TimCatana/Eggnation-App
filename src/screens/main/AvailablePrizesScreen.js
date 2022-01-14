@@ -42,25 +42,40 @@ const AvailablaPrizesScreen = () =>  {
   } 
 
   return (
-    <View style={styles.body}>
-    <Text style={styles.text}>Available prizes</Text>
-    <PrizeHistoryCards
-      data={availablePrizes}
-      getHistoryFunc={getAvailablePrizes}
-      refreshing={refreshing}
-    />
-  </View>
+    <View style={styles.page}>
+      <View style={styles.header}>
+          <Text style={styles.text}>Available prizes</Text>
+      </View>
+      <View style={styles.body}>
+        <PrizeHistoryCards
+          data={availablePrizes}
+          getHistoryFunc={getAvailablePrizes}
+          refreshing={refreshing}
+        />
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-   body: {
+   page: {
      flex: 1,
-     justifyContent: 'center',
-     alignItems: 'center',
+     flexDirection: "column",
+     backgroundColor: "white"
    },
+   header: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "red"
+  },
+  body: {
+    flex: 7,
+    // backgroundColor: "yellow"
+  },
    text: {
      fontSize: 50,
+     color: "black"
    }
 });
 

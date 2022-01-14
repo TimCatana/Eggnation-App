@@ -25,28 +25,25 @@ const SinglePrizeCard = ({ name, type }) => {
   }
 
   return (
-  <Pressable 
-    style={styles.card}
-    onPress={() => console.log("go to buy page")}
-  >
-    <View style={styles.cardBody}>
-        <Text style={styles.title}>Lol</Text>
-        <View style={styles.body}>
-          <Image style={styles.image} source={img} />
-        </View>
-        <Text style={styles.desc}>{name}</Text>
-        <Pressable style={styles.button} onPress={async () => {
+    <View style={styles.card}>
+      <View style={styles.cardHeader}>
+        <Text style={styles.title}>{name}</Text>
+      </View>
+      <View style={styles.cardBody}>
+        <Image style={styles.image} source={img} />
+      </View>
+      <View style={styles.cardFooter}>
+        <Pressable style={styles.claimButton} onPress={async () => {
           if(!user.emailVerified) {
             console.log('you need to verify your email to claim your prize! Please verify your email in settings');
           } else {
             console.log('claimed, we will update you on the status of your prize in around 1 business day') 
           }
         }}>
-          
-          <Text >Claim</Text>
+          <Text style={styles.claimText}>Claim</Text>
         </Pressable>
+      </View>
     </View>
-  </Pressable>
 )};
 
 /**
@@ -68,16 +65,14 @@ const PrizeHistoryCards = ( props ) => {
 
   // TODO - add pull to refresh in flatlist to reload prizes
   return (
-    <View>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.prizeID}
-        numColumns={2}
-        refreshing={refreshing}
-        onRefresh={getHistoryFunc}
-      />
-    </View> 
+    <FlatList
+      data={data}
+      renderItem={renderItem}
+      keyExtractor={item => item.prizeID}
+      numColumns={2}
+      refreshing={refreshing}
+      onRefresh={getHistoryFunc}
+    /> 
   );
 }
 
@@ -85,7 +80,6 @@ const PrizeHistoryCards = ( props ) => {
  * styles
  */
 const styles = StyleSheet.create({
-
   card: {
     borderRadius: 20,
     width: (Dimensions.get('window').width / 2) - 20, // Should be margin * 2 
@@ -94,47 +88,43 @@ const styles = StyleSheet.create({
     marginVertical: 7,
     backgroundColor: '#e6e6ea',
   },
+  cardHeader: {
+    flex: 2,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "blue"
+  }, 
   cardBody: {
-    // backgroundColor: 'orange',
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center'
+    flex: 4, 
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "green"
   },
-  body: {
-    flex: 6,
-    // backgroundColor: 'yellow',
-  },  
-  image: {
-    marginTop: 20,
-    width: 130,
-    height: 100,
+  cardFooter: {
+    flex: 3,
   },
   title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "black"
+  },
+  image: {
+    width: 120,
+    height: 80,
+  },
+  claimButton: {
     flex: 1,
-    fontSize: 20,
-    fontFamily: 'Exo',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: 'black'
-    // backgroundColor: 'red',
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 25,
+    marginVertical: 7,
+    borderRadius: 17,
+    backgroundColor: "blue"
   },
-  desc: {
-    flex:1,
+  claimText: {
     fontSize: 20,
-    fontWeight: 'bold',
-    fontFamily: 'Exo',
-    textAlign: 'center',
-    color: 'black'
-    // backgroundColor: 'blue',
-  },
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: 'blue',
+    fontWeight: "bold",
+    color: "white"
   }
 });
 
