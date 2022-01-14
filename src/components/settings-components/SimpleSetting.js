@@ -11,7 +11,9 @@ const SimpleSetting = (props) =>  {
 
   return (
     <Pressable style={isLastItem ? styles.lastItemBody : styles.itemBody} onPress={onPressFunction}>
-        <Text style={styles.title}>{settingText} {settingIcon}</Text>
+        <Text style={[styles.title, settingText === 'logout' ? {color: "red"} : {color: "white"}]}>
+          {settingText} {settingIcon}
+        </Text>
     </Pressable>
   );
 }
@@ -32,11 +34,8 @@ const styles = StyleSheet.create({
   },
    title: {
      fontSize: 20,
-     color: "white",
-    //  textAlignVertical: 'center',
-    //  paddingLeft: 15,
      marginVertical: 5,
-   },
+   }
 });
 
 export default SimpleSetting;

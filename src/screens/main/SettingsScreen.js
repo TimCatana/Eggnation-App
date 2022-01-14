@@ -26,12 +26,16 @@ const SettingsScreen = () =>  {
 
   const dispatch = useDispatch();
 
+  /**
+   * The profile settings
+   */
   const profileSettings ={ 
     sectionName: "PROFILE",
     sectionSettings: [
       {
-        name: `${user.displayName}`,
+        name: 'Avatar',
         icon: "userIcon",
+        actionIcon: "arrow icon",
         isLastItem: false,
         content: function() {
           return (
@@ -43,11 +47,33 @@ const SettingsScreen = () =>  {
             />
           );
         },
-        onPressFunction: function() {console.log('usernamepressed');}
+        onPressFunction: function() {
+          console.log('change avatar icon');
+        }
+      },
+      {
+        name: `${user.displayName}`,
+        icon: "userIcon",
+        actionIcon: "arrow icon",
+        isLastItem: false,
+        content: function() {
+          return (
+            <SimpleSetting
+              onPressFunction={this.onPressFunction}
+              settingText={this.name}
+              settingIcon={this.icon}
+              isLastItem={this.isLastItem}
+            />
+          );
+        },
+        onPressFunction: function() {
+          console.log('change username by using user.updateProfile({displayName: "newname"})');
+        }
       },
       {
         name: "email", 
         icon: "email Icon",
+        actionIcon: "checkmark or X icon",
         isLastItem: true,
         content: function() {
           return(
@@ -73,35 +99,20 @@ const SettingsScreen = () =>  {
             console.log('email already verified'); // TODO - probably only set this button visible if email is not verified
           }
         }
-      },
-      {
-        name: "password", 
-        icon: "email Icon",
-        isLastItem: true,
-        content: function() {
-          return(
-            <SimpleSetting
-              onPressFunction={this.onPressFunction}
-              settingText={this.name}
-              settingIcon={this.icon}
-              isLastItem={this.isLastItem}
-          />
-          );
-        },
-        onPressFunction: function() {  
-  
-         console.log('change password');
-        }
       }
     ]
   }
 
+  /**
+   * The theme settings
+   */
   const themeSettings ={ 
     sectionName: "THEME",
     sectionSettings: [
       {
         name: `dark`,
         icon: "themeicon",
+        actionIcon: "switch icon",
         isLastItem: true,
         content: function() {
           return (
@@ -113,10 +124,88 @@ const SettingsScreen = () =>  {
             />
           );
         },
-        onPressFunction: function() {console.log('usernamepressed');}
+        onPressFunction: function() {
+          console.log('change theme');
+        }
       }
     ]
   }
+
+  /**
+   * The legal settings 
+   */
+  const legalSettings ={ 
+    sectionName: "LEGAL",
+    sectionSettings: [
+      {
+        name: 'terms of service',
+        icon: "themeicon",
+        actionIcon: "arrow icon",
+        isLastItem: false,
+        content: function() {
+          return (
+            <SimpleSetting
+              onPressFunction={this.onPressFunction}
+              settingText={this.name}
+              settingIcon={this.icon}
+              isLastItem={this.isLastItem}
+            />
+          );
+        },
+        onPressFunction: function() {
+          console.log('go to terms page');
+        }
+      },
+      {
+        name: 'Privacy policy',
+        icon: "themeicon",
+        actionIcon: "arrow icon",
+        isLastItem: true,
+        content: function() {
+          return (
+            <SimpleSetting
+              onPressFunction={this.onPressFunction}
+              settingText={this.name}
+              settingIcon={this.icon}
+              isLastItem={this.isLastItem}
+            />
+          );
+        },
+        onPressFunction: function() {
+          console.log('go to privacy policy page');
+        }
+      }
+    ]
+  }
+
+  /**
+   * The logout setting
+   */
+  const signOutSettings = { 
+    sectionName: "EggNation Version 1.0.0",
+    sectionSettings: [
+      {
+        name: 'logout',
+        icon: "",
+        actionIcon: "",
+        isLastItem: true,
+        content: function() {
+          return (
+            <SimpleSetting
+              onPressFunction={this.onPressFunction}
+              settingText={this.name}
+              settingIcon={this.icon}
+              isLastItem={this.isLastItem}
+            />
+          );
+        },
+        onPressFunction: function() {
+          dispatch(logout());
+        }
+      }
+    ]
+  }
+
 
 
 
@@ -212,13 +301,15 @@ const SettingsScreen = () =>  {
         </View>
       </Modal>
 
-
       <View style={styles.header}>
-        <Text style={styles.headingText}>Settings</Text>
+        <Text style={styles.headingText}>EggNation</Text> 
+        <Text style={styles.headingText}>social media icons</Text> 
       </View>
       <View style={styles.body}>
         <SettingsItems data={profileSettings}/>
         <SettingsItems data={themeSettings}/>
+        <SettingsItems data={legalSettings}/>
+        <SettingsItems data={signOutSettings}/>
       </View>
 
    
@@ -310,7 +401,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#010101"
   },
   body: {
-    flex: 8,
+    flex: 3,
     backgroundColor: "#010101"
   },
   modalPage: {
@@ -352,56 +443,9 @@ const styles = StyleSheet.create({
     color: "white"
   },
   headingText: {
-    fontSize: 50,
+    fontSize: 40,
     color: "white"
   }
-
-
-
-
-
-
-  // centeredView: {
-  //   flex: 1,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   marginTop: 22
-  // },
-  // modalView: {
-  //   margin: 20,
-  //   backgroundColor: "white",
-  //   borderRadius: 20,
-  //   padding: 100,
-  //   alignItems: "center",
-  //   shadowColor: "#000",
-  //   shadowOffset: {
-  //     width: 0,
-  //     height: 2
-  //   },
-  //   shadowOpacity: 0.25,
-  //   shadowRadius: 4,
-  //   elevation: 5
-  // },
-  // button: {
-  //   borderRadius: 20,
-  //   padding: 10,
-  //   elevation: 2
-  // },
-  // buttonOpen: {
-  //   backgroundColor: "#F194FF",
-  // },
-  // buttonClose: {
-  //   backgroundColor: "#2196F3",
-  // },
-  // textStyle: {
-  //   color: "white",
-  //   fontWeight: "bold",
-  //   textAlign: "center"
-  // },
-  // modalText: {
-  //   marginBottom: 15,
-  //   textAlign: "center"
-  // }
 });
 
 export default SettingsScreen;

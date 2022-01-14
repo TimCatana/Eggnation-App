@@ -55,7 +55,7 @@ const Routes = () => {
    */
   const onAuthStateChanged = (user) => {
     // console.log('user changed: ');
-    console.log(user.providerData);
+    console.log(user);
     // console.log('provider data: ');
     // console.log(user.providerData);
     dispatch(setUser(user))
