@@ -6,8 +6,10 @@ import {
   Pressable,
   Modal
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import SettingsItems from '../../components/SettingsItems'; 
+import {logout} from '../../redux/actions'
+import SimpleSetting from '../../components/settings-components/SimpleSetting';
 
 
 
@@ -22,55 +24,144 @@ const SettingsScreen = () =>  {
   const [verifiedButtonDisables, setVerifiedButtonDisabled] = useState(true);
   const {user} = useSelector(state => state.userReducer)
 
+  const dispatch = useDispatch();
 
-  const settings = [
-    {
-      name: "email", 
-      icon: "email Icon",
-      onPressFunction: function() {  
+  const profileSettings ={ 
+    sectionName: "PROFILE",
+    sectionSettings: [
+      {
+        name: `${user.displayName}`,
+        icon: "userIcon",
+        isLastItem: false,
+        content: function() {
+          return (
+            <SimpleSetting
+              onPressFunction={this.onPressFunction}
+              settingText={this.name}
+              settingIcon={this.icon}
+              isLastItem={this.isLastItem}
+            />
+          );
+        },
+        onPressFunction: function() {console.log('usernamepressed');}
+      },
+      {
+        name: "email", 
+        icon: "email Icon",
+        isLastItem: true,
+        content: function() {
+          return(
+            <SimpleSetting
+              onPressFunction={this.onPressFunction}
+              settingText={this.name}
+              settingIcon={this.icon}
+              isLastItem={this.isLastItem}
+          />
+          );
+        },
+        onPressFunction: function() {  
+    
+          if(!user.emailVerified) {
+            // user.sendEmailVerification();  // TODO - need to get the user somehow
+            setModalVisible(true);
+            setVerifiedButtonDisabled(true);
+            setTimeout(() => { // Set verified button disabled for 5 seconds so that user can read and go to email instead of clicking the button prematurely.
+              setVerifiedButtonDisabled(false);
+              console.log('enabled');
+            }, 5000)
+          } else {
+            console.log('email already verified'); // TODO - probably only set this button visible if email is not verified
+          }
+        }
+      },
+      {
+        name: "password", 
+        icon: "email Icon",
+        isLastItem: true,
+        content: function() {
+          return(
+            <SimpleSetting
+              onPressFunction={this.onPressFunction}
+              settingText={this.name}
+              settingIcon={this.icon}
+              isLastItem={this.isLastItem}
+          />
+          );
+        },
+        onPressFunction: function() {  
   
-        if(!user.emailVerified) {
-          // user.sendEmailVerification();  // TODO - need to get the user somehow
-          setModalVisible(true);
-          setVerifiedButtonDisabled(true);
-          setTimeout(() => { // Set verified button disabled for 5 seconds so that user can read and go to email instead of clicking the button prematurely.
-            setVerifiedButtonDisabled(false);
-            console.log('enabled');
-          }, 5000)
-        } else {
-          console.log('email already verified'); // TODO - probably only set this button visible if email is not verified
+         console.log('change password');
         }
       }
-    },
-    {
-      name: "theme", 
-      icon: "theme Icon",
-      onPressFunction: function() {  
-        console.log('change theme');
+    ]
+  }
+
+  const themeSettings ={ 
+    sectionName: "THEME",
+    sectionSettings: [
+      {
+        name: `dark`,
+        icon: "themeicon",
+        isLastItem: true,
+        content: function() {
+          return (
+            <SimpleSetting
+              onPressFunction={this.onPressFunction}
+              settingText={this.name}
+              settingIcon={this.icon}
+              isLastItem={this.isLastItem}
+            />
+          );
+        },
+        onPressFunction: function() {console.log('usernamepressed');}
       }
-    },
-    {
-      name: "item1", 
-      icon: "item1 Icon",
-      onPressFunction: function() {  
-        console.log('change item1');
-      }
-    },
-    {
-      name: "item2", 
-      icon: "item2 Icon",
-      onPressFunction: function() {  
-        console.log('change item2');
-      }
-    },
-    {
-      name: "item3", 
-      icon: "item3 Icon",
-      onPressFunction: function() {  
-        console.log('change item3');
-      }
-    }
-  ]
+    ]
+  }
+
+
+
+  // const settings = [
+
+  //   {
+  //     name: "theme", 
+  //     icon: "theme Icon",
+  //     onPressFunction: function() {  
+  //       console.log('change theme');
+  //     }
+  //   },
+  //   {
+  //     name: "item1", 
+  //     icon: "item1 Icon",
+  //     lastItem: false,
+  //     onPressFunction: function() {  
+  //       console.log('change item1');
+  //     }
+  //   },
+  //   {
+  //     name: "item2", 
+  //     icon: "item2 Icon",
+  //     lastItem: false,
+  //     onPressFunction: function() {  
+  //       console.log('change item2');
+  //     }
+  //   },
+  //   {
+  //     name: "item3", 
+  //     icon: "item3 Icon",
+  //     lastItem: false,
+  //     onPressFunction: function() {  
+  //       console.log('change item3');
+  //     }
+  //   },
+  //   {
+  //     name: "logout", 
+  //     icon: "logout Icon",
+  //     lastItem: true,
+  //     onPressFunction: function() {  
+  //       dispatch(logout());
+  //     }
+  //   }
+  // ]
 
 
 
@@ -99,9 +190,6 @@ const SettingsScreen = () =>  {
         animationType={"slide"}
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
       >
         <View style={styles.modalPage}>
           <View style={styles.modalView}>
@@ -126,10 +214,11 @@ const SettingsScreen = () =>  {
 
 
       <View style={styles.header}>
-
+        <Text style={styles.headingText}>Settings</Text>
       </View>
       <View style={styles.body}>
-        <SettingsItems data={settings}/>
+        <SettingsItems data={profileSettings}/>
+        <SettingsItems data={themeSettings}/>
       </View>
 
    
@@ -212,15 +301,17 @@ const SettingsScreen = () =>  {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    backgroundColor: "blue",
+    // backgroundColor: "blue",
   },
   header: {
     flex: 1,
-    backgroundColor: "red"
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#010101"
   },
   body: {
     flex: 8,
-    backgroundColor: "green"
+    backgroundColor: "#010101"
   },
   modalPage: {
     flex: 1,
@@ -257,7 +348,12 @@ const styles = StyleSheet.create({
   // },
   text: {
     fontSize: 10,
-    textAlign: "center"
+    textAlign: "center",
+    color: "white"
+  },
+  headingText: {
+    fontSize: 50,
+    color: "white"
   }
 
 

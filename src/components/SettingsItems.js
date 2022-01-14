@@ -1,15 +1,13 @@
 import React from 'react';
-import { FlatList,  StyleSheet, Text, View, Pressable} from 'react-native';
+import { FlatList,  StyleSheet, Text, View, Pressable, Label, Settings} from 'react-native';
 
 
 
 
-const SingleSetting = ({ setting }) => {
-  return (
-    <Pressable style={styles.body} onPress={setting.onPressFunction}>
-        <Text style={styles.title}>{setting.name} {setting.icon}</Text>
-    </Pressable>
-)};
+const SingleSetting = (props) => {
+  const {setting} = props
+  return(setting.content())
+};
 
 
 
@@ -25,31 +23,61 @@ const SettingsItems = (props) =>  {
   )};
 
   return (
-    <View>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.name}
-        numColumns={1}
-      />
+    <View style={styles.settingSectionView}>
+      <Text style={styles.labelText}>{data.sectionName}</Text>
+      <View style={styles.body}>
+        <FlatList
+          data={data.sectionSettings}
+          renderItem={renderItem}
+          keyExtractor={item => item.name}
+          numColumns={1}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-   body: {
-     flex: 1,
-     justifyContent: 'center',
-     alignItems: 'flex-start',
-     marginHorizontal: 10,
-     marginVertical: 5,
-     paddingVertical: 10,
-     borderRadius: 20,
-     backgroundColor: "orange"
+  settingSectionView: {
+    paddingBottom: 20,
+  },
+  labelText: {
+    fontSize: 13,
+    color: "#A5A5A5",
+    marginLeft: 15,
+    marginBottom: 7
    },
-   text: {
-     fontSize: 50,
-   }
+   body: {
+    marginLeft: 5,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    borderTopLeftRadius: 15,
+    borderBottomLeftRadius: 15,
+    backgroundColor: "#1d1d1d",
+    alignItems: 'stretch',
+   },
+   itemBody: {
+     paddingVertical: 3,
+    borderBottomWidth: 0.5,
+    borderColor: "#5B5B5B",
+    marginLeft: 15,
+    justifyContent: 'flex-start'
+  },
+  lastItemBody: {
+    paddingVertical: 3,
+  //  borderBottomWidth: 1,
+   borderColor: "#5B5B5B",
+   marginLeft: 15,
+   justifyContent: 'flex-start'
+ },
+   title: {
+     fontSize: 20,
+     color: "white",
+    //  textAlignVertical: 'center',
+    //  paddingLeft: 15,
+     marginVertical: 5,
+   },
+
 });
 
 export default SettingsItems;

@@ -7,6 +7,8 @@ import {
 import RealtimeInterface from '../../RealtimeInterface';
 import PrizeHistoryCards from '../../components/PrizeHistoryCards';
 
+// TODO - add 'no prizes available' text if  array of prizes is empty 
+
 const rti = new RealtimeInterface();
 
 const AvailablaPrizesScreen = () =>  {

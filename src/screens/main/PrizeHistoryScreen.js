@@ -4,6 +4,8 @@ import PrizeHistoryCards from '../../components/PrizeHistoryCards';
 import {useSelector} from 'react-redux'
 import FirestoreInterface from '../../FirestoreInterface';
 
+// TODO - add 'you have not won anything yet!' text if  array of prizes is empty 
+
 const fsi = new FirestoreInterface();
 
 // TODO - add shimmering effect while prizes are loading

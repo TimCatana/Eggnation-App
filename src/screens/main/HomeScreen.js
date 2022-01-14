@@ -8,7 +8,7 @@ import FirestoreInterface from '../../FirestoreInterface';
 import RealtimeInterface from '../../RealtimeInterface';
 
 import {useSelector, useDispatch} from 'react-redux'
-import {logout} from '../../redux/actions'
+
 
 // TODO - get splashscreen working again
 
