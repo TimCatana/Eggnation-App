@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Image, Pressable, Button} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable, Button, ImageBackground} from 'react-native';
 import { useInterstitialAd, TestIds } from '@react-native-admob/admob';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import dayjs from 'dayjs';
@@ -14,6 +14,7 @@ import {useSelector, useDispatch} from 'react-redux'
 
 const dateKey = 'date';
 
+let bg = require('../../../assets/bg.jpg')
 let egg = require('../../../assets/egg.png');
 let backEgg = require('../../../assets/egg.png');
 
@@ -217,7 +218,7 @@ const HomeScreen = ( {navigation} ) =>  {
   //TODO - use react native fast images for the image
   return (
     <>
-      <View  style={styles.pageView}>
+      <ImageBackground  style={styles.pageView} source={bg} >
         <View style={styles.headerView}>
           {/* // TODO add setting icon? */}
         </View>
@@ -231,7 +232,7 @@ const HomeScreen = ( {navigation} ) =>  {
             </Pressable>
           </View>
         </View>
-      </View>
+      </ImageBackground>
     </>
   );
 

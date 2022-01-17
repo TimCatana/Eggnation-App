@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput,  StyleSheet} from 'react-native';
 import FormInput from '../../components/FormInput';
 import FormButton from '../../components/FormButton';
 // import SocialButton from '../components/SocialButton'; // TODO - get this from the guys gitHub when I implement Google button
+import Icon  from 'react-native-vector-icons/MaterialIcons';
 
 import {useDispatch} from 'react-redux'
 import { register } from '../../redux/actions'
@@ -70,8 +71,46 @@ const SignupScreen = () => {
 
   return (
     <View style={styles.body}>
+      <View style={styles.mainCard}>
+        
+        <View style={styles.inputContainer}>
+          <Icon name="mail-outline" color='white' style={styles.inputIcon}/>
+          <TextInput
+            style={styles.input}
+            value={userName}
+            onChangeText={(userUserName) => setUserName(userUserName)}
+            placeholderText="username"
+          />
+        </View>
+      
+        <View style={styles.inputContainer}>
+          <Icon name="mail-outline" color='white' style={styles.inputIcon}/>
+          <TextInput
+            style={styles.input}
+            value={userName}
+            onChangeText={(userUserName) => setUserName(userUserName)}
+            placeholderText="username"
+          />
+        </View>
+      
+        <View style={styles.inputContainer}>
+          <Icon name="mail-outline" color='white' style={styles.inputIcon}/>
+          <TextInput
+            style={styles.input}
+            value={userName}
+            onChangeText={(userUserName) => setUserName(userUserName)}
+            placeholderText="username"
+          />
+        </View>
+      
+      
+      
+      
+      
+      
+      </View>
 
-      <FormInput
+      {/* <FormInput
         labelValue={userName}
         onChangeText={(userUserName) => setUserName(userUserName)}
         placeholderText="User Name"
@@ -110,7 +149,7 @@ const SignupScreen = () => {
 
       {/* TODO - probably add a "show password" button */}
 
-      <FormButton
+      {/* <FormButton
         buttonTitle="Create Account"
         onPress={onCreateUser}
       />
@@ -129,7 +168,7 @@ const SignupScreen = () => {
         <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
           Privacy Policy
         </Text>
-      </View>
+      </View>  */}
 
     </View>
  );
@@ -139,39 +178,72 @@ const SignupScreen = () => {
  // TODO - make page look nicer...
  const styles = StyleSheet.create({
    body: {
-     backgroundColor: '#f9fafd',
      flex: 1,
-     justifyContent: 'center',
-     alignItems: 'center',
-     padding: 20,
+     backgroundColor: '#252238',
    },
-   text: {
-     fontFamily: 'Kufam-SemiBoldItalic',
-     fontSize: 28,
-     marginBottom: 10,
-     color: '#051d5f',
+   mainCard: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    margin: '5%',
+    marginTop: 150,
+    marginBottom: 30,
+    borderRadius: 17,
+    // backgroundColor: "red",
+    backgroundColor: "#2f2c43"
    },
-   navButton: {
-     marginTop: 15,
-   },
-   navButtonText: {
-     fontSize: 18,
-     fontWeight: '500',
-     color: '#2e64e5',
-     fontFamily: 'Lato-Regular',
-   },
-   textPrivate: {
-     flexDirection: 'row',
-     flexWrap: 'wrap',
-     marginVertical: 35,
-     justifyContent: 'center',
-   },
-   color_textPrivate: {
-     fontSize: 13,
-     fontWeight: '400',
-     fontFamily: 'Lato-Regular',
-     color: 'grey',
-   },
+   inputContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#3a374d',
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    marginHorizontal: 20,
+    marginVertical: 10,
+   }, 
+   input: {
+    color: 'white',
+    flex: 1,
+    // paddingLeft: bgfgf30,
+    // borderBottomWidth: 1,
+    // borderColor: 'green',
+    // borderBottomWidth: 0.5,
+    // fontSize: 18,
+  },
+  inputIcon: {
+    marginTop: 15, 
+    marginRight: 10,
+    // position: 'absolute'
+  },
+   
+   
+  //  ,
+  //  text: {
+  //    fontFamily: 'Kufam-SemiBoldItalic',
+  //    fontSize: 28,
+  //    marginBottom: 10,
+  //    color: '#051d5f',
+  //  },
+  //  navButton: {
+  //    marginTop: 15,
+  //  },
+  //  navButtonText: {
+  //    fontSize: 18,
+  //    fontWeight: '500',
+  //    color: '#2e64e5',
+  //    fontFamily: 'Lato-Regular',
+  //  },
+  //  textPrivate: {
+  //    flexDirection: 'row',
+  //    flexWrap: 'wrap',
+  //    marginVertical: 35,
+  //    justifyContent: 'center',
+  //  },
+  //  color_textPrivate: {
+  //    fontSize: 13,
+  //    fontWeight: '400',
+  //    fontFamily: 'Lato-Regular',
+  //    color: 'grey',
+  //  },
  });
 
  
