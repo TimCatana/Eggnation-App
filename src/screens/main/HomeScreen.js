@@ -218,7 +218,7 @@ const HomeScreen = ( {navigation} ) =>  {
   //TODO - use react native fast images for the image
   return (
     <>
-      <ImageBackground  style={styles.pageView} source={bg} >
+      <ImageBackground  style={styles.pageView} source={{uri: 'https://i.pinimg.com/originals/f0/40/f0/f040f07ac0ad09cc155ecc4bbface15a.jpg'}} >
         <View style={styles.headerView}>
           {/* // TODO add setting icon? */}
         </View>

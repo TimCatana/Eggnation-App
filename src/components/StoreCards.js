@@ -1,7 +1,8 @@
 import React from 'react';
-import {Dimensions, FlatList, Image, Pressable, Animated, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, interpolate, interpolateNode, Extrapolation } from 'react-native-reanimated';
 
-const AnimatedFlatlist = Animated.createAnimatedComponent(FlatList);
+
 
 /**
  * Represents a single card in the NavCards component
@@ -9,38 +10,62 @@ const AnimatedFlatlist = Animated.createAnimatedComponent(FlatList);
  * @param {string} name The name and navigation string of the card    
  * @importantNote The name MUST be equal to a Stack.Screen name in App.js or else it will fail when pressed
  */
-const RewardSkinCard = ({ name, img, price }) => (
-  <Pressable 
-    style={styles.card}
-    onPress={() => console.log("go to buy page")}
-  >
-    <View style={styles.cardBody}>
-      <Text style={styles.title}>{name}</Text>
-      <View style={styles.body}>
-        <Image style={styles.image} source={img} />
-      </View>
-      <Text style={styles.desc}>${price}</Text>
-    </View>
-  </Pressable>
-);
+// const RewardSkinCard = ({ name, img, price }) => (
+//   <Pressable 
+//     style={styles.card}
+//     onPress={() => console.log("go to buy page")}
+//   >
+//     <View style={styles.cardBody}>
+//       <Text style={styles.title}>{name}</Text>
+//       <View style={styles.body}>
+//         <Image style={styles.image} source={img} />
+//       </View>
+//       <Text style={styles.desc}>${price}</Text>
+//     </View>
+//   </Pressable>
+// );
 
 
-const PurchaseSkinCard = ({ name, img, taps }) => (
-  <Pressable 
-    style={styles.card}
-    onPress={() => {
-      // if()
-      console.log("go to buy page")}}
-  >
-    <View style={styles.cardBody}>
-      <Text style={styles.title}>{name}</Text>
-      <View style={styles.body}>
-        <Image style={styles.image} source={img} />
+const SingleSkin = ({ name, img, taps, translateX, index }) =>{ 
+  console.log(translateX);
+
+  const width = (Dimensions.get('window').width / 2) - 20
+
+
+  const skinStyle = useAnimatedStyle(() => {
+    
+    const scale = interpolate(
+      translateX.value, 
+      [(index-2)*width, (index-1)*width, (index)*width], 
+      [0.6, 1, 0.6],
+      )
+
+    return {
+      transform: [{scale}]
+    }
+  })
+
+  return (
+    <Animated.View
+    style={[styles.card, skinStyle]}
+    >
+    <Pressable 
+      onPress={() => {
+        // if()
+        console.log("go to buy page")}}
+    >
+      <View style={styles.cardBody}>
+        <Text style={styles.title}>{name}</Text>
+        <View style={styles.body}>
+          <Image style={styles.image} source={img} />
+        </View>
+        <Text style={styles.desc}>taps: {taps}</Text>
       </View>
-      <Text style={styles.desc}>taps: {taps}</Text>
-    </View>
-  </Pressable>
+    </Pressable>
+    </Animated.View>
 );
+
+      }
 
 /**
  * Takes an array of objects representing screens that can be navigated 
@@ -51,39 +76,103 @@ const PurchaseSkinCard = ({ name, img, taps }) => (
 const StoreCards = ( props ) => {
   const {data} = props;
 
-  const renderItem = ({ item }) => {
-    if (item.purchasable === false) {
-      return(
-      <PurchaseSkinCard 
-      name={item.name} 
-      img={item.img}
-      taps={item.taps}
-    />
-      );
-    } else {
-      return (
-        <RewardSkinCard 
-          name={item.name} 
-          img={item.img}
-          price={item.price}
-        />
-      )};
-    }
+  // const renderCard= ({ item }, translateX) => {
+  //   console.log(item);
+  //   // console.log(item);
+
+  //   if (item.purchasable === false) {
+  //     return(
+  //       <PurchaseSkinCard 
+  //         name={item.name} 
+  //         img={item.img}
+  //         taps={item.taps}
+  //       />
+  //     );
+  //   } else {
+  //     return (
+  //       <RewardSkinCard 
+  //         name={item.name} 
+  //         img={item.img}
+  //         price={item.price}
+  //       />
+  //     )};
+  //   }
 
 
-    // const x = new Animated.value(0);
 
+    const translateX = useSharedValue(0);
+
+
+    /**
+     * @param {
+     *  "contentInset":{
+     *     "bottom":0,
+     *     "left":0,
+     *     "right":0,
+     *     "top":0
+     *   },
+     *   "contentOffset":{
+     *     "x":68.36363983154297,
+     *     "y":0
+     *   },
+     *   "contentSize":{
+     *     "height":665.0908813476562,
+     *     "width":1374.54541015625
+     *   },
+     *   "eventName":"2997onScroll",
+     *   "layoutMeasurement":{
+     *     "height":665.0908813476562,
+     *     "width":392.7272644042969
+     *   },
+     *   "responderIgnoreScroll":true,
+     *   "target":2997,
+     *   "velocity":{
+     *     "x":0.23076923191547394,
+     *     "y":0
+     *   }
+     * } event 
+     */
+    const scrollHandler = useAnimatedScrollHandler((event) => {
+      translateX.value = event.contentOffset.x;
+    })
 
   return (
     <View>
-      <FlatList
+      {/* <Animated.FlatList
         contentContainerStyle={styles.listView}
+        scrollEventThrottle={16}
         data={data}
-        renderItem={renderItem}
+        renderItem={(item) => {return (renderCard(item))}}
+        extraData={translateX.value}
         keyExtractor={item => item.name}
         numColumns={1}
         horizontal
-      />
+        showsHorizontalScrollIndicator={false}
+        onScroll={scrollHandler}
+      />*/}
+
+      <Animated.ScrollView
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.listView}
+      >
+        {data.map((skin, index) => {
+            return (
+              <SingleSkin
+                key={skin.name}
+                name={skin.name} 
+                img={skin.img}
+                taps={skin.taps}
+                translateX={translateX}
+                index={index}
+              />
+            );
+        })}
+      </Animated.ScrollView>
+
+
     </View> 
   );
 }
@@ -106,7 +195,7 @@ const styles = StyleSheet.create({
     height: (Dimensions.get('window').height / 3.2) - 20,
     marginHorizontal: 10,
     marginVertical: 7,
-    backgroundColor: '#e6e6ea',
+    // backgroundColor: '#e6e6ea',
   },
   cardBody: {
     // backgroundColor: 'orange',

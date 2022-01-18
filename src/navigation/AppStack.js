@@ -7,6 +7,7 @@ import PrizeHistoryScreen from '../screens/main/PrizeHistoryScreen';
 import LeaderboardScreen from '../screens/main/LeaderboardScreen';
 import AvailablaPrizesScreen from '../screens/main/AvailablePrizesScreen';
 import SettingsScreen from '../screens/main/SettingsScreen';
+import TestScreen from '../screens/main/TestScreen.js';
 // import SplashScreen from '../screens/SplashScreen';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -26,6 +27,7 @@ const App = () =>  {
         <Tab.Screen name="Store" component={StoreScreen} />
         <Tab.Screen name="LeaderboardScreen" component={LeaderboardScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Test" component={TestScreen} />
       </Tab.Navigator>
   );
 }
