@@ -1,5 +1,7 @@
 import React from 'react';
-import {Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, FlatList, Image, Pressable, Animated, StyleSheet, Text, View} from 'react-native';
+
+const AnimatedFlatlist = Animated.createAnimatedComponent(FlatList);
 
 /**
  * Represents a single card in the NavCards component
@@ -69,13 +71,18 @@ const StoreCards = ( props ) => {
     }
 
 
+    // const x = new Animated.value(0);
+
+
   return (
     <View>
       <FlatList
+        contentContainerStyle={styles.listView}
         data={data}
         renderItem={renderItem}
         keyExtractor={item => item.name}
-        numColumns={2}
+        numColumns={1}
+        horizontal
       />
     </View> 
   );
@@ -84,7 +91,15 @@ const StoreCards = ( props ) => {
 /**
  * styles
  */
-const styles = StyleSheet.create({  
+const styles = StyleSheet.create({ 
+  storeView: {
+    flex: 1,
+    backgroundColor: 'red',
+    justifyContent: 'flex-end'
+  },
+  listView: {
+    alignItems: 'flex-end'
+  },
   card: {
     borderRadius: 20,
     width: (Dimensions.get('window').width / 2) - 20, // Should be margin * 2 
