@@ -10,7 +10,7 @@ import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, i
  * @param {string} name The name and navigation string of the card    
  * @importantNote The name MUST be equal to a Stack.Screen name in App.js or else it will fail when pressed
  */
-const SingleSkin = ({img, translateX, index, scrollRef}) =>{ 
+const SingleSkin = ({img, translateX, index, scrollRef, onNewDisplay}) =>{ 
   console.log(translateX);
   console.log(index);
 
@@ -19,6 +19,10 @@ const SingleSkin = ({img, translateX, index, scrollRef}) =>{
   
   const width = 120 // TODO - get the cards alignment right and this should be the width of one full skin card
 
+
+  // if( (translateX > (index*width)) && (translateX < (index*width) + 120) ) {
+
+  // }
 
 
 
@@ -32,8 +36,8 @@ const SingleSkin = ({img, translateX, index, scrollRef}) =>{
 
     const opacity = interpolate(
       translateX.value, 
-      [(index-1)*width-100, (index-1)*width, (index)*width, (index+1)*width,  (index+1)*width+100], 
-      [0, 0.5, 1, 0.5, 0],
+      [(index-1)*width-120, (index-1)*width, (index)*width, (index+1)*width,  (index+1)*width+120], 
+      [0, 0.3, 1, 0.3, 0],
       Extrapolate.CLAMP
     )
     return {
@@ -51,6 +55,7 @@ const SingleSkin = ({img, translateX, index, scrollRef}) =>{
             x: index*width,
             animated: true
           });
+          onNewDisplay(img);
         }}
       >
           <Image style={styles.image} source={img} />
@@ -66,7 +71,7 @@ const SingleSkin = ({img, translateX, index, scrollRef}) =>{
  * @returns A 2*n array of cards each of which navigates to its specified screen
  */
 const StoreCards = ( props ) => {
-  const {data} = props;
+  const {data, onNewDisplay} = props;
   const translateX = useSharedValue(0);
 
   const scrollRef = useRef();
@@ -125,6 +130,7 @@ const StoreCards = ( props ) => {
                 translateX={translateX}
                 index={index}
                 scrollRef={scrollRef}
+                onNewDisplay={onNewDisplay}
               />
             );
         })}

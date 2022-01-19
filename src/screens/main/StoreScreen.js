@@ -83,6 +83,7 @@ const StoreScreen = ({navigation}) =>  {
       <View style={styles.slideCardsView} >
         <StoreCards 
           data={storeCards} 
+          onNewDisplay={onNewDisplay}
           />
       </View>
     </View>
