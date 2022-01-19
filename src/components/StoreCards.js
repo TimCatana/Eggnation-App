@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import {Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, interpolate, interpolateNode, Extrapolation } from 'react-native-reanimated';
+import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, interpolate, interpolateNode, Extrapolate, JumpingTransition } from 'react-native-reanimated';
 
 
 
@@ -10,62 +10,54 @@ import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, i
  * @param {string} name The name and navigation string of the card    
  * @importantNote The name MUST be equal to a Stack.Screen name in App.js or else it will fail when pressed
  */
-// const RewardSkinCard = ({ name, img, price }) => (
-//   <Pressable 
-//     style={styles.card}
-//     onPress={() => console.log("go to buy page")}
-//   >
-//     <View style={styles.cardBody}>
-//       <Text style={styles.title}>{name}</Text>
-//       <View style={styles.body}>
-//         <Image style={styles.image} source={img} />
-//       </View>
-//       <Text style={styles.desc}>${price}</Text>
-//     </View>
-//   </Pressable>
-// );
-
-
-const SingleSkin = ({ name, img, taps, translateX, index }) =>{ 
+const SingleSkin = ({img, translateX, index, scrollRef}) =>{ 
   console.log(translateX);
+  console.log(index);
 
-  const width = (Dimensions.get('window').width / 2) - 20
+  
+  const [ref, setRef] = useState(null);
+  
+  const width = 120 // TODO - get the cards alignment right and this should be the width of one full skin card
 
 
-  const skinStyle = useAnimatedStyle(() => {
-    
-    const scale = interpolate(
+
+
+  const skinStyle = useAnimatedStyle(() => {    
+    // const scale = interpolate(
+    //   translateX.value, 
+    //   [(index-1)*width-100, (index-1)*width, (index)*width, (index+1)*width,  (index+1)*width+100], 
+    //   [0, 0.4, 1, 0.4, 0],
+    //   Extrapolate.CLAMP
+    // )
+
+    const opacity = interpolate(
       translateX.value, 
-      [(index-2)*width, (index-1)*width, (index)*width], 
-      [0.6, 1, 0.6],
-      )
-
+      [(index-1)*width-100, (index-1)*width, (index)*width, (index+1)*width,  (index+1)*width+100], 
+      [0, 0.5, 1, 0.5, 0],
+      Extrapolate.CLAMP
+    )
     return {
-      transform: [{scale}]
+      // transform: [{scale}],
+      opacity
     }
   })
 
   return (
-    <Animated.View
-    style={[styles.card, skinStyle]}
-    >
-    <Pressable 
-      onPress={() => {
-        // if()
-        console.log("go to buy page")}}
-    >
-      <View style={styles.cardBody}>
-        <Text style={styles.title}>{name}</Text>
-        <View style={styles.body}>
+    <Animated.View style={[styles.skin, skinStyle]} >
+      <Pressable 
+        onPress={() => {
+          console.log("selected "+ index);
+          scrollRef.current.scrollTo({
+            x: index*width,
+            animated: true
+          });
+        }}
+      >
           <Image style={styles.image} source={img} />
-        </View>
-        <Text style={styles.desc}>taps: {taps}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
     </Animated.View>
-);
-
-      }
+  );
+}
 
 /**
  * Takes an array of objects representing screens that can be navigated 
@@ -75,88 +67,53 @@ const SingleSkin = ({ name, img, taps, translateX, index }) =>{
  */
 const StoreCards = ( props ) => {
   const {data} = props;
+  const translateX = useSharedValue(0);
 
-  // const renderCard= ({ item }, translateX) => {
-  //   console.log(item);
-  //   // console.log(item);
-
-  //   if (item.purchasable === false) {
-  //     return(
-  //       <PurchaseSkinCard 
-  //         name={item.name} 
-  //         img={item.img}
-  //         taps={item.taps}
-  //       />
-  //     );
-  //   } else {
-  //     return (
-  //       <RewardSkinCard 
-  //         name={item.name} 
-  //         img={item.img}
-  //         price={item.price}
-  //       />
-  //     )};
-  //   }
+  const scrollRef = useRef();
 
 
-
-    const translateX = useSharedValue(0);
-
-
-    /**
-     * @param {
-     *  "contentInset":{
-     *     "bottom":0,
-     *     "left":0,
-     *     "right":0,
-     *     "top":0
-     *   },
-     *   "contentOffset":{
-     *     "x":68.36363983154297,
-     *     "y":0
-     *   },
-     *   "contentSize":{
-     *     "height":665.0908813476562,
-     *     "width":1374.54541015625
-     *   },
-     *   "eventName":"2997onScroll",
-     *   "layoutMeasurement":{
-     *     "height":665.0908813476562,
-     *     "width":392.7272644042969
-     *   },
-     *   "responderIgnoreScroll":true,
-     *   "target":2997,
-     *   "velocity":{
-     *     "x":0.23076923191547394,
-     *     "y":0
-     *   }
-     * } event 
-     */
-    const scrollHandler = useAnimatedScrollHandler((event) => {
-      translateX.value = event.contentOffset.x;
-    })
+  /**
+   * @param {
+   *  "contentInset":{
+   *     "bottom":0,
+   *     "left":0,
+   *     "right":0,
+   *     "top":0
+   *   },
+   *   "contentOffset":{
+   *     "x":68.36363983154297,
+   *     "y":0
+   *   },
+   *   "contentSize":{
+   *     "height":665.0908813476562,
+   *     "width":1374.54541015625
+   *   },
+   *   "eventName":"2997onScroll",
+   *   "layoutMeasurement":{
+   *     "height":665.0908813476562,
+   *     "width":392.7272644042969
+   *   },
+   *   "responderIgnoreScroll":true,
+   *   "target":2997,
+   *   "velocity":{
+   *     "x":0.23076923191547394,
+   *     "y":0
+   *   }
+   * } event 
+   */
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    translateX.value = event.contentOffset.x;
+    console.log(event.contentOffset.x);
+  })
 
   return (
-    <View>
-      {/* <Animated.FlatList
-        contentContainerStyle={styles.listView}
-        scrollEventThrottle={16}
-        data={data}
-        renderItem={(item) => {return (renderCard(item))}}
-        extraData={translateX.value}
-        keyExtractor={item => item.name}
-        numColumns={1}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        onScroll={scrollHandler}
-      />*/}
-
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={16}
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.listView}
+        contentContainerStyle={styles.itemsScrollView}
+        ref={scrollRef}
       >
         {data.map((skin, index) => {
             return (
@@ -167,13 +124,11 @@ const StoreCards = ( props ) => {
                 taps={skin.taps}
                 translateX={translateX}
                 index={index}
+                scrollRef={scrollRef}
               />
             );
         })}
       </Animated.ScrollView>
-
-
-    </View> 
   );
 }
 
@@ -181,55 +136,21 @@ const StoreCards = ( props ) => {
  * styles
  */
 const styles = StyleSheet.create({ 
-  storeView: {
-    flex: 1,
+  itemsScrollView: {
     backgroundColor: 'red',
-    justifyContent: 'flex-end'
+    marginLeft: (Dimensions.get('window').width / 3)
   },
-  listView: {
-    alignItems: 'flex-end'
-  },
-  card: {
-    borderRadius: 20,
-    width: (Dimensions.get('window').width / 2) - 20, // Should be margin * 2 
-    height: (Dimensions.get('window').height / 3.2) - 20,
-    marginHorizontal: 10,
-    marginVertical: 7,
-    // backgroundColor: '#e6e6ea',
-  },
-  cardBody: {
-    // backgroundColor: 'orange',
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-  body: {
-    flex: 6,
-    // backgroundColor: 'yellow',
-  },  
+  skin: {
+    backgroundColor: 'green',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 20,
+    width: 100
+  }, 
   image: {
-    marginTop: 20,
+    height: 120,
     width: 80,
-    height: 100,
-  },
-  title: {
-    flex: 1,
-    fontSize: 20,
-    fontFamily: 'Exo',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: 'black'
-    // backgroundColor: 'red',
-  },
-  desc: {
-    flex:1,
-    fontSize: 20,
-    fontWeight: 'bold',
-    fontFamily: 'Exo',
-    textAlign: 'center',
-    color: 'black'
-    // backgroundColor: 'blue',
-  },
+  } 
 });
 
 export default StoreCards;
