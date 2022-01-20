@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux'
 import {setUser} from '../redux/actions'
 
+
 const Routes = () => {
   const [initializing, setInitializing] = useState(true);
   

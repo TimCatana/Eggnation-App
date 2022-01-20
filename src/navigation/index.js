@@ -1,7 +1,9 @@
 import React from 'react';
 import Routes from './Routes';
 import { Provider } from 'react-redux';
-import { Store } from '../redux/store';
+import { PersistGate } from 'redux-persist/integration/react'
+import {store, persistor} from '../redux/store';
+
 
 /**
  * There are two stacks, the AuthStack and the AppStack.
@@ -11,8 +13,10 @@ import { Store } from '../redux/store';
  */
 const Providers = () => {
   return (
-    <Provider store={Store}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <Routes />
+      </PersistGate>
     </Provider>
   );
 }

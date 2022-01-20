@@ -21,21 +21,18 @@ let backEgg = require('../../../assets/egg.png');
 const fsi = new FirestoreInterface();
 const rti = new RealtimeInterface();
 
-// TODO - get rid of usercount in database. I will only have a local count
-// TODO - the user will only have 1000 clicks a day to ensure they don't waste their time on this app but also ensures that I make money
-// TODO - This also helps with the potential database connectivity issues I was worried about and make the code look nicer as a whole. 
-// TODO - The current database user count way I'm doing this is not necessarily a useful feature that provides value to my app.
-
+// TODO - set the splash screen for like 2-3 seconds and then check if initialized is true. If true, then render the home content, if false, keep showing the splash screen
 /**
  * Home Page
  * @param navigation
  * @returns 
  */
 const HomeScreen = ( {navigation} ) =>  {
-  const dispatch = useDispatch();
+  const {selectedSkin} = useSelector(state => state.gameReducer)
+
+  const [homeInitialized, setHomeInitialized] = useState(false)
 
   const [isFirstTap, setIsFirstTap] = useState(true); // first tap for when user opens/reopens the app.
-  const [initialized, setInitialized] = useState(false);
   const [count, setCount] = useState(1000);
 
   const {adLoaded, adDismissed, show, load, adPresented} = useInterstitialAd(
@@ -46,8 +43,8 @@ const HomeScreen = ( {navigation} ) =>  {
    * Increment user and global count
    */
   const doCountUpdates = () => {
-  setCount((count) => count + -1);  
-  rti.updateGlobalCount();
+    setCount((count) => count + -1);  
+    rti.updateGlobalCount();
   };
 
   /**
@@ -68,6 +65,9 @@ const HomeScreen = ( {navigation} ) =>  {
   useEffect(() => {
     initCounter();
   }, []); 
+
+
+  
   
   /**
    * The timer will reset to 1000 every 12 hours. 
@@ -123,7 +123,7 @@ const HomeScreen = ( {navigation} ) =>  {
       await AsyncStorage.setItem('counter', '1000');
       await AsyncStorage.setItem(dateKey, dayjs().toString()); 
     } finally {
-      setInitialized(true);
+      setHomeInitialized(true);
     }
   }
   
@@ -135,7 +135,8 @@ const HomeScreen = ( {navigation} ) =>  {
    */
   useEffect(() => {
     // TODO - on the first add, show a screen showing that ads will be shown and the reason for them etc...
-    if(initialized && !isFirstTap) {
+    if(homeInitialized && !isFirstTap) {
+      // TODO - before running this, check if online. If not online, then don't run this and set a modal or something saying that they are offline and need to reconnect
       if ((count !== 1000) && (count % 10 === 0) && adLoaded) {
         // TODO - run ad animation
         // TODO - pause clicking
@@ -213,7 +214,7 @@ const HomeScreen = ( {navigation} ) =>  {
   }
 
   // TODO probably run initialization while splashscreen is being loaded if possible?  
-  if(!initialized) return null;
+  if(!homeInitialized) return null;
 
   //TODO - use react native fast images for the image
   return (
@@ -228,7 +229,7 @@ const HomeScreen = ( {navigation} ) =>  {
           </View>
           <View style={styles.eggView}>
             <Pressable style={styles.eggPressable} onPress={displayEgg}>
-              <Image style={styles.egg} source={egg}/>
+              <Image style={styles.egg} source={selectedSkin}/>
             </Pressable>
           </View>
         </View>

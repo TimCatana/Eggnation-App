@@ -74,7 +74,7 @@ const StoreScreen = ({navigation}) =>  {
   const onNewDisplay = (img) => {
     setDisplayEgg(img);
   }
-
+  
   return (
     <View style={styles.body}>
       <View style={styles.largeEggView} >

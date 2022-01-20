@@ -1,6 +1,10 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import {Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import { List } from 'react-native-paper';
 import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, interpolate, interpolateNode, Extrapolate, JumpingTransition } from 'react-native-reanimated';
+import {useDispatch} from 'react-redux'
+import {setSelectedSkin} from '../redux/actions'
+
 
 
 
@@ -10,9 +14,10 @@ import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, i
  * @param {string} name The name and navigation string of the card    
  * @importantNote The name MUST be equal to a Stack.Screen name in App.js or else it will fail when pressed
  */
-const SingleSkin = ({img, translateX, index, scrollRef, onNewDisplay}) =>{ 
+const SingleSkin = ({img, translateX, index, scrollRef, onNewDisplay, dispatch}) =>{ 
   console.log(translateX);
   console.log(index);
+
 
   
   const [ref, setRef] = useState(null);
@@ -46,6 +51,7 @@ const SingleSkin = ({img, translateX, index, scrollRef, onNewDisplay}) =>{
     }
   })
 
+
   return (
     <Animated.View style={[styles.skin, skinStyle]} >
       <Pressable 
@@ -56,6 +62,7 @@ const SingleSkin = ({img, translateX, index, scrollRef, onNewDisplay}) =>{
             animated: true
           });
           onNewDisplay(img);
+          dispatch(setSelectedSkin(img));
         }}
       >
           <Image style={styles.image} source={img} />
@@ -75,6 +82,9 @@ const StoreCards = ( props ) => {
   const translateX = useSharedValue(0);
 
   const scrollRef = useRef();
+
+  const dispatch = useDispatch();
+
 
 
   /**
@@ -111,7 +121,15 @@ const StoreCards = ( props ) => {
     console.log(event.contentOffset.x);
   })
 
-  return (
+  
+
+  /**
+   * Memoizes the list.
+   * Since the skins data rarely changes, I can just cache it.
+   * You can put a console.log in the SingleSkin component and see that it only logs on initial render.
+   */
+  const skins = useMemo(() => {
+    return (
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={16}
@@ -131,10 +149,16 @@ const StoreCards = ( props ) => {
                 index={index}
                 scrollRef={scrollRef}
                 onNewDisplay={onNewDisplay}
+                dispatch={dispatch}
               />
             );
         })}
       </Animated.ScrollView>
+    )
+  }, [data])
+
+  return (
+    <>{skins}</>
   );
 }
 

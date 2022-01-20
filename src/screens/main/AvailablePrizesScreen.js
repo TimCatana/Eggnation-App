@@ -48,13 +48,22 @@ const AvailablaPrizesScreen = () =>  {
       <View style={styles.header}>
           <Text style={styles.text}>Available prizes</Text>
       </View>
-      <View style={styles.body}>
-        <PrizeHistoryCards
-          data={availablePrizes}
-          getHistoryFunc={getAvailablePrizes}
-          refreshing={refreshing}
-        />
-      </View>
+
+      {(availablePrizes.length === 0) && 
+        <View style={styles.noItemBody}>
+          <Text>No Prizes Yet :(</Text>
+        </View>
+      }
+
+      {(availablePrizes.length > 0) && 
+        <View style={styles.body}>
+          <PrizeHistoryCards
+            data={availablePrizes}
+            getHistoryFunc={getAvailablePrizes}
+            refreshing={refreshing}
+          />
+        </View>
+      }
     </View>
   );
 }
@@ -73,6 +82,12 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 7,
+    // backgroundColor: "yellow"
+  },
+  noItemBody: {
+    flex: 7,
+    justifyContent: 'center',
+    alignItems: 'center'
     // backgroundColor: "yellow"
   },
    text: {

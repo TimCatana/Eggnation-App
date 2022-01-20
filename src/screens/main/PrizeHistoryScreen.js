@@ -23,7 +23,8 @@ const PrizeHistoryScreen = () =>  {
   }, []);
 
   useEffect(() => {
-    return console.log("history " + history);
+    console.log("history " + history);
+    console.log('history length ' + history.length);
   }, [history]);
 
   const getHistory = async() => {
@@ -44,13 +45,22 @@ const PrizeHistoryScreen = () =>  {
       <View style={styles.header}>
         <Text style={styles.text}>Prize History</Text>
       </View>
-      <View style={styles.body}>
-        <PrizeHistoryCards
-          data={history}
-          getHistoryFunc={getHistory}
-          refreshing={refreshing}
-        />
-      </View>
+
+      {(history.length === 0) && 
+        <View style={styles.noItemBody}>
+          <Text>No Prizes Yet :(</Text>
+        </View>
+      }
+
+      {(history.length > 0) && 
+        <View style={styles.body}>
+          <PrizeHistoryCards
+            data={history}
+            getHistoryFunc={getHistory}
+            refreshing={refreshing}
+          />
+        </View>
+      }
     </View>
   );
 }
@@ -73,6 +83,12 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 7,
+    // backgroundColor: "yellow"
+  },
+  noItemBody: {
+    flex: 7,
+    justifyContent: 'center',
+    alignItems: 'center'
     // backgroundColor: "yellow"
   },
   text: {

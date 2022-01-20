@@ -1,7 +1,23 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
-import userReducer from './reducers'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import {persistStore, persistReducer } from 'redux-persist'
+import {userReducer, gameReducer} from './reducers'
 
-const rootReducer = combineReducers({userReducer})
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['gameReducer']
+}
 
-export const Store = createStore(rootReducer, applyMiddleware(thunk));
+const rootReducer = combineReducers({
+  userReducer, 
+  gameReducer
+})
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+const store = createStore(persistedReducer, applyMiddleware(thunk));
+const persistor = persistStore(store);
+
+export {store, persistor}

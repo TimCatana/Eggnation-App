@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput,  StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput,  StyleSheet, Pressable} from 'react-native';
 import FormInput from '../../components/FormInput';
 import FormButton from '../../components/FormButton';
 // import SocialButton from '../components/SocialButton'; // TODO - get this from the guys gitHub when I implement Google button
@@ -78,8 +78,9 @@ const SignupScreen = () => {
           <TextInput
             style={styles.input}
             value={userName}
+            placeholder="username"
             onChangeText={(userUserName) => setUserName(userUserName)}
-            placeholderText="username"
+            autoCapitalize="none" // Todo - probably capitalize first word
           />
         </View>
       
@@ -87,9 +88,10 @@ const SignupScreen = () => {
           <Icon name="mail-outline" color='white' style={styles.inputIcon}/>
           <TextInput
             style={styles.input}
-            value={userName}
-            onChangeText={(userUserName) => setUserName(userUserName)}
-            placeholderText="username"
+            value={email}
+            placeholder="Email"
+            onChangeText={(userEmail) => setEmail(userEmail)}
+            keyboardType="email-address"
           />
         </View>
       
@@ -97,64 +99,35 @@ const SignupScreen = () => {
           <Icon name="mail-outline" color='white' style={styles.inputIcon}/>
           <TextInput
             style={styles.input}
-            value={userName}
-            onChangeText={(userUserName) => setUserName(userUserName)}
-            placeholderText="username"
+            value={password}
+            placeholder="Password"
+            onChangeText={(userPassword) => setPassword(userPassword)}
+            autoCorrect={false}
+            secureTextEntry={true}
           />
         </View>
-      
-      
-      
-      
-      
-      
-      </View>
 
-      {/* <FormInput
-        labelValue={userName}
-        onChangeText={(userUserName) => setUserName(userUserName)}
-        placeholderText="User Name"
-        // iconType="user"
-        autoCapitalize="none" // Todo - probably capitalize first word
-        autoCorrect={false}
-      />
+        <View style={styles.inputContainer}>
+          <Icon name="mail-outline" color='white' style={styles.inputIcon}/>
+          <TextInput
+            style={styles.input}
+            value={confirmPassword}
+            placeholder='Confirm'
+            onChangeText={(userConfirmPassword) => setConfirmPassword(userConfirmPassword)}
+            autoCorrect={false}
+            secureTextEntry={true}
+          />
+        </View>
 
-      <FormInput
-        labelValue={email}
-        onChangeText={(userEmail) => setEmail(userEmail)}
-        placeholderText="Email"
-        // iconType="user"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-
-      <FormInput
-        labelValue={password}
-        onChangeText={(userPassword) => setPassword(userPassword)}
-        placeholderText="Password"
-        // iconType="lock"
-        autoCorrect={false}
-        secureTextEntry={true}
-      />
-
-      <FormInput
-        labelValue={confirmPassword}
-        onChangeText={(userPassword) => setConfirmPassword(userPassword)}
-        placeholderText="Confirm Password"
-        iconType="lock"
-        autoCorrect={false}
-        secureTextEntry={true}
-      />
-
-      {/* TODO - probably add a "show password" button */}
-
-      {/* <FormButton
-        buttonTitle="Create Account"
-        onPress={onCreateUser}
-      />
-
+        <Pressable 
+          onPress={onCreateUser}
+        > 
+          <Text>Create Account</Text>
+        </Pressable>
       
+
+
+
       <View style={styles.textPrivate}>
         <Text style={styles.color_textPrivate}>
           By registering, you confirm that you accept our{''}
@@ -168,7 +141,16 @@ const SignupScreen = () => {
         <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
           Privacy Policy
         </Text>
-      </View>  */}
+      </View> 
+
+
+      </View>
+
+     
+
+
+
+      
 
     </View>
  );

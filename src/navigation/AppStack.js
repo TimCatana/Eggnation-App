@@ -1,5 +1,5 @@
 import React from 'react';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import HomeScreen from '../screens/main/HomeScreen';
 import StoreScreen from '../screens/main/StoreScreen';
@@ -10,11 +10,12 @@ import SettingsScreen from '../screens/main/SettingsScreen';
 import TestScreen from '../screens/main/TestScreen.js';
 // import SplashScreen from '../screens/SplashScreen';
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 const App = () =>  {
   return(
       <Tab.Navigator 
+        tabBarPosition='bottom'
         initialRouteName='Home'
         activeColor="#f3a"
         inactiveColor="#2a1"

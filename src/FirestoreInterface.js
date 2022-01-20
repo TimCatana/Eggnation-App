@@ -17,6 +17,7 @@ class FirestoreInterface {
         // userImg: null,
         emailVerified: false,
         created: firestore.Timestamp.fromDate(new Date()),
+        prizes: []
       })
     } catch (err) {
       console.log(`Failed to create user`, err);

@@ -1,6 +1,7 @@
 export const LOGIN_USER = 'LOGIN_USER'
 export const SET_LOCAL_TAPS = 'SET_LOCAL_TAPS';
 export const SET_USER = 'SET_USER'
+export const SET_SELECTED_SKIN = 'SET_SELECTED_SKIN'
 
 import auth from '@react-native-firebase/auth';
 import FirestoreInterface from '../FirestoreInterface';
@@ -8,6 +9,11 @@ import RealtimeInterface from '../RealtimeInterface';
 
 const fsi = new FirestoreInterface();
 const rti = new RealtimeInterface();
+
+
+
+
+
 
 
 
@@ -19,12 +25,11 @@ export const login = (email, password) => async () => {
   }
 }
 
-
 export const register = (username, email, password) => async () => {
   try {
     await auth().createUserWithEmailAndPassword(email, password)
     .then((userCredentials) => {
-      fsi.createUser(userCredentials.user, username, email);
+      fsi.createUser(userCredentials.user.uid, username, email);
       userCredentials.user.updateProfile({
         displayName: username,
       });
@@ -144,6 +149,13 @@ export const setCount = taps => dispatch => {
   dispatch({
     type: SET_LOCAL_TAPS,
     payload: taps, 
+  })
+};
+
+export const setSelectedSkin = skin => dispatch => {
+  dispatch({
+    type: SET_SELECTED_SKIN,
+    payload: skin, 
   })
 };
 
