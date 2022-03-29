@@ -12,6 +12,7 @@ export const GAME_TABS = 'GameTabs';
 export const HOME_SCREEN = 'HomeScreen';
 export const WON_PRIZES_SCREEN = 'WonPrizesScreen';
 export const AVAILABLE_PRIZES_SCREEN = 'AvailablePrizesScreen';
+export const CLAIM_PRIZE_SCREEN = 'ClaimPrizeScreen';
 
 /** Settings Screens */
 export const SETTINGS_STACK = 'SettingsStack';

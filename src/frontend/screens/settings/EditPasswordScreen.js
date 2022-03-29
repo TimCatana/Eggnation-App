@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput
-} from 'react-native';
+import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import doUpdateUserPassword from '../../../backend/auth/mutators/doUpdateUserPassword';
 
 const EditPasswordScreen = () => {
-  const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
 
@@ -15,8 +11,8 @@ const EditPasswordScreen = () => {
     <View style={styles.body}>
       <Text style={styles.text}>EditPasswordScreen</Text>
       <TextInput
-        value={password}
-        onChangeText={setPassword}
+        value={newPassword}
+        onChangeText={setNewPassword}
         placeholder="password"
         keyboardType="default"
         style={styles.textInput}
@@ -34,6 +30,12 @@ const EditPasswordScreen = () => {
         placeholder="password"
         keyboardType="default"
         style={styles.textInput}
+      />
+      <Button
+        title="change password"
+        onPress={() => {
+          doUpdateUserPassword(newPassword, currentPassword);
+        }}
       />
     </View>
   );

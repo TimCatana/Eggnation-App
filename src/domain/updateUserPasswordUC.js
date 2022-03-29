@@ -2,7 +2,7 @@ import doUpdateUserPassword from '../backend/auth/mutators/doUpdateUserPassword'
 import doReauthenticate from '../backend/auth/doReauthenticate';
 import deGetUserEmail from '../backend/auth/accessors/deGetUserEmail';
 
-export const updateUserEmailUc = async (newPassword, password) => {
+export const updateUserPasswordUC = async (newPassword, password) => {
   const email = deGetUserEmail();
 
   try {
@@ -18,6 +18,8 @@ export const updateUserEmailUc = async (newPassword, password) => {
     console.log(`Failed to update user password --> ${e}`);
     return false;
   }
+
+  // TODO - need to reload token
 
   return true;
 };

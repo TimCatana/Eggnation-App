@@ -18,9 +18,13 @@ const GameTabs = () => {
       tabBarPosition="bottom"
       activeColor="#f3a"
       inactiveColor="#2a1"
-      barStyle={{backgroundColor: '#694fad'}}>
-      <Tab.Screen name={HOME_SCREEN} component={HomeScreen} />
+      barStyle={{backgroundColor: '#694fad'}}
+      screenOptions={{
+        lazy: true
+      }}
+      >
       <Tab.Screen name={WON_PRIZES_SCREEN} component={WonPrizesScreen} />
+      <Tab.Screen name={HOME_SCREEN} component={HomeScreen} />
       <Tab.Screen
         name={AVAILABLE_PRIZES_SCREEN}
         component={AvailablePrizesScreen}

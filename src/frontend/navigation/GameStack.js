@@ -7,6 +7,7 @@ import TermsScreen from '../screens/policy/TermsScreen';
 import EditEmailScreen from '../screens/settings/EditEmailScreen';
 import EditPasswordScreen from '../screens/settings/EditPasswordScreen';
 import EditLanguageScreen from '../screens/settings/EditLanguageScreen';
+import ClaimPrizeScreen from '../screens/game/ClaimPrizeScreen';
 
 import {
   GAME_TABS,
@@ -16,6 +17,7 @@ import {
   EDIT_EMAIL_SCREEN,
   EDIT_LANGUAGE_SCREEN,
   EDIT_PASSWORD_SCREEN,
+  CLAIM_PRIZE_SCREEN
 } from '../util/NavigationConstants';
 
 const Stack = createStackNavigator();
@@ -28,6 +30,7 @@ const GameStack = () => {
         header: () => null,
       }}>
       <Stack.Screen name={GAME_TABS} component={GameTabs} />
+      <Stack.Screen name={CLAIM_PRIZE_SCREEN} component={ClaimPrizeScreen} />
       <Stack.Screen name={SETTINGS_SCREEN} component={SettingsScreen} />
       <Stack.Screen name={EDIT_EMAIL_SCREEN} component={EditEmailScreen} />
       <Stack.Screen

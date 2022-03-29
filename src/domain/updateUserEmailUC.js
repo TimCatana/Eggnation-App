@@ -1,9 +1,14 @@
 import doUpdateUserEmail from '../backend/auth/mutators/doUpdateUserEmail';
-import doReauthenticate from '../backend/auth/doReauthenticate';
 import deGetUserEmail from '../backend/auth/accessors/deGetUserEmail';
+import doReauthenticate from '../backend/auth/doReauthenticate';
 
-export const updateUserEmailUc = async (newEmail, password) => {
+
+export const updateUserEmailUC = async (newEmail, password) => {
   const email = deGetUserEmail();
+
+  if(!email) {
+    console.log(`email is null, problem ${email}`)
+  }
 
   try {
     await doReauthenticate(email, password);
@@ -18,6 +23,8 @@ export const updateUserEmailUc = async (newEmail, password) => {
     console.log(`Failed to update user email --> ${e}`);
     return false;
   }
+
+  // TODO - need to reload token
 
   return true;
 };

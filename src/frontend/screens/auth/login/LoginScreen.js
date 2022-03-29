@@ -10,9 +10,9 @@ import {
 import {
   FORGOT_PASSWORD_SCREEN,
   REGISTER_SCREEN,
-} from '../../util/NavigationConstants';
-import FormInput from '../../components/common/FormInput';
-import {loginUserUC} from '../../../domain/loginUserUC';
+} from '../../../util/NavigationConstants';
+import FormInput from '../../../components/common/FormInput';
+import {loginUserUC} from '../../../../domain/loginUserUC';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
