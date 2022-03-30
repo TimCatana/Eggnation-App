@@ -1,13 +1,13 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import GameTabs from './GameTabs';
-import SettingsScreen from '../screens/settings/SettingsScreen';
-import PrivacyPolicyScreen from '../screens/policy/PrivacyPolicyScreen';
-import TermsScreen from '../screens/policy/TermsScreen';
-import EditEmailScreen from '../screens/settings/EditEmailScreen';
-import EditPasswordScreen from '../screens/settings/EditPasswordScreen';
-import EditLanguageScreen from '../screens/settings/EditLanguageScreen';
-import ClaimPrizeScreen from '../screens/game/ClaimPrizeScreen';
+import SettingsScreen from '../screens/settings/settings/SettingsScreen';
+import PrivacyPolicyScreen from '../screens/policy/privacy-policy/PrivacyPolicyScreen';
+import TermsScreen from '../screens/policy/terms/TermsScreen';
+import EditEmailScreen from '../screens/settings/edit-email/EditEmailScreen';
+import EditPasswordScreen from '../screens/settings/edit-password/EditPasswordScreen';
+import EditLanguageScreen from '../screens/settings/edit-language/EditLanguageScreen';
+import ClaimPrizeScreen from '../screens/game/claim-prize/ClaimPrizeScreen';
 
 import {
   GAME_TABS,

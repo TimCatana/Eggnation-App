@@ -1,39 +1,21 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import useWonPrizesScreen from './useWonPrizesScreen';
 import {View, Text, StyleSheet, Button} from 'react-native';
-import {getWonPrizesUC} from '../../../domain/getWonPrizesUC';
-import {SUCCESS} from '../../util/Results';
-import {CLAIM_PRIZE_SCREEN} from '../../util/NavigationConstants';
-import PrizeShelfCard from '../../components/common/PrizeShelfCard';
+import {CLAIM_PRIZE_SCREEN} from '../../../util/NavigationConstants';
+import PrizeShelfCard from '../../../components/common/PrizeShelfCard';
 
 const WonPrizesScreen = ({navigation}) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isPrizeFetchFailed, setIsPrizeFetchFailed] = useState(true);
-  const [isShowingPrize, setIsShowingPrize] = useState(false);
-  const [wonPrizes, setWonPrizes] = useState([]);
+  const {
+    isInitialized,
+    isLoading,
+    isPrizeFetchFailed,
+    isShowingPrize,
+    wonPrizes,
+    handleShowPrize,
+    handleHidePrize,
+  } = useWonPrizesScreen();
 
-  useEffect(() => {
-    initialPrizeFetch();
-  }, []);
-
-  const initialPrizeFetch = async () => {
-    await getWonPrizes();
-    setIsLoading(false);
-  };
-
-  const getWonPrizes = async () => {
-    const result = await getWonPrizesUC();
-
-    setWonPrizes(result.data);
-
-    if (result.status === SUCCESS) {
-      setIsPrizeFetchFailed(false);
-    }
-  };
-
-  const handleShowPrize = value => {
-    setIsShowingPrize(value);
-  };
-
+  // TODO need to incorperate isInitialized into place in UI
   return (
     <View style={styles.body}>
       {isLoading && <Text>Loading</Text>}

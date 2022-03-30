@@ -1,10 +1,10 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import LoginScreen from '../screens/auth/login/LoginScreen';
-import RegisterScreen from '../screens/auth/RegisterScreen';
-import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';
-import PrivacyPolicyScreen from '../screens/policy/PrivacyPolicyScreen';
-import TermsScreen from '../screens/policy/TermsScreen';
+import RegisterScreen from '../screens/auth/register/RegisterScreen'
+import ForgotPasswordScreen from '../screens/auth/forgot-password/ForgotPasswordScreen'
+import PrivacyPolicyScreen from '../screens/policy/privacy-policy/PrivacyPolicyScreen';
+import TermsScreen from '../screens/policy/terms/TermsScreen';
 import {
   LOGIN_SCREEN,
   REGISTER_SCREEN,

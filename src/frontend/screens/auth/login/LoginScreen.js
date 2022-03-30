@@ -1,92 +1,49 @@
-import React, {useState} from 'react';
+import React from 'react';
+import useLoginScreen from './useLoginScreen';
+import {View, StyleSheet} from 'react-native';
 import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-import {
-  FORGOT_PASSWORD_SCREEN,
-  REGISTER_SCREEN,
-} from '../../../util/NavigationConstants';
-import FormInput from '../../../components/common/FormInput';
-import {loginUserUC} from '../../../../domain/loginUserUC';
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import LoginScreenTopView from './components/top-view/LoginScreenTopView';
+import LoginScreenBottomView from './components/bottom-view/LoginScreenBottomView';
+// import { Platform } from 'react-native'; // TODO - use this later on for specific ios or android styling (use Platform.OS === 'ios', etc...)
 
 const LoginScreen = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  // TODO - need to add some form of front end text validation and disable the button until all text is valid
+  const {
+    isLoading,
+    email,
+    handleEmailChange,
+    isEmailError,
+    password,
+    handlePasswordChange,
+    handleLoginClick,
+  } = useLoginScreen();
 
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>LoginScreen</Text>
-      <View style={styles.form}>
-        <TextInput
-          value={email}
-          onChangeText={it => {
-            setEmail(it);
-          }}
-          placeholder="email"
-          keyboardType="email-address"
-          style={styles.textInput}
-        />
-        <TextInput
-          value={password}
-          onChangeText={setPassword}
-          placeholder="password"
-          keyboardType="default"
-          style={styles.textInput}
-        />
-      </View>
-
-      <Button
-        title="Login"
-        onPress={() => {
-          loginUserUC(email, password);
-        }}
+      <LoginScreenTopView
+        email={email}
+        handleEmailChange={handleEmailChange}
+        password={password}
+        handlePasswordChange={handlePasswordChange}
+        isLoading={isLoading}
+        isEmailError={isEmailError}
+        handleLoginClick={handleLoginClick}
+        navigation={navigation}
       />
 
-      <TouchableOpacity
-        style={styles.forgotButton}
-        onPress={() => {
-          navigation.navigate(FORGOT_PASSWORD_SCREEN);
-        }}>
-        <Text style={styles.navButtonText}>Forgot Password?</Text>
-      </TouchableOpacity>
-
-      <View>
-        <Text>Don't have an account?</Text>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate(REGISTER_SCREEN);
-          }}>
-          <Text style={styles.navButtonText}>Create Account</Text>
-        </TouchableOpacity>
-      </View>
+      <LoginScreenBottomView isLoading={isLoading} navigation={navigation} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   body: {
+    // backgroundColor: 'orange',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'orange',
-  },
-  form: {
-    width: '75%',
-    height: '50%',
-  },
-  text: {
-    fontSize: 50,
-  },
-  textInput: {
-    height: '25%',
-    width: '100%',
+    display: 'flex',
+    paddingBottom: hp('1.5%'),
   },
 });
 

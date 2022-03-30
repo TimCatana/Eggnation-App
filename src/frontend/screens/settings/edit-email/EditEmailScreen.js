@@ -1,24 +1,29 @@
-import React, {useState} from 'react';
+import React from 'react';
+import useEditEmailScreen from './useEditEmailScreen';
 import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
-import {updateUserEmailUC} from '../../../domain/updateUserEmailUC';
 
 const EditEmailScreen = () => {
-  const [newEmail, setNewEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    newEmail,
+    handleNewEmailChange,
+    password,
+    handlePasswordChange,
+    handleUpdateEmailClick,
+  } = useEditEmailScreen();
 
   return (
     <View style={styles.body}>
       <Text style={styles.text}>EditEmailScreen</Text>
       <TextInput
         value={newEmail}
-        onChangeText={setNewEmail}
+        onChangeText={handleNewEmailChange}
         placeholder="email"
         keyboardType="email-address"
         style={styles.textInput}
       />
       <TextInput
         value={password}
-        onChangeText={setPassword}
+        onChangeText={handlePasswordChange}
         placeholder="password"
         keyboardType="default"
         style={styles.textInput}
@@ -26,7 +31,7 @@ const EditEmailScreen = () => {
       <Button
         title="change email"
         onPress={() => {
-          updateUserEmailUC(newEmail, password);
+          handleUpdateEmailClick();
         }}
       />
     </View>

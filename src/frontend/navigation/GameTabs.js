@@ -1,8 +1,8 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import HomeScreen from '../screens/game/HomeScreen';
-import WonPrizesScreen from '../screens/game/WonPrizesScreen';
-import AvailablePrizesScreen from '../screens/game/AvailablePrizesScreen';
+import HomeScreen from '../screens/game/home/HomeScreen';
+import WonPrizesScreen from '../screens/game/won-prizes/WonPrizesScreen';
+import AvailablePrizesScreen from '../screens/game/available-prizes/AvailablePrizesScreen';
 import {
   HOME_SCREEN,
   WON_PRIZES_SCREEN,
