@@ -1,10 +1,7 @@
 import React from 'react';
 import useLoginScreen from './useLoginScreen';
 import {View, StyleSheet} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import LoginScreenTopView from './components/top-view/LoginScreenTopView';
 import LoginScreenBottomView from './components/bottom-view/LoginScreenBottomView';
 // import { Platform } from 'react-native'; // TODO - use this later on for specific ios or android styling (use Platform.OS === 'ios', etc...)

@@ -1,47 +1,49 @@
 import React from 'react';
 import useHomeScreen from './useHomeScreen';
-import {View, Text, StyleSheet, Button} from 'react-native';
-import {SETTINGS_SCREEN} from '../../../util/NavigationConstants';
+import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import HomeScreenSettingsIcon from './components/HomeScreenSettingsIcon';
+import HomeScreenCounter from './components/HomeScreenCounter';
+import HomeScreenEgg from './components/HomeScreenEgg';
+import BG from '../../../../../assets/bg.png';
 
 const HomeScreen = ({navigation}) => {
-  const {isInitialized, localCount, playGame, logoutUser} = useHomeScreen();
+  const {
+    isLoading,
+    isInitialized,
+    localCount,
+    playGame,
+    loseAnimationRef,
+    winAnimationRef,
+    resetAnimation,
+    pauseAnimation,
+    isWonAnimationShowing,
+    logoutUser,
+  } = useHomeScreen();
 
   if (!isInitialized) return null;
 
   return (
-    <View style={styles.body}>
-      <Text style={styles.text}>{localCount}</Text>
-      <Text style={styles.text}>HomeScreen</Text>
-      <Button
-        title="logout"
-        onPress={() => {
-          logoutUser();
-        }}
+    <ImageBackground style={styles.body} source={BG} resizeMode="cover">
+      <HomeScreenSettingsIcon navigation={navigation} />
+      <HomeScreenCounter counter={localCount} />
+      <HomeScreenEgg
+        resetAnimation={resetAnimation}
+        pauseAnimation={pauseAnimation}
+        isWonAnimationShowing={isWonAnimationShowing}
+        loseAnimationRef={loseAnimationRef}
+        winAnimationRef={winAnimationRef}
+        playGame={playGame}
       />
-      <Button
-        title="Settings"
-        onPress={() => {
-          navigation.navigate(SETTINGS_SCREEN);
-        }}
-      />
-      <Button
-        title="play game"
-        onPress={async () => {
-          await playGame();
-        }}
-      />
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   body: {
     flex: 1,
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  text: {
-    fontSize: 50,
   },
 });
 

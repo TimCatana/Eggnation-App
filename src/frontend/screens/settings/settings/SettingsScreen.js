@@ -1,6 +1,7 @@
 import React from 'react';
 import useSettingsScreen from './useSettingsScreen';
 import {View, Text, StyleSheet, Button} from 'react-native';
+import SettingsSection from './components/SettingsSection';
 
 import {
   EDIT_EMAIL_SCREEN,
@@ -20,7 +21,8 @@ const SettingsScreen = ({navigation}) => {
 
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>SettingsScreen</Text>
+      <SettingsSection/>
+      {/* <Text style={styles.text}>SettingsScreen</Text>
       <Text>{email}</Text>
       <Button
         title="change email"
@@ -40,7 +42,7 @@ const SettingsScreen = ({navigation}) => {
         onPress={() => {
           navigation.navigate(EDIT_PASSWORD_SCREEN);
         }}
-      />
+      /> */}
     </View>
   );
 };
@@ -48,7 +50,7 @@ const SettingsScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   text: {

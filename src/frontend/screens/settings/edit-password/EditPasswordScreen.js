@@ -1,47 +1,51 @@
 import React from 'react';
 import useEditPasswordScreen from './useEditPasswordScreen';
 import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import PasswordModal from '../common/components/PasswordModal';
+import UpdatePasswordScreenBottomView from './components/bottom-view/UpdatePasswordScreenBottomView';
+import UpdatePasswordScreenTopView from './components/top-view/UpdatePasswordScreenTopView';
 
 const EditPasswordScreen = () => {
   const {
+    isLoading,
     newPassword,
     handleNewPasswordChange,
+    isNewPasswordError,
     confirmPassword,
     handleConfirmPasswordChange,
+    isConfirmPasswordError,
     currentPassword,
     handleCurrentPasswordChange,
+    isCurrentPasswordError,
+    showPasswordModal,
+    hidePasswordModal,
     handleUpdatePasswordClick,
+    isPasswordModalShowing
   } = useEditPasswordScreen();
 
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>EditPasswordScreen</Text>
-      <TextInput
-        value={newPassword}
-        onChangeText={handleNewPasswordChange}
-        placeholder="password"
-        keyboardType="default"
-        style={styles.textInput}
+      <PasswordModal
+        isLoading={isLoading}
+        isModalVisible={isPasswordModalShowing}
+        password={currentPassword}
+        isPasswordError={isCurrentPasswordError}
+        handlePasswordChange={handleCurrentPasswordChange}
+        hidePasswordModal={hidePasswordModal}
+        handleOnConfirm={handleUpdatePasswordClick}
       />
-      <TextInput
-        value={confirmPassword}
-        onChangeText={handleConfirmPasswordChange}
-        placeholder="password"
-        keyboardType="default"
-        style={styles.textInput}
+      <UpdatePasswordScreenTopView
+        newPassword={newPassword}
+        handleNewPasswordChange={handleNewPasswordChange}
+        confirmPassword={confirmPassword}
+        handleConfirmPasswordChange={handleConfirmPasswordChange}
       />
-      <TextInput
-        value={currentPassword}
-        onChangeText={handleCurrentPasswordChange}
-        placeholder="password"
-        keyboardType="default"
-        style={styles.textInput}
-      />
-      <Button
-        title="change password"
-        onPress={() => {
-          handleUpdatePasswordClick();
-        }}
+      <UpdatePasswordScreenBottomView
+        isLoading={isLoading}
+        isPasswordError={isNewPasswordError}
+        isConfirmPasswordError={isConfirmPasswordError}
+        handleShowPasswordModal={showPasswordModal}
       />
     </View>
   );
@@ -50,11 +54,10 @@ const EditPasswordScreen = () => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
+    display: 'flex',
+    paddingBottom: hp('2.5%'),
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  text: {
-    fontSize: 50,
   },
 });
 

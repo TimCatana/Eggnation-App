@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import {getLocalCountUC} from '../../../../domain/getLocalCountUC';
 import {decrementLocalCountUC} from '../../../../domain/decrementLocalCountUC';
 import {checkIfTimeToResetCountUC} from '../../../../domain/checkIfTimeToResetCountUC';
@@ -9,6 +9,10 @@ const useHomeScreen = () => {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [localCount, setLocalCount] = useState(1000);
+
+  const [isWonAnimationShowing, setIsWonAnimationShowing] = useState(false)
+  const loseAnimationRef = useRef(null);
+  const winAnimationRef = useRef(null);
 
   useEffect(() => {
     initCounter();
@@ -27,12 +31,56 @@ const useHomeScreen = () => {
     }
   };
 
+
+
+
   const playGame = async () => {
     setIsLoading(true)
     await decrementAndGetLocalCount();
-    await mainGameLogicUC();
+    const result = await mainGameLogicUC();
+
+    if(result.data === true) {
+      setIsWonAnimationShowing(true)
+    } else {
+      setIsWonAnimationShowing(false)
+    }
+    playAnimation()
+
     setIsLoading(false)
   };
+
+  const playAnimation = () => {
+    if(isWonAnimationShowing) {
+      winAnimationRef.current.play()
+    } else {
+      loseAnimationRef.current.play()
+    }
+  }
+
+  const resetAnimation = () => {
+    if(isWonAnimationShowing) {
+      winAnimationRef.current.reset()
+    } else {
+      loseAnimationRef.current.reset()
+    }
+  }
+
+  const pauseAnimation = () => {
+    if(isWonAnimationShowing) {
+      winAnimationRef.current.pause()
+    } else {
+      loseAnimationRef.current.pause()
+    }
+  }
+
+
+
+
+
+
+
+
+
 
   // TODO - need to make this more efficient. Apparently, redux has a listener feature. Async does not
   const decrementAndGetLocalCount = async () => {
@@ -48,10 +96,23 @@ const useHomeScreen = () => {
     logoutUserUC()
   }
 
+
+
+
+
+
+
+
   return {
+    isLoading,
     isInitialized,
     localCount,
     playGame,
+    loseAnimationRef,
+    winAnimationRef,
+    resetAnimation,
+    pauseAnimation,
+    isWonAnimationShowing,
     logoutUser
   };
 };
