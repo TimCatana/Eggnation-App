@@ -1,0 +1,107 @@
+[
+  {
+    "prizeId": "id1",
+    "prizeTitle": "First Item",
+    "prizeDesc": "Description of item 1",
+    "prizeType": "phone",
+    "prizeTier": "bronze"
+  },
+  {
+    "prizeId": "id2",
+    "prizeTitle": "Second Item",
+    "prizeDesc": "Description of item 2",
+    "prizeType": "tablet",
+    "prizeTier": "silver"
+  },
+  {
+    "prizeId": "id3",
+    "prizeTitle": "Third Item",
+    "prizeDesc": "Description of item 3",
+    "prizeType": "laptop",
+    "prizeTier": "gold"
+  },
+  {
+    "prizeId": "id4",
+    "prizeTitle": "Fourth Item",
+    "prizeDesc": "Description of item 4",
+    "prizeType": "shirt",
+    "prizeTier": "diamond"
+  },
+  {
+    "prizeId": "id5",
+    "prizeTitle": "Fifth Item",
+    "prizeDesc": "Description of item 5",
+    "prizeType": "cash",
+    "prizeTier": "gold"
+  },
+  {
+    "prizeId": null,
+    "prizeTitle": "Sixth Item",
+    "prizeDesc": "Description of item 6",
+    "prizeType": "shirt",
+    "prizeTier": "gold"
+  },
+  {
+    "prizeId": "id7",
+    "prizeTitle": null,
+    "prizeDesc": "Description of item 7",
+    "prizeType": "shirt",
+    "prizeTier": "diamond"
+  },
+  {
+    "prizeId": "id8",
+    "prizeTitle": "Eighth Item",
+    "prizeDesc": null,
+    "prizeType": "tablet",
+    "prizeTier": "diamond"
+  },
+  {
+    "prizeId": "id9",
+    "prizeTitle": "Ninth Item",
+    "prizeDesc": "Description of item 9",
+    "prizeType": null,
+    "prizeTier": "diamond"
+  },
+  {
+    "prizeId": "id10",
+    "prizeTitle": "Tenth Item",
+    "prizeDesc": "Description of item 10",
+    "prizeType": "phone",
+    "prizeTier": null
+  },
+  {
+    "prizeId": "id11",
+    "prizeTitle": "eleventh Item",
+    "prizeDesc": "Description of item 11",
+    "prizeType": "invalid",
+    "prizeTier": "gold"
+  },
+  {
+    "prizeId": "id12",
+    "prizeTitle": "Twelfth Item",
+    "prizeDesc": "Description of item 12",
+    "prizeType": "earbuds",
+    "prizeTier": "invalid"
+  },
+  {
+    "prizeId": "id13",
+    "prizeTitle": 13,
+    "prizeDesc": "Description of item 13",
+    "prizeType": "phone",
+    "prizeTier": "invalid"
+  },
+  {
+    "prizeId": "id14",
+    "prizeTitle": "Fourteenth Item",
+    "prizeDesc": 14,
+    "prizeType": "cash",
+    "prizeTier": "invalid"
+  },
+  {
+    "prizeId": "id15",
+    "prizeTitle": "Twelfth Item",
+    "prizeDesc": "Description of item 12",
+    "prizeType": "cash",
+    "prizeTier": "invalid"
+  }
+]

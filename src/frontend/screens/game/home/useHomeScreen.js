@@ -92,11 +92,6 @@ const useHomeScreen = () => {
     }
   };
 
-  const logoutUser = () => {
-    logoutUserUC()
-  }
-
-
 
 
 
@@ -112,8 +107,7 @@ const useHomeScreen = () => {
     winAnimationRef,
     resetAnimation,
     pauseAnimation,
-    isWonAnimationShowing,
-    logoutUser
+    isWonAnimationShowing
   };
 };
 

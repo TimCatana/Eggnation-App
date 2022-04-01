@@ -1,4 +1,4 @@
-import doLogout from "../backend/auth/doLogout";
+import doLogout from '../backend/auth/doLogout'
 
 export const logoutUserUC = async () => {
   try {

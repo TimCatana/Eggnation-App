@@ -23,12 +23,12 @@ const GameTabs = () => {
         lazy: true,
         tabBarStyle: {display: 'none'},
       }}>
-      <Tab.Screen name={WON_PRIZES_SCREEN} component={WonPrizesScreen} />
-      <Tab.Screen name={HOME_SCREEN} component={HomeScreen} />
       <Tab.Screen
         name={AVAILABLE_PRIZES_SCREEN}
         component={AvailablePrizesScreen}
       />
+      <Tab.Screen name={HOME_SCREEN} component={HomeScreen} />
+      <Tab.Screen name={WON_PRIZES_SCREEN} component={WonPrizesScreen} />
     </Tab.Navigator>
   );
 };

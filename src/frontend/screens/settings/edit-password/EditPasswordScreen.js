@@ -21,7 +21,7 @@ const EditPasswordScreen = () => {
     showPasswordModal,
     hidePasswordModal,
     handleUpdatePasswordClick,
-    isPasswordModalShowing
+    isPasswordModalShowing,
   } = useEditPasswordScreen();
 
   return (

@@ -5,7 +5,7 @@ import {SUCCESS} from '../../../util/Results';
   // TODO - Add frontend form validation stuff heree
 const useAvailablePrizesScreen = () => {
   const [isInitialized, setIsInitialized] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isPrizeFetchFailed, setIsPrizeFetchFailed] = useState(true);
   const [availablePrizes, setAvailablePrizes] = useState([]);
   const [isShowingPrize, setIsShowingPrize] = useState(false);

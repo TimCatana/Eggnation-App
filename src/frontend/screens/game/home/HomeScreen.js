@@ -17,7 +17,6 @@ const HomeScreen = ({navigation}) => {
     resetAnimation,
     pauseAnimation,
     isWonAnimationShowing,
-    logoutUser,
   } = useHomeScreen();
 
   if (!isInitialized) return null;
