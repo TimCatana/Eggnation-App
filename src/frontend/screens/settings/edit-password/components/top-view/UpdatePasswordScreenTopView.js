@@ -4,6 +4,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import CustomTextInput from '../../../../../components/common/CustomTextInput'
 
 const UpdatePasswordScreenTopView = props => {
   const {
@@ -15,19 +16,25 @@ const UpdatePasswordScreenTopView = props => {
 
   return (
     <View style={styles.formView}>
-      <TextInput
+      <CustomTextInput
         value={newPassword}
-        onChangeText={handleNewPasswordChange}
-        placeholder="new password"
+        onValueChange={handleNewPasswordChange}
+        placeholder="password"
         keyboardType="default"
-        style={styles.textInput}
+        width={'100%'}
+        height={hp('5.5%')}
+        isPassword={true}
+        maxLength={30}
       />
-      <TextInput
+      <CustomTextInput
         value={confirmPassword}
-        onChangeText={handleConfirmPasswordChange}
+        onValueChange={handleConfirmPasswordChange}
         placeholder="confirm password"
         keyboardType="default"
-        style={styles.textInput}
+        width={'100%'}
+        height={hp('5.5%')}
+        isPassword={true}
+        maxLength={30}
       />
     </View>
   );
@@ -40,13 +47,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  textInput: {
-    // backgroundColor: 'purple',
-    width: '100%',
-    height: hp('5%'),
-    fontSize: hp('1.5%'),
-    marginBottom: hp('2%'),
   },
 });
 

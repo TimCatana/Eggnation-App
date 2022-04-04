@@ -16,7 +16,6 @@ const LoginScreenBottomView = props => {
 
 const styles = StyleSheet.create({
   body: {
-    backgroundColor: 'green',
     flex: 1,
     display: 'flex',
     flexDirection: 'row',
@@ -25,6 +24,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: hp('2%'),
+    color: 'white'
   },
 });
 

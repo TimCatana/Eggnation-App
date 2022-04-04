@@ -9,6 +9,11 @@ import {CLAIM_PRIZE_SCREEN} from '../../../util/NavigationConstants';
 import PrizeShelfCard from '../../../components/common/PrizeShelfCard';
 import bookshelf from '../../../../../assets/bookshelf.png';
 import TEST_DATA from '../../../../../test-data/availablePrizes.json'
+import {
+  FIRST_HALF_SHELF,
+  FULL_SHELF,
+  SECOND_HALF_SHELF,
+} from '../../../util/ShelfImageConstants';
 
 const WonPrizesScreen = ({navigation}) => {
   const {
@@ -20,8 +25,6 @@ const WonPrizesScreen = ({navigation}) => {
     handleShowPrize,
     handleHidePrize,
   } = useWonPrizesScreen();
-
-  // @NOTE in flatlist, passing 'item' passes {index: ..., item: ...}  so I can make it more effifcient by deconstructing better later on
 
   return (
     <View style={styles.body}>
@@ -38,7 +41,23 @@ const WonPrizesScreen = ({navigation}) => {
           style={styles.prizeList}
           data={TEST_DATA}
           numColumns={2}
-          renderItem={item => <PrizeShelfCard prize={item.item} />}
+          renderItem={({item, index}) => {
+            let bgShelfImage = FULL_SHELF;
+
+            if (index === TEST_DATA.length - 1) {
+              bgShelfImage = FULL_SHELF;
+            } else {
+              if (index % 2 === 1) {
+                bgShelfImage = SECOND_HALF_SHELF;
+              } else {
+                bgShelfImage = FIRST_HALF_SHELF;
+              }
+            }
+
+            return (
+              <PrizeShelfCard prize={item} bgShelfImage={bgShelfImage} />
+            );
+          }}
           keyExtractor={item => item.prizeId}
         />
       )}

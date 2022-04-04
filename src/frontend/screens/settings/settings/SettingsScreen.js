@@ -1,6 +1,6 @@
 import React from 'react';
 import useSettingsScreen from './useSettingsScreen';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet, Pressable, Button} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -9,7 +9,7 @@ import SettingsProfileSection from './components/SettingsProfileSection';
 import SettingsContactSection from './components/SettingsContactSection';
 import SettingsLegalSection from './components/SettingsLegalSection';
 import CustomButton from '../../../components/common/CustomButton';
-
+import SettingsMediaSection from './components/SettingsMediaSection';
 const SettingsScreen = ({navigation}) => {
   const {
     isInitialized,
@@ -17,7 +17,7 @@ const SettingsScreen = ({navigation}) => {
     emailVerificationStatus,
     language,
     handleSendVerificationEmailClick,
-    logoutUser
+    logoutUser,
   } = useSettingsScreen();
 
   if (!isInitialized) return null;
@@ -25,7 +25,7 @@ const SettingsScreen = ({navigation}) => {
   return (
     <View style={styles.body}>
       <View style={styles.topView}>
-        {/* //TODO - add facebook, instagram and mynza pressables and maybe eggnation logo */}
+      <SettingsMediaSection/>
       </View>
       <View style={styles.centerView}>
         <SettingsProfileSection
@@ -33,7 +33,7 @@ const SettingsScreen = ({navigation}) => {
           emailVerificationStatus={emailVerificationStatus}
           navigation={navigation}
         />
-        <SettingsContactSection navigation={navigation} />
+        {/* <SettingsContactSection navigation={navigation} /> */}
         <SettingsLegalSection navigation={navigation} />
       </View>
       <View style={styles.bottomView}>
@@ -62,12 +62,13 @@ const SettingsScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
   },
   topView: {
-    flex: 3,
+    flex: 1.5,
     display: 'flex',
-    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   centerView: {

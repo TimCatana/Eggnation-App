@@ -1,9 +1,7 @@
 import React from 'react';
-import {View, Text, Pressable, StyleSheet} from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {View, StyleSheet} from 'react-native';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import CustomButton from '../../../../../components/common/CustomButton';
 
 const UpdatePasswordScreenBottomView = props => {
   const {
@@ -15,12 +13,15 @@ const UpdatePasswordScreenBottomView = props => {
 
   return (
     <View style={styles.body}>
-      <Pressable
-        disabled={isLoading || isPasswordError || isConfirmPasswordError}
+      <CustomButton
+        label={'Update Password'}
         onPress={handleShowPasswordModal}
-        style={styles.updatePasswordButton}>
-        <Text style={styles.updatePasswordButtonText}>Update Password</Text>
-      </Pressable>
+        buttonEnabledColor={'pink'}
+        buttonDisabledColor={'gray'}
+        textColor={'white'}
+        fontSize={hp('2%')}
+        disabled={isLoading || isPasswordError || isConfirmPasswordError}
+      />
     </View>
   );
 };
@@ -30,19 +31,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  updatePasswordButton: {
-    width: wp('20%'),
-    height: hp('5%'),
-    borderRadius: wp('2%'),
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'blue',
-  },
-  updatePasswordButtonText: {
-    fontSize: hp('2%'),
-    color: 'white',
   },
 });
 

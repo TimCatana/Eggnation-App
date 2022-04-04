@@ -13,7 +13,7 @@ const PrivacyPolicyText = props => {
         onPress={() => {
           navigation.navigate(PRIVACY_POLICY_SCREEN);
         }}>
-        <Text style={[styles.text, {color: 'blue'}]}>Privacy Policy</Text>
+        <Text style={styles.text}>Privacy Policy</Text>
       </Pressable>
     </>
   );
@@ -22,6 +22,7 @@ const PrivacyPolicyText = props => {
 const styles = StyleSheet.create({
   text: {
     fontSize: hp('2%'),
+    color: 'pink'
   },
 });
 

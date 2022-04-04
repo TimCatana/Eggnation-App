@@ -1,26 +1,35 @@
 import React from 'react';
 import {Text, TextInput, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import CustomTextInput from '../../../../../components/common/CustomTextInput'
 
 const LoginForm = props => {
   const {email, handleEmailChange, password, handlePasswordChange} = props;
 
+  // {value, onValueChange, placeholder, keyboardType, width, height}
+
   return (
     <>
       <Text style={styles.headingText}>LOGIN</Text>
-      <TextInput
+      <CustomTextInput
         value={email}
-        onChangeText={handleEmailChange}
+        onValueChange={handleEmailChange}
         placeholder="email"
         keyboardType="email-address"
-        style={styles.textInput}
+        width={'100%'}
+        height={hp('5%')}
+        isPassword={false}
+        maxLength={100}
       />
-      <TextInput
+      <CustomTextInput
         value={password}
-        onChangeText={handlePasswordChange}
+        onValueChange={handlePasswordChange}
         placeholder="password"
         keyboardType="default"
-        style={[styles.textInput, {marginBottom: 0}]}
+        width={'100%'}
+        height={hp('5%')}
+        isPassword={true}
+        maxLength={30}
       />
     </>
   );
@@ -30,14 +39,7 @@ const styles = StyleSheet.create({
   headingText: {
     fontSize: hp('5%'),
     marginBottom: hp('2%'),
-  },
-  textInput: {
-    // backgroundColor: 'purple',
-    width: '100%',
-    height: hp('5%'),
-    fontSize: hp('1.5%'),
-    marginBottom: hp('2%'),
-  },
+  }
 });
 
 export default LoginForm;

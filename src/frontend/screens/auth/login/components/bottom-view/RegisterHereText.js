@@ -13,7 +13,7 @@ const RegisterHereText = props => {
         onPress={() => {
           navigation.navigate(REGISTER_SCREEN);
         }}>
-        <Text style={[styles.text, {color: 'blue'}]}>Register here</Text>
+        <Text style={styles.text}>Register here</Text>
       </Pressable>
     </>
   );
@@ -22,6 +22,7 @@ const RegisterHereText = props => {
 const styles = StyleSheet.create({
   text: {
     fontSize: hp('2%'),
+    color: 'pink'
   },
 });
 

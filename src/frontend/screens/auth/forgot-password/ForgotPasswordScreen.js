@@ -5,7 +5,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import SendForgotPasswordEmailButton from './components/SendForgotPasswordEmailButton';
+import CustomButton from '../../../components/common/CustomButton';
+import CustomTextInput from '../../../components/common/CustomTextInput';
 
 const ForgotPasswordScreen = () => {
   const {
@@ -19,20 +20,25 @@ const ForgotPasswordScreen = () => {
   return (
     <View style={styles.body}>
       <View style={styles.formView}>
-        <TextInput
+        <CustomTextInput
           value={email}
-          onChangeText={handleEmailChange}
+          onValueChange={handleEmailChange}
           placeholder="email"
           keyboardType="email-address"
-          style={styles.textInput}
+          width={'100%'}
+          height={hp('5%')}
+          isPassword={false}
+          maxLength={100}
         />
 
-        <SendForgotPasswordEmailButton
-          isLoading={isLoading}
-          isEmailError={isEmailError}
-          handleSendForgotPasswordEmailClick={
-            handleSendForgotPasswordEmailClick
-          }
+        <CustomButton
+          label={'Send'}
+          onPress={handleSendForgotPasswordEmailClick}
+          buttonEnabledColor={'pink'}
+          buttonDisabledColor={'gray'}
+          textColor={'white'}
+          fontSize={hp('2%')}
+          disabled={isEmailError || isLoading}
         />
       </View>
     </View>
@@ -53,7 +59,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textInput: {
-    // backgroundColor: 'purple',
     width: '100%',
     height: hp('5%'),
     fontSize: hp('1.5%'),

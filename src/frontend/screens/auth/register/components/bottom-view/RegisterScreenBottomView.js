@@ -23,29 +23,25 @@ const RegisterScreenBottomView = props => {
 
 const styles = StyleSheet.create({
   body: {
-    backgroundColor: 'green',
     flex: 1,
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
   topRow: {
-    backgroundColor: 'green',
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    // backgroundColor: 'red',
   },
   bottomRow: {
-    backgroundColor: 'green',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    // backgroundColor: 'blue',
   },
   text: {
     fontSize: hp('2%'),
+    color: 'white'
   },
 });
 

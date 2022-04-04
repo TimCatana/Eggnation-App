@@ -13,7 +13,7 @@ const TermsText = props => {
         onPress={() => {
           navigation.navigate(TERMS_SCREEN);
         }}>
-        <Text style={[styles.text, {color: 'blue'}]}>Terms of Service</Text>
+        <Text style={styles.text}>Terms of Service</Text>
       </Pressable>
     </>
   );
@@ -22,6 +22,7 @@ const TermsText = props => {
 const styles = StyleSheet.create({
   text: {
     fontSize: hp('2%'),
+    color: 'pink'
   },
 });
 

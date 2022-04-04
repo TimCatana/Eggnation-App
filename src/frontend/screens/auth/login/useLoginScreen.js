@@ -7,11 +7,16 @@ const useLoginScreen = () => {
   const [email, setEmail] = useState('');
   const [isEmailError, setIsEmailError] = useState(true);
   const [password, setPassword] = useState('');
+  const [isPasswordError, setIsPasswordError] = useState(true);
 
   // USE EFFECTS
   useEffect(() => {
     setIsEmailError(!isEmailValid(email));
   }, [email]);
+
+  useEffect(() => {
+    password.length > 0 ? setIsPasswordError(false) : setIsPasswordError(true);
+  }, [password]);
 
   // TEXT INPUTS
   const handleEmailChange = value => {
@@ -35,6 +40,7 @@ const useLoginScreen = () => {
     handleEmailChange,
     isEmailError,
     password,
+    isPasswordError,
     handlePasswordChange,
     handleLoginClick,
   };

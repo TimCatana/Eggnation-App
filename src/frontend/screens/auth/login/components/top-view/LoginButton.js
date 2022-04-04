@@ -4,20 +4,22 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import CustomButton from '../../../../../components/common/CustomButton';
 
 const LoginButton = props => {
-  const {isLoading, isEmailError, handleLoginClick} = props;
+  const {isLoading, isEmailError, isPasswordError, handleLoginClick} = props;
 
   return (
     <View style={styles.body}>
-      <Pressable
-        disabled={isEmailError || isLoading}
-        onPress={() => {
-          handleLoginClick();
-        }}
-        style={styles.loginButton}>
-        <Text style={styles.loginButtonText}>Login</Text>
-      </Pressable>
+      <CustomButton
+        label={'Login'}
+        onPress={handleLoginClick}
+        buttonEnabledColor={'pink'}
+        buttonDisabledColor={'gray'}
+        textColor={'white'}
+        fontSize={hp('2%')}
+        disabled={isEmailError || isPasswordError ||  isLoading}
+      />
     </View>
   );
 };

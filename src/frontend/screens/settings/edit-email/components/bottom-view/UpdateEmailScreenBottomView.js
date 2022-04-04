@@ -4,18 +4,22 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import CustomButton from '../../../../../components/common/CustomButton';
 
 const UpdateEmailScreenBottomView = props => {
   const {isLoading, isEmailError, handleShowPasswordModal} = props;
 
   return (
     <View style={styles.body}>
-      <Pressable
-        disabled={isEmailError || isLoading}
+      <CustomButton
+        label={'Update Email'}
         onPress={handleShowPasswordModal}
-        style={styles.sendEmailButton}>
-        <Text style={styles.sendEmailButtonText}>Update Email</Text>
-      </Pressable>
+        buttonEnabledColor={'pink'}
+        buttonDisabledColor={'gray'}
+        textColor={'white'}
+        fontSize={hp('2%')}
+        disabled={isEmailError || isLoading}
+      />
     </View>
   );
 };
@@ -25,20 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  sendEmailButton: {
-    width: wp('20%'),
-    height: hp('5%'),
-    borderRadius: wp('2%'),
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'blue',
-  },
-  sendEmailButtonText: {
-    fontSize: hp('2%'),
-    color: 'white',
-  },
+  }
 });
 
 export default UpdateEmailScreenBottomView;

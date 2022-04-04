@@ -13,6 +13,7 @@ const LoginScreenTopView = props => {
     handlePasswordChange,
     isLoading,
     isEmailError,
+    isPasswordError,
     handleLoginClick,
     navigation,
   } = props;
@@ -30,8 +31,9 @@ const LoginScreenTopView = props => {
         <ForgotPasswordText navigation={navigation} isLoading={isLoading} />
 
         <LoginButton
-        isLoading={isLoading}
+          isLoading={isLoading}
           isEmailError={isEmailError}
+          isPasswordError={isPasswordError}
           handleLoginClick={handleLoginClick}
         />
       </View>

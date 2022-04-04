@@ -15,6 +15,12 @@ const SettingsLegalSection = (props) => {
     <View style={styles.body}>
       <SettingsSectionLabel label="LEGAL" />
       <View style={styles.contentView}>
+      <SettingsItem
+          title={'Contact Us'}
+          content={''}
+          icon={'chevron-right'}
+          isLast={false}
+        />
         <SettingsItem
           title={'Privacy Policy'}
           content={''}

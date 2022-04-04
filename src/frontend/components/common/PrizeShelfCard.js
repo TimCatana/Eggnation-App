@@ -12,7 +12,9 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import shelf from '../../../../assets/shelf.png';
+import firstHalfShelf from '../../../../assets/firstHalfShelf.png';
+import secondHalfShelf from '../../../../assets/secondHalfShelf.png';
+import fullShelf from '../../../../assets/fullShelf.png';
 
 import phoneImage from '../../../../assets/phone.png';
 import earBudsImage from '../../../../assets/earbuds.png';
@@ -22,6 +24,11 @@ import cashImage from '../../../../assets/cash.png';
 import tabletImage from '../../../../assets/tablet.png';
 import shirtImage from '../../../../assets/shirt.png';
 import presentImage from '../../../../assets/present.png';
+import {
+  FIRST_HALF_SHELF,
+  FULL_SHELF,
+  SECOND_HALF_SHELF,
+} from '../../util/ShelfImageConstants';
 
 const getDisplayImage = prizeType => {
   if (prizeType === 'phone') {
@@ -43,18 +50,31 @@ const getDisplayImage = prizeType => {
   }
 };
 
+const getShelfImage = bgShelfImage => {
+  if (bgShelfImage === FIRST_HALF_SHELF) {
+    return firstHalfShelf;
+  } else if (bgShelfImage === SECOND_HALF_SHELF) {
+    return secondHalfShelf;
+  } else if (bgShelfImage === FULL_SHELF) {
+    return fullShelf;
+  }
+};
+
 const PrizeShelfCard = props => {
-  const {prize} = props;
+  const {prize, bgShelfImage} = props;
 
   console.log(prize);
+  console.log(prize.prizeType);
+
 
   const displayImage = getDisplayImage(prize.prizeType);
+  const shelfImage = getShelfImage(bgShelfImage);
 
   return (
     <View style={styles.body}>
       <ImageBackground
         style={styles.backgroundContainer}
-        source={shelf}
+        source={shelfImage}
         resizeMode="stretch"
       />
       {/* <Text>

@@ -11,6 +11,8 @@ import {
 
 const Tab = createMaterialTopTabNavigator();
 
+// TODO - set backBehaviour={none}. Right now the back button goes to the tab. I just want to exit
+
 const GameTabs = () => {
   return (
     <Tab.Navigator

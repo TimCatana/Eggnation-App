@@ -4,6 +4,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import CustomButton from '../../../../../components/common/CustomButton';
 
 const RegisterButton = props => {
   const {
@@ -16,14 +17,15 @@ const RegisterButton = props => {
 
   return (
     <View style={styles.body}>
-      <Pressable
+      <CustomButton
+        label={'Register'}
+        onPress={handleRegisterClick}
+        buttonEnabledColor={'pink'}
+        buttonDisabledColor={'gray'}
+        textColor={'white'}
+        fontSize={hp('2%')}
         disabled={isLoading || isEmailError || isPasswordError || isConfirmPasswordError}
-        onPress={() => {
-          handleRegisterClick();
-        }}
-        style={styles.registerButton}>
-        <Text style={styles.loginButtonText}>Register</Text>
-      </Pressable>
+      />
     </View>
   );
 };

@@ -7,7 +7,12 @@ import {
 } from 'react-native-responsive-screen';
 import PrizeShelfCard from '../../../components/common/PrizeShelfCard';
 import bookshelf from '../../../../../assets/bookshelf.png';
-import TEST_DATA from '../../../../../test-data/availablePrizes.json'
+import TEST_DATA from '../../../../../test-data/availablePrizes.json';
+import {
+  FIRST_HALF_SHELF,
+  FULL_SHELF,
+  SECOND_HALF_SHELF,
+} from '../../../util/ShelfImageConstants';
 
 const AvailablePrizesScreen = () => {
   const {
@@ -19,8 +24,6 @@ const AvailablePrizesScreen = () => {
     handleShowPrize,
     handleHidePrize,
   } = useAvailablePrizesScreen();
-
-  // @NOTE in flatlist, passing 'item' passes {index: ..., item: ...}  so I can make it more effifcient by deconstructing better later on
 
   return (
     <View style={styles.body}>
@@ -37,7 +40,23 @@ const AvailablePrizesScreen = () => {
           style={styles.prizeList}
           data={TEST_DATA}
           numColumns={2}
-          renderItem={item => <PrizeShelfCard prize={item.item} />}
+          renderItem={({item, index}) => {
+            let bgShelfImage = FULL_SHELF;
+
+            if (index === TEST_DATA.length - 1) {
+              bgShelfImage = FULL_SHELF;
+            } else {
+              if (index % 2 === 1) {
+                bgShelfImage = SECOND_HALF_SHELF;
+              } else {
+                bgShelfImage = FIRST_HALF_SHELF;
+              }
+            }
+
+            return (
+              <PrizeShelfCard prize={item} bgShelfImage={bgShelfImage} />
+            );
+          }}
           keyExtractor={item => item.prizeId}
         />
       )}
@@ -54,7 +73,7 @@ const AvailablePrizesScreen = () => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: '#29211F'
+    backgroundColor: '#29211F',
   },
   backgroundContainer: {
     position: 'absolute',

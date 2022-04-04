@@ -1,21 +1,25 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import CustomTextInput from '../../../../../components/common/CustomTextInput';
 
 const UpdateEmailScreenTopView = props => {
   const {newEmail, handleNewEmailChange} = props;
 
   return (
     <View style={styles.formView}>
-      <TextInput
+      <CustomTextInput
         value={newEmail}
-        onChangeText={handleNewEmailChange}
+        onValueChange={handleNewEmailChange}
         placeholder="email"
         keyboardType="email-address"
-        style={styles.textInput}
+        width={'100%'}
+        height={hp('5.5%')}
+        isPassword={false}
+        maxLength={100}
       />
     </View>
   );
@@ -28,13 +32,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  textInput: {
-    // backgroundColor: 'purple',
-    width: '100%',
-    height: hp('5%'),
-    fontSize: hp('1.5%'),
-    marginBottom: hp('2%'),
   },
 });
 

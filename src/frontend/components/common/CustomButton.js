@@ -6,11 +6,25 @@ import {
 } from 'react-native-responsive-screen';
 
 const CustomButton = props => {
-  const {label, onPress, buttonColor, textColor, fontSize, ...rest} = props;
+  const {
+    label,
+    onPress,
+    buttonEnabledColor,
+    buttonDisabledColor,
+    textColor,
+    fontSize,
+    disabled,
+    ...rest
+  } = props;
 
   return (
-    <View style={[styles.button, {backgroundColor: buttonColor}, {...rest}]}>
-      <Pressable onPress={onPress} android_ripple>
+    <View
+      style={[
+        styles.button,
+        {backgroundColor: disabled ? buttonDisabledColor : buttonEnabledColor},
+        {...rest},
+      ]}>
+      <Pressable onPress={onPress} android_ripple disabled={disabled}>
         <Text style={[{fontSize: fontSize, color: textColor}]}>{label}</Text>
       </Pressable>
     </View>

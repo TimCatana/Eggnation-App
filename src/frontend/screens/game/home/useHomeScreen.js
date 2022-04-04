@@ -1,16 +1,32 @@
 import {useState, useEffect, useRef} from 'react';
+import {useInterstitialAd, TestIds} from '@react-native-admob/admob';
 import {getLocalCountUC} from '../../../../domain/getLocalCountUC';
 import {decrementLocalCountUC} from '../../../../domain/decrementLocalCountUC';
 import {checkIfTimeToResetCountUC} from '../../../../domain/checkIfTimeToResetCountUC';
 import {mainGameLogicUC} from '../../../../domain/mainGameLogicUC';
-import { logoutUserUC } from '../../../../domain/logoutUserUC';
 
 const useHomeScreen = () => {
+  const {adLoaded, adDismissed, show, load} = useInterstitialAd(
+    TestIds.INTERSTITIAL,
+  );
+
+  const loadAd = () => {
+    if (adDismissed) {
+      load();
+    }
+  };
+
+  const playAd = () => {
+    if (adLoaded && localCount != 1000) {
+      show();
+    }
+  };
+
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [localCount, setLocalCount] = useState(1000);
 
-  const [isWonAnimationShowing, setIsWonAnimationShowing] = useState(false)
+  const [isWonAnimationShowing, setIsWonAnimationShowing] = useState(false);
   const loseAnimationRef = useRef(null);
   const winAnimationRef = useRef(null);
 
@@ -31,56 +47,51 @@ const useHomeScreen = () => {
     }
   };
 
-
-
-
   const playGame = async () => {
-    setIsLoading(true)
-    await decrementAndGetLocalCount();
-    const result = await mainGameLogicUC();
+    setIsLoading(true);
 
-    if(result.data === true) {
-      setIsWonAnimationShowing(true)
+    if (localCount % 5 === 0 && localCount != 1000) {
+      playAd();
+      await decrementAndGetLocalCount();
     } else {
-      setIsWonAnimationShowing(false)
-    }
-    playAnimation()
+      loadAd();
 
-    setIsLoading(false)
+      await decrementAndGetLocalCount();
+      const result = await mainGameLogicUC();
+
+      result.data === true
+        ? setIsWonAnimationShowing(true)
+        : setIsWonAnimationShowing(false);
+
+      playAnimation();
+    }
+
+    setIsLoading(false);
   };
 
   const playAnimation = () => {
-    if(isWonAnimationShowing) {
-      winAnimationRef.current.play()
+    if (isWonAnimationShowing) {
+      winAnimationRef.current.play();
     } else {
-      loseAnimationRef.current.play()
+      loseAnimationRef.current.play();
     }
-  }
+  };
 
   const resetAnimation = () => {
-    if(isWonAnimationShowing) {
-      winAnimationRef.current.reset()
+    if (isWonAnimationShowing) {
+      winAnimationRef.current.reset();
     } else {
-      loseAnimationRef.current.reset()
+      loseAnimationRef.current.reset();
     }
-  }
+  };
 
   const pauseAnimation = () => {
-    if(isWonAnimationShowing) {
-      winAnimationRef.current.pause()
+    if (isWonAnimationShowing) {
+      winAnimationRef.current.pause();
     } else {
-      loseAnimationRef.current.pause()
+      loseAnimationRef.current.pause();
     }
-  }
-
-
-
-
-
-
-
-
-
+  };
 
   // TODO - need to make this more efficient. Apparently, redux has a listener feature. Async does not
   const decrementAndGetLocalCount = async () => {
@@ -92,12 +103,6 @@ const useHomeScreen = () => {
     }
   };
 
-
-
-
-
-
-
   return {
     isLoading,
     isInitialized,
@@ -107,7 +112,7 @@ const useHomeScreen = () => {
     winAnimationRef,
     resetAnimation,
     pauseAnimation,
-    isWonAnimationShowing
+    isWonAnimationShowing,
   };
 };
 
