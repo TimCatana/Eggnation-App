@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react';
-import {loginUserUC} from '../../../../domain/loginUserUC';
+import Snackbar from 'react-native-snackbar';
 import isEmailValid from '../common/helpers/isEmailValid';
+import loginUserUC from '../../../../domain/login-screen-uc/loginUserUC';
+import { ERROR } from '../../../util/Results';
 
 const useLoginScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -8,6 +10,9 @@ const useLoginScreen = () => {
   const [isEmailError, setIsEmailError] = useState(true);
   const [password, setPassword] = useState('');
   const [isPasswordError, setIsPasswordError] = useState(true);
+
+  const [errorText, setErrorText] = useState('')
+  const [showError, setShowError] = useState(0); // each time this increments, the useEffect for snackbar is triggered
 
   // USE EFFECTS
   useEffect(() => {
@@ -17,6 +22,15 @@ const useLoginScreen = () => {
   useEffect(() => {
     password.length > 0 ? setIsPasswordError(false) : setIsPasswordError(true);
   }, [password]);
+
+  useEffect(() => {
+    if (showError != 0) {
+      Snackbar.show({
+        text: errorText,
+        duration: Snackbar.LENGTH_SHORT,
+      });
+    }
+  }, [showError]);
 
   // TEXT INPUTS
   const handleEmailChange = value => {
@@ -30,8 +44,14 @@ const useLoginScreen = () => {
   // BUTTON CLICKS
   const handleLoginClick = async () => {
     setIsLoading(true);
-    await loginUserUC(email, password);
+    const result = await loginUserUC(email, password);
     setIsLoading(false);
+
+    if(result.status === ERROR) {
+      setErrorText(result.message)
+      setShowError(showError + 1);
+    }
+
   };
 
   return {

@@ -18,21 +18,21 @@ const CustomButton = props => {
   } = props;
 
   return (
-    <View
+    <Pressable
       style={[
         styles.button,
         {backgroundColor: disabled ? buttonDisabledColor : buttonEnabledColor},
         {...rest},
-      ]}>
-      <Pressable onPress={onPress} android_ripple disabled={disabled}>
-        <Text style={[{fontSize: fontSize, color: textColor}]}>{label}</Text>
-      </Pressable>
-    </View>
+      ]}
+      onPress={onPress}
+      android_ripple
+      disabled={disabled}>
+      <Text style={[{fontSize: fontSize, color: textColor}]}>{label}</Text>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  view: {},
   button: {
     borderRadius: wp('0.5%'),
     paddingHorizontal: wp('3%'),

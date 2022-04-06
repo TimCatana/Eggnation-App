@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, TextInput, StyleSheet, Pressable} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {View, Text, TextInput, StyleSheet, Pressable} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -16,53 +16,81 @@ const FormInput = props => {
     maxLength,
     width,
     height,
+    fontSize,
+    marginBottom,
+    disabled,
+    isError,
+    errorText,
+    returnKeyType,
   } = props;
 
   const [isSecureTextEntry, setIsSecureTextEntry] = useState(isPassword);
+  const [isFocused, setIsFocused] = useState(false);
 
   const togglePasswordView = () => {
     setIsSecureTextEntry(!isSecureTextEntry);
   };
 
   return (
-    <View style={[styles.inputContainer, {width: width, height: height}]}>
-      <TextInput
-        value={value}
-        onChangeText={onValueChange}
-        maxLength={maxLength}
-        placeholder={placeholder}
-        keyboardType={keyboardType}
-        style={styles.input}
-        secureTextEntry={isSecureTextEntry}
-      />
-      {isPassword && (
-        <View style={styles.icon}>
-          <Pressable onPress={togglePasswordView}>
-            <IonIcons
-              name={isSecureTextEntry ? 'eye-off' : 'eye'}
-              size={25}
-              color="#666"
-            />
-          </Pressable>
-        </View>
-      )}
+    <View>
+      <View
+        style={[
+          styles.textInput,
+          {
+            width: width,
+            height: height,
+            borderColor: isError ? 'red' : isFocused ? 'pink' : 'gray',
+            marginBottom: isError ? null : marginBottom,
+          },
+        ]}>
+        <TextInput
+          value={value}
+          onChangeText={onValueChange}
+          maxLength={maxLength}
+          placeholder={placeholder}
+          keyboardType={keyboardType}
+          style={[styles.input, {fontSize: fontSize}]}
+          secureTextEntry={isSecureTextEntry}
+          editable={!disabled}
+          returnKeyType={'next'}
+          onFocus={() => {
+            setIsFocused(true);
+          }}
+          onBlur={() => {
+            setIsFocused(false);
+          }}
+        />
+        {isPassword && (
+          <View style={styles.icon}>
+            <Pressable onPress={togglePasswordView} disabled={disabled}>
+              <IonIcons
+                name={isSecureTextEntry ? 'eye-off' : 'eye'}
+                size={hp('3.1%')}
+                color="#666"
+              />
+            </Pressable>
+          </View>
+        )}
+      </View>
+
+      {isError && errorText ? (
+        <Text style={[styles.errorText, {marginBottom: marginBottom}]}>
+          {errorText}
+        </Text>
+      ) : null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  inputContainer: {
+  textInput: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 5,
-    marginBottom: 10,
     borderWidth: hp('0.2%'),
     borderRadius: wp('0.5%'),
-    borderBottomColor: 'gray',
   },
   input: {
-    flex: 9,
-    fontSize: hp('1.7%'),
+    flex: 7.5,
     paddingLeft: wp('1.5%'),
   },
   icon: {
@@ -70,6 +98,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  errorText: {
+    fontSize: hp('1.5%'),
+    color: 'red',
   },
 });
 

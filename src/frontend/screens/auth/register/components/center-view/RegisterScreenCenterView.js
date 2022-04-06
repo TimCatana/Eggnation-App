@@ -1,10 +1,13 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import RegisterForm from './RegisterForm';
 import RegisterButton from './RegisterButton';
 
-const RegisterScreenTopView = props => {
+const RegisterScreenCenterView = props => {
   const {
     isLoading,
     email,
@@ -25,10 +28,14 @@ const RegisterScreenTopView = props => {
         <RegisterForm
           email={email}
           handleEmailChange={handleEmailChange}
+          isEmailError={isEmailError}
           password={password}
           handlePasswordChange={handlePasswordChange}
+          isPasswordError={isPasswordError}
           confirmPassword={confirmPassword}
           handleConfirmPasswordChange={handleConfirmPasswordChange}
+          isConfirmPasswordError={isConfirmPasswordError}
+          isLoading={isLoading}
         />
 
         <RegisterButton
@@ -47,7 +54,8 @@ const styles = StyleSheet.create({
   body: {
     flex: 9,
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    marginTop: hp('6%'),
     alignItems: 'center',
   },
   formView: {
@@ -58,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterScreenTopView;
+export default RegisterScreenCenterView;

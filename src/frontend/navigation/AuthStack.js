@@ -13,10 +13,6 @@ import {
   TERMS_SCREEN,
 } from '../util/NavigationConstants';
 
-// import LOGIN_SCREEN from '../util/NavigationConstants'
-// import REGISTER_SCREEN from '../util/NavigationConstants'
-// import FORGOT_PASSWORD_SCREEN from '../util/NavigationConstants'
-
 const Stack = createStackNavigator();
 
 /**
