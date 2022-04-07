@@ -61,17 +61,24 @@ const getShelfImage = bgShelfImage => {
 };
 
 const PrizeShelfCard = props => {
-  const {prize, bgShelfImage} = props;
+  const {
+    prize,
+    bgShelfImage,
+    handleShowPrize,
+    handleDisplayPrizeTitleChange,
+    handleDisplayPrizeDescChange,
+    handleDisplayPrizeTypeChange,
+    handleDisplayPrizeTierChange,
+  } = props;
 
-  console.log(prize);
-  console.log(prize.prizeType);
-
+  // console.log(prize);
+  // console.log(prize.prizeType);
 
   const displayImage = getDisplayImage(prize.prizeType);
   const shelfImage = getShelfImage(bgShelfImage);
 
   return (
-    <View style={styles.body}>
+    <View style={styles.body} >
       <ImageBackground
         style={styles.backgroundContainer}
         source={shelfImage}
@@ -80,8 +87,21 @@ const PrizeShelfCard = props => {
       {/* <Text>
         {prize.prizeTitle ? prize.prizeTitle : 'Failed to fetch title'}
       </Text> */}
-      <Pressable>
-        <Image style={styles.displayImage} source={displayImage} />
+      <Pressable
+        style={styles.pressable}
+        onPress={() => {
+          console.log('prize clicked!');
+          handleDisplayPrizeTitleChange(prize.prizeTitle);
+          handleDisplayPrizeDescChange(prize.prizeDesc);
+          handleDisplayPrizeTypeChange(prize.prizeType);
+          handleDisplayPrizeTierChange(prize.prizeTier);
+          handleShowPrize();
+        }}>
+        <Image
+          style={styles.image}
+          source={displayImage}
+          resizeMode="contain"
+        />
       </Pressable>
     </View>
   );
@@ -102,13 +122,21 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-  displayImage: {
-    width: wp('20%'),
-    marginBottom: hp('3%'),
-    resizeMode: 'contain',
+  pressable: {
+    elevation: 20,
+    height: '50%',
+    width: '50%',
+    marginBottom: hp('5%'),
+    // backgroundColor: 'red'
   },
-  text: {
-    fontSize: 20,
+  image: {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
   },
 });
 

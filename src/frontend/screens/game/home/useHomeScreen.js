@@ -22,17 +22,32 @@ const useHomeScreen = () => {
     }
   };
 
+  const isMounted = useRef(false);
+
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [localCount, setLocalCount] = useState(1000);
 
   const [isWonAnimationShowing, setIsWonAnimationShowing] = useState(false);
+  const [isAnimationPlaying, setIsAnimationPlaying] = useState(false);
   const loseAnimationRef = useRef(null);
   const winAnimationRef = useRef(null);
 
   useEffect(() => {
     initCounter();
   }, []);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      if (isAnimationPlaying) {
+        _playAnimation();
+      } else {
+        // _resetAnimation();
+      }
+    } else {
+      isMounted.current = true;
+    }
+  }, [isAnimationPlaying]);
 
   const initCounter = async () => {
     await checkIfTimeToResetCountUC();
@@ -70,6 +85,10 @@ const useHomeScreen = () => {
   };
 
   const playAnimation = () => {
+    setIsAnimationPlaying(true);
+  };
+
+  const _playAnimation = () => {
     if (isWonAnimationShowing) {
       winAnimationRef.current.play();
     } else {
@@ -78,18 +97,14 @@ const useHomeScreen = () => {
   };
 
   const resetAnimation = () => {
+    setIsAnimationPlaying(false);
+  };
+
+  const _resetAnimation = () => {
     if (isWonAnimationShowing) {
       winAnimationRef.current.reset();
     } else {
       loseAnimationRef.current.reset();
-    }
-  };
-
-  const pauseAnimation = () => {
-    if (isWonAnimationShowing) {
-      winAnimationRef.current.pause();
-    } else {
-      loseAnimationRef.current.pause();
     }
   };
 
@@ -111,8 +126,8 @@ const useHomeScreen = () => {
     loseAnimationRef,
     winAnimationRef,
     resetAnimation,
-    pauseAnimation,
     isWonAnimationShowing,
+    isAnimationPlaying,
   };
 };
 

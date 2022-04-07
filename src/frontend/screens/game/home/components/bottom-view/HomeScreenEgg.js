@@ -4,27 +4,25 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import egg from '../../../../../../assets/egg.png';
+// import egg from '../../../../../../../assets/egg.png';
 import LottieView from 'lottie-react-native';
-import Won from '../../../../../../assets/lottie/won.json';
-import Lost from '../../../../../../assets/lottie/lost.json';
+import Won from '../../../../../../../assets/lottie/won.json';
+import Lost from '../../../../../../../assets/lottie/lost.json';
 
 const HomeScreenEgg = props => {
   const {
+    isLoading,
     playGame,
     resetAnimation,
-    pauseAnimation,
     isWonAnimationShowing,
     loseAnimationRef,
     winAnimationRef,
+    isAnimationPlaying,
   } = props;
 
   return (
     <View style={styles.body}>
-
-      <Pressable
-      onPress={playGame}
-      >
+      <Pressable disabled={isAnimationPlaying || isLoading} onPress={playGame}>
         {isWonAnimationShowing ? (
           <LottieView
             ref={winAnimationRef}
@@ -32,9 +30,9 @@ const HomeScreenEgg = props => {
             source={Won}
             autoPlay={false}
             loop={false}
+            duration={500}
             onAnimationFinish={() => {
-              // TODO - need to fix the animation reset problem
-              // resetAnimation();
+              resetAnimation();
             }}
           />
         ) : (
@@ -44,9 +42,10 @@ const HomeScreenEgg = props => {
             source={Lost}
             autoPlay={false}
             loop={false}
+            duration={2000}
+
             onAnimationFinish={() => {
-              // TODO - need to fix the animation reset problem
-              // resetAnimation();
+              resetAnimation();
             }}
           />
         )}

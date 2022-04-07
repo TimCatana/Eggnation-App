@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 export const checkIfTimeToResetCountUC = async () => {
   try {
     const storedTime = await doGetAsyncValue('lastResetTime');
-    console.log(storedTime)
+    // console.log(storedTime)
 
     if (!storedTime) {
       await doSetAsyncValue('lastResetTime', dayjs().toString());
@@ -15,7 +15,7 @@ export const checkIfTimeToResetCountUC = async () => {
     const currentTime = dayjs();
     const timeDifference = currentTime.diff(dayjs(storedTime), 'hours'); // stored time is returned as a string from async storage. It is converted to a dayjs string using dayjs(storedTime)
 
-    console.log(timeDifference);
+    // console.log(timeDifference);
     if (timeDifference >= 12) { // TODO - probably make the 20 and 1000 constants
       await doSetAsyncValue('localCount', `${1000}`);
       await doSetAsyncValue('lastResetTime', dayjs().toString());
