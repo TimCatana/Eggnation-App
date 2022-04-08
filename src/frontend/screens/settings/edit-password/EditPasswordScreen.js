@@ -36,6 +36,7 @@ const EditPasswordScreen = () => {
         handleOnConfirm={handleUpdatePasswordClick}
       />
       <UpdatePasswordScreenTopView
+        isLoading={isLoading}
         newPassword={newPassword}
         handleNewPasswordChange={handleNewPasswordChange}
         confirmPassword={confirmPassword}

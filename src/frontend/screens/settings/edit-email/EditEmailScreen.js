@@ -36,6 +36,7 @@ const EditEmailScreen = () => {
       <UpdateEmailScreenTopView
         newEmail={newEmail}
         handleNewEmailChange={handleNewEmailChange}
+        isLoading={isLoading}
       />
       <UpdateEmailScreenBottomView
         isLoading={isLoading}

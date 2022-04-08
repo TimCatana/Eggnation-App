@@ -7,7 +7,7 @@ import {
 import CustomTextInput from '../../../../../components/common/CustomTextInput';
 
 const UpdateEmailScreenTopView = props => {
-  const {newEmail, handleNewEmailChange} = props;
+  const {isLoading, newEmail, handleNewEmailChange} = props;
 
   return (
     <View style={styles.formView}>
@@ -21,6 +21,7 @@ const UpdateEmailScreenTopView = props => {
         isPassword={false}
         textColor='white'
         maxLength={100}
+        disabled={isLoading}
       />
     </View>
   );

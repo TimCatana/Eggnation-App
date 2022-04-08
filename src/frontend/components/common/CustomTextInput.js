@@ -6,7 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
-const FormInput = props => {
+const CustomTextInput = props => {
   const {
     value,
     onValueChange,
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FormInput;
+export default CustomTextInput;

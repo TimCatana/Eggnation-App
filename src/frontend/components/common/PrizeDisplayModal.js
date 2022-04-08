@@ -54,7 +54,6 @@ const PrizeDisplayModal = props => {
 
   return (
     <Modal
-      style={styles.formView}
       animationType="fade"
       visible={isModalVisible}
       onRequestClose={() => {
