@@ -19,6 +19,7 @@ const UpdateEmailScreenTopView = props => {
         width={'100%'}
         height={hp('5.5%')}
         isPassword={false}
+        textColor='white'
         maxLength={100}
       />
     </View>

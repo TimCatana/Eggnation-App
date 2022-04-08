@@ -16,6 +16,10 @@ const UpdatePasswordScreenTopView = props => {
 
   return (
     <View style={styles.formView}>
+
+   
+   
+        
       <CustomTextInput
         value={newPassword}
         onValueChange={handleNewPasswordChange}
@@ -24,6 +28,8 @@ const UpdatePasswordScreenTopView = props => {
         width={'100%'}
         height={hp('5.5%')}
         isPassword={true}
+        textColor='white'
+        marginBottom={hp("2%")}
         maxLength={30}
       />
       <CustomTextInput
@@ -34,6 +40,7 @@ const UpdatePasswordScreenTopView = props => {
         width={'100%'}
         height={hp('5.5%')}
         isPassword={true}
+        textColor='white'
         maxLength={30}
       />
     </View>

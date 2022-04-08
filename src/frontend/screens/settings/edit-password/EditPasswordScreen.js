@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     paddingBottom: hp('2.5%'),
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'black'
   },
 });
 

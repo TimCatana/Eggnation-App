@@ -26,7 +26,7 @@ import bookeshelfLeft from '../../../../../assets/bookshelfLeft.png';
 import bookeshelfRight from '../../../../../assets/bookshelfRight.png';
 import bookeshelfTop from '../../../../../assets/bookshelfTop.png';
 
-const AvailablePrizesScreen = () => {
+const AvailablePrizesScreen = ({navigation}) => {
   const {
     isInitialized,
     isLoading,
@@ -129,6 +129,7 @@ const AvailablePrizesScreen = () => {
                 isWonPrize={false}
                 isModalVisible={isShowingPrize}
                 handleHidePrize={handleHidePrize}
+                navigation={navigation}
               />
             </>
           )}

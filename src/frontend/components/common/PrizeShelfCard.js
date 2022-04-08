@@ -71,8 +71,6 @@ const PrizeShelfCard = props => {
     handleDisplayPrizeTierChange,
   } = props;
 
-  // console.log(prize);
-  // console.log(prize.prizeType);
 
   const displayImage = getDisplayImage(prize.prizeType);
   const shelfImage = getShelfImage(bgShelfImage);

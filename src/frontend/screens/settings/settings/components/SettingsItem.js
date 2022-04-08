@@ -9,9 +9,9 @@ import IconMaterial from 'react-native-vector-icons/MaterialIcons'; // chevron-r
 const SettingsItem = props => {
   const {title, content, icon, isLast, onIconPress} = props;
 
-  //  TODO - add max caracter limit then add ellipse to content text
+  //  TODO - add max character limit then add ellipse to content text
   return (
-    <View style={[styles.body, isLast ? {} : {borderBottomWidth: hp('0.1%')}]}>
+    <View style={[styles.body, isLast ? {} : {borderBottomWidth: hp('0.13%'), borderBottomColor: '#4e4e4e'}]}>
       <View style={styles.leftView}>
         <Text style={styles.text}>{title}</Text>
       </View>
@@ -20,7 +20,7 @@ const SettingsItem = props => {
       </View>
       <View style={styles.rightView}>
         <Pressable onPress={onIconPress}>
-          <IconMaterial style={styles.icon} name={icon} size={hp('3%')} />
+          <IconMaterial style={styles.icon} name={icon} size={hp('2.5%')} />
         </Pressable>
       </View>
     </View>
@@ -30,19 +30,19 @@ const SettingsItem = props => {
 const styles = StyleSheet.create({
   body: {
     width: '97%',
-    height: hp('4.5%'),
+    height: hp('5%'),
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
   },
   leftView: {
-    flex: 4,
+    flex: 5,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
   centerView: {
-    flex: 4,
+    flex: 5,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
@@ -54,11 +54,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    paddingLeft: wp('1%'),
-    paddingTop: hp('1%'),
+    color: '#e2e2e2',
   },
   text: {
     fontSize: hp('1.8%'),
+    color: '#e2e2e2'
   },
 });
 

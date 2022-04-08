@@ -32,6 +32,9 @@ const SettingsProfileSection = props => {
           content={`${emailVerificationStatus}`}
           icon={'done'}
           isLast={false}
+          onIconPress={() => {
+            // TODO
+          }}
         />
         <SettingsItem
           title={'Password'}
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'gray',
+    backgroundColor: '#1c1c1e',
     marginBottom: hp('3%'),
     borderRadius: wp('2.4%'),
   },

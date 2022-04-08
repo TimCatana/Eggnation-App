@@ -25,7 +25,7 @@ const SettingsScreen = ({navigation}) => {
   return (
     <View style={styles.body}>
       <View style={styles.topView}>
-      <SettingsMediaSection/>
+        <SettingsMediaSection />
       </View>
       <View style={styles.centerView}>
         <SettingsProfileSection
@@ -40,8 +40,8 @@ const SettingsScreen = ({navigation}) => {
         <CustomButton
           label={'logout'}
           onPress={logoutUser}
-          buttonColor="red"
           textColor="white"
+          buttonEnabledColor='#1c1c1e'
           fontSize={hp('2%')}
           marginBottom={hp('0.7%')}
         />
@@ -51,7 +51,8 @@ const SettingsScreen = ({navigation}) => {
             console.log('pressed!!!');
           }}
           buttonColor="red"
-          textColor="white"
+          textColor="#ae0000"
+          buttonEnabledColor='#1c1c1e'
           fontSize={hp('2%')}
         />
       </View>
@@ -62,7 +63,7 @@ const SettingsScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#000000',
   },
   topView: {
     flex: 1.5,

@@ -24,9 +24,11 @@ const styles = StyleSheet.create({
      display: 'flex',
      justifyContent: 'flex-start',
      alignItems: 'flex-start',
+     marginBottom: hp('0.5%')
    },
    text: {
      fontSize: hp('1.5%'),
+     color: '#e2e2e2'
    }
 });
 

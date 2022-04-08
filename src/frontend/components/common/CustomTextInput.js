@@ -17,10 +17,12 @@ const FormInput = props => {
     width,
     height,
     fontSize,
+    textColor,
     marginBottom,
     disabled,
     isError,
     errorText,
+    iconColor,
     returnKeyType,
   } = props;
 
@@ -49,10 +51,11 @@ const FormInput = props => {
           maxLength={maxLength}
           placeholder={placeholder}
           keyboardType={keyboardType}
-          style={[styles.input, {fontSize: fontSize}]}
+          style={[styles.input, {fontSize: fontSize, color: textColor}]}
           secureTextEntry={isSecureTextEntry}
           editable={!disabled}
           returnKeyType={'next'}
+          placeholderTextColor={textColor}
           onFocus={() => {
             setIsFocused(true);
           }}
@@ -66,7 +69,7 @@ const FormInput = props => {
               <IonIcons
                 name={isSecureTextEntry ? 'eye-off' : 'eye'}
                 size={hp('3.1%')}
-                color="#666"
+                color={iconColor ? iconColor : "#666"}
               />
             </Pressable>
           </View>
