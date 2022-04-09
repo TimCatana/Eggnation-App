@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import CustomButton from '../../../../components/common/CustomButton';
+import CustomButton from '../../../../../components/common/CustomButton'
 
 const ClaimPrizeScreenBottomView = props => {
   const {

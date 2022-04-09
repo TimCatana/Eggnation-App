@@ -4,9 +4,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import CustomTextInput from '../../../../components/common/CustomTextInput';
-import CustomDropdownMenu from '../../../../components/common/CustomDropdownMenu';
-import PickerModal from '../picker-modal/pickerModal';
+import CustomTextInput from '../../../../../components/common/CustomTextInput'
+import CustomDropdownMenu from '../../../../../components/common/CustomDropdownMenu';
 
 const ClaimPrizeScreenTopView = props => {
   const {
@@ -45,35 +44,9 @@ const ClaimPrizeScreenTopView = props => {
         marginBottom={hp('2%')}
         disabled={isLoading}
         handleIconPress={() => {
-          showModalPicker(true);
+          showModalPicker(false);
         }}
       />
-      {/* <CustomTextInput
-        value={country}
-        onValueChange={handleCountryChange}
-        placeholder="country"
-        keyboardType="default"
-        width={'100%'}
-        height={hp('5.5%')}
-        isPassword={false}
-        textColor="white"
-        marginBottom={hp('2%')}
-        maxLength={30}
-        disabled={isLoading}
-      /> */}
-      {/* <CustomTextInput
-        value={region}
-        onValueChange={handleRegionChange}
-        placeholder="region"
-        keyboardType="default"
-        width={'100%'}
-        height={hp('5.5%')}
-        isPassword={false}
-        textColor="white"
-        marginBottom={hp('2%')}
-        maxLength={30}
-        disabled={isLoading}
-      /> */}
       <CustomTextInput
         value={address}
         onValueChange={handleAddressChange}
@@ -83,6 +56,7 @@ const ClaimPrizeScreenTopView = props => {
         height={hp('5.5%')}
         isPassword={false}
         textColor="white"
+        fontSize={hp('2%')}
         maxLength={30}
         disabled={isLoading}
       />

@@ -1,13 +1,29 @@
 import React from 'react';
-import {View, Text, StyleSheet, Pressable, FlatList, Modal} from 'react-native';
+import {View, Text, StyleSheet, Pressable, ScrollView, FlatList, Modal} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import TopLeftCornerIcon from '../../../../components/common/TopLeftCornerIcon';
+import TopLeftCornerIcon from '../../../../../components/common/TopLeftCornerIcon';
+
+const DropdownOption = props => {
+  const {item, index, onSelect, isSelectingCountries} = props;
+
+  return (
+    <View style={{width: '100%', height: hp('4.5%'), display: 'flex', paddingLeft: wp('3%'),  borderBottomWidth: wp('0.2%')}}>
+    <Pressable
+    style={{flex: 1, display: 'flex', justifyContent: 'center',}}
+      onPress={() => {
+        onSelect(index);
+      }}>
+      <Text style={{fontSize: hp('1.7%')}}>{isSelectingCountries ? item.countryName : item.name}</Text>
+    </Pressable>
+    </View>
+  );
+};
 
 const PickerModal = props => {
-  const {hideModalPicker, isModalVisible, data, onSelect} = props;
+  const {hideModalPicker, isModalVisible, data, onSelect, isSelectingCountries} = props;
 
   return (
     <Modal
@@ -30,16 +46,9 @@ const PickerModal = props => {
             numColumns={1}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
-            renderItem={({item, index}) => {
-              return (
-                <Pressable
-                  onPress={() => {
-                    onSelect(index);
-                  }}>
-                  <Text>{item.countryName}</Text>
-                </Pressable>
-              );
-            }}
+            renderItem={({item, index}) => (
+              <DropdownOption item={item} index={index} onSelect={onSelect} isSelectingCountries={isSelectingCountries} />
+            )}
             keyExtractor={item => item.countryName}
           />
         </View>
@@ -54,10 +63,11 @@ const styles = StyleSheet.create({
     disply: 'flex',
   },
   topView: {
-    flex: 6,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 19,
+    // display: 'flex',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // width: '100%',
     // backgroundColor: 'red',
   },
   icon: {

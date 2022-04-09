@@ -5,9 +5,9 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import ClaimPrizeScreenBottomView from './bottom-view/ClaimPrizeScreenBottomView';
-import ClaimPrizeScreenTopView from './top-view/ClaimPrizeScreenTopView';
-import PickerModal from './picker-modal/pickerModal';
+import ClaimPrizeScreenBottomView from './components/bottom-view/ClaimPrizeScreenBottomView';
+import ClaimPrizeScreenTopView from './components/top-view/ClaimPrizeScreenTopView';
+import PickerModal from './components/other/PickerModal';
 
 const ClaimPrizeScreen = () => {
   const {
@@ -55,9 +55,8 @@ const ClaimPrizeScreen = () => {
         hideModalPicker={hideModalPicker}
         isModalVisible={isModalPickerShowing}
         data={isSelectingCountries ? countries : regions}
-        onSelect={
-          handleCountryChange
-        }
+        onSelect={isSelectingCountries ? handleCountryChange : handleRegionChange}
+        isSelectingCountries={isSelectingCountries}
       />
     </View>
   );

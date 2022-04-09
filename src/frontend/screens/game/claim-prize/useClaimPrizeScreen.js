@@ -54,10 +54,12 @@ const useClaimPrizeScreen = () => {
   // TEXT INPUTS
   const handleCountryChange = index => {
     setCountry(countries[index].countryName);
+    setIsModalPickerShowing(false);
   };
 
   const handleRegionChange = index => {
     setRegion(regions[index].name);
+    setIsModalPickerShowing(false);
   };
 
   const handleAddressChange = value => {
