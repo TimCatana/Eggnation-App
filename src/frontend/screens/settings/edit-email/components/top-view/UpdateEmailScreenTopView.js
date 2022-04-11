@@ -4,24 +4,34 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import CustomTextInput from '../../../../../components/common/CustomTextInput';
+import {
+  S_TI_EMAIL_PLACEHOLDER,
+  S_TI_EMAIL_KEYBOARD_TYPE,
+  S_TI_EMAIL_ERROR_TEXT,
+} from '../../../../../theme/Strings';
+import {C_TEXT_INPUT_TEXT_LIGHT} from '../../../../../theme/Colors';
+import CustomTextInput from '../../../../../common/components/CustomTextInput';
 
 const UpdateEmailScreenTopView = props => {
-  const {isLoading, newEmail, handleNewEmailChange} = props;
+  const {isLoading, newEmail, handleNewEmailChange, isNewEmailError} = props;
 
   return (
     <View style={styles.formView}>
       <CustomTextInput
         value={newEmail}
         onValueChange={handleNewEmailChange}
-        placeholder="email"
-        keyboardType="email-address"
+        isError={isNewEmailError && newEmail.length > 0}
+        errorText={S_TI_EMAIL_ERROR_TEXT}
+        disabled={isLoading}
+        isPassword={false}
+        placeholder={S_TI_EMAIL_PLACEHOLDER}
+        keyboardType={S_TI_EMAIL_KEYBOARD_TYPE}
+        maxLength={100}
         width={'100%'}
         height={hp('5.5%')}
-        isPassword={false}
-        textColor='white'
-        maxLength={100}
-        disabled={isLoading}
+        fontSize={hp('2%')}
+        textColor={C_TEXT_INPUT_TEXT_LIGHT}
+        returnKeyType={'done'}
       />
     </View>
   );
@@ -30,10 +40,10 @@ const UpdateEmailScreenTopView = props => {
 const styles = StyleSheet.create({
   formView: {
     flex: 9,
-    width: wp('75%'),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    width: wp('75%'),
   },
 });
 

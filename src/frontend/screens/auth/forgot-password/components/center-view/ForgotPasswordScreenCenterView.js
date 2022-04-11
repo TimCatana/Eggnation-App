@@ -1,19 +1,31 @@
 import React from 'react';
-import {View,StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import CustomTextInput from '../../../../../components/common/CustomTextInput'
-import CustomButton from '../../../../../components/common/CustomButton';
+import {
+  S_TI_EMAIL_ERROR_TEXT,
+  S_TI_EMAIL_PLACEHOLDER,
+  S_TI_EMAIL_KEYBOARD_TYPE,
+  S_FPS_SEND_BUTTON,
+} from '../../../../../theme/Strings';
+import {
+  C_TEXT_INPUT_TEXT_PRIMARY,
+  C_BUTTON_DISABLED,
+  C_BUTTON_ENABLED,
+  C_TEXT_LIGHT,
+} from '../../../../../theme/Colors';
+import CustomTextInput from '../../../../../common/components/CustomTextInput';
+import CustomButton from '../../../../../common/components/CustomButton';
 
 const ForgotPasswordScreenCenterView = props => {
   const {
+    isLoading,
     email,
     handleEmailChange,
     isEmailError,
     handleSendForgotPasswordEmailClick,
-    isLoading,
   } = props;
 
   return (
@@ -21,26 +33,29 @@ const ForgotPasswordScreenCenterView = props => {
       <CustomTextInput
         value={email}
         onValueChange={handleEmailChange}
-        placeholder="email"
-        keyboardType="email-address"
+        isError={isEmailError && email.length > 0}
+        errorText={S_TI_EMAIL_ERROR_TEXT}
+        disabled={isLoading}
+        isPassword={false}
+        placeholder={S_TI_EMAIL_PLACEHOLDER}
+        keyboardType={S_TI_EMAIL_KEYBOARD_TYPE}
+        maxLength={100}
         width={'100%'}
         height={hp('6%')}
-        fontSize={hp('2%')}
         marginBottom={hp('1.5%')}
-        isPassword={false}
-        maxLength={100}
-        isError={isEmailError && email.length > 0}
-        errorText={'please enter a valid email'}
+        fontSize={hp('2%')}
+        textColor={C_TEXT_INPUT_TEXT_PRIMARY}
+        returnKeyType={'done'}
       />
 
       <CustomButton
-        label={'Send'}
+        label={S_FPS_SEND_BUTTON}
         onPress={handleSendForgotPasswordEmailClick}
-        buttonEnabledColor={'pink'}
-        buttonDisabledColor={'gray'}
-        textColor={'white'}
+        buttonEnabledColor={C_BUTTON_ENABLED}
+        buttonDisabledColor={C_BUTTON_DISABLED}
+        textColor={C_TEXT_LIGHT}
         fontSize={hp('2%')}
-        disabled={isEmailError || isLoading}
+        disabled={isLoading || isEmailError}
       />
     </View>
   );
@@ -49,11 +64,11 @@ const ForgotPasswordScreenCenterView = props => {
 const styles = StyleSheet.create({
   body: {
     flex: 6,
-    width: wp('75%'),
     display: 'flex',
     justifyContent: 'flex-start',
-    marginTop: hp('20%'),
     alignItems: 'center',
+    width: wp('75%'),
+    marginTop: hp('20%'),
   },
 });
 

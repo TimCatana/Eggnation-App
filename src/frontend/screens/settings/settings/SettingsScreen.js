@@ -1,61 +1,42 @@
 import React from 'react';
+import {View, StyleSheet} from 'react-native';
+import {C_BACKGROUND_DARK} from '../../../theme/Colors';
+import SettingsScreenTopView from './components/top-view/SettingsScreenTopView';
+import SettingsScreenCenterView from './components/center-view/SettingsScreenCenterView';
+import SettingsScreenBottomView from './components/bottom-view/SettingsScreenBottomView';
+
 import useSettingsScreen from './useSettingsScreen';
-import {View, Text, StyleSheet, Pressable, Button} from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
-import SettingsProfileSection from './components/SettingsProfileSection';
-import SettingsContactSection from './components/SettingsContactSection';
-import SettingsLegalSection from './components/SettingsLegalSection';
-import CustomButton from '../../../components/common/CustomButton';
-import SettingsMediaSection from './components/SettingsMediaSection';
+
+// TODO - there's something wrong with the way flex is working for the sections, I need to fix it later on
 const SettingsScreen = ({navigation}) => {
   const {
+    isLoading,
     isInitialized,
     email,
     emailVerificationStatus,
     language,
     handleSendVerificationEmailClick,
     logoutUser,
+    deleteUser,
   } = useSettingsScreen();
 
   if (!isInitialized) return null;
 
   return (
     <View style={styles.body}>
-      <View style={styles.topView}>
-        <SettingsMediaSection />
-      </View>
-      <View style={styles.centerView}>
-        <SettingsProfileSection
-          email={email}
-          emailVerificationStatus={emailVerificationStatus}
-          navigation={navigation}
-        />
-        {/* <SettingsContactSection navigation={navigation} /> */}
-        <SettingsLegalSection navigation={navigation} />
-      </View>
-      <View style={styles.bottomView}>
-        <CustomButton
-          label={'logout'}
-          onPress={logoutUser}
-          textColor="white"
-          buttonEnabledColor='#1c1c1e'
-          fontSize={hp('2%')}
-          marginBottom={hp('0.7%')}
-        />
-        <CustomButton
-          label={'delete account'}
-          onPress={() => {
-            console.log('pressed!!!');
-          }}
-          buttonColor="red"
-          textColor="#ae0000"
-          buttonEnabledColor='#1c1c1e'
-          fontSize={hp('2%')}
-        />
-      </View>
+      <SettingsScreenTopView isLoading={isLoading} />
+      <SettingsScreenCenterView
+        navigation={navigation}
+        isLoading={isLoading}
+        email={email}
+        emailVerificationStatus={emailVerificationStatus}
+        handleSendVerificationEmailClick={handleSendVerificationEmailClick}
+      />
+      <SettingsScreenBottomView
+        isLoading={isLoading}
+        logoutUser={logoutUser}
+        deleteUser={deleteUser}
+      />
     </View>
   );
 };
@@ -63,29 +44,7 @@ const SettingsScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: '#000000',
-  },
-  topView: {
-    flex: 1.5,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  centerView: {
-    flex: 8,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  bottomView: {
-    flex: 2,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 50,
+    backgroundColor: C_BACKGROUND_DARK,
   },
 });
 

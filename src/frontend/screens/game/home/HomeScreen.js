@@ -8,7 +8,7 @@ import {
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
 import BG from '../../../../../assets/bg.png';
-import TopLeftCornerIcon from '../../../components/common/TopLeftCornerIcon';
+import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
 import { SETTINGS_SCREEN } from '../../../util/NavigationConstants';
 
 const HomeScreen = ({navigation}) => {

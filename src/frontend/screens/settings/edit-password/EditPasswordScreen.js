@@ -1,12 +1,18 @@
 import React from 'react';
-import useEditPasswordScreen from './useEditPasswordScreen';
-import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import PasswordModal from '../common/components/PasswordModal';
-import UpdatePasswordScreenBottomView from './components/bottom-view/UpdatePasswordScreenBottomView';
+import {View, StyleSheet} from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import {C_ICON_LIGHT} from '../../../theme/Colors';
+import PasswordModal from '../../../common/components/PasswordModal';
+import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
 import UpdatePasswordScreenTopView from './components/top-view/UpdatePasswordScreenTopView';
+import UpdatePasswordScreenBottomView from './components/bottom-view/UpdatePasswordScreenBottomView';
 
-const EditPasswordScreen = () => {
+import useEditPasswordScreen from './useEditPasswordScreen';
+
+const EditPasswordScreen = ({navigation}) => {
   const {
     isLoading,
     newPassword,
@@ -18,29 +24,46 @@ const EditPasswordScreen = () => {
     currentPassword,
     handleCurrentPasswordChange,
     isCurrentPasswordError,
+    isPasswordModalShowing,
     showPasswordModal,
     hidePasswordModal,
     handleUpdatePasswordClick,
-    isPasswordModalShowing,
   } = useEditPasswordScreen();
+
+  /** Navigates back to the login screen if no process is currently running. */
+  const navigateBack = () => {
+    if (!isLoading) {
+      navigation.pop();
+    }
+  };
 
   return (
     <View style={styles.body}>
       <PasswordModal
         isLoading={isLoading}
-        isModalVisible={isPasswordModalShowing}
         password={currentPassword}
-        isPasswordError={isCurrentPasswordError}
         handlePasswordChange={handleCurrentPasswordChange}
+        isPasswordError={isCurrentPasswordError}
+        isModalVisible={isPasswordModalShowing}
         hidePasswordModal={hidePasswordModal}
         handleOnConfirm={handleUpdatePasswordClick}
+      />
+      <TopLeftCornerIcon
+        icon={'arrow-left'}
+        onPress={navigateBack}
+        iconSize={hp('3.5%')}
+        iconColor={C_ICON_LIGHT}
+        viewStyle={styles.icon}
+        iconStyle={{}}
       />
       <UpdatePasswordScreenTopView
         isLoading={isLoading}
         newPassword={newPassword}
         handleNewPasswordChange={handleNewPasswordChange}
+        isNewPasswordError={isNewPasswordError}
         confirmPassword={confirmPassword}
         handleConfirmPasswordChange={handleConfirmPasswordChange}
+        isConfirmPasswordError={isConfirmPasswordError}
       />
       <UpdatePasswordScreenBottomView
         isLoading={isLoading}
@@ -59,7 +82,16 @@ const styles = StyleSheet.create({
     paddingBottom: hp('2.5%'),
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+  },
+  icon: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    width: '100%',
+    paddingLeft: wp('1%'),
+    paddingTop: hp('1%'),
   },
 });
 

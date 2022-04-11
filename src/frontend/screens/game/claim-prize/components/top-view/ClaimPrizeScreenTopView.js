@@ -4,8 +4,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import CustomTextInput from '../../../../../components/common/CustomTextInput'
-import CustomDropdownMenu from '../../../../../components/common/CustomDropdownMenu';
+import CustomTextInput from '../../../../../common/components/CustomTextInput'
+import CustomDropdownMenu from '../../../../../common/components/CustomDropdownMenu';
 
 const ClaimPrizeScreenTopView = props => {
   const {

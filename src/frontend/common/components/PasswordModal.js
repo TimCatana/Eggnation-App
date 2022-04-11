@@ -15,10 +15,10 @@ import {
 const PasswordModal = props => {
   const {
     isLoading,
-    isModalVisible,
     password,
     handlePasswordChange,
     isPasswordError,
+    isModalVisible,
     hidePasswordModal,
     handleOnConfirm,
   } = props;

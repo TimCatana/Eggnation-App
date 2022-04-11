@@ -12,8 +12,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import PrizeShelfCard from '../../../components/common/PrizeShelfCard';
-import PrizeDisplayModal from '../../../components/common/PrizeDisplayModal';
+import PrizeShelfCard from '../../../common/components/PrizeShelfCard';
+import PrizeDisplayModal from '../../../common/components/PrizeDisplayModal';
 import bookshelf from '../../../../../assets/bookshelf.png';
 import TEST_DATA from '../../../../../test-data/availablePrizes.json';
 import {

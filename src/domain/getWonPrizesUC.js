@@ -1,6 +1,6 @@
 import doGetUserId from '../backend/auth/accessors/doGetUserId';
 import doGetAllWonPrizes from '../backend/database/firestore/doGetAllWonPrizes';
-import {SUCCESS, FAILURE} from '../frontend/util/Results';
+import {SUCCESS, FAILURE} from '../frontend/util/ResultsConstants';
 
 export const getWonPrizesUC = async () => {
   try {

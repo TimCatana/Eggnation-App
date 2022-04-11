@@ -10,20 +10,20 @@ const CustomTextInput = props => {
   const {
     value,
     onValueChange,
+    isError,
+    errorText,
+    disabled,
+    isPassword,
     placeholder,
     keyboardType,
-    isPassword,
     maxLength,
     width,
     height,
+    marginBottom,
     fontSize,
     textColor,
-    marginBottom,
-    disabled,
-    isError,
-    errorText,
     iconColor,
-    returnKeyType,
+    returnKeyType, // TODO - add a function to do something on specific key type change maybe? or maybe rn handles it for us
   } = props;
 
   const [isSecureTextEntry, setIsSecureTextEntry] = useState(isPassword);
@@ -69,7 +69,7 @@ const CustomTextInput = props => {
               <IonIcons
                 name={isSecureTextEntry ? 'eye-off' : 'eye'}
                 size={hp('3.1%')}
-                color={iconColor ? iconColor : "#666"}
+                color={iconColor ? iconColor : '#666'}
               />
             </Pressable>
           </View>

@@ -1,20 +1,15 @@
 import React from 'react';
-import useForgotPasswordScreen from './useForgotPasswordScreen';
-import {
-  View,
-  StyleSheet,
-  ActivityIndicator,
-  ImageBackground,
-} from 'react-native';
+import {ImageBackground, ActivityIndicator, StyleSheet} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import CustomButton from '../../../components/common/CustomButton';
-import CustomTextInput from '../../../components/common/CustomTextInput';
-import TopLeftCornerIcon from '../../../components/common/TopLeftCornerIcon';
-import BG from '../../../../../assets/bgAuth.png';
+import {C_ICON_PRIMARY, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
+import background from '../../../../../assets/backgrounds/bg_auth.png';
+import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
 import ForgotPasswordScreenCenterView from './components/center-view/ForgotPasswordScreenCenterView';
+
+import useForgotPasswordScreen from './useForgotPasswordScreen';
 
 const ForgotPasswordScreen = ({navigation}) => {
   const {
@@ -25,31 +20,39 @@ const ForgotPasswordScreen = ({navigation}) => {
     handleSendForgotPasswordEmailClick,
   } = useForgotPasswordScreen();
 
+  /**
+   * Navigates back to the login screen if no process is currently running.
+   */
+  const navigateBack = () => {
+    if (!isLoading) {
+      navigation.pop();
+    }
+  };
+
   return (
-    <ImageBackground style={styles.body} source={BG} resizeMode="cover">
+    <ImageBackground style={styles.body} source={background} resizeMode="cover">
       <TopLeftCornerIcon
         icon={'arrow-left'}
-        onPress={() => {
-          navigation.pop();
-        }}
+        onPress={navigateBack}
+        iconSize={hp('3.5%')}
+        iconColor={C_ICON_PRIMARY}
         viewStyle={styles.icon}
         iconStyle={{}}
-        iconSize={hp('3.5%')}
       />
 
       <ForgotPasswordScreenCenterView
+        isLoading={isLoading}
         email={email}
         handleEmailChange={handleEmailChange}
         isEmailError={isEmailError}
         handleSendForgotPasswordEmailClick={handleSendForgotPasswordEmailClick}
-        isLoading={isLoading}
       />
 
       <ActivityIndicator
         style={styles.loading}
         animating={isLoading}
-        color="pink"
         size={hp('10%')}
+        color={C_ACTIVITY_INDICATOR}
       />
     </ImageBackground>
   );
@@ -64,21 +67,19 @@ const styles = StyleSheet.create({
   },
   icon: {
     flex: 1,
-    width: '100%',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+    width: '100%',
     paddingLeft: wp('1%'),
     paddingTop: hp('1%'),
   },
   loading: {
     position: 'absolute',
-    left: 0,
-    right: 0,
     top: hp('5%'),
+    right: 0,
     bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
+    left: 0,
   },
 });
 

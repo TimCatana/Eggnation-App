@@ -1,5 +1,5 @@
 import doRegister from '../../backend/auth/doRegister';
-import {ERROR, SUCCESS} from '../../frontend/util/Results';
+import {ERROR, SUCCESS} from '../../frontend/util/ResultsConstants';
 
 /**
  * @param email The users email address.
@@ -8,6 +8,8 @@ import {ERROR, SUCCESS} from '../../frontend/util/Results';
  * @error SHOULD NEVER BE THROWN auth/invalid-email Thrown if the email address is not valid.
  * @error SHOULD NEVER BE THROWN auth/weak-password Thrown if the password is not strong enough.
  * @error NOT CHECKED auth/operation-not-allowed Thrown if email/password accounts are not enabled. Enable email/password accounts in the Firebase Console, under the Auth tab.
+ * @onSuccessReturn {status: SUCCESS, message: string}
+ * @onErrorReturn {status: ERROR, message: string}
  */
 const registerUserUC = async (email, password) => {
   try {

@@ -1,5 +1,5 @@
 import deGetAllAvailablePrizes from '../backend/database/firestore/deGetAllAvailablePrizes';
-import {SUCCESS, FAILURE} from '../frontend/util/Results';
+import {SUCCESS, FAILURE} from '../frontend/util/ResultsConstants';
 
 export const getAvailablePrizesUC = async () => {
   try {

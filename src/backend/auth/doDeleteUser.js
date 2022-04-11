@@ -1,5 +1,7 @@
 import auth from '@react-native-firebase/auth';
 
-export default doDeleteUser = () => {
+const doDeleteUser = () => {
   auth().currentUser.delete;
 };
+
+export default doDeleteUser

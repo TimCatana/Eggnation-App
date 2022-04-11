@@ -1,45 +1,63 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import CustomTextInput from '../../../../../components/common/CustomTextInput'
+import {
+  S_LS_LOGIN_HEADING,
+  S_TI_EMAIL_PLACEHOLDER,
+  S_TI_EMAIL_ERROR_TEXT,
+  S_TI_EMAIL_KEYBOARD_TYPE,
+  S_TI_PASSWORD_PLACEHOLDER,
+  S_TI_PASSWORD_KEYBOARD_TYPE,
+} from '../../../../../theme/Strings';
+import {C_TEXT_INPUT_TEXT_PRIMARY} from '../../../../../theme/Colors';
+import CustomTextInput from '../../../../../common/components/CustomTextInput';
 
 const LoginForm = props => {
-  const {email, handleEmailChange, isEmailError, password, handlePasswordChange, isPasswordError, isLoading} = props;
-  
+  const {
+    isLoading,
+    email,
+    handleEmailChange,
+    isEmailError,
+    password,
+    handlePasswordChange,
+  } = props;
+
   return (
     <>
-      <Text style={styles.headingText}>LOGIN</Text>
+      <Text style={styles.headingText}>{S_LS_LOGIN_HEADING}</Text>
       <CustomTextInput
         value={email}
         onValueChange={handleEmailChange}
-        placeholder="email"
-        keyboardType="email-address"
+        isError={isEmailError && email.length > 0}
+        errorText={S_TI_EMAIL_ERROR_TEXT}
+        disabled={isLoading}
+        isPassword={false}
+        placeholder={S_TI_EMAIL_PLACEHOLDER}
+        keyboardType={S_TI_EMAIL_KEYBOARD_TYPE}
+        maxLength={100}
         width={'100%'}
         height={hp('6%')}
-        fontSize={ hp('2%')}
-        isPassword={false}
-        maxLength={100}
-        marginBottom={hp("2%")}
-        disabled={isLoading}
+        marginBottom={hp('2%')}
+        fontSize={hp('2%')}
+        textColor={C_TEXT_INPUT_TEXT_PRIMARY}
         returnKeyType={'next'}
-        isError={isEmailError && email.length > 0}
-        errorText={"please enter a valid email"}
       />
       <CustomTextInput
         value={password}
         onValueChange={handlePasswordChange}
-        placeholder="password"
-        keyboardType="default"
+        isError={false}
+        errorText={''}
+        disabled={isLoading}
+        isPassword={true}
+        placeholder={S_TI_PASSWORD_PLACEHOLDER}
+        keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
+        maxLength={30}
         width={'100%'}
         height={hp('6%')}
-        fontSize={ hp('2%')}
-        isPassword={true}
-        maxLength={30}
-        marginBottom={hp("0.6%")}
-        disabled={isLoading}
+        marginBottom={hp('0.6%')}
+        fontSize={hp('2%')}
+        textColor={C_TEXT_INPUT_TEXT_PRIMARY}
         returnKeyType={'done'}
-        isError={false}
-        errorText={""}
       />
     </>
   );
@@ -47,9 +65,9 @@ const LoginForm = props => {
 
 const styles = StyleSheet.create({
   headingText: {
-    fontSize: hp('5%'),
     marginBottom: hp('2%'),
-  }
+    fontSize: hp('5%'),
+  },
 });
 
 export default LoginForm;

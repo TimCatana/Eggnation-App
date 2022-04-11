@@ -1,5 +1,7 @@
 import auth from '@react-native-firebase/auth';
 
-export default doGetUserEmail = () => {
+const doGetUserEmail = () => {
   return auth().currentUser.email;
 };
+
+export default doGetUserEmail;

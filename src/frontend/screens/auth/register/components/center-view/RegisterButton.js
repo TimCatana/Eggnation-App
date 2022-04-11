@@ -1,14 +1,17 @@
 import React from 'react';
-import {View, Text, Pressable, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {S_RS_REGISTER_BUTTON} from '../../../../../theme/Strings';
 import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
-import CustomButton from '../../../../../components/common/CustomButton';
+  C_BUTTON_ENABLED,
+  C_BUTTON_DISABLED,
+  C_TEXT_LIGHT,
+} from '../../../../../theme/Colors';
+import CustomButton from '../../../../../common/components/CustomButton';
 
 const RegisterButton = props => {
   const {
-    isLoading, 
+    isLoading,
     isEmailError,
     isPasswordError,
     isConfirmPasswordError,
@@ -18,13 +21,15 @@ const RegisterButton = props => {
   return (
     <View style={styles.body}>
       <CustomButton
-        label={'Register'}
+        label={S_RS_REGISTER_BUTTON}
         onPress={handleRegisterClick}
-        buttonEnabledColor={'pink'}
-        buttonDisabledColor={'gray'}
-        textColor={'white'}
+        buttonEnabledColor={C_BUTTON_ENABLED}
+        buttonDisabledColor={C_BUTTON_DISABLED}
+        textColor={C_TEXT_LIGHT}
         fontSize={hp('2%')}
-        disabled={isLoading || isEmailError || isPasswordError || isConfirmPasswordError}
+        disabled={
+          isLoading || isEmailError || isPasswordError || isConfirmPasswordError
+        }
       />
     </View>
   );
@@ -32,22 +37,10 @@ const RegisterButton = props => {
 
 const styles = StyleSheet.create({
   body: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  registerButton: {
-    width: wp('20%'),
-    height: hp('5%'),
-    borderRadius: wp('2%'),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'blue',
-  },
-  loginButtonText: {
-    fontSize: hp('2%'),
-    color: 'white',
+    width: '100%',
   },
 });
 

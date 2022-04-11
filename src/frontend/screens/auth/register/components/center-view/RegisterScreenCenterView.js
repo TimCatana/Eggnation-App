@@ -26,6 +26,7 @@ const RegisterScreenCenterView = props => {
     <View style={styles.body}>
       <View style={styles.formView}>
         <RegisterForm
+          isLoading={isLoading}
           email={email}
           handleEmailChange={handleEmailChange}
           isEmailError={isEmailError}
@@ -35,7 +36,6 @@ const RegisterScreenCenterView = props => {
           confirmPassword={confirmPassword}
           handleConfirmPasswordChange={handleConfirmPasswordChange}
           isConfirmPasswordError={isConfirmPasswordError}
-          isLoading={isLoading}
         />
 
         <RegisterButton
@@ -55,14 +55,14 @@ const styles = StyleSheet.create({
     flex: 9,
     display: 'flex',
     justifyContent: 'flex-start',
-    marginTop: hp('6%'),
     alignItems: 'center',
+    marginTop: hp('6%'),
   },
   formView: {
-    width: wp('75%'),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    width: wp('75%'),
   },
 });
 

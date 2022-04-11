@@ -1,7 +1,13 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import CustomButton from '../../../../../components/common/CustomButton';
+import {S_EPS_UPDATE_PASSWORD_BUTTON} from '../../../../../theme/Strings';
+import {
+  C_BUTTON_ENABLED,
+  C_BUTTON_DISABLED,
+  C_TEXT_LIGHT,
+} from '../../../../../theme/Colors';
+import CustomButton from '../../../../../common/components/CustomButton';
 
 const UpdatePasswordScreenBottomView = props => {
   const {
@@ -14,11 +20,11 @@ const UpdatePasswordScreenBottomView = props => {
   return (
     <View style={styles.body}>
       <CustomButton
-        label={'Update Password'}
+        label={S_EPS_UPDATE_PASSWORD_BUTTON}
         onPress={handleShowPasswordModal}
-        buttonEnabledColor={'pink'}
-        buttonDisabledColor={'gray'}
-        textColor={'white'}
+        buttonEnabledColor={C_BUTTON_ENABLED}
+        buttonDisabledColor={C_BUTTON_DISABLED}
+        textColor={C_TEXT_LIGHT}
         fontSize={hp('2%')}
         disabled={isLoading || isPasswordError || isConfirmPasswordError}
       />

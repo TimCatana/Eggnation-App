@@ -10,31 +10,31 @@ import LoginButton from './LoginButton';
 
 const LoginScreenTopView = props => {
   const {
+    navigation,
+    isLoading,
     email,
     handleEmailChange,
+    isEmailError,
     password,
     handlePasswordChange,
-    isLoading,
-    isEmailError,
     isPasswordError,
+    clearTextInputs,
     handleLoginClick,
-    navigation,
   } = props;
 
   return (
     <View style={styles.body}>
       <View style={styles.formView}>
         <LoginForm
+          isLoading={isLoading}
           email={email}
           handleEmailChange={handleEmailChange}
           isEmailError={isEmailError}
           password={password}
           handlePasswordChange={handlePasswordChange}
-          isPasswordError={isPasswordError}
-          isLoading={isLoading}
         />
 
-        <ForgotPasswordText navigation={navigation} isLoading={isLoading} />
+        <ForgotPasswordText navigation={navigation} isLoading={isLoading} clearTextInputs={clearTextInputs} />
 
         <LoginButton
           isLoading={isLoading}
@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
     flex: 9,
     display: 'flex',
     justifyContent: 'flex-start',
-    marginTop: hp('15%'),
     alignItems: 'center',
+    marginTop: hp('15%'),
   },
   formView: {
-    width: wp('75%'),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    width: wp('75%'),
   },
 });
 

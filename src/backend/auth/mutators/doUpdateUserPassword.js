@@ -1,5 +1,7 @@
 import auth from '@react-native-firebase/auth';
 
-export default doGetUserEmail = async newPassword => {
+const doUpdateUserPassword = async newPassword => {
   await auth().currentUser.updatePassword(newPassword);
 };
+
+export default doUpdateUserPassword;

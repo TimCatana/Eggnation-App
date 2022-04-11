@@ -1,17 +1,23 @@
 import React from 'react';
-import useEditEmailScreen from './useEditEmailScreen';
-import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {View, StyleSheet} from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../theme/Colors';
+import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
 import UpdateEmailScreenTopView from './components/top-view/UpdateEmailScreenTopView';
 import UpdateEmailScreenBottomView from './components/bottom-view/UpdateEmailScreenBottomView';
-import PasswordModal from '../common/components/PasswordModal';
+import PasswordModal from '../../../common/components/PasswordModal';
 
-const EditEmailScreen = () => {
+import useEditEmailScreen from './useEditEmailScreen';
+
+const EditEmailScreen = ({navigation}) => {
   const {
     isLoading,
     newEmail,
-    isEmailError,
     handleNewEmailChange,
+    isNewEmailError,
     password,
     handlePasswordChange,
     isPasswordError,
@@ -21,26 +27,41 @@ const EditEmailScreen = () => {
     handleUpdateEmailClick,
   } = useEditEmailScreen();
 
+  /** Navigates back to the login screen if no process is currently running. */
+  const navigateBack = () => {
+    if (!isLoading) {
+      navigation.pop();
+    }
+  };
+
   return (
     <View style={styles.body}>
       <PasswordModal
         isLoading={isLoading}
-        isModalVisible={isPasswordModalShowing}
         password={password}
         isPasswordError={isPasswordError}
         handlePasswordChange={handlePasswordChange}
+        isModalVisible={isPasswordModalShowing}
         hidePasswordModal={hidePasswordModal}
         handleOnConfirm={handleUpdateEmailClick}
       />
-
+      <TopLeftCornerIcon
+        icon={'arrow-left'}
+        onPress={navigateBack}
+        iconSize={hp('3.5%')}
+        iconColor={C_ICON_LIGHT}
+        viewStyle={styles.icon}
+        iconStyle={{}}
+      />
       <UpdateEmailScreenTopView
+        isLoading={isLoading}
         newEmail={newEmail}
         handleNewEmailChange={handleNewEmailChange}
-        isLoading={isLoading}
+        isNewEmailError={isNewEmailError}
       />
       <UpdateEmailScreenBottomView
         isLoading={isLoading}
-        isEmailError={isEmailError}
+        isNewEmailError={isNewEmailError}
         handleShowPasswordModal={showPasswordModal}
       />
     </View>
@@ -51,10 +72,19 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     display: 'flex',
-    paddingBottom: hp('2.5%'),
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black'
+    paddingBottom: hp('2.5%'),
+    backgroundColor: C_BACKGROUND_DARK,
+  },
+  icon: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    width: '100%',
+    paddingLeft: wp('1%'),
+    paddingTop: hp('1%'),
   },
 });
 

@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {getAvailablePrizesUC} from '../../../../domain/getAvailablePrizesUC';
-import {SUCCESS} from '../../../util/Results';
+import {SUCCESS} from '../../../util/ResultsConstants';
 
 // TODO - Add frontend form validation stuff heree
 const useAvailablePrizesScreen = () => {

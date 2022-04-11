@@ -1,5 +1,5 @@
 import doSendForgotPasswordEmail from '../../backend/auth/doSendForgotPasswordEmail';
-import {ERROR, SUCCESS} from '../../frontend/util/Results';
+import {ERROR, SUCCESS} from '../../frontend/util/ResultsConstants';
 
 /**
  * @param email The users email address.
@@ -10,6 +10,8 @@ import {ERROR, SUCCESS} from '../../frontend/util/Results';
  * @error NOT CHECKED auth/missing-ios-bundle-id An iOS Bundle ID must be provided if an App Store ID is provided.
  * @error NOT CHECKED auth/invalid-continue-uri The continue URL provided in the request is invalid.
  * @error NOT CHECKED auth/unauthorized-continue-uri The domain of the continue URL is not whitelisted. Whitelist the domain in the Firebase console.
+ * @onSuccessReturn {status: SUCCESS, message: string}
+ * @onErrorReturn {status: ERROR, message: string}
  */
 const sendForgotPasswordEmailUC = async email => {
   try {
@@ -25,7 +27,7 @@ const getErrorResponse = error => {
     return {status: ERROR, message: 'email not found! did you register an account yet?'};
   } else if (error.code === 'auth/invalid-email') {
     return {status: ERROR, message: 'invalid email!'};
-  } else if (error.code === 'auth/wrong-password') {
+  } else {
     return {status: ERROR, message: 'an unexpected error occurred!'};
   }
 };

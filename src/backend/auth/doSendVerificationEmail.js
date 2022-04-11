@@ -1,5 +1,7 @@
 import auth from '@react-native-firebase/auth';
 
-export default doSendVerificationEmail = async () => {
+const doSendVerificationEmail = async () => {
   await auth().currentUser.sendEmailVerification()
 };
+
+export default doSendVerificationEmail

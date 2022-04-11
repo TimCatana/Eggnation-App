@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {C_TEXT_LIGHT} from '../../../../../theme/Colors';
 import PrivacyPolicyText from './PrivacyPolicyText';
 import TermsText from './TermsText';
 
 const RegisterScreenBottomView = props => {
-  const {isLoading, navigation} = props;
+  const {navigation, isLoading, clearTextInputs} = props;
 
   return (
     <View style={styles.body}>
@@ -13,9 +14,17 @@ const RegisterScreenBottomView = props => {
         <Text style={styles.text}>By registering you agree to our </Text>
       </View>
       <View style={styles.bottomRow}>
-        <PrivacyPolicyText isLoading={isLoading} navigation={navigation} />
+        <PrivacyPolicyText
+          navigation={navigation}
+          isLoading={isLoading}
+          clearTextInputs={clearTextInputs}
+        />
         <Text style={styles.text}> and </Text>
-        <TermsText isLoading={isLoading} navigation={navigation} />
+        <TermsText
+          navigation={navigation}
+          isLoading={isLoading}
+          clearTextInputs={clearTextInputs}
+        />
       </View>
     </View>
   );
@@ -41,7 +50,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: hp('2%'),
-    color: 'white'
+    color: C_TEXT_LIGHT,
   },
 });
 

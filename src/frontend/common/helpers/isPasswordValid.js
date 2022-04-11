@@ -6,12 +6,12 @@ const isPasswordValid = password => {
   let numberChars = /\d/;
 
   if (password.length < 8) {
-    console.log('Password should be at least 8 characters long!');
+    // console.log('Password should be at least 8 characters long!');
     isValid = false;
   }
 
   if (whitespaceChars.test(password) === true) {
-    console.log('Password must not contain whitespace');
+    // console.log('Password must not contain whitespace');
     isValid = false;
   }
 
@@ -20,9 +20,9 @@ const isPasswordValid = password => {
     upperCaseChars.test(password) === false ||
     numberChars.test(password) === false
   ) {
-    console.log(
-      'Password must contain lowercase letters, uppercase letters and numbers',
-    );
+    // console.log(
+    //   'Password must contain lowercase letters, uppercase letters and numbers',
+    // );
     isValid = false;
   }
 

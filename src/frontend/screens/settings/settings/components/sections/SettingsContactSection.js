@@ -1,50 +1,47 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { PRIVACY_POLICY_SCREEN, TERMS_SCREEN } from '../../../../util/NavigationConstants';
-import SettingsItem from './SettingsItem';
-import SettingsSectionLabel from './SettingsSectionLabel';
+import {
+  S_SS_CONTACT_HEADING,
+  S_SS_MYNZA,
+  S_SS_CONTACT_US,
+} from '../../../../../theme/Strings';
+import {C_BACKGROUND_SETTINGS_SECTION} from '../../../../../theme/Colors';
+import SettingsItem from '../settings-item/SettingsItem';
+import SettingsSectionLabel from '../section-label/SettingsSectionLabel';
 
-const SettingsLegalSection = (props) => {
-  const {navigation} = props
+const SettingsContactSection = props => {
+  const {navigation} = props;
 
   return (
     <View style={styles.body}>
-      <SettingsSectionLabel label="LEGAL" />
+      <SettingsSectionLabel label={S_SS_CONTACT_HEADING} />
       <View style={styles.contentView}>
-      <SettingsItem
-          title={'Contact Us'}
-          content={''}
-          icon={'chevron-right'}
-          isLast={false}
-        />
         <SettingsItem
-          title={'Privacy Policy'}
+          title={S_SS_MYNZA}
           content={''}
           icon={'chevron-right'}
           isLast={false}
           onIconPress={() => {
-            navigation.navigate(PRIVACY_POLICY_SCREEN)
+            console.log('mynza clicked');
           }}
         />
         <SettingsItem
-          title={'Terms and Conditions'}
+          title={S_SS_CONTACT_US}
           content={''}
           icon={'chevron-right'}
           isLast={true}
           onIconPress={() => {
-            navigation.navigate(TERMS_SCREEN)
+            console.log('Contact us clicked');
           }}
         />
       </View>
-
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   body: {
@@ -52,13 +49,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   contentView: {
-    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#1e1e1e',
+    width: '100%',
     marginBottom: hp('3%'),
     borderRadius: wp('2.4%'),
-  }
+    backgroundColor: C_BACKGROUND_SETTINGS_SECTION,
+  },
 });
 
-export default SettingsLegalSection;
+export default SettingsContactSection;

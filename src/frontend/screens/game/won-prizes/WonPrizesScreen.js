@@ -6,7 +6,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {CLAIM_PRIZE_SCREEN} from '../../../util/NavigationConstants';
-import PrizeShelfCard from '../../../components/common/PrizeShelfCard';
+import PrizeShelfCard from '../../../common/components/PrizeShelfCard';
 import bookshelf from '../../../../../assets/bookshelf.png';
 import TEST_DATA from '../../../../../test-data/availablePrizes.json'
 import {

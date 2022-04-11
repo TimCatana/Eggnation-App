@@ -1,14 +1,16 @@
 import React from 'react';
-import useRegisterScreen from './useRegisterScreen';
 import {ImageBackground, ActivityIndicator, StyleSheet} from 'react-native';
-import RegisterScreenCenterView from './components/center-view/RegisterScreenCenterView';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {C_ICON_PRIMARY, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
+import background from '../../../../../assets/backgrounds/bg_auth.png';
+import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
+import RegisterScreenCenterView from './components/center-view/RegisterScreenCenterView';
 import RegisterScreenBottomView from './components/bottom-view/RegisterScreenBottomView';
-import BG from '../../../../../assets/bgAuth.png';
-import TopLeftCornerIcon from '../../../components/common/TopLeftCornerIcon';
+
+import useRegisterScreen from './useRegisterScreen';
 
 const RegisterScreen = ({navigation}) => {
   const {
@@ -22,22 +24,26 @@ const RegisterScreen = ({navigation}) => {
     confirmPassword,
     handleConfirmPasswordChange,
     isConfirmPasswordError,
+    clearTextInputs,
     handleRegisterClick,
   } = useRegisterScreen();
 
-  // TODO - when I go back to loginScreen I need to not pop(), but rather to to login screen and clear stack so that the login screen inputs reset
+  /** Navigates back to the login screen if no process is currently running. */
+  const navigateBack = () => {
+    if (!isLoading) {
+      navigation.pop();
+    }
+  };
+
   return (
-    <ImageBackground style={styles.body} source={BG} resizeMode="cover">
+    <ImageBackground style={styles.body} source={background} resizeMode="cover">
       <TopLeftCornerIcon
         icon={'arrow-left'}
-        onPress={() => {
-          if (!isLoading) {
-            navigation.pop();
-          }
-        }}
+        onPress={navigateBack}
+        iconSize={hp('3.5%')}
+        iconColor={C_ICON_PRIMARY}
         viewStyle={styles.icon}
         iconStyle={{}}
-        iconSize={hp('3.5%')}
       />
 
       <RegisterScreenCenterView
@@ -54,9 +60,18 @@ const RegisterScreen = ({navigation}) => {
         handleRegisterClick={handleRegisterClick}
       />
 
-      <RegisterScreenBottomView isLoading={isLoading} navigation={navigation} />
+      <RegisterScreenBottomView
+        navigation={navigation}
+        isLoading={isLoading}
+        clearTextInputs={clearTextInputs}
+      />
 
-      <ActivityIndicator style={styles.loading} animating={isLoading} color="pink" size={hp('10%')} />
+      <ActivityIndicator
+        style={styles.loading}
+        animating={isLoading}
+        color={C_ACTIVITY_INDICATOR}
+        size={hp('10%')}
+      />
     </ImageBackground>
   );
 };
@@ -77,13 +92,11 @@ const styles = StyleSheet.create({
   },
   loading: {
     position: 'absolute',
-    left: 0,
-    right: 0,
     top: 0,
+    right: 0,
     bottom: hp('30%'),
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
+    left: 0,
+  },
 });
 
 export default RegisterScreen;

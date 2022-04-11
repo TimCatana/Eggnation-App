@@ -1,5 +1,7 @@
 import auth from '@react-native-firebase/auth';
 
-export default doSendForgotPasswordEmail = async (email) => {
-  await auth().sendPasswordResetEmail(email)
+const doSendForgotPasswordEmail = async email => {
+  await auth().sendPasswordResetEmail(email);
 };
+
+export default doSendForgotPasswordEmail;

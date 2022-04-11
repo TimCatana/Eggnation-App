@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
      display: 'flex',
      justifyContent: 'flex-start',
      alignItems: 'flex-start',
-     marginBottom: hp('0.5%')
+     marginBottom: hp('0.5%'),
+     marginLeft: hp('0.8%')
    },
    text: {
      fontSize: hp('1.5%'),

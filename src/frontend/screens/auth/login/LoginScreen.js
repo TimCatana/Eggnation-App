@@ -1,13 +1,12 @@
 import React from 'react';
-import useLoginScreen from './useLoginScreen';
 import {ActivityIndicator, ImageBackground, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
 import LoginScreenTopView from './components/top-view/LoginScreenTopView';
 import LoginScreenBottomView from './components/bottom-view/LoginScreenBottomView';
-import BG from '../../../../../assets/bgAuth.png';
-// import { Platform } from 'react-native'; // TODO - use this later on for specific ios or android styling (use Platform.OS === 'ios', etc...)
+import background from '../../../../../assets/backgrounds/bg_auth.png';
 
-
+import useLoginScreen from './useLoginScreen';
 
 const LoginScreen = ({navigation}) => {
   const {
@@ -18,34 +17,33 @@ const LoginScreen = ({navigation}) => {
     password,
     handlePasswordChange,
     isPasswordError,
-    handleLoginClick
+    clearTextInputs,
+    handleLoginClick,
   } = useLoginScreen();
 
-
-
   return (
-    <ImageBackground style={styles.body} source={BG} resizeMode="cover">
+    <ImageBackground style={styles.body} source={background} resizeMode="cover">
       <LoginScreenTopView
+        navigation={navigation}
+        isLoading={isLoading}
         email={email}
         handleEmailChange={handleEmailChange}
         isEmailError={isEmailError}
         password={password}
-        isPasswordError={isPasswordError}
         handlePasswordChange={handlePasswordChange}
-        isLoading={isLoading}
+        isPasswordError={isPasswordError}
+        clearTextInputs={clearTextInputs}
         handleLoginClick={handleLoginClick}
-        navigation={navigation}
       />
 
-      <LoginScreenBottomView isLoading={isLoading} navigation={navigation} />
+      <LoginScreenBottomView navigation={navigation} isLoading={isLoading} clearTextInputs={clearTextInputs} />
 
       <ActivityIndicator
         style={styles.loading}
         animating={isLoading}
-        color="pink"
         size={hp('10%')}
+        color={C_ACTIVITY_INDICATOR}
       />
-
     </ImageBackground>
   );
 };
@@ -58,12 +56,10 @@ const styles = StyleSheet.create({
   },
   loading: {
     position: 'absolute',
-    left: 0,
-    right: 0,
     top: 0,
+    right: 0,
     bottom: hp('36%'),
-    alignItems: 'center',
-    justifyContent: 'center',
+    left: 0,
   },
 });
 

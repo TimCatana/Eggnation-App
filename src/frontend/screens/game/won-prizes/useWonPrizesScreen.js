@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {getWonPrizesUC} from '../../../../domain/getWonPrizesUC';
-import {SUCCESS} from '../../../util/Results';
+import {SUCCESS} from '../../../util/ResultsConstants';
 
 // TODO - Add frontend form validation stuff heree
 const useWonPrizesScreen = () => {

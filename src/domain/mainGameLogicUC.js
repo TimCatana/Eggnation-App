@@ -2,7 +2,7 @@ import deGetAllAvailablePrizes from '../backend/database/firestore/deGetAllAvail
 import doDeleteAvailablePrize from '../backend/database/firestore/doDeleteAvailablePrize';
 import doAddWonPrizeToUserAccount from '../backend/database/firestore/doAddWonPrizeToUserAccount';
 import doGetUserId from '../backend/auth/accessors/doGetUserId';
-import {SUCCESS} from '../frontend/util/Results';
+import {SUCCESS} from '../frontend/util/ResultsConstants';
 
 export const mainGameLogicUC = async () => {
   try {

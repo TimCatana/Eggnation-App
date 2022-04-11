@@ -4,7 +4,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import TopLeftCornerIcon from '../../../../../components/common/TopLeftCornerIcon';
+import TopLeftCornerIcon from '../../../../../common/components/TopLeftCornerIcon';
 
 const DropdownOption = props => {
   const {item, index, onSelect, isSelectingCountries} = props;
@@ -49,7 +49,7 @@ const PickerModal = props => {
             renderItem={({item, index}) => (
               <DropdownOption item={item} index={index} onSelect={onSelect} isSelectingCountries={isSelectingCountries} />
             )}
-            keyExtractor={item => item.countryName}
+            keyExtractor={item => isSelectingCountries ? item.countryName : item.name}
           />
         </View>
       </View>
