@@ -1,6 +1,10 @@
 import doSendVerificationEmail from '../../backend/auth/doSendVerificationEmail';
 import {SUCCESS, ERROR} from '../../frontend/util/ResultsConstants';
 
+/**
+ * TODO - add documentation
+ * @returns
+ */
 const sendVerificationEmailUC = async () => {
   try {
     await doSendVerificationEmail();

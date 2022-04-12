@@ -114,6 +114,7 @@ const useRegisterScreen = () => {
     setPassword('');
     setConfirmPassword('');
   };
+
   /*************************/
   /***** BUTTON CLICKS *****/
   /*************************/

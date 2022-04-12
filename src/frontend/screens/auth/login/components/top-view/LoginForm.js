@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   headingText: {
     marginBottom: hp('2%'),
     fontSize: hp('5%'),
+    color: C_TEXT_INPUT_TEXT_PRIMARY,
   },
 });
 

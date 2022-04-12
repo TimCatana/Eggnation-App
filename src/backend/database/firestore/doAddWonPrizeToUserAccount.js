@@ -1,10 +1,20 @@
 import firestore from '@react-native-firebase/firestore';
+import {
+  FS_USERS_COLLECTION_KEY,
+  FS_WON_PRIZES_COLLECTION_KEY,
+} from '../../../frontend/util/Constants';
 
-export default doAddWonPrizeToUserAccount = async (userId, wonPrize) => {
+/**
+ * Adds a won prize to the user's collection in the database.
+ * The user collection is identified using the user ID.
+ * @param userId (string) The userId of the user who won the prize.
+ * @param wonPrize (//TODO add specific JSON string type)
+ */
+const doAddWonPrizeToUserAccount = async (userId, wonPrize) => {
   await firestore()
-    .collection('users')
+    .collection(FS_USERS_COLLECTION_KEY)
     .doc(`${userId}`)
-    .collection('wonPrizes')
+    .collection(FS_WON_PRIZES_COLLECTION_KEY)
     .doc(`${wonPrize.prizeId}`)
     .set({
       prizeId: `${wonPrize.prizeId}`,
@@ -17,3 +27,5 @@ export default doAddWonPrizeToUserAccount = async (userId, wonPrize) => {
       prizeWinnerId: `${userId}`,
     });
 };
+
+export default doAddWonPrizeToUserAccount;

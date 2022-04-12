@@ -1,54 +1,59 @@
 import React from 'react';
 import useHomeScreen from './useHomeScreen';
-import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import {ImageBackground, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {C_ICON_PRIMARY} from '../../../theme/Colors';
+import background from '../../../../../assets/backgrounds/bg_home.png';
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
-import BG from '../../../../../assets/bg.png';
 import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
-import { SETTINGS_SCREEN } from '../../../util/NavigationConstants';
+import {SETTINGS_SCREEN} from '../../../util/NavigationConstants';
 
 const HomeScreen = ({navigation}) => {
   const {
-    isLoading,
     isInitialized,
-    localCount,
+    isLoading,
     playGame,
-    loseAnimationRef,
-    winAnimationRef,
-    resetAnimation,
-    isWonAnimationShowing,
+    localCount,
     isAnimationPlaying,
+    isWonAnimationShowing,
+    winAnimationRef,
+    loseAnimationRef,
+    resetAnimation,
   } = useHomeScreen();
+
+  /** Navigates back to the login screen if no process is currently running. */
+  const navToSettingsScreen = () => {
+    if (!isLoading && !isAnimationPlaying) {
+      navigation.navigate(SETTINGS_SCREEN);
+    }
+  };
 
   if (!isInitialized) return null;
 
   return (
-    <ImageBackground style={styles.body} source={BG} resizeMode="cover">
+    <ImageBackground style={styles.body} source={background} resizeMode="cover">
       <TopLeftCornerIcon
         icon={'settings'}
-        onPress={() => {
-          if (!isLoading && !isAnimationPlaying) {
-            navigation.navigate(SETTINGS_SCREEN);
-          }
-        }}
+        onPress={navToSettingsScreen}
+        iconSize={hp('3.5%')}
+        iconColor={C_ICON_PRIMARY}
         viewStyle={styles.icon}
         iconStyle={{}}
-        iconSize={hp('3.5%')}
       />
 
       <HomeScreenCounter counter={localCount} />
       <HomeScreenEgg
-        resetAnimation={resetAnimation}
+        isLoading={isLoading}
+        playGame={playGame}
+        isAnimationPlaying={isAnimationPlaying}
         isWonAnimationShowing={isWonAnimationShowing}
         loseAnimationRef={loseAnimationRef}
         winAnimationRef={winAnimationRef}
-        playGame={playGame}
-        isAnimationPlaying={isAnimationPlaying}
-        isLoading={isLoading}
+        resetAnimation={resetAnimation}
       />
     </ImageBackground>
   );
@@ -63,9 +68,9 @@ const styles = StyleSheet.create({
   },
   icon: {
     display: 'flex',
-    width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+    width: '100%',
     paddingLeft: wp('1%'),
     paddingTop: hp('1%'),
   },

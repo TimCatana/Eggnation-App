@@ -1,12 +1,24 @@
 import firestore from '@react-native-firebase/firestore';
+import {
+  FS_USERS_COLLECTION_KEY,
+  FS_WON_PRIZES_COLLECTION_KEY,
+} from '../../../frontend/util/Constants';
 
-export default deGetAllWonPrizes = async userId => {
+/**
+ * Get's the list of all of the prizes that the user has won.
+ * The userId is used to identify which won prizes collection to query.
+ * @param userId (string) The userId of the user
+ * @returns // TODO add the specific JSON string returned
+ *          OR
+ *          ([]) If no prizes exist in the database
+ */
+const deGetAllWonPrizes = async userId => {
   const result = [];
 
   const querySnapshot = await firestore()
-    .collection('users')
+    .collection(FS_USERS_COLLECTION_KEY)
     .doc(`${userId}`)
-    .collection('wonPrizes')
+    .collection(FS_WON_PRIZES_COLLECTION_KEY)
     .get();
 
   if (querySnapshot.empty) {
@@ -19,3 +31,5 @@ export default deGetAllWonPrizes = async userId => {
 
   return result;
 };
+
+export default deGetAllWonPrizes;

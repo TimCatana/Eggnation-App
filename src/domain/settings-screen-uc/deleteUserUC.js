@@ -1,6 +1,10 @@
 import doDeleteUser from '../../backend/auth/doDeleteUser';
 import {ERROR, SUCCESS} from '../../frontend/util/ResultsConstants';
 
+/**
+ * TODO - add documentation
+ * @returns 
+ */
 const deleteUserUC = () => {
   try {
     doDeleteUser();

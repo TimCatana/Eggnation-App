@@ -1,67 +1,98 @@
 import {useState, useEffect, useRef} from 'react';
 import {useInterstitialAd, TestIds} from '@react-native-admob/admob';
-import {getLocalCountUC} from '../../../../domain/getLocalCountUC';
-import {decrementLocalCountUC} from '../../../../domain/decrementLocalCountUC';
-import {checkIfTimeToResetCountUC} from '../../../../domain/checkIfTimeToResetCountUC';
-import {mainGameLogicUC} from '../../../../domain/mainGameLogicUC';
+import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';
+import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
+import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIfTimeToResetCountUC';
+import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
 
 const useHomeScreen = () => {
-  const {adLoaded, adDismissed, show, load} = useInterstitialAd(
-    TestIds.INTERSTITIAL,
-  );
-
-  const loadAd = () => {
-    if (adDismissed) {
-      load();
-    }
-  };
-
-  const playAd = () => {
-    if (adLoaded && localCount != 1000) {
-      show();
-    }
-  };
+  /******************/
+  /***** STATES *****/
+  /******************/
 
   const isMounted = useRef(false);
 
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   const [localCount, setLocalCount] = useState(1000);
 
   const [isWonAnimationShowing, setIsWonAnimationShowing] = useState(false);
   const [isAnimationPlaying, setIsAnimationPlaying] = useState(false);
+
   const loseAnimationRef = useRef(null);
   const winAnimationRef = useRef(null);
 
+  const {adLoaded, adDismissed, show, load} = useInterstitialAd(
+    TestIds.INTERSTITIAL,
+  );
+
+  /***********************/
+  /***** USE EFFECTS *****/
+  /***********************/
+
+  /**
+   * Initializes the local counter.
+   * @dependent onMount
+   */
   useEffect(() => {
     initCounter();
   }, []);
 
+  /**
+   * Plays and resets the crack animation.
+   * @dependent isAnimationPlaying
+   */
   useEffect(() => {
     if (isMounted.current) {
       if (isAnimationPlaying) {
         _playAnimation();
       } else {
-        // _resetAnimation();
+        _resetAnimation();
       }
     } else {
       isMounted.current = true;
     }
   }, [isAnimationPlaying]);
 
+  /******************************/
+  /***** USE EFFECT HELPERS *****/
+  /******************************/
+
+  /**
+   * Get's the local count from async storage.
+   * Resets the count to 1000 is a certain amount of time passed since the last
+   * time that the user opened the app.
+   */
   const initCounter = async () => {
     await checkIfTimeToResetCountUC();
     await getLocalCount();
     setIsInitialized(true);
   };
 
+  /**
+   * Get's the local count from async storage.
+   * Handles any possible errors with fetching the local count.
+   */
   const getLocalCount = async () => {
     const result = await getLocalCountUC();
     if (result !== false) {
-      setLocalCount(result);
+      setLocalCount(result.data);
     }
   };
 
+  /*************************/
+  /***** BUTTON CLICKS *****/
+  /*************************/
+
+  /**
+   * Does the main game logic.
+   * If count is !1000, do game.
+   * If user loses, play lose animation.
+   * If user wins, play win animation.
+   * If user % x == true, play ad.
+   * If user % x == false, load ad.
+   */
   const playGame = async () => {
     setIsLoading(true);
 
@@ -84,31 +115,10 @@ const useHomeScreen = () => {
     setIsLoading(false);
   };
 
-  const playAnimation = () => {
-    setIsAnimationPlaying(true);
-  };
-
-  const _playAnimation = () => {
-    if (isWonAnimationShowing) {
-      winAnimationRef.current.play();
-    } else {
-      loseAnimationRef.current.play();
-    }
-  };
-
-  const resetAnimation = () => {
-    setIsAnimationPlaying(false);
-  };
-
-  const _resetAnimation = () => {
-    if (isWonAnimationShowing) {
-      winAnimationRef.current.reset();
-    } else {
-      loseAnimationRef.current.reset();
-    }
-  };
-
   // TODO - need to make this more efficient. Apparently, redux has a listener feature. Async does not
+  /**
+   * Decrements the local count.
+   */
   const decrementAndGetLocalCount = async () => {
     try {
       await decrementLocalCountUC();
@@ -118,16 +128,80 @@ const useHomeScreen = () => {
     }
   };
 
+  /**********************/
+  /***** ANIMATIONS *****/
+  /**********************/
+
+  /**
+   * Sets the playing animation state to true.
+   */
+  const playAnimation = () => {
+    setIsAnimationPlaying(true);
+  };
+
+  /**
+   * Sets the playing animation state to false.
+   */
+  const resetAnimation = () => {
+    setIsAnimationPlaying(false);
+  };
+
+  /**
+   * Uses the reference to the lottie animation to play
+   * the animation on the UI.
+   */
+  const _playAnimation = () => {
+    if (isWonAnimationShowing) {
+      winAnimationRef.current.play();
+    } else {
+      loseAnimationRef.current.play();
+    }
+  };
+
+  /**
+   * Uses the reference to the lottie animation to reset
+   * the animation on the UI.
+   */
+  const _resetAnimation = () => {
+    if (isWonAnimationShowing) {
+      winAnimationRef.current.reset();
+    } else {
+      loseAnimationRef.current.reset();
+    }
+  };
+
+  /***************/
+  /***** ADS *****/
+  /***************/
+
+  /** Loads an Ad from AdMob server if an Ad is not loaded yet. */
+  const loadAd = () => {
+    if (adDismissed) {
+      load();
+    }
+  };
+
+  /** Plays an Ad if one is loaded. */
+  const playAd = () => {
+    if (adLoaded && localCount != 1000) {
+      show();
+    }
+  };
+
+  /*******************/
+  /***** RETURNS *****/
+  /*******************/
+
   return {
-    isLoading,
     isInitialized,
-    localCount,
+    isLoading,
     playGame,
-    loseAnimationRef,
-    winAnimationRef,
-    resetAnimation,
-    isWonAnimationShowing,
+    localCount,
     isAnimationPlaying,
+    isWonAnimationShowing,
+    winAnimationRef,
+    loseAnimationRef,
+    resetAnimation,
   };
 };
 

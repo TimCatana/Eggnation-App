@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {C_TEXT_INPUT_TEXT_PRIMARY} from '../../../../../theme/Colors';
 
 const HomeScreenCounter = props => {
   const {counter} = props;
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
   },
   counterText: {
     fontSize: hp('7%'),
+    color: C_TEXT_INPUT_TEXT_PRIMARY,
   },
 });
 

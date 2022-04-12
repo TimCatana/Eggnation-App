@@ -1,6 +1,10 @@
 import doLogout from '../../backend/auth/doLogout'
 import { ERROR, SUCCESS } from '../../frontend/util/ResultsConstants';
 
+/**
+ * TODO - add documentation
+ * @returns 
+ */
 const logoutUserUC = async () => {
   try {
     await doLogout();

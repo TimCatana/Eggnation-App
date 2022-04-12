@@ -26,7 +26,7 @@ const useSettingsScreen = () => {
   /***********************/
 
   /**
-   * Checks to see if current email is a valid email address.
+   * gets the user info to display to the UI.
    * @dependent onMount
    */
   useEffect(() => {

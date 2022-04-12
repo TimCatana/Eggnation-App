@@ -1,23 +1,22 @@
-import React, {useRef, useEffect} from 'react';
-import {View, StyleSheet, Image, Pressable} from 'react-native';
+import React from 'react';
+import {View, StyleSheet, Pressable} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-// import egg from '../../../../../../../assets/egg.png';
 import LottieView from 'lottie-react-native';
-import Won from '../../../../../../../assets/lottie/won.json';
-import Lost from '../../../../../../../assets/lottie/lost.json';
+import WonAnimation from '../../../../../../../assets/lottie/won.json';
+import LostAnimation from '../../../../../../../assets/lottie/lost.json';
 
 const HomeScreenEgg = props => {
   const {
     isLoading,
     playGame,
-    resetAnimation,
+    isAnimationPlaying,
     isWonAnimationShowing,
     loseAnimationRef,
     winAnimationRef,
-    isAnimationPlaying,
+    resetAnimation,
   } = props;
 
   return (
@@ -27,26 +26,21 @@ const HomeScreenEgg = props => {
           <LottieView
             ref={winAnimationRef}
             style={styles.egg}
-            source={Won}
+            source={WonAnimation}
             autoPlay={false}
             loop={false}
             duration={500}
-            onAnimationFinish={() => {
-              resetAnimation();
-            }}
+            onAnimationFinish={resetAnimation}
           />
         ) : (
           <LottieView
             ref={loseAnimationRef}
             style={styles.egg}
-            source={Lost}
+            source={LostAnimation}
             autoPlay={false}
             loop={false}
-            duration={2000}
-
-            onAnimationFinish={() => {
-              resetAnimation();
-            }}
+            duration={1000}
+            onAnimationFinish={resetAnimation}
           />
         )}
       </Pressable>
@@ -63,7 +57,6 @@ const styles = StyleSheet.create({
   egg: {
     width: wp('50%'),
     height: hp('35%'),
-    // resizeMode: 'contain',
   },
 });
 

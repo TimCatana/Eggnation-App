@@ -1,30 +1,12 @@
 import React from 'react';
-import useAvailablePrizesScreen from './useAvailablePrizesScreen';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
-import PrizeShelfCard from '../../../common/components/PrizeShelfCard';
+import {View, StyleSheet} from 'react-native';
 import PrizeDisplayModal from '../../../common/components/PrizeDisplayModal';
-import bookshelf from '../../../../../assets/bookshelf.png';
-import TEST_DATA from '../../../../../test-data/availablePrizes.json';
-import {
-  FIRST_HALF_SHELF,
-  FULL_SHELF,
-  SECOND_HALF_SHELF,
-} from '../../../util/ShelfImageConstants';
+import AvailablePrizeScreenLeftView from './components/left-view/AvailablePrizeScreenLeftView';
+import AvailablePrizeScreenCenterView from './components/center-view/AvailablePrizeScreenCenterView';
+import AvailablePrizeScreenRightView from './components/right-view/AvailablePrizeScreenRightView';
 
-import bookeshelfLeft from '../../../../../assets/bookshelfLeft.png';
-import bookeshelfRight from '../../../../../assets/bookshelfRight.png';
-import bookeshelfTop from '../../../../../assets/bookshelfTop.png';
+import TEST_DATA from '../../../../../test-data/availablePrizes.json'; // TODO - get rid of this after...
+import useAvailablePrizesScreen from './useAvailablePrizesScreen';
 
 const AvailablePrizesScreen = ({navigation}) => {
   const {
@@ -47,100 +29,33 @@ const AvailablePrizesScreen = ({navigation}) => {
 
   return (
     <View style={styles.body}>
-      <Image
-        style={{backgroundColor: 'red', flex: 1}}
-        resizeMode="stretch"
-        source={bookeshelfLeft}
+      <AvailablePrizeScreenLeftView />
+
+      <AvailablePrizeScreenCenterView
+        isInitialized={isInitialized}
+        isLoading={isLoading}
+        isPrizeFetchFailed={isPrizeFetchFailed}
+        data={TEST_DATA}
+        handleShowPrize={handleShowPrize}
+        handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}
+        handleDisplayPrizeDescChange={handleDisplayPrizeDescChange}
+        handleDisplayPrizeTypeChange={handleDisplayPrizeTypeChange}
+        handleDisplayPrizeTierChange={handleDisplayPrizeTierChange}
       />
 
-      <View style={{backgroundColor: 'blue', flex: 15, display: 'flex'}}>
-        <View style={{backgroundColor: 'purple', flex: 1}}>
-          <Image
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-            resizeMode="stretch"
-            source={bookeshelfTop}
-          />
-        </View>
-
-        <View style={{backgroundColor: 'orange', flex: 13}}>
-          {!isInitialized && <Text style={styles.text}>initializing</Text>}
-
-          {isInitialized && isLoading && (
-            <Text style={styles.text}>Loading</Text>
-          )}
-
-          {isInitialized && !isLoading && isPrizeFetchFailed && (
-            <Text style={styles.text}>Failed to fetch prizes</Text>
-          )}
-
-          {isInitialized && !isLoading && !isPrizeFetchFailed && (
-            <>
-              <FlatList
-                style={styles.prizeList}
-                data={TEST_DATA}
-                numColumns={2}
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                renderItem={({item, index}) => {
-                  let bgShelfImage = FULL_SHELF;
-
-                  if (index === TEST_DATA.length - 1) {
-                    bgShelfImage = FULL_SHELF;
-                  } else {
-                    if (index % 2 === 1) {
-                      bgShelfImage = SECOND_HALF_SHELF;
-                    } else {
-                      bgShelfImage = FIRST_HALF_SHELF;
-                    }
-                  }
-
-                  return (
-                    <PrizeShelfCard
-                      prize={item}
-                      bgShelfImage={bgShelfImage}
-                      handleShowPrize={handleShowPrize}
-                      handleDisplayPrizeTitleChange={
-                        handleDisplayPrizeTitleChange
-                      }
-                      handleDisplayPrizeDescChange={
-                        handleDisplayPrizeDescChange
-                      }
-                      handleDisplayPrizeTypeChange={
-                        handleDisplayPrizeTypeChange
-                      }
-                      handleDisplayPrizeTierChange={
-                        handleDisplayPrizeTierChange
-                      }
-                    />
-                  );
-                }}
-                keyExtractor={item => item.prizeId}
-              />
-
-              <PrizeDisplayModal
-                prizeTitle={displayPrizeTitle}
-                prizeDesc={displayPrizeDesc}
-                prizeTier={displayPrizeTier}
-                prizeType={displayPrizeType}
-                prizeIsClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
-                isWonPrize={false}
-                isModalVisible={isShowingPrize}
-                handleHidePrize={handleHidePrize}
-                navigation={navigation}
-              />
-            </>
-          )}
-        </View>
-      </View>
-
-      <Image
-        style={{backgroundColor: 'red', flex: 1}}
-        resizeMode="stretch"
-        source={bookeshelfRight}
+      <PrizeDisplayModal
+        prizeTitle={displayPrizeTitle}
+        prizeDesc={displayPrizeDesc}
+        prizeTier={displayPrizeTier}
+        prizeType={displayPrizeType}
+        prizeIsClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
+        isWonPrize={false}
+        isModalVisible={isShowingPrize}
+        handleHidePrize={handleHidePrize}
+        navigation={navigation}
       />
+
+      <AvailablePrizeScreenRightView />
     </View>
   );
 };

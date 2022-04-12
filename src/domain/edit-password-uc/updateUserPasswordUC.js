@@ -3,6 +3,12 @@ import doReauthenticate from '../../backend/auth/doReauthenticate';
 import doUpdateUserPassword from '../../backend/auth/mutators/doUpdateUserPassword';
 import {SUCCESS, ERROR} from '../../frontend/util/ResultsConstants';
 
+/**
+ * TODO - add documentation
+ * @param {*} newPassword 
+ * @param {*} password 
+ * @returns 
+ */
 const updateUserPasswordUC = async (newPassword, password) => {
   const email = doGetUserEmail();
 

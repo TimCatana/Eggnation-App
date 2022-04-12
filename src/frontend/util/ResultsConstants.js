@@ -1,2 +1,3 @@
+/** RESULT CODES FOR BACKEND FUNCTION RESULTS */
 export const SUCCESS = 200;
 export const ERROR = 500;
