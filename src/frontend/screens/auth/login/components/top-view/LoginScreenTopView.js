@@ -34,7 +34,11 @@ const LoginScreenTopView = props => {
           handlePasswordChange={handlePasswordChange}
         />
 
-        <ForgotPasswordText navigation={navigation} isLoading={isLoading} clearTextInputs={clearTextInputs} />
+        <ForgotPasswordText
+          navigation={navigation}
+          isLoading={isLoading}
+          clearTextInputs={clearTextInputs}
+        />
 
         <LoginButton
           isLoading={isLoading}

@@ -6,8 +6,6 @@ import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLo
 import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIfTimeToResetCountUC';
 import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
 
-import getWonPrizeUC from '../../../../domain/getWonPrizeUC';
-
 const useHomeScreen = () => {
   /******************/
   /***** STATES *****/

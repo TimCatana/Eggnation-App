@@ -23,8 +23,8 @@ const useRegisterScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isConfirmPasswordError, setIsConfirmPasswordError] = useState(true);
 
-  const [errorText, setErrorText] = useState('');
-  const [showError, setShowError] = useState(0); // each time this increments, the useEffect for snackbar is triggered
+  const [snackbarText, setSnackbarText] = useState('');
+  const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -63,16 +63,16 @@ const useRegisterScreen = () => {
   /**
    * Displays a Snackbar showing a message.
    * Usually used for error messages.
-   * @dependent showError
+   * @dependent showSnackbar
    */
   useEffect(() => {
-    if (showError != 0) {
+    if (showSnackbar != 0) {
       Snackbar.show({
-        text: errorText,
+        text: snackbarText,
         duration: Snackbar.LENGTH_SHORT,
       });
     }
-  }, [showError]);
+  }, [showSnackbar]);
 
   /***********************/
   /***** TEXT INPUTS *****/
@@ -130,8 +130,8 @@ const useRegisterScreen = () => {
     setIsLoading(false);
 
     if (result.status === ERROR) {
-      setErrorText(result.message);
-      setShowError(showError + 1);
+      setSnackbarText(result.message);
+      setShowSnackbar(showSnackbar + 1);
     }
   };
 

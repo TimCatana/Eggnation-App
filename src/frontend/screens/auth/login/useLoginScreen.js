@@ -17,7 +17,7 @@ const useLoginScreen = () => {
   const [password, setPassword] = useState('');
   const [isPasswordError, setIsPasswordError] = useState(true);
 
-  const [errorText, setErrorText] = useState('');
+  const [snackbarText, setSnackbarText] = useState('');
   const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
 
   /***********************/
@@ -48,7 +48,7 @@ const useLoginScreen = () => {
   useEffect(() => {
     if (showSnackbar != 0) {
       Snackbar.show({
-        text: errorText,
+        text: snackbarText,
         duration: Snackbar.LENGTH_SHORT,
       });
     }
@@ -76,7 +76,7 @@ const useLoginScreen = () => {
 
   /**
    * Clears all text inputs.
-   * Due to the fact that the login screen never unmounts when navigating to the register screen or forgot 
+   * Due to the fact that the login screen never unmounts when navigating to the register screen or forgot
    * password screen and popping back to this screen, I will need to clear the text before navigating to the other auth
    * screens to make it look like the screen reset when they come back. This is more efficient than manually unmounting and
    * remounting or than navigating using popUpTo() builders.
@@ -101,8 +101,8 @@ const useLoginScreen = () => {
     setIsLoading(false);
 
     if (result.status === ERROR) {
-      setErrorText(result.message);
-      setShowSnackbar(showError + 1);
+      setSnackbarText(result.message);
+      setShowSnackbar(showSnackbar + 1);
     }
   };
 
