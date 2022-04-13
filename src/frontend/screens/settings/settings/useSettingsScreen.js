@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
-import {getUserEmailUC} from '../../../../domain/getUserEmailUC';
-import {getUserEmailVerificationStatusUC} from '../../../../domain/getUserEmailVerificationStatus';
+import getUserEmailUC from '../../../../domain/settings-screen-uc/getUserEmailUC'
+import getUserEmailVerificationStatusUC from '../../../../domain/settings-screen-uc/getUserEmailVerificationStatusUC'
 import sendVerificationEmailUC from '../../../../domain/settings-screen-uc/sendVerificationEmailUC';
 import logoutUserUC from '../../../../domain/settings-screen-uc/logoutUserUC';
-import deleteUserUC from '../../../../domain/settings-screen-uc/deleteUserUC'
+import deleteUserUC from '../../../../domain/settings-screen-uc/deleteUserUC';
 
 // TODO - refresh token each time the user goes to settings screen. The should rarely go here so it should not be that expensive
 const useSettingsScreen = () => {
@@ -103,7 +103,7 @@ const useSettingsScreen = () => {
   };
 
   const deleteUser = () => {
-    console.log("delete user clicked, add functionality now...")
+    console.log('delete user clicked, add functionality now...');
     // setIsLoading(true);
     // const result = await deleteUserUC();
     // setIsLoading(false);
@@ -111,8 +111,8 @@ const useSettingsScreen = () => {
     // if (result.status === ERROR) {
     //   setErrorText(result.message);
     //   setShowError(showError + 1);
-    // }    
-  }
+    // }
+  };
 
   /*******************/
   /***** RETURNS *****/

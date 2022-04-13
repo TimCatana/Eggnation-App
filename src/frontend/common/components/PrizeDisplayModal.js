@@ -15,7 +15,7 @@ import cashImage from '../../../../assets/cash.png';
 import tabletImage from '../../../../assets/tablet.png';
 import shirtImage from '../../../../assets/shirt.png';
 import presentImage from '../../../../assets/present.png';
-import { CLAIM_PRIZE_SCREEN } from '../../util/NavigationConstants';
+import {CLAIM_PRIZE_SCREEN} from '../../util/NavigationConstants';
 
 const getDisplayImage = prizeType => {
   if (prizeType === 'phone') {
@@ -39,6 +39,7 @@ const getDisplayImage = prizeType => {
 
 const PrizeDisplayModal = props => {
   const {
+    isLoading,
     prizeTitle,
     prizeDesc,
     prizeTier,
@@ -58,7 +59,7 @@ const PrizeDisplayModal = props => {
       visible={isModalVisible}
       onRequestClose={() => {
         if (!isLoading) {
-          hidePasswordModal();
+          handleHidePrize();
         }
       }}>
       <ScrollView vertical={true}>
@@ -80,16 +81,19 @@ const PrizeDisplayModal = props => {
           </View>
           <View style={styles.centerView}>
             <Text style={styles.titleText}>{prizeTitle}</Text>
-            <CustomButton 
-             label={'Claim'}
-             onPress={() => {
-              navigation.navigate(CLAIM_PRIZE_SCREEN)
-             }}
-             buttonEnabledColor={'pink'}
-             buttonDisabledColor={'gray'}
-             textColor={'white'}
-             fontSize={hp('2%')}
-            //  disabled={prizeIsClaimed || isWonPrize}
+            <CustomButton
+              label={'Claim'}
+              onPress={async () => {
+                if (!isLoading) {
+                  await navigation.navigate(CLAIM_PRIZE_SCREEN);
+                  handleHidePrize();
+                }
+              }}
+              buttonEnabledColor={'pink'}
+              buttonDisabledColor={'gray'}
+              textColor={'white'}
+              fontSize={hp('2%')}
+              //  disabled={prizeIsClaimed || isWonPrize}
             />
           </View>
           <View style={styles.bottomView}>
@@ -167,7 +171,7 @@ const styles = StyleSheet.create({
   },
   bottomView: {
     flex: 10,
-    paddingHorizontal: wp('3%')
+    paddingHorizontal: wp('3%'),
     // backgroundColor: 'yellow',
   },
   icon: {

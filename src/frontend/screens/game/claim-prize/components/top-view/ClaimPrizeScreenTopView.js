@@ -10,20 +10,17 @@ import CustomDropdownMenu from '../../../../../common/components/CustomDropdownM
 const ClaimPrizeScreenTopView = props => {
   const {
     isLoading,
-    country,
-    handleCountryChange,
-    region,
-    handleRegionChange,
+    selectedCountry,
+    selectedRegion,
     address,
     handleAddressChange,
     showModalPicker,
-    hideModalPicker,
   } = props;
 
   return (
     <View style={styles.formView}>
       <CustomDropdownMenu
-        value={country}
+        value={selectedCountry}
         width={'100%'}
         height={hp('5.5%')}
         fontSize={hp('2%')}
@@ -34,9 +31,8 @@ const ClaimPrizeScreenTopView = props => {
           showModalPicker(true);
         }}
       />
-
       <CustomDropdownMenu
-        value={region}
+        value={selectedRegion}
         width={'100%'}
         height={hp('5.5%')}
         fontSize={hp('2%')}

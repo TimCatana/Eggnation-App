@@ -32,7 +32,7 @@ const SettingsScreen = ({navigation}) => {
     }
   };
 
-  if (!isInitialized) return null;
+  // if (!isInitialized) return null;
 
   return (
     <View style={styles.body}>

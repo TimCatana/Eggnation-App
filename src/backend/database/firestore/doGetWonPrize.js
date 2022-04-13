@@ -9,15 +9,26 @@ import {
  * The userId is used to identify which won prizes collection to query.
  * @param userId (string) The userId of the user
  * @param prizeId The Id of the prize to get from the database.
- * @returns (//TODO add the exact JSON type of prize returned)
+ * @returns ({ prizeId: string,
+ *              prizeTitle: string,
+ *              prizeDesc: string,
+ *              prizeType: string,
+ *              prizeTier: string,
+ *              prizeWonDate: string,
+ *              prizeClaimed: boolean,
+ *              prizeWinnerId: string }) if won prize exists in database
+ *          OR
+ *          (null) if won prize does not exist in database
  */
 const doGetWonPrize = async (userId, prizeId) => {
-  return await firestore()
+  const documentSnapshot = await firestore()
     .collection(FS_USERS_COLLECTION_KEY)
     .doc(`${userId}`)
     .collection(FS_WON_PRIZES_COLLECTION_KEY)
     .doc(`${prizeId}`)
     .get();
+
+  return documentSnapshot.empty ? null : documentSnapshot.data();
 };
 
 export default doGetWonPrize;

@@ -1,6 +1,6 @@
-import doGetUserEmailVerificationStatus from '../backend/auth/accessors/doGetUserEmailVerificationStatus';
+import doGetUserEmailVerificationStatus from "../../backend/auth/doGetUserEmailVerificationStatus";
 
-export const getUserEmailVerificationStatusUC = () => {
+const getUserEmailVerificationStatusUC = () => {
   const emailVerificationStatus = doGetUserEmailVerificationStatus();
 
   if (emailVerificationStatus === null) {
@@ -10,3 +10,5 @@ export const getUserEmailVerificationStatusUC = () => {
 
   return emailVerificationStatus;
 };
+
+export default getUserEmailVerificationStatusUC;

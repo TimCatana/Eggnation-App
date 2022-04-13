@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import WonPrizeScreenLeftView from './components/left-view/WonPrizeScreenLeftView';
 import WonPrizeScreenRightView from './components/right-view/WonPrizeScreenRightView';
 import PrizeDisplayModal from '../../../common/components/PrizeDisplayModal';
@@ -31,7 +31,6 @@ const WonPrizesScreen = ({navigation}) => {
     <View style={styles.body}>
       <WonPrizeScreenLeftView />
 
-      
       <WonPrizeScreenCenterView
         isInitialized={isInitialized}
         isLoading={isLoading}
@@ -45,6 +44,7 @@ const WonPrizesScreen = ({navigation}) => {
       />
 
       <PrizeDisplayModal
+        isLoading={isLoading}
         prizeTitle={displayPrizeTitle}
         prizeDesc={displayPrizeDesc}
         prizeTier={displayPrizeTier}

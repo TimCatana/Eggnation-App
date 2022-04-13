@@ -1,6 +1,6 @@
-import doGetUserEmail from '../backend/auth/accessors/deGetUserEmail';
+import doGetUserEmail from "../../backend/auth/deGetUserEmail";
 
-export const getUserEmailUC = () => {
+const getUserEmailUC = () => {
   const email = doGetUserEmail();
 
   if (!email || email.length === 0) {
@@ -10,3 +10,5 @@ export const getUserEmailUC = () => {
 
   return email;
 };
+
+export default getUserEmailUC;

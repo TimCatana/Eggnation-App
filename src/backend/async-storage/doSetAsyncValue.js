@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
- * Stored a key-value pair in Async Storage.
+ * Stores a key-value pair in Async Storage.
  * @param key (string) The key where the value will be stored
  * @param value (string) The value that will be stored at key
  */

@@ -82,9 +82,6 @@ const PrizeShelfCard = props => {
         source={shelfImage}
         resizeMode="stretch"
       />
-      {/* <Text>
-        {prize.prizeTitle ? prize.prizeTitle : 'Failed to fetch title'}
-      </Text> */}
       <Pressable
         style={styles.pressable}
         onPress={() => {

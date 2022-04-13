@@ -16,6 +16,7 @@ const HomeScreen = ({navigation}) => {
   const {
     isInitialized,
     isLoading,
+    adShowing,
     playGame,
     localCount,
     isAnimationPlaying,
@@ -27,7 +28,7 @@ const HomeScreen = ({navigation}) => {
 
   /** Navigates back to the login screen if no process is currently running. */
   const navToSettingsScreen = () => {
-    if (!isLoading && !isAnimationPlaying) {
+    if (!isLoading && !isAnimationPlaying && !adShowing) {
       navigation.navigate(SETTINGS_SCREEN);
     }
   };
@@ -48,6 +49,7 @@ const HomeScreen = ({navigation}) => {
       <HomeScreenCounter counter={localCount} />
       <HomeScreenEgg
         isLoading={isLoading}
+        adShowing={adShowing}
         playGame={playGame}
         isAnimationPlaying={isAnimationPlaying}
         isWonAnimationShowing={isWonAnimationShowing}

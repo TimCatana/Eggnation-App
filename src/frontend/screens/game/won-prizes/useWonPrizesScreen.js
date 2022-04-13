@@ -1,12 +1,17 @@
 import {useState, useEffect} from 'react';
-import {getWonPrizesUC} from '../../../../domain/getWonPrizesUC';
+import getWonPrizesUC from '../../../../domain/won-prizes-screen-us/getWonPrizesUC';
 import {SUCCESS} from '../../../util/ResultsConstants';
 
 // TODO - Add frontend form validation stuff heree
 const useWonPrizesScreen = () => {
+  /******************/
+  /***** STATES *****/
+  /******************/
+
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isPrizeFetchFailed, setIsPrizeFetchFailed] = useState(true);
+
   const [isShowingPrize, setIsShowingPrize] = useState(false);
   const [wonPrizes, setWonPrizes] = useState([]);
 
@@ -15,15 +20,35 @@ const useWonPrizesScreen = () => {
   const [displayPrizeType, setDisplayPrizeType] = useState('');
   const [displayPrizeTier, setDisplayPrizeTier] = useState('');
 
+  /***********************/
+  /***** USE EFFECTS *****/
+  /***********************/
+
+  /**
+   * Fetches all of the won prizes from the database and
+   * sets the state to display on the UI.
+   * @dependent onMount
+   */
   useEffect(() => {
     initialPrizeFetch();
   }, []);
 
+  /******************************/
+  /***** USE EFFECT HELPERS *****/
+  /******************************/
+
+  /**
+   * Fetches the won prizes from the database.
+   */
   const initialPrizeFetch = async () => {
     await getWonPrizes();
     setIsInitialized(true);
   };
 
+  /**
+   * Fetches the won prizes from the database and
+   * checks whether the fetch was successful or not.
+   */
   const getWonPrizes = async () => {
     const result = await getWonPrizesUC();
     setWonPrizes(result.data);
@@ -81,6 +106,10 @@ const useWonPrizesScreen = () => {
   handleDisplayPrizeTierChange = tier => {
     setDisplayPrizeTier(tier);
   };
+
+  /*******************/
+  /***** RETURNS *****/
+  /*******************/
 
   return {
     isInitialized,

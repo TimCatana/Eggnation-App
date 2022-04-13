@@ -1,13 +1,13 @@
-import doUpdateUserEmail from '../../backend/auth/mutators/doUpdateUserEmail';
-import doGetUserEmail from '../../backend/auth/accessors/deGetUserEmail';
+import doUpdateUserEmail from '../../backend/auth/doUpdateUserEmail';
+import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 import doReauthenticate from '../../backend/auth/doReauthenticate';
 import {SUCCESS, ERROR} from '../../frontend/util/ResultsConstants';
 
 /**
  * TODO - add documentation
- * @param {*} newEmail 
- * @param {*} password 
- * @returns 
+ * @param {*} newEmail
+ * @param {*} password
+ * @returns
  */
 const updateUserEmailUC = async (newEmail, password) => {
   const email = doGetUserEmail();
@@ -25,7 +25,7 @@ const updateUserEmailUC = async (newEmail, password) => {
   try {
     await doUpdateUserEmail(newEmail);
   } catch (error) {
-    return _getUpdateEmailErrorResponse(e)
+    return _getUpdateEmailErrorResponse(e);
   }
 
   // TODO - need to reload token
@@ -62,7 +62,8 @@ const _getReauthenticateErrorResponse = error => {
  * @error auth/invalid-email Thrown if the email used is invalid.
  * @error auth/email-already-in-use Thrown if the email is already used by another user.
  * @error auth/requires-recent-login Thrown if the user's last sign-in time does not meet the security threshold.
- * @param email The users new email address.*/
+ * @param email The users new email address.
+ */
 const _getUpdateEmailErrorResponse = error => {
   if (error.code === 'auth/invalid-email') {
     return {status: ERROR, message: 'Email address is invalid!'};

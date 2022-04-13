@@ -5,7 +5,7 @@ import database from '@react-native-firebase/database';
  * I can use the global count for some marketing strategies later on.
  */
 const doIncrementGlobalCount = async () => {
-  await database().ref('globalCount').update(database.ServerValue.increment(1)); // TODO - may need to add {count: ...} in update
+  await database().update({globalCount: database.ServerValue.increment(1)});
 };
 
 export default doIncrementGlobalCount;

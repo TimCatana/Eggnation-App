@@ -1,14 +1,14 @@
-import doGetUserId from '../backend/auth/accessors/doGetUserId';
-import doGetAllWonPrizes from '../backend/database/firestore/doGetAllWonPrizes';
-import {SUCCESS, FAILURE} from '../frontend/util/ResultsConstants';
+import doGetUserId from '../../backend/auth/doGetUserId';
+import doGetAllWonPrizes from '../../backend/database/firestore/doGetAllWonPrizes'
+import {SUCCESS, ERROR} from '../../frontend/util/ResultsConstants';
 
-export const getWonPrizesUC = async () => {
+const getWonPrizesUC = async () => {
   try {
     const userId = doGetUserId();
 
     if (!userId) {
       console.log(`something is horribly wrong because userId is null`);
-      return {status: FAILURE, data: [], message: 'Failed to fetch prizes'};
+      return {status: ERROR, data: [], message: 'Failed to fetch prizes'};
     }
 
     const wonPrizes = await doGetAllWonPrizes(userId);
@@ -24,6 +24,8 @@ export const getWonPrizesUC = async () => {
     return {status: SUCCESS, data: wonPrizes, message: ''};
   } catch (e) {
     console.log(`error deleting user... need to show UI error --> ${e}`);
-    return {status: FAILURE, data: [], message: 'failed to fetch prizes'};
+    return {status: ERROR, data: [], message: 'failed to fetch prizes'};
   }
 };
+
+export default getWonPrizesUC;

@@ -44,6 +44,7 @@ const AvailablePrizesScreen = ({navigation}) => {
       />
 
       <PrizeDisplayModal
+        isLoading={isLoading}
         prizeTitle={displayPrizeTitle}
         prizeDesc={displayPrizeDesc}
         prizeTier={displayPrizeTier}

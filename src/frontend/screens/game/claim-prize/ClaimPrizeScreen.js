@@ -1,47 +1,61 @@
 import React from 'react';
 import useClaimPrizeScreen from './useClaimPrizeScreen';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {C_ICON_LIGHT} from '../../../theme/Colors';
+import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
 import ClaimPrizeScreenBottomView from './components/bottom-view/ClaimPrizeScreenBottomView';
 import ClaimPrizeScreenTopView from './components/top-view/ClaimPrizeScreenTopView';
 import PickerModal from './components/other/PickerModal';
 
-const ClaimPrizeScreen = () => {
+const ClaimPrizeScreen = ({navigation}) => {
   const {
     isLoading,
-    country,
+    allCountries,
+    allRegions,
+    selectedCountry,
     handleCountryChange,
     isCountryError,
-    region,
+    selectedRegion,
     handleRegionChange,
     isRegionError,
     address,
     handleAddressChange,
     isAddressError,
-    handleClaimPrizeClick,
+    isModalPickerShowing,
     showModalPicker,
     hideModalPicker,
-    isModalPickerShowing,
-    countries,
-    regions,
     isSelectingCountries,
+    handleClaimPrizeClick,
   } = useClaimPrizeScreen();
+
+  /** Navigates back to the login screen if no process is currently running. */
+  const navigateBack = () => {
+    if (!isLoading) {
+      navigation.pop();
+    }
+  };
 
   return (
     <View style={styles.body}>
+      <TopLeftCornerIcon
+        icon={'arrow-left'}
+        onPress={navigateBack}
+        iconSize={hp('3.5%')}
+        iconColor={C_ICON_LIGHT}
+        viewStyle={styles.icon}
+        iconStyle={{}}
+      />
       <ClaimPrizeScreenTopView
         isLoading={isLoading}
-        country={country}
-        handleCountryChange={handleCountryChange}
-        region={region}
-        handleRegionChange={handleRegionChange}
+        selectedCountry={selectedCountry}
+        selectedRegion={selectedRegion}
         address={address}
         handleAddressChange={handleAddressChange}
         showModalPicker={showModalPicker}
-        hideModalPicker={hideModalPicker}
       />
       <ClaimPrizeScreenBottomView
         isLoading={isLoading}
@@ -50,12 +64,13 @@ const ClaimPrizeScreen = () => {
         isAddressError={isAddressError}
         handleClaimPrizeClick={handleClaimPrizeClick}
       />
-
       <PickerModal
         hideModalPicker={hideModalPicker}
         isModalVisible={isModalPickerShowing}
-        data={isSelectingCountries ? countries : regions}
-        onSelect={isSelectingCountries ? handleCountryChange : handleRegionChange}
+        data={isSelectingCountries ? allCountries : allRegions}
+        onSelect={
+          isSelectingCountries ? handleCountryChange : handleRegionChange
+        }
         isSelectingCountries={isSelectingCountries}
       />
     </View>
@@ -70,6 +85,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'black',
+  },
+  icon: {
+    flex: 0.5,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    width: '100%',
+    paddingLeft: wp('1%'),
+    paddingTop: hp('1%'),
   },
 });
 

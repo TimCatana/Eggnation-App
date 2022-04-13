@@ -1,9 +1,12 @@
 import {useState, useEffect, useRef} from 'react';
 import {useInterstitialAd, TestIds} from '@react-native-admob/admob';
+import {MGL_AD_FREQUENCY} from '../../../util/Constants';
 import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';
 import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
 import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIfTimeToResetCountUC';
 import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
+
+import getWonPrizeUC from '../../../../domain/getWonPrizeUC';
 
 const useHomeScreen = () => {
   /******************/
@@ -23,7 +26,7 @@ const useHomeScreen = () => {
   const loseAnimationRef = useRef(null);
   const winAnimationRef = useRef(null);
 
-  const {adLoaded, adDismissed, show, load} = useInterstitialAd(
+  const {adLoaded, adDismissed, adShowing, show, load} = useInterstitialAd(
     TestIds.INTERSTITIAL,
   );
 
@@ -96,7 +99,7 @@ const useHomeScreen = () => {
   const playGame = async () => {
     setIsLoading(true);
 
-    if (localCount % 5 === 0 && localCount != 1000) {
+    if (localCount % MGL_AD_FREQUENCY === 0 && localCount != 1000) {
       playAd();
       await decrementAndGetLocalCount();
     } else {
@@ -195,6 +198,7 @@ const useHomeScreen = () => {
   return {
     isInitialized,
     isLoading,
+    adShowing,
     playGame,
     localCount,
     isAnimationPlaying,

@@ -1,7 +1,7 @@
-import deGetAllAvailablePrizes from '../backend/database/firestore/deGetAllAvailablePrizes';
-import {SUCCESS, FAILURE} from '../frontend/util/ResultsConstants';
+import deGetAllAvailablePrizes from '../../backend/database/firestore/deGetAllAvailablePrizes';
+import {SUCCESS, ERROR} from '../../frontend/util/ResultsConstants';
 
-export const getAvailablePrizesUC = async () => {
+const getAvailablePrizesUC = async () => {
   try {
     const availablePrizes = await deGetAllAvailablePrizes();
 
@@ -20,6 +20,8 @@ export const getAvailablePrizesUC = async () => {
     console.log(
       `error getting available prizes... need to show UI error --> ${e}`,
     );
-    return {status: FAILURE, data: [], message: 'failed to fetch prizes'};
+    return {status: ERROR, data: [], message: 'failed to fetch prizes'};
   }
 };
+
+export default getAvailablePrizesUC;

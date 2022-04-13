@@ -1,6 +1,5 @@
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
-import {C_BACKGROUND_BOOKSHELF} from '../../../../../theme/Colors';
 import bookShelfLeft from '../../../../../../../assets/backgrounds/bookshelf/book-shelf-left.png';
 
 const AvailablePrizeScreenLeftView = () => {
@@ -12,7 +11,6 @@ const AvailablePrizeScreenLeftView = () => {
 const styles = StyleSheet.create({
   image: {
     flex: 1,
-    backgroundColor: C_BACKGROUND_BOOKSHELF,
   },
 });
 

@@ -1,7 +1,7 @@
 import deGetAllAvailablePrizes from '../../backend/database/firestore/deGetAllAvailablePrizes';
 import doDeleteAvailablePrize from '../../backend/database/firestore/doDeleteAvailablePrize';
 import doAddWonPrizeToUserAccount from '../../backend/database/firestore/doAddWonPrizeToUserAccount';
-import doGetUserId from '../../backend/auth/accessors/doGetUserId';
+import doGetUserId from '../../backend/auth/doGetUserId';
 import doCheckInternetConnection from '../../backend/network-info/doCheckInternetConnection';
 import {SUCCESS, ERROR} from '../../frontend/util/ResultsConstants';
 import {MGL_RNG_RANGE, MGL_WIN_CHANCE} from '../../frontend/util/Constants';

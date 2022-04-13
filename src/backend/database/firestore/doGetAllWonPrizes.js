@@ -8,9 +8,16 @@ import {
  * Get's the list of all of the prizes that the user has won.
  * The userId is used to identify which won prizes collection to query.
  * @param userId (string) The userId of the user
- * @returns // TODO add the specific JSON string returned
+ * @returns ( { prizeId: string,
+ *              prizeTitle: string,
+ *              prizeDesc: string,
+ *              prizeType: string,
+ *              prizeTier: string,
+ *              prizeWonDate: string,
+ *              prizeClaimed: boolean,
+ *              prizeWinnerId: string }[] ) If won prizes exist in the database
  *          OR
- *          ([]) If no prizes exist in the database
+ *          ([]) If no won prizes exist in the database
  */
 const deGetAllWonPrizes = async userId => {
   const result = [];

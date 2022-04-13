@@ -7,8 +7,12 @@ import {
 /**
  * Adds a won prize to the user's collection in the database.
  * The user collection is identified using the user ID.
- * @param userId (string) The userId of the user who won the prize.
- * @param wonPrize (//TODO add specific JSON string type)
+ * @param userId (string) The userId of the user who won the prize
+ * @param wonPrize ({ prizeId: string, 
+ *                    prizeTitle: string, 
+ *                    prizeDesc: string, 
+ *                    prizeType: string, 
+ *                    prizeTier: string }) The prize to be added to the user's account
  */
 const doAddWonPrizeToUserAccount = async (userId, wonPrize) => {
   await firestore()

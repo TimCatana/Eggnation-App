@@ -3,9 +3,13 @@ import {FS_AVAILABLE_PRIZES_COLLECTION_KEY} from '../../../frontend/util/Constan
 
 /**
  * Returns the list of all prizes from the database in the Available Prizes Collection.
- * @returns // TODO add the specific JSON string returned
+ * @returns ( { prizeId: string,
+ *              prizeTitle: string,
+ *              prizeDesc: string,
+ *              prizeType: string,
+ *              prizeTier: string }[] ) If available prizes exist in database
  *          OR
- *          ([]) If no prizes exist in the database
+ *         ( [] ) If no available prizes exist in database
  */
 const doGetAllAvailablePrizes = async () => {
   const result = [];

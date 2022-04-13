@@ -1,8 +1,7 @@
 import {useState, useEffect} from 'react';
-import {getAvailablePrizesUC} from '../../../../domain/getAvailablePrizesUC';
+import getAvailablePrizesUC from '../../../../domain/available-prizes-screen-uc/getAvailablePrizesUC';
 import {SUCCESS} from '../../../util/ResultsConstants';
 
-// TODO - Add frontend form validation stuff heree
 const useAvailablePrizesScreen = () => {
   /******************/
   /***** STATES *****/
@@ -47,7 +46,7 @@ const useAvailablePrizesScreen = () => {
   };
 
   /**
-   * Fetched the available prizes from the database and
+   * Fetches the available prizes from the database and
    * checks whether the fetch was successful or not.
    */
   const getAvailablePrizes = async () => {

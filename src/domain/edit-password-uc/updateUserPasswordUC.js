@@ -1,6 +1,6 @@
-import doGetUserEmail from '../../backend/auth/mutators/doUpdateUserEmail';
+import doGetUserEmail from '../../backend/auth/doUpdateUserEmail';
 import doReauthenticate from '../../backend/auth/doReauthenticate';
-import doUpdateUserPassword from '../../backend/auth/mutators/doUpdateUserPassword';
+import doUpdateUserPassword from '../../backend/auth/doUpdateUserPassword';
 import {SUCCESS, ERROR} from '../../frontend/util/ResultsConstants';
 
 /**

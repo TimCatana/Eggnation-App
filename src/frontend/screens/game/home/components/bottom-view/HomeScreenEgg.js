@@ -11,6 +11,7 @@ import LostAnimation from '../../../../../../../assets/lottie/lost.json';
 const HomeScreenEgg = props => {
   const {
     isLoading,
+    adShowing,
     playGame,
     isAnimationPlaying,
     isWonAnimationShowing,
@@ -21,7 +22,9 @@ const HomeScreenEgg = props => {
 
   return (
     <View style={styles.body}>
-      <Pressable disabled={isAnimationPlaying || isLoading} onPress={playGame}>
+      <Pressable
+        disabled={isLoading || adShowing || isAnimationPlaying}
+        onPress={playGame}>
         {isWonAnimationShowing ? (
           <LottieView
             ref={winAnimationRef}
@@ -39,7 +42,7 @@ const HomeScreenEgg = props => {
             source={LostAnimation}
             autoPlay={false}
             loop={false}
-            duration={1000}
+            duration={100}
             onAnimationFinish={resetAnimation}
           />
         )}
