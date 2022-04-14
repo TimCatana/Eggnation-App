@@ -14,6 +14,7 @@ const WonPrizeScreenCenterView = props => {
     isInitialized,
     isLoading,
     isPrizeFetchFailed,
+    prizeFetchFailedText,
     data,
     handleShowPrize,
     handleDisplayPrizeTitleChange,
@@ -30,6 +31,7 @@ const WonPrizeScreenCenterView = props => {
         isInitialized={isInitialized}
         isLoading={isLoading}
         isPrizeFetchFailed={isPrizeFetchFailed}
+        prizeFetchFailedText={prizeFetchFailedText}
         data={data}
         handleShowPrize={handleShowPrize}
         handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}

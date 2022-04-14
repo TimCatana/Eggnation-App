@@ -5,18 +5,29 @@ import SettingsProfileSection from '../sections/SettingsProfileSection';
 import SettingsLegalSection from '../sections/SettingsLegalSection';
 
 const SettingsScreenCenterView = props => {
-  const {navigation, isLoading, email, emailVerificationStatus, handleSendVerificationEmailClick} = props;
+  const {
+    email,
+    emailVerificationStatus,
+    handleSendVerificationEmailClick,
+    navToEditEmailScreen,
+    navToEditPasswordScreen,
+    navToPrivacyPolicyScreen,
+    navToTermsScreen,
+  } = props;
 
   return (
     <View style={styles.body}>
       <SettingsProfileSection
-        navigation={navigation}
-        isLoading={isLoading}
         email={email}
         emailVerificationStatus={emailVerificationStatus}
         handleSendVerificationEmailClick={handleSendVerificationEmailClick}
+        navToEditEmailScreen={navToEditEmailScreen}
+        navToEditPasswordScreen={navToEditPasswordScreen}
       />
-      <SettingsLegalSection navigation={navigation} isLoading={isLoading} />
+      <SettingsLegalSection
+        navToPrivacyPolicyScreen={navToPrivacyPolicyScreen}
+        navToTermsScreen={navToTermsScreen}
+      />
     </View>
   );
 };

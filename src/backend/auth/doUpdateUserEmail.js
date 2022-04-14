@@ -5,8 +5,8 @@ import auth from '@react-native-firebase/auth';
  * Set's a new email address for the user's account.
  * @param newEmail (string) The new email that should be set for the user's account
  */
-const doGetUserEmail = async newEmail => {
+const doUpdateUserEmail = async newEmail => {
   await auth().currentUser.updateEmail(newEmail);
 };
 
-export default doGetUserEmail;
+export default doUpdateUserEmail;

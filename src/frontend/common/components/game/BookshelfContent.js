@@ -9,6 +9,7 @@ const BookshelfContent = props => {
     isInitialized,
     isLoading,
     isPrizeFetchFailed,
+    prizeFetchFailedText,
     data,
     handleShowPrize,
     handleDisplayPrizeTitleChange,
@@ -20,7 +21,9 @@ const BookshelfContent = props => {
   return (
     <View style={styles.body}>
       {isInitialized && !isLoading && isPrizeFetchFailed && (
-        <Text style={styles.text}>Failed to fetch prizes</Text>
+        <View style={styles.errorView}>
+          <Text style={styles.text}>{prizeFetchFailedText}</Text>
+        </View>
       )}
 
       {isInitialized && !isLoading && !isPrizeFetchFailed && (
@@ -41,8 +44,16 @@ const styles = StyleSheet.create({
   body: {
     flex: 13,
   },
+  errorView: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   text: {
-    height: hp('15%'),
+    fontSize: hp('3%'),
+    width: '75%',
+    textAlign: 'center',
     color: C_TEXT_LIGHT,
   },
 });

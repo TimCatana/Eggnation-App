@@ -6,17 +6,7 @@ import {C_TEXT_LINK_DARK} from '../../../../../theme/Colors';
 import {FORGOT_PASSWORD_SCREEN} from '../../../../../util/NavigationConstants';
 
 const ForgotPasswordText = props => {
-  const {navigation, isLoading, clearTextInputs} = props;
-
-  /**
-   * Navigates to forgot password screen if no process is currently running.
-   */
-  const navToForgotPasswordScreen = () => {
-    if (!isLoading) {
-      navigation.navigate(FORGOT_PASSWORD_SCREEN);
-      clearTextInputs();
-    }
-  };
+  const {isLoading, navToForgotPasswordScreen} = props;
 
   return (
     <View style={styles.body}>

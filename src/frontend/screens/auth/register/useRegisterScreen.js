@@ -5,9 +5,10 @@ import isEmailValid from '../../../common/helpers/isEmailValid';
 import isPasswordValid from '../../../common/helpers/isPasswordValid';
 import isConfirmPasswordValid from '../../../common/helpers/isConfirmPasswordValid';
 import registerUserUC from '../../../../domain/register-screen-uc/registerUserUC';
+import { PRIVACY_POLICY_SCREEN, TERMS_SCREEN } from '../../../util/NavigationConstants';
 
 // TODO - need to find a way to disable native back button on isLoading
-const useRegisterScreen = () => {
+const useRegisterScreen = navigation => {
   /******************/
   /***** STATES *****/
   /******************/
@@ -135,6 +136,37 @@ const useRegisterScreen = () => {
     }
   };
 
+  /******************************/
+  /***** NAVIGATION HELPERS *****/
+  /******************************/
+
+  /** Navigates back to the login screen if no process is currently running. */
+  const navigateBack = () => {
+    if (!isLoading) {
+      navigation.pop();
+    }
+  };
+
+  /**
+   * Navigates to privacy policy screen if no process is currently running.
+   */
+  const navToPrivacyPolicyScreen = () => {
+    if (!isLoading) {
+      navigation.navigate(PRIVACY_POLICY_SCREEN);
+      clearTextInputs();
+    }
+  };
+
+  /**
+   * Navigates to terms of service screen if no process is currently running.
+   */
+  const navToTermsScreen = () => {
+    if (!isLoading) {
+      navigation.navigate(TERMS_SCREEN);
+      clearTextInputs();
+    }
+  };
+
   /*******************/
   /***** RETURNS *****/
   /*******************/
@@ -150,8 +182,10 @@ const useRegisterScreen = () => {
     confirmPassword,
     handleConfirmPasswordChange,
     isConfirmPasswordError,
-    clearTextInputs,
     handleRegisterClick,
+    navigateBack,
+    navToPrivacyPolicyScreen,
+    navToTermsScreen
   };
 };
 

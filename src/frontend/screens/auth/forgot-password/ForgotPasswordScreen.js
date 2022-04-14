@@ -18,16 +18,8 @@ const ForgotPasswordScreen = ({navigation}) => {
     handleEmailChange,
     isEmailError,
     handleSendForgotPasswordEmailClick,
-  } = useForgotPasswordScreen();
-
-  /**
-   * Navigates back to the login screen if no process is currently running.
-   */
-  const navigateBack = () => {
-    if (!isLoading) {
-      navigation.pop();
-    }
-  };
+    navigateBack,
+  } = useForgotPasswordScreen(navigation);
 
   return (
     <ImageBackground style={styles.body} source={background} resizeMode="cover">

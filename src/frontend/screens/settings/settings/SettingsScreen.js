@@ -5,6 +5,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../theme/Colors';
+import PasswordModal from '../../../common/components/PasswordModal';
 import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
 import SettingsScreenTopView from './components/top-view/SettingsScreenTopView';
 import SettingsScreenCenterView from './components/center-view/SettingsScreenCenterView';
@@ -16,26 +17,36 @@ import useSettingsScreen from './useSettingsScreen';
 const SettingsScreen = ({navigation}) => {
   const {
     isLoading,
-    isInitialized,
     email,
     emailVerificationStatus,
     language,
+    password,
+    handlePasswordChange,
+    isPasswordError,
+    isPasswordModalShowing,
+    showPasswordModal,
+    hidePasswordModal,
     handleSendVerificationEmailClick,
     logoutUser,
     deleteUser,
-  } = useSettingsScreen();
-
-  /** Navigates back to the login screen if no process is currently running. */
-  const navigateBack = () => {
-    if (!isLoading) {
-      navigation.pop();
-    }
-  };
-
-  // if (!isInitialized) return null;
+    navigateBack,
+    navToEditEmailScreen,
+    navToEditPasswordScreen,
+    navToPrivacyPolicyScreen,
+    navToTermsScreen,
+  } = useSettingsScreen(navigation);
 
   return (
     <View style={styles.body}>
+      <PasswordModal
+        isLoading={isLoading}
+        password={password}
+        handlePasswordChange={handlePasswordChange}
+        isPasswordError={isPasswordError}
+        isModalVisible={isPasswordModalShowing}
+        hidePasswordModal={hidePasswordModal}
+        handleOnConfirm={deleteUser}
+      />
       <TopLeftCornerIcon
         icon={'arrow-left'}
         onPress={navigateBack}
@@ -46,16 +57,18 @@ const SettingsScreen = ({navigation}) => {
       />
       <SettingsScreenTopView isLoading={isLoading} />
       <SettingsScreenCenterView
-        navigation={navigation}
-        isLoading={isLoading}
         email={email}
         emailVerificationStatus={emailVerificationStatus}
         handleSendVerificationEmailClick={handleSendVerificationEmailClick}
+        navToEditEmailScreen={navToEditEmailScreen}
+        navToEditPasswordScreen={navToEditPasswordScreen}
+        navToPrivacyPolicyScreen={navToPrivacyPolicyScreen}
+        navToTermsScreen={navToTermsScreen}
       />
       <SettingsScreenBottomView
         isLoading={isLoading}
         logoutUser={logoutUser}
-        deleteUser={deleteUser}
+        showPasswordModal={showPasswordModal}
       />
     </View>
   );

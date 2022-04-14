@@ -17,14 +17,15 @@ const LoginScreen = ({navigation}) => {
     password,
     handlePasswordChange,
     isPasswordError,
-    clearTextInputs,
     handleLoginClick,
-  } = useLoginScreen();
+    navToForgotPasswordScreen,
+    navToRegisterScreen
+  } = useLoginScreen(navigation);
 
   return (
     <ImageBackground style={styles.body} source={background} resizeMode="cover">
       <LoginScreenTopView
-        navigation={navigation}
+        navToForgotPasswordScreen={navToForgotPasswordScreen}
         isLoading={isLoading}
         email={email}
         handleEmailChange={handleEmailChange}
@@ -32,11 +33,13 @@ const LoginScreen = ({navigation}) => {
         password={password}
         handlePasswordChange={handlePasswordChange}
         isPasswordError={isPasswordError}
-        clearTextInputs={clearTextInputs}
         handleLoginClick={handleLoginClick}
       />
 
-      <LoginScreenBottomView navigation={navigation} isLoading={isLoading} clearTextInputs={clearTextInputs} />
+      <LoginScreenBottomView
+        navToRegisterScreen={navToRegisterScreen}
+        isLoading={isLoading}
+      />
 
       <ActivityIndicator
         style={styles.loading}

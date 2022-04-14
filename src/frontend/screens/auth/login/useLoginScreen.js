@@ -3,8 +3,12 @@ import {ERROR} from '../../../util/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
 import isEmailValid from '../../../common/helpers/isEmailValid';
 import loginUserUC from '../../../../domain/login-screen-uc/loginUserUC';
+import {
+  FORGOT_PASSWORD_SCREEN,
+  REGISTER_SCREEN,
+} from '../../../util/NavigationConstants';
 
-const useLoginScreen = () => {
+const useLoginScreen = navigation => {
   /******************/
   /***** STATES *****/
   /******************/
@@ -106,6 +110,36 @@ const useLoginScreen = () => {
     }
   };
 
+  /******************************/
+  /***** NAVIGATION HELPERS *****/
+  /******************************/
+
+  /**
+   * Navigates to forgot password screen if no process is currently running.
+   */
+  const navToForgotPasswordScreen = () => {
+    if (!isLoading) {
+      navigation.navigate(FORGOT_PASSWORD_SCREEN);
+      
+      setTimeout(() => {
+        clearTextInputs();
+      }, 500);
+    }
+  };
+
+  /**
+   * Navigates to register screen if no process is currently running.
+   */
+  const navToRegisterScreen = () => {
+    if (!isLoading) {
+      navigation.navigate(REGISTER_SCREEN);
+
+      setTimeout(() => {
+        clearTextInputs();
+      }, 500);
+    }
+  };
+
   /*******************/
   /***** RETURNS *****/
   /*******************/
@@ -118,8 +152,9 @@ const useLoginScreen = () => {
     password,
     handlePasswordChange,
     isPasswordError,
-    clearTextInputs,
     handleLoginClick,
+    navToForgotPasswordScreen,
+    navToRegisterScreen,
   };
 };
 

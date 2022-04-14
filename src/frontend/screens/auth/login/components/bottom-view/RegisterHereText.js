@@ -6,17 +6,7 @@ import {C_TEXT_LINK_PRIMARY} from '../../../../../theme/Colors';
 import {REGISTER_SCREEN} from '../../../../../util/NavigationConstants';
 
 const RegisterHereText = props => {
-  const {navigation, isLoading, clearTextInputs} = props;
-
-  /**
-   * Navigates to register screen if no process is currently running.
-   */
-  const navToRegisterScreen = () => {
-    if (!isLoading) {
-      navigation.navigate(REGISTER_SCREEN);
-      clearTextInputs()
-    }
-  };
+  const {isLoading, navToRegisterScreen} = props;
 
   return (
     <>

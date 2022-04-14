@@ -6,17 +6,7 @@ import {C_TEXT_LINK_PRIMARY} from '../../../../../theme/Colors';
 import {PRIVACY_POLICY_SCREEN} from '../../../../../util/NavigationConstants';
 
 const PrivacyPolicyText = props => {
-  const {navigation, isLoading, clearTextInputs} = props;
-
-  /**
-   * Navigates to privacy policy screen if no process is currently running.
-   */
-  const navToPrivacyPolicyScreen = () => {
-    if (!isLoading) {
-      navigation.navigate(PRIVACY_POLICY_SCREEN);
-      clearTextInputs();
-    }
-  };
+  const {isLoading, navToPrivacyPolicyScreen} = props;
 
   return (
     <>

@@ -35,7 +35,7 @@ export const S_RS_TERMS_OF_SERVICE = 'Terms of Service';
 /** SETTINGS SCREEN */
 export const S_SS_PROFILE_HEADING = 'PROFILE';
 export const S_SS_EMAIL = 'Email';
-export const S_SS_EMAIL_VERIFIED = 'Email Verified';
+export const S_SS_EMAIL_VERIFIED = 'Verified';
 export const S_SS_PASSWORD = 'Password';
 
 export const S_SS_LEGAL_HEADING = 'LEGAL';

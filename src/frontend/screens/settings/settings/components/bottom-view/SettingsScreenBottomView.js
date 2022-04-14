@@ -14,7 +14,7 @@ import {
 import CustomButton from '../../../../../common/components/CustomButton';
 
 const SettingsScreenBottomView = props => {
-  const {isLoading, logoutUser, deleteUser} = props;
+  const {isLoading, logoutUser, showPasswordModal} = props;
 
   return (
     <View style={styles.body}>
@@ -24,17 +24,17 @@ const SettingsScreenBottomView = props => {
         disabled={isLoading}
         textColor={C_TEXT_LIGHT}
         buttonEnabledColor={C_BUTTON_ENABLED_SETTINGS}
-        buttonDisabledColor={C_BUTTON_DISABLED}
+        buttonDisabledColor={C_BUTTON_ENABLED_SETTINGS}
         fontSize={hp('2%')}
         marginBottom={hp('0.7%')}
       />
       <CustomButton
         label={S_SS_DELETE_ACCOUNT_BUTTON}
-        onPress={deleteUser}
+        onPress={showPasswordModal}
         disabled={isLoading}
         textColor={C_TEXT_ERROR}
         buttonEnabledColor={C_BUTTON_ENABLED_SETTINGS}
-        buttonDisabledColor={C_BUTTON_DISABLED}
+        buttonDisabledColor={C_BUTTON_ENABLED_SETTINGS}
         fontSize={hp('2%')}
       />
     </View>

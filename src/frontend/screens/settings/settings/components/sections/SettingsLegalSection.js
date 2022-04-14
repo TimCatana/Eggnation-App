@@ -19,21 +19,7 @@ import SettingsItem from '../settings-item/SettingsItem';
 import SettingsSectionLabel from '../settings-label/SettingsSectionLabel';
 
 const SettingsLegalSection = props => {
-  const {navigation, isLoading} = props;
-
-  /** Navigates to privacy policy screen if no process is currently running. */
-  const navToPrivacyPolicyScreen = () => {
-    if (!isLoading) {
-      navigation.navigate(PRIVACY_POLICY_SCREEN);
-    }
-  };
-
-  /** Navigates to terms screen if no process is currently running. */
-  const navToTermsScreen = () => {
-    if (!isLoading) {
-      navigation.navigate(TERMS_SCREEN);
-    }
-  };
+  const {navToPrivacyPolicyScreen, navToTermsScreen} = props;
 
   return (
     <View style={styles.body}>

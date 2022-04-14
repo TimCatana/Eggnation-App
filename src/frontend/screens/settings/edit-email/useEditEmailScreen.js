@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react';
+import Snackbar from 'react-native-snackbar';
 import isEmailValid from '../../../common/helpers/isEmailValid';
-import updateUserEmailUC from '../../../../domain/edit-email-uc/updateUserEmailUC';
+import updateUserEmailUC from '../../../../domain/edit-email-screen-uc/updateUserEmailUC';
+import {SUCCESS} from '../../../util/ResultsConstants';
 
-const useEditEmailScreen = () => {
+const useEditEmailScreen = navigation => {
   /******************/
   /***** STATES *****/
   /******************/
@@ -17,7 +19,7 @@ const useEditEmailScreen = () => {
 
   const [isPasswordModalShowing, setIsPasswordModalShowing] = useState(false);
 
-  const [errorText, setErrorText] = useState('');
+  const [snackbarText, setSnackbarText] = useState('');
   const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
 
   /***********************/
@@ -48,7 +50,7 @@ const useEditEmailScreen = () => {
   useEffect(() => {
     if (showSnackbar != 0) {
       Snackbar.show({
-        text: errorText,
+        text: snackbarText,
         duration: Snackbar.LENGTH_SHORT,
       });
     }
@@ -93,6 +95,7 @@ const useEditEmailScreen = () => {
    * actually update any information. This is in place for security purposes
    */
   const hidePasswordModal = () => {
+    setPassword('');
     setIsPasswordModalShowing(false);
   };
 
@@ -103,12 +106,35 @@ const useEditEmailScreen = () => {
    */
   const handleUpdateEmailClick = async () => {
     setIsLoading(true);
-    const result = updateUserEmailUC(newEmail, password);
+    const result = await updateUserEmailUC(newEmail, password);
     setIsLoading(false);
 
-    if (result.status === ERROR) {
-      setErrorText(result.message);
-      setShowSnackbar(showError + 1);
+    setSnackbarText(result.message);
+    return result.status;
+  };
+
+  /******************************/
+  /***** NAVIGATION HELPERS *****/
+  /******************************/
+
+  /** Navigates back to the login screen if no process is currently running. */
+  const navigateBack = () => {
+    if (!isLoading) {
+      navigation.pop();
+    }
+  };
+
+  /** Navigates back to the login screen if no process is currently running. */
+  const updateEmailAndNavBackIfSuccess = async () => {
+    const status = await handleUpdateEmailClick();
+    hidePasswordModal();
+
+    setTimeout(() => {
+      setShowSnackbar(showSnackbar + 1);
+    }, 250);
+
+    if (status === SUCCESS) {
+      navigation.pop();
     }
   };
 
@@ -128,6 +154,8 @@ const useEditEmailScreen = () => {
     showPasswordModal,
     hidePasswordModal,
     handleUpdateEmailClick,
+    navigateBack,
+    updateEmailAndNavBackIfSuccess,
   };
 };
 

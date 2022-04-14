@@ -24,16 +24,11 @@ const RegisterScreen = ({navigation}) => {
     confirmPassword,
     handleConfirmPasswordChange,
     isConfirmPasswordError,
-    clearTextInputs,
     handleRegisterClick,
-  } = useRegisterScreen();
-
-  /** Navigates back to the login screen if no process is currently running. */
-  const navigateBack = () => {
-    if (!isLoading) {
-      navigation.pop();
-    }
-  };
+    navigateBack,
+    navToPrivacyPolicyScreen,
+    navToTermsScreen,
+  } = useRegisterScreen(navigation);
 
   return (
     <ImageBackground style={styles.body} source={background} resizeMode="cover">
@@ -61,9 +56,9 @@ const RegisterScreen = ({navigation}) => {
       />
 
       <RegisterScreenBottomView
-        navigation={navigation}
         isLoading={isLoading}
-        clearTextInputs={clearTextInputs}
+        navToPrivacyPolicyScreen={navToPrivacyPolicyScreen}
+        navToTermsScreen={navToTermsScreen}
       />
 
       <ActivityIndicator

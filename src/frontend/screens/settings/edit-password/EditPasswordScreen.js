@@ -27,15 +27,9 @@ const EditPasswordScreen = ({navigation}) => {
     isPasswordModalShowing,
     showPasswordModal,
     hidePasswordModal,
-    handleUpdatePasswordClick,
-  } = useEditPasswordScreen();
-
-  /** Navigates back to the login screen if no process is currently running. */
-  const navigateBack = () => {
-    if (!isLoading) {
-      navigation.pop();
-    }
-  };
+    navigateBack,
+    updatePasswordAndNavBackIfSuccess,
+  } = useEditPasswordScreen(navigation);
 
   return (
     <View style={styles.body}>
@@ -46,7 +40,7 @@ const EditPasswordScreen = ({navigation}) => {
         isPasswordError={isCurrentPasswordError}
         isModalVisible={isPasswordModalShowing}
         hidePasswordModal={hidePasswordModal}
-        handleOnConfirm={handleUpdatePasswordClick}
+        handleOnConfirm={updatePasswordAndNavBackIfSuccess}
       />
       <TopLeftCornerIcon
         icon={'arrow-left'}

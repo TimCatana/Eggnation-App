@@ -10,7 +10,11 @@ const useWonPrizesScreen = () => {
 
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   const [isPrizeFetchFailed, setIsPrizeFetchFailed] = useState(true);
+  const [prizeFetchFailedText, setIsPrizeFetchFailedText] = useState(
+    'Failed to fetch prizes',
+  );
 
   const [isShowingPrize, setIsShowingPrize] = useState(false);
   const [wonPrizes, setWonPrizes] = useState([]);
@@ -52,8 +56,17 @@ const useWonPrizesScreen = () => {
   const getWonPrizes = async () => {
     const result = await getWonPrizesUC();
     setWonPrizes(result.data);
+
+    console.log('running');
+
     if (result.status === SUCCESS) {
-      setIsPrizeFetchFailed(false);
+      if (result.data.length === 0) {
+        console.log('no prizes');
+        setIsPrizeFetchFailedText("You haven't won anything yet!");
+      } else {
+        console.log('prizes exist');
+        setIsPrizeFetchFailed(false);
+      }
     }
   };
 
@@ -115,6 +128,7 @@ const useWonPrizesScreen = () => {
     isInitialized,
     isLoading,
     isPrizeFetchFailed,
+    prizeFetchFailedText,
     isShowingPrize,
     wonPrizes,
     handleShowPrize,

@@ -6,7 +6,7 @@ import PrivacyPolicyText from './PrivacyPolicyText';
 import TermsText from './TermsText';
 
 const RegisterScreenBottomView = props => {
-  const {navigation, isLoading, clearTextInputs} = props;
+  const {isLoading, navToPrivacyPolicyScreen, navToTermsScreen} = props;
 
   return (
     <View style={styles.body}>
@@ -15,15 +15,13 @@ const RegisterScreenBottomView = props => {
       </View>
       <View style={styles.bottomRow}>
         <PrivacyPolicyText
-          navigation={navigation}
           isLoading={isLoading}
-          clearTextInputs={clearTextInputs}
+          navToPrivacyPolicyScreen={navToPrivacyPolicyScreen}
         />
         <Text style={styles.text}> and </Text>
         <TermsText
-          navigation={navigation}
           isLoading={isLoading}
-          clearTextInputs={clearTextInputs}
+          navToTermsScreen={navToTermsScreen}
         />
       </View>
     </View>

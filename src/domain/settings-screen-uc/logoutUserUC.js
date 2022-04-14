@@ -1,29 +1,37 @@
-import doLogout from '../../backend/auth/doLogout'
-import { ERROR, SUCCESS } from '../../frontend/util/ResultsConstants';
+import doLogout from '../../backend/auth/doLogout';
+import {ERROR, SUCCESS} from '../../frontend/util/ResultsConstants';
+import printDevLogs from '../printDevLogs';
 
 /**
- * TODO - add documentation
- * @returns 
+ * Attempts to log the user out of their account.
+ * @onSuccessReturn {status: SUCCESS, message: string}
+ * @onErrorReturn {status: ERROR, message: string}
  */
 const logoutUserUC = async () => {
   try {
     await doLogout();
     return {status: SUCCESS, message: ''};
   } catch (e) {
-    return {status: ERROR, message: 'an unexpected error occurred!'};
+    return _getErrorResponse(e);
   }
 };
 
-// const getErrorResponse = error => {
-//   if (error.code === 'auth/email-already-in-use') {
-//     return {status: ERROR, message: 'email already in use!'};
-//   } else if (error.code === 'auth/invalid-email') {
-//     return {status: ERROR, message: 'invalid email!'};
-//   } else if (error.code === 'auth/weak-password') {
-//     return {status: ERROR, message: 'invalid password!'};
-//   } else {
-//     return {status: ERROR, message: 'an unexpected error occurred!'};
-//   }
-// };
+/**
+ * Get's the correct error message to return to the UI.
+ * Prints dev logs if in DEV mode.
+ * @param error The error
+ * @returns {status: ERROR, message: string}
+ */
+const _getErrorResponse = error => {
+  if (__DEV__) {
+    printDevLogs(
+      'domain/settings-screen-uc/logoutUserUC.js',
+      'logoutUserUC',
+      `${error}`,
+    );
+  }
 
-export default logoutUserUC
+  return {status: ERROR, message: 'An unexpected error occurred!'};
+};
+
+export default logoutUserUC;

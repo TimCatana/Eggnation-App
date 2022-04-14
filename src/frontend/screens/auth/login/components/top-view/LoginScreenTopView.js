@@ -10,7 +10,6 @@ import LoginButton from './LoginButton';
 
 const LoginScreenTopView = props => {
   const {
-    navigation,
     isLoading,
     email,
     handleEmailChange,
@@ -20,6 +19,7 @@ const LoginScreenTopView = props => {
     isPasswordError,
     clearTextInputs,
     handleLoginClick,
+    navToForgotPasswordScreen
   } = props;
 
   return (
@@ -35,9 +35,8 @@ const LoginScreenTopView = props => {
         />
 
         <ForgotPasswordText
-          navigation={navigation}
+          navToForgotPasswordScreen={navToForgotPasswordScreen}
           isLoading={isLoading}
-          clearTextInputs={clearTextInputs}
         />
 
         <LoginButton

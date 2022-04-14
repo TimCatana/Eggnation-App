@@ -13,6 +13,7 @@ const WonPrizesScreen = ({navigation}) => {
     isInitialized,
     isLoading,
     isPrizeFetchFailed,
+    prizeFetchFailedText,
     isShowingPrize,
     wonPrizes,
     handleShowPrize,
@@ -35,6 +36,7 @@ const WonPrizesScreen = ({navigation}) => {
         isInitialized={isInitialized}
         isLoading={isLoading}
         isPrizeFetchFailed={isPrizeFetchFailed}
+        prizeFetchFailedText={prizeFetchFailedText}
         data={TEST_DATA}
         handleShowPrize={handleShowPrize}
         handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}

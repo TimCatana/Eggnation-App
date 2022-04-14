@@ -11,8 +11,11 @@ const useAvailablePrizesScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [isPrizeFetchFailed, setIsPrizeFetchFailed] = useState(true);
-  const [availablePrizes, setAvailablePrizes] = useState([]);
+  const [prizeFetchFailedText, setIsPrizeFetchFailedText] = useState(
+    'Failed to fetch prizes',
+  );
 
+  const [availablePrizes, setAvailablePrizes] = useState([]);
   const [isShowingPrize, setIsShowingPrize] = useState(false);
 
   const [displayPrizeTitle, setDisplayPrizeTitle] = useState('');
@@ -52,8 +55,13 @@ const useAvailablePrizesScreen = () => {
   const getAvailablePrizes = async () => {
     const result = await getAvailablePrizesUC();
     setAvailablePrizes(result.data);
+
     if (result.status === SUCCESS) {
-      setIsPrizeFetchFailed(false);
+      if (result.data.length === 0) {
+        setIsPrizeFetchFailedText('No Prizes Available. More Coming Soon!');
+      } else {
+        setIsPrizeFetchFailed(false);
+      }
     }
   };
 
@@ -115,6 +123,7 @@ const useAvailablePrizesScreen = () => {
     isInitialized,
     isLoading,
     isPrizeFetchFailed,
+    prizeFetchFailedText,
     isShowingPrize,
     availablePrizes,
     handleShowPrize,

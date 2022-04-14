@@ -3,7 +3,7 @@ import Snackbar from 'react-native-snackbar';
 import isEmailValid from '../../../common/helpers/isEmailValid';
 import sendForgotPasswordEmailUC from '../../../../domain/forgot-password-screen-uc/sendForgotPasswordEmailUC';
 
-const useForgotPasswordScreen = () => {
+const useForgotPasswordScreen = navigation => {
   /******************/
   /***** STATES *****/
   /******************/
@@ -72,6 +72,19 @@ const useForgotPasswordScreen = () => {
     setShowSnackbar(showSnackbar + 1);
   };
 
+  /******************************/
+  /***** NAVIGATION HELPERS *****/
+  /******************************/
+
+  /**
+   * Navigates back to the login screen if no process is currently running.
+   */
+  const navigateBack = () => {
+    if (!isLoading) {
+      navigation.pop();
+    }
+  };
+
   /*******************/
   /***** RETURNS *****/
   /*******************/
@@ -82,6 +95,7 @@ const useForgotPasswordScreen = () => {
     handleEmailChange,
     isEmailError,
     handleSendForgotPasswordEmailClick,
+    navigateBack,
   };
 };
 

@@ -86,7 +86,9 @@ const PrizeDisplayModal = props => {
               onPress={async () => {
                 if (!isLoading) {
                   await navigation.navigate(CLAIM_PRIZE_SCREEN);
-                  handleHidePrize();
+                  setTimeout(() => {
+                    handleHidePrize();
+                  }, 500);
                 }
               }}
               buttonEnabledColor={'pink'}

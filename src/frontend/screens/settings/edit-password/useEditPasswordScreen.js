@@ -1,9 +1,11 @@
 import {useState, useEffect} from 'react';
-import updateUserPasswordUC from '../../../../domain/edit-password-uc/updateUserPasswordUC';
+import Snackbar from 'react-native-snackbar';
 import isPasswordValid from '../../../common/helpers/isPasswordValid';
 import isConfirmPasswordValid from '../../../common/helpers/isConfirmPasswordValid';
+import updateUserPasswordUC from '../../../../domain/edit-password-screen-uc/updateUserPasswordUC';
+import {SUCCESS} from '../../../util/ResultsConstants';
 
-const useEditPasswordScreen = () => {
+const useEditPasswordScreen = navigation => {
   /******************/
   /***** STATES *****/
   /******************/
@@ -21,7 +23,7 @@ const useEditPasswordScreen = () => {
 
   const [isPasswordModalShowing, setIsPasswordModalShowing] = useState(false);
 
-  const [errorText, setErrorText] = useState('');
+  const [snackbarText, setSnackbarText] = useState('');
   const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
 
   /***********************/
@@ -68,7 +70,7 @@ const useEditPasswordScreen = () => {
   useEffect(() => {
     if (showSnackbar != 0) {
       Snackbar.show({
-        text: errorText,
+        text: snackbarText,
         duration: Snackbar.LENGTH_SHORT,
       });
     }
@@ -122,6 +124,7 @@ const useEditPasswordScreen = () => {
    */
   const hidePasswordModal = () => {
     setIsPasswordModalShowing(false);
+    setCurrentPassword('');
   };
 
   /**
@@ -134,9 +137,32 @@ const useEditPasswordScreen = () => {
     const result = await updateUserPasswordUC(newPassword, currentPassword);
     setIsLoading(false);
 
-    if (result.status === ERROR) {
-      setErrorText(result.message);
+    setSnackbarText(result.message);
+    return result.status;
+  };
+
+  /******************************/
+  /***** NAVIGATION HELPERS *****/
+  /******************************/
+
+  /** Navigates back to the login screen if no process is currently running. */
+  const navigateBack = () => {
+    if (!isLoading) {
+      navigation.pop();
+    }
+  };
+
+  /** Navigates back to the login screen if no process is currently running. */
+  const updatePasswordAndNavBackIfSuccess = async () => {
+    const status = await handleUpdatePasswordClick();
+    hidePasswordModal();
+
+    setTimeout(() => {
       setShowSnackbar(showSnackbar + 1);
+    }, 250);
+
+    if (status === SUCCESS) {
+      navigation.pop();
     }
   };
 
@@ -158,7 +184,8 @@ const useEditPasswordScreen = () => {
     isPasswordModalShowing,
     showPasswordModal,
     hidePasswordModal,
-    handleUpdatePasswordClick,
+    navigateBack,
+    updatePasswordAndNavBackIfSuccess,
   };
 };
 

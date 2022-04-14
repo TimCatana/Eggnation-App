@@ -24,15 +24,9 @@ const EditEmailScreen = ({navigation}) => {
     isPasswordModalShowing,
     showPasswordModal,
     hidePasswordModal,
-    handleUpdateEmailClick,
-  } = useEditEmailScreen();
-
-  /** Navigates back to the login screen if no process is currently running. */
-  const navigateBack = () => {
-    if (!isLoading) {
-      navigation.pop();
-    }
-  };
+    navigateBack,
+    updateEmailAndNavBackIfSuccess,
+  } = useEditEmailScreen(navigation);
 
   return (
     <View style={styles.body}>
@@ -43,7 +37,7 @@ const EditEmailScreen = ({navigation}) => {
         handlePasswordChange={handlePasswordChange}
         isModalVisible={isPasswordModalShowing}
         hidePasswordModal={hidePasswordModal}
-        handleOnConfirm={handleUpdateEmailClick}
+        handleOnConfirm={updateEmailAndNavBackIfSuccess}
       />
       <TopLeftCornerIcon
         icon={'arrow-left'}

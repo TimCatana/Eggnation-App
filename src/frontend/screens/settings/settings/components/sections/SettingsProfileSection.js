@@ -20,26 +20,12 @@ import SettingsSectionLabel from '../settings-label/SettingsSectionLabel';
 
 const SettingsProfileSection = props => {
   const {
-    navigation,
-    isLoading,
     email,
     emailVerificationStatus,
     handleSendVerificationEmailClick,
+    navToEditEmailScreen,
+    navToEditPasswordScreen,
   } = props;
-
-  /** Navigates to edit email screen if no process is currently running. */
-  const navToEditEmailScreen = () => {
-    if (!isLoading) {
-      navigation.navigate(EDIT_EMAIL_SCREEN);
-    }
-  };
-
-  /** Navigates to edit password screen if no process is currently running. */
-  const navToEditPasswordScreen = () => {
-    if (!isLoading) {
-      navigation.navigate(EDIT_PASSWORD_SCREEN);
-    }
-  };
 
   return (
     <View style={styles.body}>
@@ -55,7 +41,7 @@ const SettingsProfileSection = props => {
         <SettingsItem
           title={S_SS_EMAIL_VERIFIED}
           content={`${emailVerificationStatus}`}
-          icon={'done'}
+          icon={emailVerificationStatus ? 'done' : 'send'}
           isLast={false}
           onIconPress={handleSendVerificationEmailClick}
           iconDisabled={emailVerificationStatus}
