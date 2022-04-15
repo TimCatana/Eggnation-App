@@ -39,7 +39,7 @@ const useEditEmailScreen = navigation => {
    * @dependent password
    */
   useEffect(() => {
-    password.length > 1 ? setIsPasswordError(false) : setIsPasswordError(true);
+    password.length > 0 ? setIsPasswordError(false) : setIsPasswordError(true);
   }, [password]);
 
   /**

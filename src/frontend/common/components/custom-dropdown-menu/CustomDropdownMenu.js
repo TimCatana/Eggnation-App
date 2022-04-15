@@ -1,9 +1,10 @@
-import React, {useState, useRef} from 'react';
-import {View, Text, TextInput, StyleSheet, Pressable} from 'react-native';
+import React from 'react';
+import {View, TextInput, StyleSheet, Pressable} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import { C_TEXT_ERROR, C_ICON_SETTINGS } from '../../../theme/Colors';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
 const CustomDropdownMenu = props => {
@@ -16,6 +17,7 @@ const CustomDropdownMenu = props => {
     marginBottom,
     disabled,
     iconColor,
+    borderColor,
     handleIconPress,
   } = props;
 
@@ -27,7 +29,7 @@ const CustomDropdownMenu = props => {
           {
             width: width,
             height: height,
-            borderColor: 'gray',
+            borderColor: borderColor,
             marginBottom: marginBottom,
           },
         ]}>
@@ -42,7 +44,7 @@ const CustomDropdownMenu = props => {
             <IonIcons
               name={'chevron-down'}
               size={hp('3.1%')}
-              color={iconColor ? iconColor : '#666'}
+              color={iconColor ? iconColor : C_ICON_SETTINGS}
             />
           </Pressable>
         </View>
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: hp('1.5%'),
-    color: 'red',
+    color: C_TEXT_ERROR,
   },
 });
 

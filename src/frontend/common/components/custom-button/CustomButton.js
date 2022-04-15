@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Pressable, StyleSheet} from 'react-native';
+import {Text, Pressable, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -7,13 +7,14 @@ import {
 
 const CustomButton = props => {
   const {
-    label,
+    label = "lol",
     onPress,
     buttonEnabledColor,
     buttonDisabledColor,
     textColor,
     fontSize,
     disabled,
+    elevation = hp('0.3%'),
     ...rest
   } = props;
 
@@ -21,7 +22,10 @@ const CustomButton = props => {
     <Pressable
       style={[
         styles.button,
-        {backgroundColor: disabled ? buttonDisabledColor : buttonEnabledColor},
+        {
+          backgroundColor: disabled ? buttonDisabledColor : buttonEnabledColor,
+          elevation: elevation,
+        },
         {...rest},
       ]}
       onPress={onPress}
@@ -37,7 +41,6 @@ const styles = StyleSheet.create({
     borderRadius: wp('0.5%'),
     paddingHorizontal: wp('3%'),
     paddingVertical: hp('1%'),
-    elevation: hp('0.3%'),
   },
 });
 

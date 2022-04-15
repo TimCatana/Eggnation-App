@@ -54,3 +54,6 @@ export const S_EES_UPDATE_EMAIL_BUTTON = 'Update Email';
 
 /** EDIT PASSWORD SCREEN */
 export const S_EPS_UPDATE_PASSWORD_BUTTON = 'Update Password';
+
+/** PRIZE DISPLAY MODAL */
+export const S_PDM_CLAIM_PRIZE_BUTTON = 'Claim';

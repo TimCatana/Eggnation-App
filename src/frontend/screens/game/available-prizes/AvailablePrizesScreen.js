@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import PrizeDisplayModal from '../../../common/components/PrizeDisplayModal';
+import { C_BACKGROUND_BOOKSHELF } from '../../../theme/Colors';
+import PrizeDisplayModal from '../../../common/components/prize-display-modal/PrizeDisplayModal';
 import AvailablePrizeScreenLeftView from './components/left-view/AvailablePrizeScreenLeftView';
 import AvailablePrizeScreenCenterView from './components/center-view/AvailablePrizeScreenCenterView';
 import AvailablePrizeScreenRightView from './components/right-view/AvailablePrizeScreenRightView';
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: '#29211F',
+    backgroundColor: C_BACKGROUND_BOOKSHELF,
   },
   backgroundContainer: {
     position: 'absolute',

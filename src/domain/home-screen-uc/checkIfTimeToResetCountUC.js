@@ -11,8 +11,11 @@ import {
 } from '../../frontend/util/Constants';
 
 /**
- * TODO - add documentation
- * @returns
+ * Checks to see if it's time to reset the local count.
+ * Reset's the local count if enough time passed since last reset.
+ * Does not reset the local count if not enough time passed since last reset.
+ * @onSuccessReturn {status: STATUS, message: string}
+ * @onErrorReturn {status: STATUS, message: string}
  */
 const checkIfTimeToResetCountUC = async () => {
   try {
@@ -33,8 +36,26 @@ const checkIfTimeToResetCountUC = async () => {
 
     return {status: SUCCESS, message: ''};
   } catch (e) {
-    return {status: ERROR, message: ''};
+    return _getErrorResponse(e);
   }
+};
+
+/**
+ * Get's the correct error message to return to the UI.
+ * Prints dev logs if in DEV mode.
+ * @param error The error
+ * @returns {status: ERROR, message: string}
+ */
+const _getErrorResponse = error => {
+  if (__DEV__) {
+    printDevLogs(
+      'domain/home-screen-uc/checkIfTimeToResetCountUC.js',
+      'checkIfTimeToResetCountUC',
+      `${error}`,
+    );
+  }
+
+  return {status: ERROR, message: ''};
 };
 
 export default checkIfTimeToResetCountUC;

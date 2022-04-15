@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_TEXT_LIGHT} from '../../../theme/Colors';
-import PrizeList from './PrizeList';
+import PrizeList from '../prize-list/PrizeList';
 
 const BookshelfContent = props => {
   const {

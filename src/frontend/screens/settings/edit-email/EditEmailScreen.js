@@ -5,10 +5,10 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../theme/Colors';
-import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
+import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
 import UpdateEmailScreenTopView from './components/top-view/UpdateEmailScreenTopView';
 import UpdateEmailScreenBottomView from './components/bottom-view/UpdateEmailScreenBottomView';
-import PasswordModal from '../../../common/components/PasswordModal';
+import PasswordModal from '../../../common/components/password-modal/PasswordModal';
 
 import useEditEmailScreen from './useEditEmailScreen';
 

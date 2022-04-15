@@ -1,11 +1,13 @@
 import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
 import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
 import {ERROR, SUCCESS} from '../../frontend/util/ResultsConstants';
-import { KC_LOCAL_COUNT } from '../../frontend/util/Constants';
+import {KC_LOCAL_COUNT} from '../../frontend/util/Constants';
+import printDevLogs from '../printDevLogs';
 
 /**
- * TODO - add documentation
- * @returns 
+ * Attempts to decrement the local counter by 1.
+ * @onSuccessReturn {status: STATUS, message: string}
+ * @onErrorReturn {status: STATUS, message: string}
  */
 const decrementLocalCountUC = async () => {
   try {
@@ -19,18 +21,26 @@ const decrementLocalCountUC = async () => {
 
     return {status: SUCCESS, message: ''};
   } catch (e) {
-    return {status: ERROR, message: ''};
+    return _getErrorResponse(e);
   }
 };
 
-// const _getErrorResponse = error => {
-//   if (error.code === ' auth/user-mismatch') {
-//     return {status: ERROR, message: 'invalid credentials!'};
-//   } else if (error.code === 'auth/user-not-found') {
-//     return {status: ERROR, message: 'invalid credentials!'};
-//   } else {
-//     return {status: ERROR, message: 'an unexpected error occurred!'};
-//   }
-// };
+/**
+ * Get's the correct error message to return to the UI.
+ * Prints dev logs if in DEV mode.
+ * @param error The error
+ * @returns {status: ERROR, message: string}
+ */
+const _getErrorResponse = error => {
+  if (__DEV__) {
+    printDevLogs(
+      'domain/home-screen-uc/decrementLocalCountUC.js',
+      'decrementLocalCountUC',
+      `${error}`,
+    );
+  }
+
+  return {status: ERROR, message: ''};
+};
 
 export default decrementLocalCountUC;

@@ -10,7 +10,7 @@ import {
   S_TI_EMAIL_ERROR_TEXT,
 } from '../../../../../theme/Strings';
 import {C_TEXT_INPUT_TEXT_LIGHT} from '../../../../../theme/Colors';
-import CustomTextInput from '../../../../../common/components/CustomTextInput';
+import CustomTextInput from '../../../../../common/components/custom-text-input/CustomTextInput';
 
 const UpdateEmailScreenTopView = props => {
   const {isLoading, newEmail, handleNewEmailChange, isNewEmailError} = props;
@@ -31,6 +31,8 @@ const UpdateEmailScreenTopView = props => {
         height={hp('5.5%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
+        unfocusedBorderColor={'gray'}
+        focusedBorderColor={'pink'}
         returnKeyType={'done'}
       />
     </View>

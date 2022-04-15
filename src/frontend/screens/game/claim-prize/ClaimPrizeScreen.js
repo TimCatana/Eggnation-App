@@ -6,7 +6,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_ICON_LIGHT} from '../../../theme/Colors';
-import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
+import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
 import ClaimPrizeScreenBottomView from './components/bottom-view/ClaimPrizeScreenBottomView';
 import ClaimPrizeScreenTopView from './components/top-view/ClaimPrizeScreenTopView';
 import PickerModal from './components/other/PickerModal';

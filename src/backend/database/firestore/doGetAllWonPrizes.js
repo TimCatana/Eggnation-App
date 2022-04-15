@@ -13,13 +13,14 @@ import {
  *              prizeDesc: string,
  *              prizeType: string,
  *              prizeTier: string,
+ *              prizeClaimType: string,
  *              prizeWonDate: string,
  *              prizeClaimed: boolean,
  *              prizeWinnerId: string }[] ) If won prizes exist in the database
  *          OR
  *          ([]) If no won prizes exist in the database
  */
-const deGetAllWonPrizes = async userId => {
+const doGetAllWonPrizes = async userId => {
   const result = [];
 
   const querySnapshot = await firestore()
@@ -39,4 +40,4 @@ const deGetAllWonPrizes = async userId => {
   return result;
 };
 
-export default deGetAllWonPrizes;
+export default doGetAllWonPrizes;

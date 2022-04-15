@@ -2,10 +2,10 @@ import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 import {
   FULL_SHELF,
-  SECOND_HALF_SHELF,
   FIRST_HALF_SHELF,
+  SECOND_HALF_SHELF,
 } from '../../../util/ShelfImageConstants';
-import PrizeShelfCard from '../PrizeShelfCard';
+import PrizeShelfCard from '../prize-shelf-card/PrizeShelfCard';
 
 const PrizeList = props => {
   const {

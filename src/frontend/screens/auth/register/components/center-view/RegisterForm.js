@@ -17,7 +17,7 @@ import {
   C_TEXT_INPUT_TEXT_PRIMARY,
   C_TEXT_PRIMARY,
 } from '../../../../../theme/Colors';
-import CustomTextInput from '../../../../../common/components/CustomTextInput';
+import CustomTextInput from '../../../../../common/components/custom-text-input/CustomTextInput';
 
 const RegisterForm = props => {
   const {
@@ -51,6 +51,8 @@ const RegisterForm = props => {
         marginBottom={hp('1.7%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_PRIMARY}
+        unfocusedBorderColor={'gray'}
+        focusedBorderColor={'pink'}
         returnKeyType={'next'}
       />
       <CustomTextInput
@@ -68,6 +70,8 @@ const RegisterForm = props => {
         marginBottom={hp('1.7%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_PRIMARY}
+        unfocusedBorderColor={'gray'}
+        focusedBorderColor={'pink'}
         returnKeyType={'next'}
       />
       <CustomTextInput
@@ -85,6 +89,8 @@ const RegisterForm = props => {
         marginBottom={hp('1.7%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_PRIMARY}
+        unfocusedBorderColor={'gray'}
+        focusedBorderColor={'pink'}
         returnKeyType={'done'}
       />
     </>

@@ -6,7 +6,7 @@ import {
   C_BACKGROUND_BOOKSHELF,
 } from '../../../../../theme/Colors';
 import TopShelfImage from './TopShelfImage';
-import BookshelfContent from '../../../../../common/components/game/BookshelfContent';
+import BookshelfContent from '../../../../../common/components/bookshelf-content/BookshelfContent';
 
 const AvailablePrizeScreenCenterView = props => {
   const {

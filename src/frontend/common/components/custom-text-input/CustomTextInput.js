@@ -1,9 +1,10 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet, Pressable} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {C_TEXT_ERROR, C_ICON_SETTINGS} from '../../../theme/Colors';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
 const CustomTextInput = props => {
@@ -23,7 +24,9 @@ const CustomTextInput = props => {
     fontSize,
     textColor,
     iconColor,
-    returnKeyType, // TODO - add a function to do something on specific key type change maybe? or maybe rn handles it for us
+    unfocusedBorderColor,
+    focusedBorderColor,
+    returnKeyType,
   } = props;
 
   const [isSecureTextEntry, setIsSecureTextEntry] = useState(isPassword);
@@ -41,7 +44,11 @@ const CustomTextInput = props => {
           {
             width: width,
             height: height,
-            borderColor: isError ? 'red' : isFocused ? 'pink' : 'gray',
+            borderColor: isError
+              ? C_TEXT_ERROR
+              : isFocused
+              ? focusedBorderColor
+              : unfocusedBorderColor,
             marginBottom: isError ? null : marginBottom,
           },
         ]}>
@@ -54,7 +61,7 @@ const CustomTextInput = props => {
           style={[styles.input, {fontSize: fontSize, color: textColor}]}
           secureTextEntry={isSecureTextEntry}
           editable={!disabled}
-          returnKeyType={'next'}
+          returnKeyType={returnKeyType}
           placeholderTextColor={textColor}
           onFocus={() => {
             setIsFocused(true);
@@ -69,7 +76,7 @@ const CustomTextInput = props => {
               <IonIcons
                 name={isSecureTextEntry ? 'eye-off' : 'eye'}
                 size={hp('3.1%')}
-                color={iconColor ? iconColor : '#666'}
+                color={iconColor ? iconColor : C_ICON_SETTINGS}
               />
             </Pressable>
           </View>
@@ -104,7 +111,7 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: hp('1.5%'),
-    color: 'red',
+    color: C_TEXT_ERROR,
   },
 });
 

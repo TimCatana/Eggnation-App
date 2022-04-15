@@ -57,7 +57,7 @@ const useEditPasswordScreen = navigation => {
    * @dependent password
    */
   useEffect(() => {
-    currentPassword.length > 1
+    currentPassword.length > 0
       ? setIsCurrentPasswordError(false)
       : setIsCurrentPasswordError(true);
   }, [currentPassword]);

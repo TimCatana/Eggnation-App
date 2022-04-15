@@ -4,8 +4,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import CustomTextInput from '../../../../../common/components/CustomTextInput'
-import CustomDropdownMenu from '../../../../../common/components/CustomDropdownMenu';
+import CustomTextInput from '../../../../../common/components/custom-text-input/CustomTextInput';
+import CustomDropdownMenu from '../../../../../common/components/custom-dropdown-menu/CustomDropdownMenu';
 
 const ClaimPrizeScreenTopView = props => {
   const {
@@ -21,24 +21,26 @@ const ClaimPrizeScreenTopView = props => {
     <View style={styles.formView}>
       <CustomDropdownMenu
         value={selectedCountry}
+        disabled={isLoading}
         width={'100%'}
         height={hp('5.5%')}
+        marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor="white"
-        marginBottom={hp('2%')}
-        disabled={isLoading}
+        borderColor="gray"
         handleIconPress={() => {
           showModalPicker(true);
         }}
       />
       <CustomDropdownMenu
         value={selectedRegion}
+        disabled={isLoading}
         width={'100%'}
         height={hp('5.5%')}
+        marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor="white"
-        marginBottom={hp('2%')}
-        disabled={isLoading}
+        borderColor="gray"
         handleIconPress={() => {
           showModalPicker(false);
         }}
@@ -46,15 +48,20 @@ const ClaimPrizeScreenTopView = props => {
       <CustomTextInput
         value={address}
         onValueChange={handleAddressChange}
+        isError={false}
+        errorText={''}
+        disabled={isLoading}
+        isPassword={false}
         placeholder="address"
         keyboardType="default"
+        maxLength={30}
         width={'100%'}
         height={hp('5.5%')}
-        isPassword={false}
-        textColor="white"
         fontSize={hp('2%')}
-        maxLength={30}
-        disabled={isLoading}
+        textColor="white"
+        unfocusedBorderColor={'gray'}
+        focusedBorderColor={'pink'}
+        returnKeyType={'done'}
       />
     </View>
   );

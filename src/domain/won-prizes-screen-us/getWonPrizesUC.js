@@ -45,7 +45,7 @@ const getWonPrizesUC = async () => {
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
  * @param error The error
- * @returns {status: ERROR, message: string}
+ * @returns {status: ERROR, data: [], message: string}
  */
 const _getErrorResponse = error => {
   if (__DEV__) {

@@ -16,8 +16,8 @@ import {
   C_BUTTON_ENABLED,
   C_TEXT_LIGHT,
 } from '../../../../../theme/Colors';
-import CustomTextInput from '../../../../../common/components/CustomTextInput';
-import CustomButton from '../../../../../common/components/CustomButton';
+import CustomTextInput from '../../../../../common/components/custom-text-input/CustomTextInput';
+import CustomButton from '../../../../../common/components/custom-button/CustomButton';
 
 const ForgotPasswordScreenCenterView = props => {
   const {
@@ -45,6 +45,8 @@ const ForgotPasswordScreenCenterView = props => {
         marginBottom={hp('1.5%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_PRIMARY}
+        unfocusedBorderColor={'gray'}
+        focusedBorderColor={'pink'}
         returnKeyType={'done'}
       />
 

@@ -4,7 +4,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import TopLeftCornerIcon from '../../../../../common/components/TopLeftCornerIcon';
+import TopLeftCornerIcon from '../../../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
 
 const DropdownOption = props => {
   const {item, index, onSelect, isSelectingCountries} = props;

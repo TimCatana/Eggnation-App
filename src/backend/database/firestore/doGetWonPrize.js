@@ -14,6 +14,7 @@ import {
  *              prizeDesc: string,
  *              prizeType: string,
  *              prizeTier: string,
+ *              prizeClaimType: string,
  *              prizeWonDate: string,
  *              prizeClaimed: boolean,
  *              prizeWinnerId: string }) if won prize exists in database

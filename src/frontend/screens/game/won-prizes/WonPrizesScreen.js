@@ -1,8 +1,9 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import { C_BACKGROUND_BOOKSHELF } from '../../../theme/Colors';
 import WonPrizeScreenLeftView from './components/left-view/WonPrizeScreenLeftView';
 import WonPrizeScreenRightView from './components/right-view/WonPrizeScreenRightView';
-import PrizeDisplayModal from '../../../common/components/PrizeDisplayModal';
+import PrizeDisplayModal from '../../../common/components/prize-display-modal/PrizeDisplayModal';
 import WonPrizeScreenCenterView from './components/center-view/WonPrizeScreenCenterView';
 
 import TEST_DATA from '../../../../../test-data/availablePrizes.json';
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: '#29211F',
+    backgroundColor: C_BACKGROUND_BOOKSHELF,
   },
   backgroundContainer: {
     position: 'absolute',

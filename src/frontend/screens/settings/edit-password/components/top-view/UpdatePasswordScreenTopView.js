@@ -13,7 +13,7 @@ import {
   S_TI_CONFIRM_PASSWORD_PLACEHOLDER,
 } from '../../../../../theme/Strings';
 import {C_TEXT_INPUT_TEXT_LIGHT} from '../../../../../theme/Colors';
-import CustomTextInput from '../../../../../common/components/CustomTextInput';
+import CustomTextInput from '../../../../../common/components/custom-text-input/CustomTextInput';
 
 const UpdatePasswordScreenTopView = props => {
   const {
@@ -43,6 +43,8 @@ const UpdatePasswordScreenTopView = props => {
         marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
+        unfocusedBorderColor={'gray'}
+        focusedBorderColor={'pink'}
         returnKeyType={'next'}
       />
       <CustomTextInput
@@ -59,6 +61,8 @@ const UpdatePasswordScreenTopView = props => {
         height={hp('5.5%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
+        unfocusedBorderColor={'gray'}
+        focusedBorderColor={'pink'}
         returnKeyType={'done'}
       />
     </View>

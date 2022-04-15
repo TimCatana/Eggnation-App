@@ -11,7 +11,7 @@ import {
   C_TEXT_ERROR,
   C_TEXT_LIGHT,
 } from '../../../../../theme/Colors';
-import CustomButton from '../../../../../common/components/CustomButton';
+import CustomButton from '../../../../../common/components/custom-button/CustomButton';
 
 const SettingsScreenBottomView = props => {
   const {isLoading, logoutUser, showPasswordModal} = props;

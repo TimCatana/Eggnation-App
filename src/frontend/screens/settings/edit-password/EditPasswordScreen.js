@@ -4,9 +4,9 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_ICON_LIGHT} from '../../../theme/Colors';
-import PasswordModal from '../../../common/components/PasswordModal';
-import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
+import {C_ICON_LIGHT, C_BACKGROUND_DARK} from '../../../theme/Colors';
+import PasswordModal from '../../../common/components/password-modal/PasswordModal';
+import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
 import UpdatePasswordScreenTopView from './components/top-view/UpdatePasswordScreenTopView';
 import UpdatePasswordScreenBottomView from './components/bottom-view/UpdatePasswordScreenBottomView';
 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     paddingBottom: hp('2.5%'),
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: C_BACKGROUND_DARK,
   },
   icon: {
     flex: 1,

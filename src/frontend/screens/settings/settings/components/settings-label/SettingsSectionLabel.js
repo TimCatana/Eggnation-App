@@ -7,6 +7,7 @@ import {
 import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { C_TEXT_SETTINGS_LIGHT } from '../../../../../theme/Colors';
  
 const SettingsSectionLabel = (props) =>  {
   const {label} = props
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
    },
    text: {
      fontSize: hp('1.5%'),
-     color: '#e2e2e2'
+     color: C_TEXT_SETTINGS_LIGHT
    }
 });
 

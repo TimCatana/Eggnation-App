@@ -7,7 +7,8 @@ import {FS_AVAILABLE_PRIZES_COLLECTION_KEY} from '../../../frontend/util/Constan
  *              prizeTitle: string,
  *              prizeDesc: string,
  *              prizeType: string,
- *              prizeTier: string }[] ) If available prizes exist in database
+ *              prizeTier: string,
+ *              prizeClaimType: string }[] ) If available prizes exist in database  PRIZE CLAIM TYPES ARE shipment, payment or none
  *          OR
  *         ( [] ) If no available prizes exist in database
  */

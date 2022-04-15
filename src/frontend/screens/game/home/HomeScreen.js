@@ -9,7 +9,7 @@ import {C_ICON_PRIMARY} from '../../../theme/Colors';
 import background from '../../../../../assets/backgrounds/bg_home.png';
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
-import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
+import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
 import {SETTINGS_SCREEN} from '../../../util/NavigationConstants';
 
 const HomeScreen = ({navigation}) => {

@@ -104,9 +104,10 @@ const useHomeScreen = () => {
       loadAd();
 
       await decrementAndGetLocalCount();
-      const result = await mainGameLogicUC();
 
-      result.data === true
+      const result = await mainGameLogicUC(localCount);
+
+      result.data.isWon === true
         ? setIsWonAnimationShowing(true)
         : setIsWonAnimationShowing(false);
 
@@ -116,7 +117,6 @@ const useHomeScreen = () => {
     setIsLoading(false);
   };
 
-  // TODO - need to make this more efficient. Apparently, redux has a listener feature. Async does not
   /**
    * Decrements the local count.
    */

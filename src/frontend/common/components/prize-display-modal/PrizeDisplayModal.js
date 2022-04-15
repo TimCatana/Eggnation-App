@@ -4,38 +4,19 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import TopLeftCornerIcon from './TopLeftCornerIcon';
-import CustomButton from './CustomButton';
+import {S_PDM_CLAIM_PRIZE_BUTTON} from '../../../theme/Strings';
+import {
+  C_BUTTON_ENABLED,
+  C_BUTTON_DISABLED,
+  C_TEXT_LIGHT,
+  C_ICON_PRIMARY,
+  C_TEXT_PRIMARY,
+} from '../../../theme/Colors';
+import TopLeftCornerIcon from '../top-left-corner-icon/TopLeftCornerIcon';
+import CustomButton from '../custom-button/CustomButton';
+import {CLAIM_PRIZE_SCREEN} from '../../../util/NavigationConstants';
 
-import phoneImage from '../../../../assets/phone.png';
-import earBudsImage from '../../../../assets/earbuds.png';
-import hoodieImage from '../../../../assets/hoodie.png';
-import laptopImage from '../../../../assets/laptop.png';
-import cashImage from '../../../../assets/cash.png';
-import tabletImage from '../../../../assets/tablet.png';
-import shirtImage from '../../../../assets/shirt.png';
-import presentImage from '../../../../assets/present.png';
-import {CLAIM_PRIZE_SCREEN} from '../../util/NavigationConstants';
-
-const getDisplayImage = prizeType => {
-  if (prizeType === 'phone') {
-    return phoneImage;
-  } else if (prizeType === 'tablet') {
-    return tabletImage;
-  } else if (prizeType === 'laptop') {
-    return laptopImage;
-  } else if (prizeType === 'earbuds') {
-    return earBudsImage;
-  } else if (prizeType === 'shirt') {
-    return shirtImage;
-  } else if (prizeType === 'hoodie') {
-    return hoodieImage;
-  } else if (prizeType === 'cash') {
-    return cashImage;
-  } else {
-    return presentImage;
-  }
-};
+import usePrizeDisplayModal from './usePrizeDisplayModal';
 
 const PrizeDisplayModal = props => {
   const {
@@ -50,6 +31,8 @@ const PrizeDisplayModal = props => {
     handleHidePrize,
     navigation,
   } = props;
+
+  const {getDisplayImage} = usePrizeDisplayModal(navigation);
 
   const displayImage = getDisplayImage(prizeType);
 
@@ -82,7 +65,7 @@ const PrizeDisplayModal = props => {
           <View style={styles.centerView}>
             <Text style={styles.titleText}>{prizeTitle}</Text>
             <CustomButton
-              label={'Claim'}
+              label={S_PDM_CLAIM_PRIZE_BUTTON}
               onPress={async () => {
                 if (!isLoading) {
                   await navigation.navigate(CLAIM_PRIZE_SCREEN);
@@ -91,9 +74,9 @@ const PrizeDisplayModal = props => {
                   }, 500);
                 }
               }}
-              buttonEnabledColor={'pink'}
-              buttonDisabledColor={'gray'}
-              textColor={'white'}
+              buttonEnabledColor={C_BUTTON_ENABLED}
+              buttonDisabledColor={C_BUTTON_DISABLED}
+              textColor={C_TEXT_LIGHT}
               fontSize={hp('2%')}
               //  disabled={prizeIsClaimed || isWonPrize}
             />
@@ -183,12 +166,15 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingLeft: wp('1%'),
     paddingTop: hp('1%'),
+    color: C_ICON_PRIMARY,
   },
   titleText: {
     fontSize: hp('5%'),
+    color: C_TEXT_PRIMARY,
   },
   text: {
     fontSize: 30,
+    color: C_TEXT_PRIMARY,
   },
 });
 

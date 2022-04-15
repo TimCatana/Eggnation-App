@@ -7,7 +7,7 @@ import {
   C_BUTTON_DISABLED,
   C_TEXT_LIGHT,
 } from '../../../../../theme/Colors';
-import CustomButton from '../../../../../common/components/CustomButton';
+import CustomButton from '../../../../../common/components/custom-button/CustomButton';
 
 const RegisterButton = props => {
   const {

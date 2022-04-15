@@ -6,7 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import {C_ICON_PRIMARY, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
 import background from '../../../../../assets/backgrounds/bg_auth.png';
-import TopLeftCornerIcon from '../../../common/components/TopLeftCornerIcon';
+import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
 import RegisterScreenCenterView from './components/center-view/RegisterScreenCenterView';
 import RegisterScreenBottomView from './components/bottom-view/RegisterScreenBottomView';
 
