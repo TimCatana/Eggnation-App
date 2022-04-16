@@ -1,7 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 import {
-  FS_USERS_COLLECTION_KEY,
   FS_WON_PRIZES_COLLECTION_KEY,
+  FS_USER_WON_PRIZES_COLLECTION_KEY,
 } from '../../../frontend/util/Constants';
 
 /**
@@ -17,15 +17,16 @@ import {
  *              prizeClaimType: string,
  *              prizeWonDate: string,
  *              prizeClaimed: boolean,
+ *              prizeDelivered: boolean,
  *              prizeWinnerId: string }) if won prize exists in database
  *          OR
  *          (null) if won prize does not exist in database
  */
 const doGetWonPrize = async (userId, prizeId) => {
   const documentSnapshot = await firestore()
-    .collection(FS_USERS_COLLECTION_KEY)
-    .doc(`${userId}`)
     .collection(FS_WON_PRIZES_COLLECTION_KEY)
+    .doc(`${userId}`)
+    .collection(FS_USER_WON_PRIZES_COLLECTION_KEY)
     .doc(`${prizeId}`)
     .get();
 

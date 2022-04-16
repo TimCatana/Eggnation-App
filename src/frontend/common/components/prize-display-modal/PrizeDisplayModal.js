@@ -53,6 +53,7 @@ const PrizeDisplayModal = props => {
             viewStyle={styles.icon}
             iconStyle={{}}
             iconSize={hp('3.5%')}
+            iconColor={C_ICON_PRIMARY}
           />
 
           <View style={styles.topView}>
@@ -166,7 +167,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingLeft: wp('1%'),
     paddingTop: hp('1%'),
-    color: C_ICON_PRIMARY,
   },
   titleText: {
     fontSize: hp('5%'),
