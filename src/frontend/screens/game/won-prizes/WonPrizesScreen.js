@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import { C_BACKGROUND_BOOKSHELF } from '../../../theme/Colors';
+import {C_BACKGROUND_BOOKSHELF} from '../../../theme/Colors';
 import WonPrizeScreenLeftView from './components/left-view/WonPrizeScreenLeftView';
 import WonPrizeScreenRightView from './components/right-view/WonPrizeScreenRightView';
 import PrizeDisplayModal from '../../../common/components/prize-display-modal/PrizeDisplayModal';
@@ -19,6 +19,8 @@ const WonPrizesScreen = ({navigation}) => {
     wonPrizes,
     handleShowPrize,
     handleHidePrize,
+    handleDisplayPrizeIdChange,
+    displayPrizeId,
     handleDisplayPrizeTitleChange,
     displayPrizeTitle,
     handleDisplayPrizeDescChange,
@@ -40,6 +42,7 @@ const WonPrizesScreen = ({navigation}) => {
         prizeFetchFailedText={prizeFetchFailedText}
         data={TEST_DATA}
         handleShowPrize={handleShowPrize}
+        handleDisplayPrizeIdChange={handleDisplayPrizeIdChange}
         handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}
         handleDisplayPrizeDescChange={handleDisplayPrizeDescChange}
         handleDisplayPrizeTypeChange={handleDisplayPrizeTypeChange}
@@ -48,6 +51,7 @@ const WonPrizesScreen = ({navigation}) => {
 
       <PrizeDisplayModal
         isLoading={isLoading}
+        prizeId={displayPrizeId}
         prizeTitle={displayPrizeTitle}
         prizeDesc={displayPrizeDesc}
         prizeTier={displayPrizeTier}
@@ -71,19 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: C_BACKGROUND_BOOKSHELF,
   },
-  backgroundContainer: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  prizeList: {
-    display: 'flex',
-  },
-  text: {
-    fontSize: 100,
-  },
+
 });
 
 export default WonPrizesScreen;

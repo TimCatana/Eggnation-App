@@ -1,29 +1,53 @@
 import React from 'react';
-import {View, Text, StyleSheet, Pressable, ScrollView, FlatList, Modal} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  FlatList,
+  Modal,
+} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {C_TEXT_PRIMARY, C_ICON_PRIMARY} from '../../../../../theme/Colors'
 import TopLeftCornerIcon from '../../../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
 
 const DropdownOption = props => {
   const {item, index, onSelect, isSelectingCountries} = props;
 
   return (
-    <View style={{width: '100%', height: hp('4.5%'), display: 'flex', paddingLeft: wp('3%'),  borderBottomWidth: wp('0.2%')}}>
-    <Pressable
-    style={{flex: 1, display: 'flex', justifyContent: 'center',}}
-      onPress={() => {
-        onSelect(index);
+    <View
+      style={{
+        width: '100%',
+        height: hp('4.5%'),
+        display: 'flex',
+        paddingLeft: wp('3%'),
+        borderBottomWidth: wp('0.2%'),
       }}>
-      <Text style={{fontSize: hp('1.7%')}}>{isSelectingCountries ? item.countryName : item.name}</Text>
-    </Pressable>
+      <Pressable
+        style={{flex: 1, display: 'flex', justifyContent: 'center'}}
+        onPress={() => {
+          onSelect(index);
+        }}>
+        <Text style={{fontSize: hp('1.7%'), color: C_TEXT_PRIMARY}}>
+          {isSelectingCountries ? item.countryName : item.name}
+        </Text>
+      </Pressable>
     </View>
   );
 };
 
 const PickerModal = props => {
-  const {hideModalPicker, isModalVisible, data, onSelect, isSelectingCountries} = props;
+  const {
+    hideModalPicker,
+    isModalVisible,
+    data,
+    onSelect,
+    isSelectingCountries,
+  } = props;
 
   return (
     <Modal
@@ -38,6 +62,7 @@ const PickerModal = props => {
           viewStyle={styles.icon}
           iconStyle={{}}
           iconSize={hp('3.5%')}
+          iconColor={C_ICON_PRIMARY}
         />
         <View style={styles.topView}>
           <FlatList
@@ -47,9 +72,16 @@ const PickerModal = props => {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             renderItem={({item, index}) => (
-              <DropdownOption item={item} index={index} onSelect={onSelect} isSelectingCountries={isSelectingCountries} />
+              <DropdownOption
+                item={item}
+                index={index}
+                onSelect={onSelect}
+                isSelectingCountries={isSelectingCountries}
+              />
             )}
-            keyExtractor={item => isSelectingCountries ? item.countryName : item.name}
+            keyExtractor={item =>
+              isSelectingCountries ? item.countryName : item.name
+            }
           />
         </View>
       </View>

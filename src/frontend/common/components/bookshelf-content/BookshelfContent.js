@@ -12,6 +12,7 @@ const BookshelfContent = props => {
     prizeFetchFailedText,
     data,
     handleShowPrize,
+    handleDisplayPrizeIdChange,
     handleDisplayPrizeTitleChange,
     handleDisplayPrizeDescChange,
     handleDisplayPrizeTypeChange,
@@ -30,6 +31,7 @@ const BookshelfContent = props => {
         <PrizeList
           data={data}
           handleShowPrize={handleShowPrize}
+          handleDisplayPrizeIdChange={handleDisplayPrizeIdChange}
           handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}
           handleDisplayPrizeDescChange={handleDisplayPrizeDescChange}
           handleDisplayPrizeTypeChange={handleDisplayPrizeTypeChange}

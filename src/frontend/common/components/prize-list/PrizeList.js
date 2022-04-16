@@ -11,6 +11,7 @@ const PrizeList = props => {
   const {
     data,
     handleShowPrize,
+    handleDisplayPrizeIdChange,
     handleDisplayPrizeTitleChange,
     handleDisplayPrizeDescChange,
     handleDisplayPrizeTypeChange,
@@ -42,6 +43,7 @@ const PrizeList = props => {
             prize={item}
             bgShelfImage={bgShelfImage}
             handleShowPrize={handleShowPrize}
+            handleDisplayPrizeIdChange={handleDisplayPrizeIdChange}
             handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}
             handleDisplayPrizeDescChange={handleDisplayPrizeDescChange}
             handleDisplayPrizeTypeChange={handleDisplayPrizeTypeChange}

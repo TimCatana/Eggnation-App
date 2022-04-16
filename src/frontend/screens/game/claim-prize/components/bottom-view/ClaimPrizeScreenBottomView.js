@@ -9,6 +9,7 @@ const ClaimPrizeScreenBottomView = props => {
     isCountryError,
     isRegionError,
     isAddressError,
+    isPostalCodeError,
     isLoading
   } = props;
 
@@ -21,7 +22,7 @@ const ClaimPrizeScreenBottomView = props => {
         buttonDisabledColor={'gray'}
         textColor={'white'}
         fontSize={hp('2%')}
-        disabled={isLoading || isCountryError || isRegionError || isAddressError}
+        disabled={isLoading || isCountryError || isRegionError || isAddressError || isPostalCodeError}
       />
     </View>
   );

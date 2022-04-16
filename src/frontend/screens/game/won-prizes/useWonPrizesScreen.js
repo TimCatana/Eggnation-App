@@ -19,6 +19,7 @@ const useWonPrizesScreen = () => {
   const [isShowingPrize, setIsShowingPrize] = useState(false);
   const [wonPrizes, setWonPrizes] = useState([]);
 
+  const [displayPrizeId, setDisplayPrizeId] = useState('');
   const [displayPrizeTitle, setDisplayPrizeTitle] = useState('');
   const [displayPrizeDesc, setDisplayPrizeDesc] = useState('');
   const [displayPrizeType, setDisplayPrizeType] = useState('');
@@ -89,6 +90,14 @@ const useWonPrizesScreen = () => {
   };
 
   /**
+   * Sets the id to be shown in the prize modal.
+   * @param id (string) The id to be shown in the prize modal
+   */
+  handleDisplayPrizeIdChange = id => {
+    setDisplayPrizeId(id);
+  };
+
+  /**
    * Sets the title to be shown in the prize modal.
    * @param title (string) The title to be shown in the prize modal
    */
@@ -133,6 +142,8 @@ const useWonPrizesScreen = () => {
     wonPrizes,
     handleShowPrize,
     handleHidePrize,
+    handleDisplayPrizeIdChange,
+    displayPrizeId,
     handleDisplayPrizeTitleChange,
     displayPrizeTitle,
     handleDisplayPrizeDescChange,

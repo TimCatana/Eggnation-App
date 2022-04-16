@@ -21,6 +21,7 @@ import usePrizeDisplayModal from './usePrizeDisplayModal';
 const PrizeDisplayModal = props => {
   const {
     isLoading,
+    prizeId,
     prizeTitle,
     prizeDesc,
     prizeTier,
@@ -69,7 +70,7 @@ const PrizeDisplayModal = props => {
               label={S_PDM_CLAIM_PRIZE_BUTTON}
               onPress={async () => {
                 if (!isLoading) {
-                  await navigation.navigate(CLAIM_PRIZE_SCREEN);
+                  await navigation.navigate(CLAIM_PRIZE_SCREEN, {prizeId: prizeId});
                   setTimeout(() => {
                     handleHidePrize();
                   }, 500);

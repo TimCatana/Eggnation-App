@@ -1,17 +1,19 @@
 import React from 'react';
 import useClaimPrizeScreen from './useClaimPrizeScreen';
-import {View, StyleSheet} from 'react-native';
+import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_ICON_LIGHT} from '../../../theme/Colors';
+import {C_ICON_LIGHT, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
 import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
 import ClaimPrizeScreenBottomView from './components/bottom-view/ClaimPrizeScreenBottomView';
 import ClaimPrizeScreenTopView from './components/top-view/ClaimPrizeScreenTopView';
 import PickerModal from './components/other/PickerModal';
 
-const ClaimPrizeScreen = ({navigation}) => {
+const ClaimPrizeScreen = ({route, navigation}) => {
+  const {prizeId} = route.params;
+
   const {
     isLoading,
     allCountries,
@@ -25,19 +27,16 @@ const ClaimPrizeScreen = ({navigation}) => {
     address,
     handleAddressChange,
     isAddressError,
+    postalCode,
+    handlePostalCodeChange,
+    isPostalCodeError,
     isModalPickerShowing,
     showModalPicker,
     hideModalPicker,
     isSelectingCountries,
     handleClaimPrizeClick,
-  } = useClaimPrizeScreen();
-
-  /** Navigates back to the login screen if no process is currently running. */
-  const navigateBack = () => {
-    if (!isLoading) {
-      navigation.pop();
-    }
-  };
+    navigateBack,
+  } = useClaimPrizeScreen(prizeId, navigation);
 
   return (
     <View style={styles.body}>
@@ -55,6 +54,8 @@ const ClaimPrizeScreen = ({navigation}) => {
         selectedRegion={selectedRegion}
         address={address}
         handleAddressChange={handleAddressChange}
+        postalCode={postalCode}
+        handlePostalCodeChange={handlePostalCodeChange}
         showModalPicker={showModalPicker}
       />
       <ClaimPrizeScreenBottomView
@@ -62,6 +63,7 @@ const ClaimPrizeScreen = ({navigation}) => {
         isCountryError={isCountryError}
         isRegionError={isRegionError}
         isAddressError={isAddressError}
+        isPostalCodeError={isPostalCodeError}
         handleClaimPrizeClick={handleClaimPrizeClick}
       />
       <PickerModal
@@ -72,6 +74,12 @@ const ClaimPrizeScreen = ({navigation}) => {
           isSelectingCountries ? handleCountryChange : handleRegionChange
         }
         isSelectingCountries={isSelectingCountries}
+      />
+      <ActivityIndicator
+        style={styles.loading}
+        animating={isLoading}
+        size={hp('10%')}
+        color={C_ACTIVITY_INDICATOR}
       />
     </View>
   );
@@ -94,6 +102,13 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingLeft: wp('1%'),
     paddingTop: hp('1%'),
+  },
+  loading: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
   },
 });
 

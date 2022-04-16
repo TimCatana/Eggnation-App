@@ -17,6 +17,7 @@ const WonPrizeScreenCenterView = props => {
     prizeFetchFailedText,
     data,
     handleShowPrize,
+    handleDisplayPrizeIdChange,
     handleDisplayPrizeTitleChange,
     handleDisplayPrizeDescChange,
     handleDisplayPrizeTypeChange,
@@ -34,6 +35,7 @@ const WonPrizeScreenCenterView = props => {
         prizeFetchFailedText={prizeFetchFailedText}
         data={data}
         handleShowPrize={handleShowPrize}
+        handleDisplayPrizeIdChange={handleDisplayPrizeIdChange}
         handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}
         handleDisplayPrizeDescChange={handleDisplayPrizeDescChange}
         handleDisplayPrizeTypeChange={handleDisplayPrizeTypeChange}
@@ -55,9 +57,6 @@ const styles = StyleSheet.create({
     flex: 15,
     display: 'flex',
     backgroundColor: C_BACKGROUND_BOOKSHELF,
-  },
-  contentList: {
-    flex: 13,
   },
   loading: {
     position: 'absolute',

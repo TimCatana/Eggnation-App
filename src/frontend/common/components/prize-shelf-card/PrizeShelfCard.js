@@ -16,6 +16,7 @@ const PrizeShelfCard = props => {
     prize,
     bgShelfImage,
     handleShowPrize,
+    handleDisplayPrizeIdChange,
     handleDisplayPrizeTitleChange,
     handleDisplayPrizeDescChange,
     handleDisplayPrizeTypeChange,
@@ -28,6 +29,7 @@ const PrizeShelfCard = props => {
   const shelfImage = getShelfImage(bgShelfImage);
 
   const handlePrizeClick = () => {
+    handleDisplayPrizeIdChange(prize.prizeId)
     handleDisplayPrizeTitleChange(prize.prizeTitle);
     handleDisplayPrizeDescChange(prize.prizeDesc);
     handleDisplayPrizeTypeChange(prize.prizeType);

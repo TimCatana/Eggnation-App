@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react';
+import claimPrizeUC from '../../../../domain/claim-prize-screen-us/claimPrizeUC';
 import countriesData from '../../../util/countries.json';
 
-const useClaimPrizeScreen = () => {
+const useClaimPrizeScreen = (prizeId, navigation) => {
   /******************/
   /***** STATES *****/
   /******************/
@@ -19,6 +20,9 @@ const useClaimPrizeScreen = () => {
 
   const [address, setAddress] = useState('');
   const [isAddressError, setIsAddressError] = useState(true);
+
+  const [postalCode, setPostalCode] = useState('');
+  const [isPostalCodeError, setIsPostalCodeError] = useState(true);
 
   const [isModalPickerShowing, setIsModalPickerShowing] = useState(false);
   const [isSelectingCountries, setIsSelectingCountries] = useState(true);
@@ -92,6 +96,16 @@ const useClaimPrizeScreen = () => {
     address.length > 0 ? setIsAddressError(false) : setIsAddressError(true);
   }, [address]);
 
+  /**
+   * Checks to see if the newly inputted address
+   * @dependent postalCode
+   */
+  useEffect(() => {
+    postalCode.length > 0
+      ? setIsPostalCodeError(false)
+      : setIsPostalCodeError(true);
+  }, [postalCode]);
+
   /***********************/
   /***** TEXT INPUTS *****/
   /***********************/
@@ -122,6 +136,14 @@ const useClaimPrizeScreen = () => {
     setAddress(value);
   };
 
+  /**
+   * Updates the current postal code state when user inputs a value into a textInput
+   * @param value The value inputted into the textInput
+   */
+  const handlePostalCodeChange = value => {
+    setPostalCode(value);
+  };
+
   /*************************/
   /***** BUTTON CLICKS *****/
   /*************************/
@@ -149,9 +171,29 @@ const useClaimPrizeScreen = () => {
    * @onSuccess // TODO
    * @onFailure // TODO
    */
-  const handleClaimPrizeClick = () => {
+  const handleClaimPrizeClick = async () => {
     setIsLoading(true);
+    const result = await claimPrizeUC(
+      prizeId,
+      selectedCountry,
+      selectedRegion,
+      address,
+      postalCode,
+    );
     setIsLoading(false);
+
+    // SHOW
+  };
+
+  /******************************/
+  /***** NAVIGATION HELPERS *****/
+  /******************************/
+
+  /** Navigates back to the login screen if no process is currently running. */
+  const navigateBack = () => {
+    if (!isLoading) {
+      navigation.pop();
+    }
   };
 
   /*******************/
@@ -171,11 +213,15 @@ const useClaimPrizeScreen = () => {
     address,
     handleAddressChange,
     isAddressError,
+    postalCode,
+    handlePostalCodeChange,
+    isPostalCodeError,
     isModalPickerShowing,
     showModalPicker,
     hideModalPicker,
     isSelectingCountries,
     handleClaimPrizeClick,
+    navigateBack
   };
 };
 

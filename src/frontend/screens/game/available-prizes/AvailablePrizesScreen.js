@@ -19,6 +19,8 @@ const AvailablePrizesScreen = ({navigation}) => {
     availablePrizes,
     handleShowPrize,
     handleHidePrize,
+    handleDisplayPrizeIdChange,
+    displayPrizeId,
     handleDisplayPrizeTitleChange,
     displayPrizeTitle,
     handleDisplayPrizeDescChange,
@@ -40,6 +42,7 @@ const AvailablePrizesScreen = ({navigation}) => {
         prizeFetchFailedText={prizeFetchFailedText}
         data={TEST_DATA}
         handleShowPrize={handleShowPrize}
+        handleDisplayPrizeIdChange={handleDisplayPrizeIdChange}
         handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}
         handleDisplayPrizeDescChange={handleDisplayPrizeDescChange}
         handleDisplayPrizeTypeChange={handleDisplayPrizeTypeChange}
@@ -48,6 +51,7 @@ const AvailablePrizesScreen = ({navigation}) => {
 
       <PrizeDisplayModal
         isLoading={isLoading}
+        prizeId={displayPrizeId}
         prizeTitle={displayPrizeTitle}
         prizeDesc={displayPrizeDesc}
         prizeTier={displayPrizeTier}
@@ -70,19 +74,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: C_BACKGROUND_BOOKSHELF,
-  },
-  backgroundContainer: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  prizeList: {
-    display: 'flex',
-  },
-  text: {
-    fontSize: 100,
   },
 });
 

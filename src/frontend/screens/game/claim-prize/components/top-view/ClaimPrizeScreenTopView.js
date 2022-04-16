@@ -14,6 +14,8 @@ const ClaimPrizeScreenTopView = props => {
     selectedRegion,
     address,
     handleAddressChange,
+    postalCode,
+    handlePostalCodeChange,
     showModalPicker,
   } = props;
 
@@ -53,6 +55,25 @@ const ClaimPrizeScreenTopView = props => {
         disabled={isLoading}
         isPassword={false}
         placeholder="address"
+        keyboardType="default"
+        maxLength={30}
+        width={'100%'}
+        height={hp('5.5%')}
+        marginBottom={hp('2%')}
+        fontSize={hp('2%')}
+        textColor="white"
+        unfocusedBorderColor={'gray'}
+        focusedBorderColor={'pink'}
+        returnKeyType={'done'}
+      />
+      <CustomTextInput
+        value={postalCode}
+        onValueChange={handlePostalCodeChange}
+        isError={false}
+        errorText={''}
+        disabled={isLoading}
+        isPassword={false}
+        placeholder="postal code"
         keyboardType="default"
         maxLength={30}
         width={'100%'}
