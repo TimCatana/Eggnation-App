@@ -40,9 +40,6 @@ exports.sendMeEmail = functions.https.onCall(async (data, context) => {
     );
   }
 
-
-  console.log("sendMeEmil Passed !context.auth");
-
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp-mail.outlook.com", // hostname
@@ -56,8 +53,6 @@ exports.sendMeEmail = functions.https.onCall(async (data, context) => {
         pass: process.env.EMAIL_PASSWORD,
       },
     });
-
-    console.log("sendMeEmail Passed transporter");
 
     const mailOptions = {
       from: `Eggnation Prizes <${process.env.EMAIL}>`,
@@ -77,11 +72,7 @@ exports.sendMeEmail = functions.https.onCall(async (data, context) => {
              7) When you ship the prize, change the isDelivered variable to true for the prize`,
     };
 
-    console.log("sendMeEmail Passed mailOptions");
-
     const result = await transporter.sendMail(mailOptions);
-
-    console.log("sendMeEmail Passed sendMail");
 
     console.log(result);
     return result;
