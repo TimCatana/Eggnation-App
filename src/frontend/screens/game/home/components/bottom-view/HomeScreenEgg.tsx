@@ -16,8 +16,6 @@ interface Props {
   adShowing: boolean;
   playGame: () => void;
   isAnimationPlaying: boolean;
-  isWonAnimationShowing: boolean;
-  loseAnimationRef: React.LegacyRef<LottieView> | null; // TODO - find out what to do for this
   winAnimationRef: React.LegacyRef<LottieView> | null; // TODO - find out what to do for this
   resetAnimation: () => void;
 }
@@ -28,8 +26,6 @@ const HomeScreenEgg: FC<Props> = props => {
     adShowing,
     playGame,
     isAnimationPlaying,
-    isWonAnimationShowing,
-    loseAnimationRef,
     winAnimationRef,
     resetAnimation,
   } = props;
@@ -37,20 +33,8 @@ const HomeScreenEgg: FC<Props> = props => {
   return (
     <View style={styles.body}>
       <Pressable
-        disabled={isLoading || adShowing }
+        disabled={isLoading || adShowing || isAnimationPlaying}
         onPress={playGame}>
-        <LottieView
-          ref={loseAnimationRef}
-          style={styles.particle}
-          source={Particles}
-          autoPlay={true}
-          loop={false}
-          duration={200}
-          onAnimationFinish={() => {
-            resetAnimation();
-          }}
-        />
-
         <LottieView
           ref={winAnimationRef}
           style={styles.egg}

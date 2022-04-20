@@ -22,10 +22,7 @@ const useHomeScreen = () => {
 
   const [localCount, setLocalCount] = useState(1000);
 
-  const [isWonAnimationShowing, setIsWonAnimationShowing] = useState(false);
   const [isAnimationPlaying, setIsAnimationPlaying] = useState(false);
-
-  const loseAnimationRef = useRef<any>(null);
   const winAnimationRef = useRef<any>(null);
 
   const {adLoaded, adDismissed, adShowing, show, load} = useInterstitialAd(
@@ -109,11 +106,9 @@ const useHomeScreen = () => {
 
       const result = await mainGameLogicUC(localCount);
 
-      result.data.isWon === true
-        ? setIsWonAnimationShowing(true)
-        : setIsWonAnimationShowing(false);
-
-      playAnimation();
+      if (result.data.isWon) {
+        playAnimation();
+      }
     }
 
     setIsLoading(false);
@@ -154,11 +149,7 @@ const useHomeScreen = () => {
    * the animation on the UI.
    */
   const _playAnimation = () => {
-    if (isWonAnimationShowing) {
-      winAnimationRef.current ? winAnimationRef.current.play() : null;
-    } else {
-      loseAnimationRef.current ? loseAnimationRef.current.play() : null;
-    }
+    winAnimationRef.current ? winAnimationRef.current.play() : null;
   };
 
   /**
@@ -166,11 +157,7 @@ const useHomeScreen = () => {
    * the animation on the UI.
    */
   const _resetAnimation = () => {
-    if (isWonAnimationShowing) {
-      winAnimationRef.current ? winAnimationRef.current.reset() : null;
-    } else {
-      loseAnimationRef.current ? loseAnimationRef.current.reset() : null;
-    }
+    winAnimationRef.current ? winAnimationRef.current.reset() : null;
   };
 
   /***************/
@@ -179,7 +166,7 @@ const useHomeScreen = () => {
 
   /** Loads an Ad from AdMob server if an Ad is not loaded yet. */
   const loadAd = () => {
-    if (adDismissed) {
+    if (adDismissed || !adLoaded) {
       load();
     }
   };
@@ -213,9 +200,7 @@ const useHomeScreen = () => {
     playGame,
     localCount,
     isAnimationPlaying,
-    isWonAnimationShowing,
     winAnimationRef,
-    loseAnimationRef,
     resetAnimation,
     navToSettingsScreen,
   };

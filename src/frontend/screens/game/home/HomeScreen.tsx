@@ -20,9 +20,7 @@ const HomeScreen: FC = () => {
     playGame,
     localCount,
     isAnimationPlaying,
-    isWonAnimationShowing,
     winAnimationRef,
-    loseAnimationRef,
     resetAnimation,
     navToSettingsScreen,
   } = useHomeScreen();
@@ -49,8 +47,6 @@ const HomeScreen: FC = () => {
         adShowing={adShowing}
         playGame={playGame}
         isAnimationPlaying={isAnimationPlaying}
-        isWonAnimationShowing={isWonAnimationShowing}
-        loseAnimationRef={loseAnimationRef}
         winAnimationRef={winAnimationRef}
         resetAnimation={resetAnimation}
       />
