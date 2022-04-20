@@ -1,7 +1,7 @@
 import doUpdateUserEmail from '../../backend/auth/doUpdateUserEmail';
 import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 import doReauthenticate from '../../backend/auth/doReauthenticate';
-import { SUCCESS, ERROR } from '../../constants/ResultsConstants';
+import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import printDevLogs from '../printDevLogs';
 import {Result} from '../../types/typeAliases';
 

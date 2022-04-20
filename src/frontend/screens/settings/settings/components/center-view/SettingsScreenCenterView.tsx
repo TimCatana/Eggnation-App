@@ -6,7 +6,7 @@ import SettingsLegalSection from '../sections/SettingsLegalSection';
 
 interface Props {
   email: string;
-  emailVerificationStatus: boolean;
+  emailVerificationStatus: boolean | null;
   handleSendVerificationEmailClick: () => void;
   navToEditEmailScreen: () => void;
   navToEditPasswordScreen: () => void;

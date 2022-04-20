@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import useClaimPrizeScreen from './useClaimPrizeScreen';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import {
@@ -6,37 +6,13 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_ICON_LIGHT, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
-import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
+import {TopLeftCornerIcon} from '../../../common/components';
 import ClaimPrizeScreenBottomView from './components/bottom-view/ClaimPrizeScreenBottomView';
 import ClaimPrizeScreenTopView from './components/top-view/ClaimPrizeScreenTopView';
 import PickerModal from './components/other/PickerModal';
 
-interface Props {
-  isLoading: boolean;
-  allCountries: any;
-  allRegions: any;
-  selectedCountry: string;
-  handleCountryChange: (index: number) => void;
-  isCountryError: boolean;
-  selectedRegion: string;
-  handleRegionChange: (index: number) => void;
-  isRegionError: boolean;
-  address: string;
-  handleAddressChange: (value: string) => void;
-  isAddressError: boolean;
-  postalCode: string;
-  handlePostalCodeChange: (value: string) => void;
-  isPostalCodeError: boolean;
-  isModalPickerShowing: boolean;
-  showModalPicker: (selectingCountries: boolean) => void;
-  hideModalPicker: () => void;
-  isSelectingCountries: boolean;
-  handleClaimPrizeClick: () => void;
-  navigateBack: () => void;
-}
 
-const ClaimPrizeScreen = ({route, navigation}) => {
-  const {prizeId} = route.params;
+const ClaimPrizeScreen: FC = () => {
 
   const {
     isLoading,
@@ -60,7 +36,7 @@ const ClaimPrizeScreen = ({route, navigation}) => {
     isSelectingCountries,
     handleClaimPrizeClick,
     navigateBack,
-  } = useClaimPrizeScreen(prizeId, navigation);
+  } = useClaimPrizeScreen();
 
   return (
     <View style={styles.body}>

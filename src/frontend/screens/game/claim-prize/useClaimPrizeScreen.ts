@@ -1,20 +1,28 @@
 import {useState, useEffect} from 'react';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {ClaimPrizeScreenProp} from '../../../navigation/ScreenProps';
 import claimPrizeUC from '../../../../domain/claim-prize-screen-us/claimPrizeUC';
 import countriesData from '../../../util/countries.json';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {ClaimPrizeScreenProp} from '../../../navigation/ScreenProps'
+import {ClaimPrizeRouteProp} from '../../../navigation/ScreenProps';
 
-const useClaimPrizeScreen = (prizeId) => {
+const useClaimPrizeScreen = () => {
   /******************/
   /***** STATES *****/
   /******************/
   const navigation = useNavigation<ClaimPrizeScreenProp>();
-  const route = useRoute<ClaimPrizeScreenProp>();
+  const route = useRoute<ClaimPrizeRouteProp>();
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [allCountries, setAllCountries] = useState([]);
-  const [allRegions, setAllRegions] = useState([]);
+  const [allCountries, setAllCountries] = useState<
+    {
+      countryName: string;
+      countryShortCode: string;
+    }[]
+  >([]);
+  const [allRegions, setAllRegions] = useState<
+    {name: string; shortCode: string}[]
+  >([]);
 
   const [selectedCountry, setSelectedCountry] = useState('Afghanistan');
   const [isCountryError, setIsCountryError] = useState(true);
@@ -51,7 +59,8 @@ const useClaimPrizeScreen = (prizeId) => {
     );
 
     setAllRegions(
-      countriesData.find(it => it.countryName === selectedCountry).regions,
+      [],
+      // countriesData.find(it =>  it.countryName === selectedCountry).regions,
     );
   }, []);
 
@@ -65,7 +74,8 @@ const useClaimPrizeScreen = (prizeId) => {
       ? setIsCountryError(false)
       : setIsCountryError(true);
     setAllRegions(
-      countriesData.find(it => it.countryName === selectedCountry).regions,
+      [],
+      // countriesData.find(it => it.countryName === selectedCountry).regions,
     );
   }, [selectedCountry]);
 
@@ -118,7 +128,7 @@ const useClaimPrizeScreen = (prizeId) => {
    * Updates the current selected country when dropdown menu item is clicked.
    * @param index The index of the available countries array to select
    */
-  const handleCountryChange = index => {
+  const handleCountryChange = (index: number) => {
     setSelectedCountry(allCountries[index].countryName);
     setIsModalPickerShowing(false);
   };
@@ -127,7 +137,7 @@ const useClaimPrizeScreen = (prizeId) => {
    * Updates the current selected region when dropdown menu item is clicked.
    * @param index The index of the available countries array to select
    */
-  const handleRegionChange = index => {
+  const handleRegionChange = (index: number) => {
     setSelectedRegion(allRegions[index].name);
     setIsModalPickerShowing(false);
   };
@@ -136,7 +146,7 @@ const useClaimPrizeScreen = (prizeId) => {
    * Updates the current address state when user inputs a value into a textInput
    * @param value The value inputted into the textInput
    */
-  const handleAddressChange = value => {
+  const handleAddressChange = (value: string) => {
     setAddress(value);
   };
 
@@ -144,7 +154,7 @@ const useClaimPrizeScreen = (prizeId) => {
    * Updates the current postal code state when user inputs a value into a textInput
    * @param value The value inputted into the textInput
    */
-  const handlePostalCodeChange = value => {
+  const handlePostalCodeChange = (value: string) => {
     setPostalCode(value);
   };
 
@@ -158,7 +168,7 @@ const useClaimPrizeScreen = (prizeId) => {
    * I need to identify which one to show.
    * @param selectingCountries Whether the user is selecting a country or not (region)
    */
-  const showModalPicker = selectingCountries => {
+  const showModalPicker = (selectingCountries: boolean) => {
     setIsSelectingCountries(selectingCountries);
     setIsModalPickerShowing(true);
   };
@@ -178,7 +188,7 @@ const useClaimPrizeScreen = (prizeId) => {
   const handleClaimPrizeClick = async () => {
     setIsLoading(true);
     const result = await claimPrizeUC(
-      prizeId,
+      route.params.prizeId,
       selectedCountry,
       selectedRegion,
       address,

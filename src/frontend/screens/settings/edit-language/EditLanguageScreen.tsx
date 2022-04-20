@@ -1,8 +1,8 @@
-import React from 'react';
-import useEditLanguageScreen from './useEditLanguageScreen';
+import React, { FC } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import useEditLanguageScreen from './useEditLanguageScreen';
 
-const EditLanguageScreen = () => {
+const EditLanguageScreen: FC = () => {
   const {language} = useEditLanguageScreen();
 
   return (

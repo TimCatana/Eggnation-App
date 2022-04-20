@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {EditEmailScreenProp} from '../../../navigation/ScreenProps';
+import {SUCCESS} from '../../../../constants/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
 import isEmailValid from '../../../common/helpers/isEmailValid';
 import updateUserEmailUC from '../../../../domain/edit-email-screen-uc/updateUserEmailUC';
-import {SUCCESS} from '../../../../constants/ResultsConstants';
-import {useNavigation} from '@react-navigation/native';
-import {EditEmailScreenProp} from '../../../navigation/ScreenProps';
 
 const useEditEmailScreen = () => {
   /******************/

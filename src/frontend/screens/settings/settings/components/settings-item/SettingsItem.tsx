@@ -12,7 +12,7 @@ interface Props {
   icon: any; // todo change to more exact type
   isLast: boolean;
   onIconPress: () => void;
-  iconDisabled?: boolean;
+  iconDisabled: boolean;
 }
 
 const SettingsItem: FC<Props> = props => {

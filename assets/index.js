@@ -18,8 +18,10 @@ import present from './items/present.png';
 import shirt from './items/shirt.png';
 import tablet from './items/tablet.png';
 
-import lostAnimation from './lottie/lost.json';
-import wonAnimation from './lottie/won.json';
+import LostAnimation from './lottie/lost.json';
+import WonAnimation from './lottie/won.json';
+import Particles from './lottie/particles.json';
+import PresentPlaceholder from './lottie/present-placeholder.json';
 
 export {
   backgroundAuth,
@@ -38,6 +40,8 @@ export {
   present,
   shirt,
   tablet,
-  lostAnimation,
-  wonAnimation,
+  LostAnimation,
+  WonAnimation,
+  Particles,
+  PresentPlaceholder,
 };

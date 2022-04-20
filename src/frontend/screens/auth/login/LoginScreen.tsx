@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {
   View,
-  ActivityIndicator,
   ImageBackground,
+  ActivityIndicator,
   StyleSheet,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {backgroundAuth} from '../../../../../assets';
 import {C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
 import LoginScreenTopView from './components/top-view/LoginScreenTopView';
 import LoginScreenBottomView from './components/bottom-view/LoginScreenBottomView';
-import {backgroundAuth} from '../../../../../assets';
 
 import useLoginScreen from './useLoginScreen';
 
-const LoginScreen = () => {
+const LoginScreen: FC = () => {
   const {
     isLoading,
     email,
@@ -28,12 +28,10 @@ const LoginScreen = () => {
   } = useLoginScreen();
 
   return (
-    <View style={styles.body}>
-      <ImageBackground
-        style={styles.body}
-        source={backgroundAuth}
-        resizeMode="cover"
-      />
+    <ImageBackground
+      style={styles.body}
+      source={backgroundAuth}
+      resizeMode="cover">
       <LoginScreenTopView
         navToForgotPasswordScreen={navToForgotPasswordScreen}
         isLoading={isLoading}
@@ -57,7 +55,7 @@ const LoginScreen = () => {
         size={hp('10%')}
         color={C_ACTIVITY_INDICATOR}
       />
-    </View>
+    </ImageBackground>
   );
 };
 

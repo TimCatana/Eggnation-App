@@ -1,5 +1,5 @@
 import doLogout from '../../backend/auth/doLogout';
-import { SUCCESS, ERROR } from '../../constants/ResultsConstants';
+import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../types/typeAliases';
 import printDevLogs from '../printDevLogs';
 

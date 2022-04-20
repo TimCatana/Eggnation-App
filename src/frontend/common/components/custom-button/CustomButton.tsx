@@ -19,7 +19,7 @@ interface Props {
 
 const CustomButton: FC<Props> = props => {
   const {
-    label = 'lol',
+    label,
     onPress,
     buttonEnabledColor,
     buttonDisabledColor,

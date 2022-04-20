@@ -1,18 +1,11 @@
 import React, {FC} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  FlatList,
-  Modal,
-} from 'react-native';
+import {View, Text, StyleSheet, Pressable, FlatList, Modal} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_TEXT_PRIMARY, C_ICON_PRIMARY} from '../../../../../theme/Colors';
-import TopLeftCornerIcon from '../../../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
+import {TopLeftCornerIcon} from '../../../../../common/components';
 
 interface DropdownProps {
   item: any;

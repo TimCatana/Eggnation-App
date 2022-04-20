@@ -1,12 +1,5 @@
 import React, {FC} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Modal,
-  Pressable,
-  StyleSheet,
-} from 'react-native';
+import {View, Modal, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -21,8 +14,7 @@ import {
   C_TEXT_LIGHT,
   C_TEXT_INPUT_TEXT_PRIMARY,
 } from '../../../theme/Colors';
-import CustomTextInput from '../custom-text-input/CustomTextInput';
-import CustomButton from '../custom-button/CustomButton';
+import {CustomTextInput, CustomButton} from '../index';
 
 interface Props {
   isLoading: boolean;

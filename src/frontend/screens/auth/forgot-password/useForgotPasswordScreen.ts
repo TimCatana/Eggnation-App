@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {ForgotPasswordScreenProp} from '../../../navigation/ScreenProps';
 import Snackbar from 'react-native-snackbar';
 import isEmailValid from '../../../common/helpers/isEmailValid';
 import sendForgotPasswordEmailUC from '../../../../domain/forgot-password-screen-uc/sendForgotPasswordEmailUC';
-import {useNavigation} from '@react-navigation/native';
-import {ForgotPasswordScreenProp} from '../../../navigation/ScreenProps';
 
 const useForgotPasswordScreen = () => {
   /******************/

@@ -26,6 +26,7 @@ const SettingsContactSection: FC = () => {
           onIconPress={() => {
             console.log('mynza clicked');
           }}
+          iconDisabled={false}
         />
         <SettingsItem
           title={S_SS_CONTACT_US}
@@ -35,6 +36,7 @@ const SettingsContactSection: FC = () => {
           onIconPress={() => {
             console.log('Contact us clicked');
           }}
+          iconDisabled={false}
         />
       </View>
     </View>

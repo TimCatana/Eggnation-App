@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {
-  ImageBackground,
   View,
+  ImageBackground,
   ActivityIndicator,
   StyleSheet,
 } from 'react-native';
@@ -9,15 +9,14 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {C_ICON_PRIMARY, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
 import {backgroundAuth} from '../../../../../assets';
-
-import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
+import {C_ICON_PRIMARY, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
+import {TopLeftCornerIcon} from '../../../common/components';
 import ForgotPasswordScreenCenterView from './components/center-view/ForgotPasswordScreenCenterView';
 
 import useForgotPasswordScreen from './useForgotPasswordScreen';
 
-const ForgotPasswordScreen = () => {
+const ForgotPasswordScreen: FC = () => {
   const {
     isLoading,
     email,
@@ -28,12 +27,10 @@ const ForgotPasswordScreen = () => {
   } = useForgotPasswordScreen();
 
   return (
-    <View style={styles.body}>
-      <ImageBackground
-        style={styles.body}
-        source={backgroundAuth}
-        resizeMode="cover"
-      />
+    <ImageBackground
+      style={styles.body}
+      source={backgroundAuth}
+      resizeMode="cover">
       <TopLeftCornerIcon
         icon={'arrow-left'}
         onPress={navigateBack}
@@ -57,7 +54,7 @@ const ForgotPasswordScreen = () => {
         size={hp('10%')}
         color={C_ACTIVITY_INDICATOR}
       />
-    </View>
+    </ImageBackground>
   );
 };
 

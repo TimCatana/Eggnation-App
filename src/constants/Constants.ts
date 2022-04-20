@@ -25,3 +25,8 @@ export const FS_WON_PRIZES_COLLECTION_KEY = 'won-prizes';
 export const FS_USER_WON_PRIZES_COLLECTION_KEY = 'user-prizes';
 export const FS_CONTEST_PRIZES_COLLECTION_KEY = 'contest-prizes';
 export const FS_USERS_COLLECTION_KEY = 'users';
+
+/** SHELF IMAGE */
+export const SI_FIRST_HALF_SHELF = 'firstHalfShelf';
+export const SI_SECOND_HALF_SHELF = 'secondHalfShelf';
+export const SI_FULL_SHELF = 'fullHalfShelf';

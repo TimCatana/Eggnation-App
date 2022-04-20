@@ -3,6 +3,7 @@ import auth from '@react-native-firebase/auth';
 /**
  * Updates the user's account login password.
  * @param newPassword (string) The new password that should be set for the user's account
+ * @throws {eggnation/user-is-null} SHOULD NEVER BE THROWN Thrown if user is null
  * @throws {auth/weak-password} Thrown if the password is not strong enough.
  * @throws {auth/requires-recent-login} Thrown if the user's last sign-in time does not meet the security threshold.
  */

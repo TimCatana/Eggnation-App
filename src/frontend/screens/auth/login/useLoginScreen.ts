@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {LoginScreenProp} from '../../../navigation/ScreenProps';
+import {Screens} from '../../../../constants/NavigationConstants';
 import {ERROR} from '../../../../constants/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
 import isEmailValid from '../../../common/helpers/isEmailValid';
 import loginUserUC from '../../../../domain/login-screen-uc/loginUserUC';
-import {Screens} from '../../../../constants/NavigationConstants';
-import {LoginScreenProp} from '../../../navigation/ScreenProps';
-import {useNavigation} from '@react-navigation/native';
 
 const useLoginScreen = () => {
   /******************/

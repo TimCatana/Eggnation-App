@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {EditPasswordScreenProp} from '../../../navigation/ScreenProps';
+import {SUCCESS} from '../../../../constants/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
 import isPasswordValid from '../../../common/helpers/isPasswordValid';
 import isConfirmPasswordValid from '../../../common/helpers/isConfirmPasswordValid';
 import updateUserPasswordUC from '../../../../domain/edit-password-screen-uc/updateUserPasswordUC';
-import {SUCCESS} from '../../../../constants/ResultsConstants';
-import {useNavigation} from '@react-navigation/native';
-import {EditPasswordScreenProp} from '../../../navigation/ScreenProps';
 
 const useEditPasswordScreen = () => {
   /******************/

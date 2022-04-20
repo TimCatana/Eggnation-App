@@ -34,6 +34,7 @@ const SettingsLegalSection: FC<Props> = props => {
           onIconPress={() => {
             console.log('contact us pressed!');
           }}
+          iconDisabled={false}
         />
         <SettingsItem
           title={S_SS_PRIVACY_POLICY}
@@ -41,6 +42,7 @@ const SettingsLegalSection: FC<Props> = props => {
           icon={'chevron-right'}
           isLast={false}
           onIconPress={navToPrivacyPolicyScreen}
+          iconDisabled={false}
         />
         <SettingsItem
           title={S_SS_TERMS_AND_CONDITIONS}
@@ -48,6 +50,7 @@ const SettingsLegalSection: FC<Props> = props => {
           icon={'chevron-right'}
           isLast={true}
           onIconPress={navToTermsScreen}
+          iconDisabled={false}
         />
       </View>
     </View>

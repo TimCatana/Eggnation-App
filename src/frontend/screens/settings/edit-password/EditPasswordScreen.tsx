@@ -5,8 +5,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_ICON_LIGHT, C_BACKGROUND_DARK} from '../../../theme/Colors';
-import PasswordModal from '../../../common/components/password-modal/PasswordModal';
-import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
+import {TopLeftCornerIcon, PasswordModal} from '../../../common/components';
 import UpdatePasswordScreenTopView from './components/top-view/UpdatePasswordScreenTopView';
 import UpdatePasswordScreenBottomView from './components/bottom-view/UpdatePasswordScreenBottomView';
 

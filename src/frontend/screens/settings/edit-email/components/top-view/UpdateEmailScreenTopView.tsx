@@ -10,7 +10,7 @@ import {
   S_TI_EMAIL_ERROR_TEXT,
 } from '../../../../../theme/Strings';
 import {C_TEXT_INPUT_TEXT_LIGHT} from '../../../../../theme/Colors';
-import CustomTextInput from '../../../../../common/components/custom-text-input/CustomTextInput';
+import {CustomTextInput} from '../../../../../common/components';
 
 interface Props {
   isLoading: boolean;

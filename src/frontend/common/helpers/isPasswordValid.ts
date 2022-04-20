@@ -1,4 +1,9 @@
-const isPasswordValid = password => {
+/**
+ * Checks to see if the newly entered password is still valid.
+ * @param password (string) The password input
+ * @returns Whether or not the current password input is valid
+ */
+const isPasswordValid = (password: string) => {
   let isValid = true;
   let whitespaceChars = /\s/;
   let lowerCaseChars = /[a-z]/;

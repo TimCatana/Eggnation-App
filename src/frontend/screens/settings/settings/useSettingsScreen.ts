@@ -1,14 +1,14 @@
 import {useState, useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {SettingsScreenProp} from '../../../navigation/ScreenProps';
+import {Screens} from '../../../../constants/NavigationConstants';
+import {ERROR} from '../../../../constants/ResultsConstants';
+import Snackbar from 'react-native-snackbar';
 import getUserEmailUC from '../../../../domain/settings-screen-uc/getUserEmailUC';
 import getUserEmailVerificationStatusUC from '../../../../domain/settings-screen-uc/getUserEmailVerificationStatusUC';
 import sendVerificationEmailUC from '../../../../domain/settings-screen-uc/sendVerificationEmailUC';
 import logoutUserUC from '../../../../domain/settings-screen-uc/logoutUserUC';
 import deleteUserUC from '../../../../domain/settings-screen-uc/deleteUserUC';
-import {Screens} from '../../../../constants/NavigationConstants';
-import {ERROR} from '../../../../constants/ResultsConstants';
-import Snackbar from 'react-native-snackbar';
-import {SettingsScreenProp} from '../../../navigation/ScreenProps';
-import {useNavigation} from '@react-navigation/native';
 
 // TODO - refresh token each time the user goes to settings screen. The should rarely go here so it should not be that expensive
 const useSettingsScreen = () => {

@@ -5,8 +5,11 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import LottieView from 'lottie-react-native';
-import WonAnimation from '../../../../../../../assets/lottie/won.json';
-import LostAnimation from '../../../../../../../assets/lottie/lost.json';
+import {
+  WonAnimation,
+  Particles,
+  LostAnimation,
+} from '../../../../../../../assets';
 
 interface Props {
   isLoading: boolean;
@@ -34,29 +37,29 @@ const HomeScreenEgg: FC<Props> = props => {
   return (
     <View style={styles.body}>
       <Pressable
-        disabled={isLoading || adShowing || isAnimationPlaying}
+        disabled={isLoading || adShowing }
         onPress={playGame}>
-        {isWonAnimationShowing ? (
-          <LottieView
-            ref={winAnimationRef}
-            style={styles.egg}
-            source={WonAnimation}
-            autoPlay={false}
-            loop={false}
-            duration={500}
-            onAnimationFinish={resetAnimation}
-          />
-        ) : (
-          <LottieView
-            ref={loseAnimationRef}
-            style={styles.egg}
-            source={LostAnimation}
-            autoPlay={false}
-            loop={false}
-            duration={100}
-            onAnimationFinish={resetAnimation}
-          />
-        )}
+        <LottieView
+          ref={loseAnimationRef}
+          style={styles.particle}
+          source={Particles}
+          autoPlay={true}
+          loop={false}
+          duration={200}
+          onAnimationFinish={() => {
+            resetAnimation();
+          }}
+        />
+
+        <LottieView
+          ref={winAnimationRef}
+          style={styles.egg}
+          source={LostAnimation}
+          autoPlay={false}
+          loop={false}
+          duration={500}
+          onAnimationFinish={resetAnimation}
+        />
       </Pressable>
     </View>
   );
@@ -71,6 +74,13 @@ const styles = StyleSheet.create({
   egg: {
     width: wp('50%'),
     height: hp('35%'),
+  },
+  particle: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
   },
 });
 

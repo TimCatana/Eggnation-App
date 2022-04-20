@@ -6,6 +6,7 @@ import PasswordModal from './password-modal/PasswordModal';
 import PrizeDisplayModal from './prize-display-modal/PrizeDisplayModal';
 import PrizeList from './prize-list/PrizeList';
 import PrizeShelfCard from './prize-shelf-card/PrizeShelfCard';
+import TopLeftCornerIcon from './top-left-corner-icon/TopLeftCornerIcon';
 
 export {
   BookshelfContent,
@@ -16,4 +17,5 @@ export {
   PrizeDisplayModal,
   PrizeList,
   PrizeShelfCard,
+  TopLeftCornerIcon,
 };

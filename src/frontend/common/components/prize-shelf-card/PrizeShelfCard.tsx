@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_BACKGROUND_BOOKSHELF} from '../../../theme/Colors';
+
 import usePrizeShelfCard from './usePrizeShelfCard';
 
 interface Props {

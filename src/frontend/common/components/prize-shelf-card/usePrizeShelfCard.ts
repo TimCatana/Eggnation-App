@@ -1,8 +1,8 @@
 import {
-  FIRST_HALF_SHELF,
-  FULL_SHELF,
-  SECOND_HALF_SHELF,
-} from '../../../../constants/ShelfImageConstants';
+  SI_FULL_SHELF,
+  SI_FIRST_HALF_SHELF,
+  SI_SECOND_HALF_SHELF,
+} from '../../../../constants/Constants';
 
 import {
   singleShelfFirstHalf,
@@ -52,11 +52,11 @@ const usePrizeShelfCard = () => {
    */ // todo, make the type of param  FIRST_HALF_SHELF | FULL_SHELF | SECOND_HALF_SHELF
   const getShelfImage = (bgShelfImage: string) => {
     switch (bgShelfImage) {
-      case FIRST_HALF_SHELF:
+      case SI_FIRST_HALF_SHELF:
         return singleShelfFirstHalf;
-      case SECOND_HALF_SHELF:
+      case SI_SECOND_HALF_SHELF:
         return singleShelfSecondHalf;
-      case FULL_SHELF:
+      case SI_FULL_SHELF:
         return singleShelfFull;
       default:
         return singleShelfFull;

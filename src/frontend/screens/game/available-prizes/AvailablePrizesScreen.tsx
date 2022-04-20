@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {C_BACKGROUND_BOOKSHELF} from '../../../theme/Colors';
-import PrizeDisplayModal from '../../../common/components/prize-display-modal/PrizeDisplayModal';
+import {PrizeDisplayModal} from '../../../common/components';
 import AvailablePrizeScreenLeftView from './components/left-view/AvailablePrizeScreenLeftView';
 import AvailablePrizeScreenCenterView from './components/center-view/AvailablePrizeScreenCenterView';
 import AvailablePrizeScreenRightView from './components/right-view/AvailablePrizeScreenRightView';
@@ -9,28 +9,7 @@ import AvailablePrizeScreenRightView from './components/right-view/AvailablePriz
 import TEST_DATA from '../../../../../test-data/availablePrizes.json'; // TODO - get rid of this after...
 import useAvailablePrizesScreen from './useAvailablePrizesScreen';
 
-interface Props {
-  isInitialized: boolean;
-  isLoading: boolean;
-  isPrizeFetchFailed: boolean;
-  prizeFetchFailedText: string;
-  isShowingPrize: boolean;
-  availablePrizes: any; // TODO, change this latetr to availablePrizes[]
-  handleShowPrize: () => void;
-  handleHidePrize: () => void;
-  handleDisplayPrizeIdChange: (id: string) => void;
-  displayPrizeId: string;
-  handleDisplayPrizeTitleChange: (title: string) => void;
-  displayPrizeTitle: string;
-  handleDisplayPrizeDescChange: (desc: string) => void;
-  displayPrizeDesc: string;
-  handleDisplayPrizeTierChange: (tier: string) => void;
-  displayPrizeTier: string;
-  handleDisplayPrizeTypeChange: (type: string) => void;
-  displayPrizeType: string;
-}
-
-const AvailablePrizesScreen: FC<Props> = () => {
+const AvailablePrizesScreen: FC = () => {
   const {
     isInitialized,
     isLoading,

@@ -13,7 +13,7 @@ import {
   S_TI_CONFIRM_PASSWORD_PLACEHOLDER,
 } from '../../../../../theme/Strings';
 import {C_TEXT_INPUT_TEXT_LIGHT} from '../../../../../theme/Colors';
-import CustomTextInput from '../../../../../common/components/custom-text-input/CustomTextInput';
+import {CustomTextInput} from '../../../../../common/components';
 
 interface Props {
   isLoading: boolean;

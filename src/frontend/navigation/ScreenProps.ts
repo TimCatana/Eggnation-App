@@ -1,5 +1,5 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import {CompositeNavigationProp} from '@react-navigation/native';
+import {CompositeNavigationProp, RouteProp} from '@react-navigation/native';
 import {MaterialTopTabNavigationProp} from '@react-navigation/material-top-tabs';
 import {Screens} from '../../constants/NavigationConstants';
 
@@ -73,6 +73,12 @@ export type ClaimPrizeScreenProp = StackNavigationProp<
   GameStackParamList,
   Screens.CLAIM_PRIZE_SCREEN
 >;
+
+export type ClaimPrizeRouteProp = RouteProp<
+  GameStackParamList,
+  Screens.CLAIM_PRIZE_SCREEN
+>;
+
 
 export type EditEmailScreenProp = StackNavigationProp<
   GameStackParamList,

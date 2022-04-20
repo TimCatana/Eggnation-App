@@ -1,12 +1,11 @@
 import React, {FC} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 import {
-  FULL_SHELF,
-  FIRST_HALF_SHELF,
-  SECOND_HALF_SHELF,
-} from '../../../util/ShelfImageConstants';
-import PrizeShelfCard from '../prize-shelf-card/PrizeShelfCard';
-
+  SI_FULL_SHELF,
+  SI_FIRST_HALF_SHELF,
+  SI_SECOND_HALF_SHELF,
+} from '../../../../constants/Constants';
+import {PrizeShelfCard} from '../index';
 interface Props {
   data: any;
   handleShowPrize: () => void;
@@ -36,15 +35,15 @@ const PrizeList: FC<Props> = props => {
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
       renderItem={({item, index}) => {
-        let bgShelfImage = FULL_SHELF;
+        let bgShelfImage = SI_FULL_SHELF;
 
         if (index === data.length - 1) {
-          bgShelfImage = FULL_SHELF;
+          bgShelfImage = SI_FULL_SHELF;
         } else {
           if (index % 2 === 1) {
-            bgShelfImage = SECOND_HALF_SHELF;
+            bgShelfImage = SI_SECOND_HALF_SHELF;
           } else {
-            bgShelfImage = FIRST_HALF_SHELF;
+            bgShelfImage = SI_FIRST_HALF_SHELF;
           }
         }
 

@@ -2,7 +2,10 @@ import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_TEXT_LIGHT} from '../../../theme/Colors';
-import PrizeList from '../prize-list/PrizeList';
+import {PrizeList} from '../index';
+import LottieView from 'lottie-react-native';
+import {PresentPlaceholder} from '../../../../../assets';
+// import PrizeList from '../prize-list/PrizeList';
 
 interface Props {
   isInitialized: boolean;
@@ -37,7 +40,18 @@ const BookshelfContent: FC<Props> = props => {
     <View style={styles.body}>
       {isInitialized && !isLoading && isPrizeFetchFailed && (
         <View style={styles.errorView}>
-          <Text style={styles.text}>{prizeFetchFailedText}</Text>
+          <View style={styles.placeholderView}>
+            <LottieView
+              style={styles.placeholderLottie}
+              source={PresentPlaceholder}
+              autoPlay={true}
+              loop={false}
+              resizeMode={'cover'}
+            />
+          </View>
+          <View style={styles.textView}>
+            <Text style={styles.text}>{prizeFetchFailedText}</Text>
+          </View>
         </View>
       )}
 
@@ -60,15 +74,32 @@ const styles = StyleSheet.create({
   body: {
     flex: 13,
   },
+  placeholderView: {
+    flex: 1,
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  placeholderLottie: {
+    width: hp('45%'),
+    height: hp('45%'),
+  },
   errorView: {
     flex: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  textView: {
+    flex: 1,
+    width: '100%',
+  },
   text: {
+    // flex: 1,
+    // backgroundColor: 'blue',
     fontSize: hp('3%'),
-    width: '75%',
+    // width: '75%',
     textAlign: 'center',
     color: C_TEXT_LIGHT,
   },

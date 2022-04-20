@@ -5,8 +5,8 @@ import {
   C_ACTIVITY_INDICATOR,
   C_BACKGROUND_BOOKSHELF,
 } from '../../../../../theme/Colors';
+import {BookshelfContent} from '../../../../../common/components';
 import TopShelfImage from './TopShelfImage';
-import BookshelfContent from '../../../../../common/components/bookshelf-content/BookshelfContent';
 
 interface Props {
   isInitialized: boolean;

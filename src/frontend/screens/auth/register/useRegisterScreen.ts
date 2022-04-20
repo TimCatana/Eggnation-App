@@ -1,13 +1,13 @@
 import {useState, useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {RegisterScreenProp} from '../../../navigation/ScreenProps';
+import {Screens} from '../../../../constants/NavigationConstants';
 import {ERROR} from '../../../../constants/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
 import isEmailValid from '../../../common/helpers/isEmailValid';
 import isPasswordValid from '../../../common/helpers/isPasswordValid';
 import isConfirmPasswordValid from '../../../common/helpers/isConfirmPasswordValid';
 import registerUserUC from '../../../../domain/register-screen-uc/registerUserUC';
-import { Screens } from '../../../../constants/NavigationConstants';
-import { RegisterScreenProp } from '../../../navigation/ScreenProps';
-import {useNavigation} from '@react-navigation/native';
 
 // TODO - need to find a way to disable native back button on isLoading
 const useRegisterScreen = () => {

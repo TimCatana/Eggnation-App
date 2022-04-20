@@ -17,7 +17,7 @@ import {
   C_TEXT_INPUT_TEXT_PRIMARY,
   C_TEXT_PRIMARY,
 } from '../../../../../theme/Colors';
-import CustomTextInput from '../../../../../common/components/custom-text-input/CustomTextInput';
+import {CustomTextInput} from '../../../../../common/components';
 
 interface Props {
   isLoading: boolean;

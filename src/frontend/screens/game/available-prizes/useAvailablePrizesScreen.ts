@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
-import getAvailablePrizesUC from '../../../../domain/available-prizes-screen-uc/getAvailablePrizesUC';
-import {SUCCESS} from '../../../../constants/ResultsConstants';
 import {useNavigation} from '@react-navigation/native';
 import {AvailablePrizesScreenProp} from '../../../navigation/ScreenProps';
+import {SUCCESS} from '../../../../constants/ResultsConstants';
+import getAvailablePrizesUC from '../../../../domain/available-prizes-screen-uc/getAvailablePrizesUC';
 
 const useAvailablePrizesScreen = () => {
   /******************/

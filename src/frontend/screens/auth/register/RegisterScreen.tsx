@@ -1,23 +1,23 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {
+  View,
   ImageBackground,
   ActivityIndicator,
   StyleSheet,
-  View,
 } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_ICON_PRIMARY, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
 import {backgroundAuth} from '../../../../../assets';
-import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
+import {C_ICON_PRIMARY, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
+import {TopLeftCornerIcon} from '../../../common/components';
 import RegisterScreenCenterView from './components/center-view/RegisterScreenCenterView';
 import RegisterScreenBottomView from './components/bottom-view/RegisterScreenBottomView';
 
 import useRegisterScreen from './useRegisterScreen';
 
-const RegisterScreen = () => {
+const RegisterScreen: FC = () => {
   const {
     isLoading,
     email,
@@ -36,12 +36,10 @@ const RegisterScreen = () => {
   } = useRegisterScreen();
 
   return (
-    <View style={styles.body}>
-      <ImageBackground
-        style={styles.body}
-        source={backgroundAuth}
-        resizeMode="cover"
-      />
+    <ImageBackground
+      style={styles.body}
+      source={backgroundAuth}
+      resizeMode="cover">
       <TopLeftCornerIcon
         icon={'arrow-left'}
         onPress={navigateBack}
@@ -77,7 +75,7 @@ const RegisterScreen = () => {
         color={C_ACTIVITY_INDICATOR}
         size={hp('10%')}
       />
-    </View>
+    </ImageBackground>
   );
 };
 

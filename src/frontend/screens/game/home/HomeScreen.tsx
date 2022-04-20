@@ -1,29 +1,16 @@
 import React, {FC} from 'react';
-import useHomeScreen from './useHomeScreen';
 import {View, ImageBackground, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import LottieView from 'lottie-react-native';
+import {backgroundHome} from '../../../../../assets';
 import {C_ICON_PRIMARY} from '../../../theme/Colors';
-import background from '../../../../../assets/backgrounds/bg_home.png';
+import {TopLeftCornerIcon} from '../../../common/components';
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
-import TopLeftCornerIcon from '../../../common/components/top-left-corner-icon/TopLeftCornerIcon';
-import LottieView from 'lottie-react-native';
-
-interface Props {
-  isInitialized: boolean;
-  isLoading: boolean;
-  adShowing: boolean;
-  playGame: () => void;
-  localCount: number;
-  isAnimationPlaying: boolean;
-  isWonAnimationShowing: boolean;
-  winAnimationRef: React.LegacyRef<LottieView> | undefined; // TODO - find out what to do for this
-  loseAnimationRef: React.LegacyRef<LottieView> | undefined; // TODO - find out what to do for this
-  resetAnimation: () => void;
-}
+import useHomeScreen from './useHomeScreen';
 
 const HomeScreen: FC = () => {
   const {
@@ -43,12 +30,10 @@ const HomeScreen: FC = () => {
   if (!isInitialized) return null;
 
   return (
-    <View style={styles.body}>
-      <ImageBackground
-        style={styles.body}
-        source={background}
-        resizeMode="cover"
-      />
+    <ImageBackground
+      style={styles.body}
+      source={backgroundHome}
+      resizeMode="cover">
       <TopLeftCornerIcon
         icon={'settings'}
         onPress={navToSettingsScreen}
@@ -69,7 +54,7 @@ const HomeScreen: FC = () => {
         winAnimationRef={winAnimationRef}
         resetAnimation={resetAnimation}
       />
-    </View>
+    </ImageBackground>
   );
 };
 

@@ -1,38 +1,15 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {C_BACKGROUND_BOOKSHELF} from '../../../theme/Colors';
+import {PrizeDisplayModal} from '../../../common/components';
 import WonPrizeScreenLeftView from './components/left-view/WonPrizeScreenLeftView';
 import WonPrizeScreenRightView from './components/right-view/WonPrizeScreenRightView';
-import PrizeDisplayModal from '../../../common/components/prize-display-modal/PrizeDisplayModal';
 import WonPrizeScreenCenterView from './components/center-view/WonPrizeScreenCenterView';
-import {WonPrizeScreenProp} from '../../../navigation/ScreenProps';
 
 import TEST_DATA from '../../../../../test-data/availablePrizes.json';
 import useWonPrizesScreen from './useWonPrizesScreen';
 
-interface Props {
-  isInitialized: boolean;
-  isLoading: boolean;
-  isPrizeFetchFailed: boolean;
-  prizeFetchFailedText: string;
-  isShowingPrize: boolean;
-  wonPrizes: any; // todo addd proper type later
-  handleShowPrize: () => void;
-  handleHidePrize: () => void;
-  handleDisplayPrizeIdChange: (id: string) => void;
-  displayPrizeId: string;
-  handleDisplayPrizeTitleChange: (title: string) => void;
-  displayPrizeTitle: string;
-  handleDisplayPrizeDescChange: (desc: string) => void;
-  displayPrizeDesc: string;
-  handleDisplayPrizeTierChange: (tier: string) => void;
-  displayPrizeTier: string;
-  handleDisplayPrizeTypeChange: (type: string) => void;
-  displayPrizeType: string;
-  navigation: WonPrizeScreenProp;
-}
-
-const WonPrizesScreen: FC<Props> = () => {
+const WonPrizesScreen: FC = () => {
   const {
     isInitialized,
     isLoading,

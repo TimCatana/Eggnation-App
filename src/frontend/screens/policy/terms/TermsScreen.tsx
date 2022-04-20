@@ -1,8 +1,8 @@
-import React from 'react';
-import useTermsScreen from './useTermsScreen';
+import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import useTermsScreen from './useTermsScreen';
 
-const TermsScreen = () => {
+const TermsScreen: FC = () => {
   const {} = useTermsScreen();
 
   return (

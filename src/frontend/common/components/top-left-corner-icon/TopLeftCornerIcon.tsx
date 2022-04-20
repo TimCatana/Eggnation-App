@@ -1,8 +1,17 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {View, Pressable} from 'react-native';
 import IconFeather from 'react-native-vector-icons/Feather';
 
-const TopLeftCornerIcon = props => {
+interface Props {
+  icon: string;
+  onPress: () => void;
+  iconSize: number | string;
+  iconColor: string;
+  viewStyle: any;
+  iconStyle: any;
+}
+
+const TopLeftCornerIcon: FC<Props> = props => {
   const {icon, onPress, iconSize, iconColor, viewStyle, iconStyle} = props;
 
   return (

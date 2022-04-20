@@ -12,9 +12,8 @@ import {
   C_ICON_PRIMARY,
   C_TEXT_PRIMARY,
 } from '../../../theme/Colors';
-import TopLeftCornerIcon from '../top-left-corner-icon/TopLeftCornerIcon';
-import CustomButton from '../custom-button/CustomButton';
-import { CLAIM_PRIZE_SCREEN } from '../../../../constants/NavigationConstants';
+import {Screens} from '../../../../constants/NavigationConstants';
+import {CustomButton, TopLeftCornerIcon} from '../index';
 
 import usePrizeDisplayModal from './usePrizeDisplayModal';
 
@@ -84,7 +83,7 @@ const PrizeDisplayModal: FC<Props> = props => {
               label={S_PDM_CLAIM_PRIZE_BUTTON}
               onPress={async () => {
                 if (!isLoading) {
-                  await navigation.navigate(CLAIM_PRIZE_SCREEN, {
+                  await navigation.navigate(Screens.CLAIM_PRIZE_SCREEN, {
                     prizeId: prizeId,
                   });
                   setTimeout(() => {

@@ -1,8 +1,8 @@
-import React from 'react';
-import usePrivacyPolicyScreen from './usePrivacyPolicyScreen';
+import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import usePrivacyPolicyScreen from './usePrivacyPolicyScreen';
 
-const PrivacyPolicyScreen = () => {
+const PrivacyPolicyScreen: FC = () => {
   const {} = usePrivacyPolicyScreen();
 
   return (

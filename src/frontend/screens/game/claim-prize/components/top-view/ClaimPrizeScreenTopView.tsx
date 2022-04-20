@@ -1,11 +1,13 @@
 import React, {FC} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import CustomTextInput from '../../../../../common/components/custom-text-input/CustomTextInput';
-import CustomDropdownMenu from '../../../../../common/components/custom-dropdown-menu/CustomDropdownMenu';
+import {
+  CustomTextInput,
+  CustomDropdownMenu,
+} from '../../../../../common/components';
 
 interface Props {
   isLoading: boolean;
@@ -98,7 +100,6 @@ const ClaimPrizeScreenTopView: FC<Props> = props => {
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   formView: {

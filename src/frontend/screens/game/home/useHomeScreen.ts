@@ -1,13 +1,13 @@
 import {useState, useEffect, useRef} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {HomeScreenProp} from '../../../navigation/ScreenProps';
+import {Screens} from '../../../../constants/NavigationConstants';
 import {useInterstitialAd, TestIds} from '@react-native-admob/admob';
 import {MGL_AD_FREQUENCY} from '../../../../constants/Constants';
 import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';
-import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
 import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIfTimeToResetCountUC';
+import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
 import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
-import {HomeScreenProp} from '../../../navigation/ScreenProps';
-import {useNavigation} from '@react-navigation/native';
-import { Screens } from '../../../../constants/NavigationConstants';
 
 const useHomeScreen = () => {
   /******************/
@@ -191,14 +191,16 @@ const useHomeScreen = () => {
     }
   };
 
+  /******************************/
+  /***** NAVIGATION HELPERS *****/
+  /******************************/
 
-  /** Navigates back to the login screen if no process is currently running. */
+  /** Navigates back to the settings screen if no process is currently running. */
   const navToSettingsScreen = () => {
     if (!isLoading && !isAnimationPlaying && !adShowing) {
       navigation.navigate(Screens.SETTINGS_SCREEN);
     }
   };
-
 
   /*******************/
   /***** RETURNS *****/
@@ -215,7 +217,7 @@ const useHomeScreen = () => {
     winAnimationRef,
     loseAnimationRef,
     resetAnimation,
-    navToSettingsScreen
+    navToSettingsScreen,
   };
 };
 
