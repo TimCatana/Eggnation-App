@@ -1,9 +1,20 @@
 const nodemailer = require("nodemailer");
+var SibApiV3Sdk = require("sib-api-v3-sdk");
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 admin.initializeApp();
 
+/**
+ * Reference to user collection in firestore
+ */
 const userRef = admin.firestore().collection("users");
+
+/**
+ * Authentication and setup for sendinblue API
+ */
+let defaultClient = SibApiV3Sdk.ApiClient.instance;
+let apiKey = defaultClient.authentications["api-key"];
+apiKey.apiKey = process.env.SEND_IN_BLUE_API_KEY;
 
 /**
  * When a user is created, add the user to the database.
@@ -17,6 +28,48 @@ exports.addUserToFireStore = functions.auth.user().onCreate(async (user) => {
     registered: Date(),
   });
 });
+
+/**
+ * Adds a user to the mailing list if they want to subscribe to the mailing list.
+ * The mailing list will be used to market eggnationshop.com.
+ */
+exports.addToMailingList = functions.https.onCall(async (data, context) => {
+  let apiInstance = new SibApiV3Sdk.ContactsApi();
+  let createContact = new SibApiV3Sdk.CreateContact();
+
+  createContact.email = data.email;
+  createContact.listIds = [2];
+
+  try {
+    const result = await apiInstance.createContact(createContact);
+    console.log(
+      `SIB - createContact call successful --> ${JSON.stringify(result)}`
+    );
+    return true;
+  } catch (e) {
+    console.error(`SIB - createContact call failed --> ${err}`);
+    return false;
+  }
+});
+
+/**
+ * Adds a user to the mailing list if they want to subscribe to the mailing list.
+ * The mailing list will be used to market eggnationshop.com.
+ */
+exports.deleteFromMailingList = functions.https.onCall(
+  async (data, context) => {
+    let apiInstance = new SibApiV3Sdk.ContactsApi();
+
+    try {
+      await apiInstance.deleteContact(data.email);
+      console.log(`SIB - deleteContact call successful`);
+      return true;
+    } catch (e) {
+      console.error(`SIB - deleteContact call failed --> ${err}`);
+      return false;
+    }
+  }
+);
 
 /**
  * When a user is deleted, delete the user to the database.
