@@ -19,7 +19,7 @@ const HomeScreenCounter: FC<Props> = props => {
 
 const styles = StyleSheet.create({
   body: {
-    flex: 2,
+    flex: 4,
     justifyContent: 'center',
     alignItems: 'center',
   },

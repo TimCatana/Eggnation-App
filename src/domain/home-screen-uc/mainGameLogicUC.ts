@@ -172,7 +172,11 @@ const _winPrizeLogic = async (
   //   : await doDeleteContestPrize(prize.prizeId);
 
   console.log('won');
-  return {status: SUCCESS, data: {isWon: true}, message: 'Did win'};
+  return {
+    status: SUCCESS,
+    data: {isWon: true, prize: prize},
+    message: 'Did win',
+  };
 };
 
 /**

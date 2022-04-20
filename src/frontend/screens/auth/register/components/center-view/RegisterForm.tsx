@@ -18,6 +18,7 @@ import {
   C_TEXT_PRIMARY,
 } from '../../../../../theme/Colors';
 import {CustomTextInput} from '../../../../../common/components';
+import SubscribeBox from './SubscribeBox';
 
 interface Props {
   isLoading: boolean;
@@ -30,6 +31,9 @@ interface Props {
   confirmPassword: string;
   handleConfirmPasswordChange: (value: string) => void;
   isConfirmPasswordError: boolean;
+  isSubbedToMailingList: boolean;
+  handleIsSubbedToMailingListChange: () => void;
+  handleEggnationShopLinkClick: () => void;
 }
 
 const RegisterForm: FC<Props> = props => {
@@ -44,6 +48,9 @@ const RegisterForm: FC<Props> = props => {
     confirmPassword,
     handleConfirmPasswordChange,
     isConfirmPasswordError,
+    isSubbedToMailingList,
+    handleIsSubbedToMailingListChange,
+    handleEggnationShopLinkClick,
   } = props;
 
   return (
@@ -105,6 +112,12 @@ const RegisterForm: FC<Props> = props => {
         unfocusedBorderColor={'gray'}
         focusedBorderColor={'pink'}
         returnKeyType={'done'}
+      />
+
+      <SubscribeBox
+        isSubbedToMailingList={isSubbedToMailingList}
+        handleIsSubbedToMailingListChange={handleIsSubbedToMailingListChange}
+        handleEggnationShopLinkClick={handleEggnationShopLinkClick}
       />
     </>
   );

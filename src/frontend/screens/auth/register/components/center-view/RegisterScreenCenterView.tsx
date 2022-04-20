@@ -18,6 +18,9 @@ interface Props {
   confirmPassword: string;
   handleConfirmPasswordChange: (value: string) => void;
   isConfirmPasswordError: boolean;
+  isSubbedToMailingList: boolean;
+  handleIsSubbedToMailingListChange: () => void;
+  handleEggnationShopLinkClick: () => void;
   handleRegisterClick: () => void;
 }
 
@@ -33,6 +36,9 @@ const RegisterScreenCenterView: FC<Props> = props => {
     confirmPassword,
     handleConfirmPasswordChange,
     isConfirmPasswordError,
+    isSubbedToMailingList,
+    handleIsSubbedToMailingListChange,
+    handleEggnationShopLinkClick,
     handleRegisterClick,
   } = props;
 
@@ -50,6 +56,9 @@ const RegisterScreenCenterView: FC<Props> = props => {
           confirmPassword={confirmPassword}
           handleConfirmPasswordChange={handleConfirmPasswordChange}
           isConfirmPasswordError={isConfirmPasswordError}
+          isSubbedToMailingList={isSubbedToMailingList}
+          handleIsSubbedToMailingListChange={handleIsSubbedToMailingListChange}
+          handleEggnationShopLinkClick={handleEggnationShopLinkClick}
         />
 
         <RegisterButton

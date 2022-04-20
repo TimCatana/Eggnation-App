@@ -3,11 +3,15 @@ import {useNavigation} from '@react-navigation/native';
 import {HomeScreenProp} from '../../../navigation/ScreenProps';
 import {Screens} from '../../../../constants/NavigationConstants';
 import {useInterstitialAd, TestIds} from '@react-native-admob/admob';
-import {MGL_AD_FREQUENCY} from '../../../../constants/Constants';
+import {
+  MGL_AD_FREQUENCY,
+  DV_LOCAL_COUNT,
+} from '../../../../constants/Constants';
 import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';
 import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIfTimeToResetCountUC';
 import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
 import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
+import {AvailablePrize, ContestPrize} from '../../../../types/typeAliases';
 
 const useHomeScreen = () => {
   /******************/
@@ -24,6 +28,16 @@ const useHomeScreen = () => {
 
   const [isAnimationPlaying, setIsAnimationPlaying] = useState(false);
   const winAnimationRef = useRef<any>(null);
+
+  const [isFlashAnimationPlaying, setIsFlashAnimationPlaying] = useState(false);
+
+  const [isShowingPrize, setIsShowingPrize] = useState(false);
+
+  const [displayPrizeId, setDisplayPrizeId] = useState('');
+  const [displayPrizeTitle, setDisplayPrizeTitle] = useState('');
+  const [displayPrizeDesc, setDisplayPrizeDesc] = useState('');
+  const [displayPrizeType, setDisplayPrizeType] = useState('');
+  const [displayPrizeTier, setDisplayPrizeTier] = useState('');
 
   const {adLoaded, adDismissed, adShowing, show, load} = useInterstitialAd(
     TestIds.INTERSTITIAL,
@@ -96,7 +110,10 @@ const useHomeScreen = () => {
   const playGame = async () => {
     setIsLoading(true);
 
-    if (localCount % MGL_AD_FREQUENCY === 0 && localCount != 1000) {
+    if (
+      localCount % MGL_AD_FREQUENCY === 0 &&
+      localCount != parseInt(DV_LOCAL_COUNT)
+    ) {
       playAd();
       await decrementAndGetLocalCount();
     } else {
@@ -107,6 +124,7 @@ const useHomeScreen = () => {
       const result = await mainGameLogicUC(localCount);
 
       if (result.data.isWon) {
+        handlePopulateDisplayPrize(result.data.prize);
         playAnimation();
       }
     }
@@ -124,6 +142,72 @@ const useHomeScreen = () => {
     } catch (e) {
       console.log('failed to update local count');
     }
+  };
+
+  /**
+   * Shows the prize modal.
+   */
+  const handleShowPrize = () => {
+    setIsShowingPrize(true);
+  };
+
+  /**
+   * Hides the prize modal.
+   */
+  const handleHidePrize = () => {
+    setIsShowingPrize(false);
+  };
+
+  /**
+   * Populates the display prize for the modal to be shown when the user wins a prize.
+   * @param prize The prize the user won
+   */
+  const handlePopulateDisplayPrize = (prize: AvailablePrize | ContestPrize) => {
+    handleDisplayPrizeIdChange(prize.prizeId);
+    handleDisplayPrizeTitleChange(prize.prizeTitle);
+    handleDisplayPrizeDescChange(prize.prizeTitle);
+    handleDisplayPrizeTypeChange(prize.prizeType);
+    handleDisplayPrizeTierChange(prize.prizeTier);
+  };
+
+  /**
+   * Sets the id to be shown in the prize modal.
+   * @param id (string) The id to be shown in the prize modal
+   */
+  const handleDisplayPrizeIdChange = (id: string) => {
+    setDisplayPrizeId(id);
+  };
+
+  /**
+   * Sets the title to be shown in the prize modal.
+   * @param title (string) The title to be shown in the prize modal
+   */
+  const handleDisplayPrizeTitleChange = (title: string) => {
+    setDisplayPrizeTitle(title);
+  };
+
+  /**
+   * Sets the description to be shown in the prize modal.
+   * @param desc (string) The description to be shown in the prize modal
+   */
+  const handleDisplayPrizeDescChange = (desc: string) => {
+    setDisplayPrizeDesc(desc);
+  };
+
+  /**
+   * Sets the prize type of the prize being shown in the prize modal.
+   * @param type (string) The e prize type of the prize to be shown in the prize modal
+   */
+  const handleDisplayPrizeTypeChange = (type: string) => {
+    setDisplayPrizeType(type);
+  };
+
+  /**
+   * Sets the prize tier of the prize being shown in the prize modal.
+   * @param tier (string) The e prize tier of the prize to be shown in the prize modal
+   */
+  const handleDisplayPrizeTierChange = (tier: string) => {
+    setDisplayPrizeTier(tier);
   };
 
   /**********************/
@@ -149,7 +233,7 @@ const useHomeScreen = () => {
    * the animation on the UI.
    */
   const _playAnimation = () => {
-    winAnimationRef.current ? winAnimationRef.current.play() : null;
+    winAnimationRef.current ? winAnimationRef.current.play(1, 44) : null;
   };
 
   /**
@@ -158,6 +242,40 @@ const useHomeScreen = () => {
    */
   const _resetAnimation = () => {
     winAnimationRef.current ? winAnimationRef.current.reset() : null;
+  };
+
+  /**
+   * Triggered when the won animation is finished
+   */
+  const handleWinAnimationFinished = () => {
+    _showFlashAnimation();
+    setTimeout(() => {
+      resetAnimation();
+    }, 500);
+  };
+
+  /**
+   * Triggered when the won animation is finished
+   */
+  const handleFlashAnimationFinished = () => {
+    handleShowPrize();
+    setTimeout(() => {
+      _hideFlashAnimation();
+    }, 500);
+  };
+
+  /**
+   * Trigger flash animation
+   */
+  const _showFlashAnimation = () => {
+    setIsFlashAnimationPlaying(true);
+  };
+
+  /**
+   * Trigger flash animation
+   */
+  const _hideFlashAnimation = () => {
+    setIsFlashAnimationPlaying(false);
   };
 
   /***************/
@@ -201,8 +319,18 @@ const useHomeScreen = () => {
     localCount,
     isAnimationPlaying,
     winAnimationRef,
-    resetAnimation,
+    handleWinAnimationFinished,
+    isFlashAnimationPlaying,
     navToSettingsScreen,
+    displayPrizeId,
+    displayPrizeTitle,
+    displayPrizeDesc,
+    displayPrizeTier,
+    displayPrizeType,
+    isShowingPrize,
+    handleHidePrize,
+    handleFlashAnimationFinished,
+    navigation,
   };
 };
 

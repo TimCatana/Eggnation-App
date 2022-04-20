@@ -4,13 +4,14 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import LottieView from 'lottie-react-native';
 import {backgroundHome} from '../../../../../assets';
 import {C_ICON_PRIMARY} from '../../../theme/Colors';
 import {TopLeftCornerIcon} from '../../../common/components';
+import {PrizeDisplayModal} from '../../../common/components';
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
 import useHomeScreen from './useHomeScreen';
+import Flash from '../../../common/animation-components/Flash';
 
 const HomeScreen: FC = () => {
   const {
@@ -21,8 +22,18 @@ const HomeScreen: FC = () => {
     localCount,
     isAnimationPlaying,
     winAnimationRef,
-    resetAnimation,
+    handleWinAnimationFinished,
+    isFlashAnimationPlaying,
     navToSettingsScreen,
+    displayPrizeId,
+    displayPrizeTitle,
+    displayPrizeDesc,
+    displayPrizeTier,
+    displayPrizeType,
+    isShowingPrize,
+    handleHidePrize,
+    handleFlashAnimationFinished,
+    navigation,
   } = useHomeScreen();
 
   if (!isInitialized) return null;
@@ -32,15 +43,6 @@ const HomeScreen: FC = () => {
       style={styles.body}
       source={backgroundHome}
       resizeMode="cover">
-      <TopLeftCornerIcon
-        icon={'settings'}
-        onPress={navToSettingsScreen}
-        iconSize={hp('3.5%')}
-        iconColor={C_ICON_PRIMARY}
-        viewStyle={styles.icon}
-        iconStyle={{}}
-      />
-
       <HomeScreenCounter counter={localCount} />
       <HomeScreenEgg
         isLoading={isLoading}
@@ -48,7 +50,40 @@ const HomeScreen: FC = () => {
         playGame={playGame}
         isAnimationPlaying={isAnimationPlaying}
         winAnimationRef={winAnimationRef}
-        resetAnimation={resetAnimation}
+        handleWinAnimationFinished={handleWinAnimationFinished}
+      />
+
+      <TopLeftCornerIcon
+        icon={'settings'}
+        onPress={navToSettingsScreen}
+        iconSize={hp('3.5%')}
+        iconColor={C_ICON_PRIMARY}
+        viewStyle={styles.iconView}
+        iconStyle={{}}
+      />
+
+      {isFlashAnimationPlaying && (
+        <Flash
+          style={styles.flashView}
+          onAnimationFinish={handleFlashAnimationFinished}
+          duration={1000}
+          isFlashAnimationPlaying={isFlashAnimationPlaying}>
+            <View></View>
+          </Flash>
+      )}
+
+      <PrizeDisplayModal
+        isLoading={isLoading}
+        prizeId={displayPrizeId}
+        prizeTitle={displayPrizeTitle}
+        prizeDesc={displayPrizeDesc}
+        prizeTier={displayPrizeTier}
+        prizeType={displayPrizeType}
+        prizeIsClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
+        isWonPrize={false}
+        isModalVisible={isShowingPrize}
+        handleHidePrize={handleHidePrize}
+        navigation={navigation}
       />
     </ImageBackground>
   );
@@ -61,13 +96,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  icon: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    width: '100%',
-    paddingLeft: wp('1%'),
-    paddingTop: hp('1%'),
+  iconView: {
+    position: 'absolute',
+    top: hp('1%'),
+    left: wp('1%'),
+  },
+  flashView: {
+    position: 'absolute',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: wp('100%'),
+    height: hp('100%'),
+    backgroundColor: 'white',
   },
 });
 

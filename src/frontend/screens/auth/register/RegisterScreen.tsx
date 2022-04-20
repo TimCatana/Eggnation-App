@@ -29,7 +29,10 @@ const RegisterScreen: FC = () => {
     confirmPassword,
     handleConfirmPasswordChange,
     isConfirmPasswordError,
+    isSubbedToMailingList,
+    handleIsSubbedToMailingListChange,
     handleRegisterClick,
+    handleEggnationShopLinkClick,
     navigateBack,
     navToPrivacyPolicyScreen,
     navToTermsScreen,
@@ -60,6 +63,9 @@ const RegisterScreen: FC = () => {
         confirmPassword={confirmPassword}
         handleConfirmPasswordChange={handleConfirmPasswordChange}
         isConfirmPasswordError={isConfirmPasswordError}
+        isSubbedToMailingList={isSubbedToMailingList}
+        handleIsSubbedToMailingListChange={handleIsSubbedToMailingListChange}
+        handleEggnationShopLinkClick={handleEggnationShopLinkClick}
         handleRegisterClick={handleRegisterClick}
       />
 

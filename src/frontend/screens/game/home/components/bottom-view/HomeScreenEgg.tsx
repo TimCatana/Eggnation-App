@@ -17,7 +17,7 @@ interface Props {
   playGame: () => void;
   isAnimationPlaying: boolean;
   winAnimationRef: React.LegacyRef<LottieView> | null; // TODO - find out what to do for this
-  resetAnimation: () => void;
+  handleWinAnimationFinished: () => void;
 }
 
 const HomeScreenEgg: FC<Props> = props => {
@@ -27,7 +27,7 @@ const HomeScreenEgg: FC<Props> = props => {
     playGame,
     isAnimationPlaying,
     winAnimationRef,
-    resetAnimation,
+    handleWinAnimationFinished,
   } = props;
 
   return (
@@ -38,11 +38,12 @@ const HomeScreenEgg: FC<Props> = props => {
         <LottieView
           ref={winAnimationRef}
           style={styles.egg}
-          source={LostAnimation}
+          source={WonAnimation}
           autoPlay={false}
           loop={false}
-          duration={500}
-          onAnimationFinish={resetAnimation}
+          duration={6000}
+          onAnimationFinish={handleWinAnimationFinished}
+          resizeMode={'cover'}
         />
       </Pressable>
     </View>
@@ -56,8 +57,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   egg: {
-    width: wp('50%'),
-    height: hp('35%'),
+    width: wp('100%'),
+    height: hp('100%'),
+    marginBottom: hp('21%'),
+    // backgroundColor: 'red'
   },
   particle: {
     position: 'absolute',

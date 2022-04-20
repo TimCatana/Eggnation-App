@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import {Linking} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {RegisterScreenProp} from '../../../navigation/ScreenProps';
 import {Screens} from '../../../../constants/NavigationConstants';
@@ -27,6 +28,8 @@ const useRegisterScreen = () => {
 
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isConfirmPasswordError, setIsConfirmPasswordError] = useState(true);
+
+  const [isSubbedToMailingList, setIsSubbedToMailingList] = useState(true);
 
   const [snackbarText, setSnackbarText] = useState('');
   const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
@@ -125,13 +128,30 @@ const useRegisterScreen = () => {
   /*************************/
 
   /**
+   * Updates the current password state when user inputs a value into a textInput
+   * @param value The value inputted into the textInput
+   */
+  const handleIsSubbedToMailingListChange = () => {
+    setIsSubbedToMailingList(!isSubbedToMailingList);
+  };
+
+  /**
+   *
+   */
+  const handleEggnationShopLinkClick = () => {
+    const url = 'https://mynzaclothing.com/password';
+    Linking.openURL(url);
+  };
+
+  /**
    * Does the backend logic to register the new user account.
    * @onSuccess Should navigate to the game screens stack
    * @onFailure Should show a snackbar with an error message
    */
   const handleRegisterClick = async () => {
+    console.log("running register user click")
     setIsLoading(true);
-    const result = await registerUserUC(email, password);
+    const result = await registerUserUC(email, password, isSubbedToMailingList);
     setIsLoading(false);
 
     if (result.status === ERROR) {
@@ -186,7 +206,10 @@ const useRegisterScreen = () => {
     confirmPassword,
     handleConfirmPasswordChange,
     isConfirmPasswordError,
+    isSubbedToMailingList,
+    handleIsSubbedToMailingListChange,
     handleRegisterClick,
+    handleEggnationShopLinkClick,
     navigateBack,
     navToPrivacyPolicyScreen,
     navToTermsScreen,

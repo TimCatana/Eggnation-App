@@ -1,4 +1,5 @@
 import doRegister from '../../backend/auth/doRegister';
+import doSubscribeToMailingList from '../../backend/cloud-functions/doSubscribeToMailingList';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../types/typeAliases';
 import printDevLogs from '../printDevLogs';
@@ -18,13 +19,42 @@ import printDevLogs from '../printDevLogs';
 const registerUserUC = async (
   email: string,
   password: string,
+  isSubbedToMailingList: boolean,
 ): Promise<Result> => {
+  if (isSubbedToMailingList) {
+    try {
+      await doSubscribeToMailingList(email);
+    } catch (e) {
+      console.log(`failed to sub to mailing list --> ${e}`);
+    }
+  }
+
   try {
     await doRegister(email, password);
     // Cloud Function automatically adds user to database
-    return {status: SUCCESS, data: null, message: ''};
   } catch (e: any) {
+    return _deleteFromMailingList(email, e);
+  }
+
+  return {status: SUCCESS, data: null, message: ''};
+};
+
+/**
+ * I need to add to  mailing list before I register the user due to the way the auth
+ * changes the stack right when the firebase auth token becomes valid.
+ * So if the registration fails, I need to delete from the mailing list.
+ * This operation can also throw an error, so I need to make sure the correct error get's
+ * propagated. 
+ * @param email The user email
+ * @param e The error that was thrown from doRegister
+ * @returns {status: ERROR, data: null, message: string}
+ */
+const _deleteFromMailingList = (email: string, e: any) => {
+  try {
+    doSubscribeToMailingList(email);
     return _getErrorResponse(e);
+  } catch (_e) {
+    return _getErrorResponse(_e);
   }
 };
 
