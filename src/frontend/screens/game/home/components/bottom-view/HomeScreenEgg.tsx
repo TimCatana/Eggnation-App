@@ -55,12 +55,13 @@ const styles = StyleSheet.create({
     flex: 15,
     justifyContent: 'center',
     alignItems: 'center',
+
   },
   egg: {
     width: wp('100%'),
-    height: hp('100%'),
-    marginBottom: hp('21%'),
-    // backgroundColor: 'red'
+    height: hp('93%'),
+    marginBottom: hp('15%'),
+
   },
   particle: {
     position: 'absolute',

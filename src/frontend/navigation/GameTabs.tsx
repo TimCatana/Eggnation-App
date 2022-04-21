@@ -6,8 +6,6 @@ import {GameTabParamList} from './ScreenProps';
 
 const Tab = createMaterialTopTabNavigator<GameTabParamList>();
 
-// TODO - set backBehaviour={none}. Right now the back button goes to the tab. I just want to exit
-
 const GameTabs: FC = () => {
   return (
     <Tab.Navigator
@@ -16,7 +14,9 @@ const GameTabs: FC = () => {
       screenOptions={{
         lazy: true,
         tabBarStyle: {display: 'none'},
-      }}>
+        // swipeEnabled: false,
+      }}
+      backBehavior='none'>
       <Tab.Screen
         name={Screens.AVAILABLE_PRIZES_SCREEN}
         component={AvailablePrizesScreen}

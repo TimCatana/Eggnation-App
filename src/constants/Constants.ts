@@ -11,7 +11,7 @@ export const DV_LAST_RESET_TIME = dayjs().toString();
 /** MAIN GAME LOGIC CONSTANTS */
 export const MGL_RESET_TIME_IN_HOURS = 12;
 export const MGL_RNG_RANGE = 1000001; // 1000001
-export const MGL_WIN_CHANCE = 1; // rng(0 -OC_RNG_RANGE) % OC_WIN_CHANCE === 0 means a win 200000
+export const MGL_WIN_CHANCE = 10; // rng(0 -OC_RNG_RANGE) % OC_WIN_CHANCE === 0 means a win 200000
 export const MGL_AD_FREQUENCY = 25;
 
 /** BOOKSHELF UI CONSTANTS */

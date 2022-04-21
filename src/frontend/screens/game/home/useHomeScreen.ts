@@ -43,6 +43,14 @@ const useHomeScreen = () => {
     TestIds.INTERSTITIAL,
   );
 
+  navigation.setOptions({
+    swipeEnabled:
+      !isAnimationPlaying &&
+      !isFlashAnimationPlaying &&
+      !isLoading &&
+      isInitialized,
+  });
+
   /***********************/
   /***** USE EFFECTS *****/
   /***********************/

@@ -43,15 +43,6 @@ const HomeScreen: FC = () => {
       style={styles.body}
       source={backgroundHome}
       resizeMode="cover">
-      <HomeScreenCounter counter={localCount} />
-      <HomeScreenEgg
-        isLoading={isLoading}
-        adShowing={adShowing}
-        playGame={playGame}
-        isAnimationPlaying={isAnimationPlaying}
-        winAnimationRef={winAnimationRef}
-        handleWinAnimationFinished={handleWinAnimationFinished}
-      />
 
       <TopLeftCornerIcon
         icon={'settings'}
@@ -62,14 +53,24 @@ const HomeScreen: FC = () => {
         iconStyle={{}}
       />
 
+      <HomeScreenCounter counter={localCount} />
+      <HomeScreenEgg
+        isLoading={isLoading}
+        adShowing={adShowing}
+        playGame={playGame}
+        isAnimationPlaying={isAnimationPlaying}
+        winAnimationRef={winAnimationRef}
+        handleWinAnimationFinished={handleWinAnimationFinished}
+      />
+
       {isFlashAnimationPlaying && (
         <Flash
           style={styles.flashView}
           onAnimationFinish={handleFlashAnimationFinished}
           duration={1000}
           isFlashAnimationPlaying={isFlashAnimationPlaying}>
-            <View></View>
-          </Flash>
+          <View></View>
+        </Flash>
       )}
 
       <PrizeDisplayModal

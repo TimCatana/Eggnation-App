@@ -4,8 +4,10 @@ import functions from '@react-native-firebase/functions';
  * The reason I use a cloud function is because if I update it on the client, the user
  * gets an email saying their email was changed with the option of changing it back
  */
-const doUpdateUserEmailByCloudFunction = async () => {
-  const result = await functions().httpsCallable('updateUserEmail')({});
+const doUpdateUserEmailByCloudFunction = async (email: string) => {
+  const result = await functions().httpsCallable('updateUserFirestoreEmail')({
+    email: email,
+  });
   console.log(`send me email: ${result}`);
 };
 
