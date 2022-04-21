@@ -138,41 +138,73 @@ exports.sendMeEmail = functions.https.onCall(async (data, context) => {
   }
 });
 
-// exports.updateUserEmail = functions.https.onCall(async (data, context) => {
-//   if (!context.auth) {
-//     throw new functions.https.HttpsError(
-//       "unauthenticated",
-//       "User trying to update email while unauthenticated"
-//     );
-//   }
+/**
+ * Updates the user's email address.
+ * Do it on the serever so that they don't get an email from firebase allowing them to change it back
+ */
+exports.updateUserFirestoreEmail = functions.https.onCall(
+  async (data, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "User trying to update email while unauthenticated"
+      );
+    }
 
-//   // console.log(context.auth.uid);
-//   // console.log(data.email);
+    try {
+      await userRef.doc(context.auth.uid).update({ email: data.email });
+      return true;
+    } catch (e) {
+      console.log(`firebase error update email: ${e}`);
+      throw new functions.https.HttpsError(
+        "unknown",
+        `failed to update database email: ${e} ${context.auth.uid} ${data.email}`
+      );
+    }
+  }
+);
 
-//   await admin
-//     .auth()
-//     .updateUser(context.auth.uid, {
-//       email: data.email,
-//       emailVerified: false,
-//     })
-//     .catch((e) => {
-//       console.log(`auth error updateemail ${e}`);
-//       throw new functions.https.HttpsError(
-//         "unknown",
-//         `failed to update auth email: ${e} ${context.auth.uid} ${data.email}`
-//       );
-//     });
+/**
+ *
+ */
+exports.updateUserAuthEmail = functions.firestore
+  .document("users/{userId}")
+  .onUpdate(async (snapshot, context) => {
+    const values = snapshot.data();
 
-//   // console.log(`auth update worked`);
+    try {
+      await admin.auth().updateUser(context.auth.uid, {
+        email: values.email,
+        emailVerified: false,
+      });
+      return true;
+    } catch (e) {
+      console.log(`auth error update email ${e}`);
+      throw new functions.https.HttpsError(
+        "unknown",
+        `failed to update auth email: ${e} ${context.auth.uid} ${values.email}`
+      );
+    }
+  });
 
-//   return await userRef
-//     .doc(context.auth.uid)
-//     .update({ email: data.email })
-//     .catch((e) => {
-//       console.log(`firebase erro update email: ${e}`);
-//       throw new functions.https.HttpsError(
-//         "unknown",
-//         `failed to update database email: ${e} ${context.auth.uid} ${data.email}`
-//       );
-//     });
-// });
+/**
+ *
+ */
+exports.updateUserAuthUsername = functions.firestore
+  .document("users/{userId}")
+  .onUpdate(async (snapshot, context) => {
+    const values = snapshot.data();
+
+    try {
+      await admin.auth().updateUser(context.auth.uid, {
+        displayName: values.username,
+      });
+      return true;
+    } catch (e) {
+      console.log(`auth error updateUsername ${e}`);
+      throw new functions.https.HttpsError(
+        "unknown",
+        `failed to update auth displayName: ${e} ${context.auth.uid} ${values.email}`
+      );
+    }
+  });
