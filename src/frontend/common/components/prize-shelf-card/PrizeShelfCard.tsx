@@ -14,7 +14,13 @@ import usePrizeShelfCard from './usePrizeShelfCard';
 interface Props {
   prize: any;
   bgShelfImage: string;
-  handleShowPrize: () => void;
+  handleShowPrize: (
+    prizeId: string,
+    prizeTitle: string,
+    prizeDesc: string,
+    prizeType: string,
+    prizeTier: string,
+  ) => void;
   handleDisplayPrizeIdChange: (value: string) => void;
   handleDisplayPrizeTitleChange: (value: string) => void;
   handleDisplayPrizeDescChange: (value: string) => void;
@@ -40,12 +46,18 @@ const PrizeShelfCard: FC<Props> = props => {
   const shelfImage = getShelfImage(bgShelfImage);
 
   const handlePrizeClick = () => {
-    handleDisplayPrizeIdChange(prize.prizeId);
-    handleDisplayPrizeTitleChange(prize.prizeTitle);
-    handleDisplayPrizeDescChange(prize.prizeDesc);
-    handleDisplayPrizeTypeChange(prize.prizeType);
-    handleDisplayPrizeTierChange(prize.prizeTier);
-    handleShowPrize();
+    // handleDisplayPrizeIdChange(prize.prizeId);
+    // handleDisplayPrizeTitleChange(prize.prizeTitle);
+    // handleDisplayPrizeDescChange(prize.prizeDesc);
+    // handleDisplayPrizeTypeChange(prize.prizeType);
+    // handleDisplayPrizeTierChange(prize.prizeTier);
+    handleShowPrize(
+      prize.prizeId,
+      prize.prizeTitle,
+      prize.prizeDesc,
+      prize.prizeType,
+      prize.prizeTier,
+    );
   };
 
   return (

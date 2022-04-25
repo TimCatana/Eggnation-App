@@ -77,11 +77,19 @@ const useWonPrizesScreen = () => {
   /***** BUTTON CLICKS *****/
   /*************************/
 
-  /**
-   * Shows the prize modal.
-   */
-  const handleShowPrize = () => {
+  const handleShowPrize = (
+    prizeId: string,
+    prizeTitle: string,
+    prizeDesc: string,
+    prizeType: string,
+    prizeTier: string,
+  ) => {
     setIsShowingPrize(true);
+    handleDisplayPrizeIdChange(prizeId);
+    handleDisplayPrizeTitleChange(prizeTitle);
+    handleDisplayPrizeDescChange(prizeDesc);
+    handleDisplayPrizeTypeChange(prizeType);
+    handleDisplayPrizeTierChange(prizeTier);
   };
 
   /**

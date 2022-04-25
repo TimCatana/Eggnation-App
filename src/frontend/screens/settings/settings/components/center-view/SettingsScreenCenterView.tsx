@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import SettingsProfileSection from '../sections/SettingsProfileSection';
 // TODO - once I release the app, work on implementing the contact section
+import SettingsContactSection from '../sections/SettingsContactSection';
 import SettingsLegalSection from '../sections/SettingsLegalSection';
 
 interface Props {
@@ -10,6 +11,8 @@ interface Props {
   handleSendVerificationEmailClick: () => void;
   navToEditEmailScreen: () => void;
   navToEditPasswordScreen: () => void;
+  navToEggnationShop: () => void;
+  navToContactUs: () => void;
   navToPrivacyPolicyScreen: () => void;
   navToTermsScreen: () => void;
 }
@@ -21,6 +24,8 @@ const SettingsScreenCenterView: FC<Props> = props => {
     handleSendVerificationEmailClick,
     navToEditEmailScreen,
     navToEditPasswordScreen,
+    navToEggnationShop,
+    navToContactUs,
     navToPrivacyPolicyScreen,
     navToTermsScreen,
   } = props;
@@ -33,6 +38,11 @@ const SettingsScreenCenterView: FC<Props> = props => {
         handleSendVerificationEmailClick={handleSendVerificationEmailClick}
         navToEditEmailScreen={navToEditEmailScreen}
         navToEditPasswordScreen={navToEditPasswordScreen}
+      />
+
+      <SettingsContactSection
+        navToEggnationShop={navToEggnationShop}
+        navToContactUs={navToContactUs}
       />
       <SettingsLegalSection
         navToPrivacyPolicyScreen={navToPrivacyPolicyScreen}

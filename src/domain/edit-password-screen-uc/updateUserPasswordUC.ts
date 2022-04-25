@@ -1,5 +1,6 @@
 import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 import doReauthenticate from '../../backend/auth/doReauthenticate';
+import doReloadUser from '../../backend/auth/doReloadUser';
 import doUpdateUserPassword from '../../backend/auth/doUpdateUserPassword';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../types/typeAliases';
@@ -50,6 +51,12 @@ const updateUserPasswordUC = async (
     await doUpdateUserPassword(newPassword);
   } catch (e: any) {
     return _getUpdatePasswordErrorResponse(e);
+  }
+
+  try {
+    await doReauthenticate(email, newPassword);
+  } catch (e: any) {
+    return _getReauthenticateErrorResponse(e);
   }
 
   return {

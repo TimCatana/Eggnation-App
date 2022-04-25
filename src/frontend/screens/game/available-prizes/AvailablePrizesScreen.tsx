@@ -9,7 +9,13 @@ import AvailablePrizeScreenRightView from './components/right-view/AvailablePriz
 import TEST_DATA from '../../../../../test-data/availablePrizes.json'; // TODO - get rid of this after...
 import useAvailablePrizesScreen from './useAvailablePrizesScreen';
 
-const AvailablePrizesScreen: FC = () => {
+interface Props {
+  setSwipeEnabled: (isEnabled: boolean) => void 
+}
+
+const AvailablePrizesScreen: FC<Props> = (props) => {
+  const {setSwipeEnabled} = props
+
   const {
     isInitialized,
     isLoading,
@@ -30,7 +36,7 @@ const AvailablePrizesScreen: FC = () => {
     handleDisplayPrizeTypeChange,
     displayPrizeType,
     navigation,
-  } = useAvailablePrizesScreen();
+  } = useAvailablePrizesScreen(setSwipeEnabled);
 
   return (
     <View style={styles.body}>

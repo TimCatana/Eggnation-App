@@ -11,7 +11,7 @@ export const DV_LAST_RESET_TIME = dayjs().toString();
 /** MAIN GAME LOGIC CONSTANTS */
 export const MGL_RESET_TIME_IN_HOURS = 12;
 export const MGL_RNG_RANGE = 1000001; // 1000001
-export const MGL_WIN_CHANCE = 10; // rng(0 -OC_RNG_RANGE) % OC_WIN_CHANCE === 0 means a win 200000
+export const MGL_WIN_CHANCE = 4; // rng(0 -OC_RNG_RANGE) % OC_WIN_CHANCE === 0 means a win 200000
 export const MGL_AD_FREQUENCY = 25;
 
 /** BOOKSHELF UI CONSTANTS */
@@ -30,3 +30,14 @@ export const FS_USERS_COLLECTION_KEY = 'users';
 export const SI_FIRST_HALF_SHELF = 'firstHalfShelf';
 export const SI_SECOND_HALF_SHELF = 'secondHalfShelf';
 export const SI_FULL_SHELF = 'fullHalfShelf';
+
+/** PRIZE CLAIM TYPE */
+export const PCT_DELIVERABLE = 'shipment'; // the product needs to be shipped
+export const PCT_CASH = 'cash'; // the product is a cash prize, no shipment
+export const PCT_NONE = 'none'; // the product is claimable by the user without need for me
+
+/** CLOUD FUNCTION NAMES */
+export const CFN_DELETE_FROM_MAILING_LIST = 'deleteFromMailingList';
+export const CFN_SEND_ME_EMAIL = 'sendMeEmail';
+export const CFN_ADD_TO_EMAIL_LIST = 'addToMailingList';
+export const CFN_UPDATE_USER_EMAIL = 'updateUserEmail';

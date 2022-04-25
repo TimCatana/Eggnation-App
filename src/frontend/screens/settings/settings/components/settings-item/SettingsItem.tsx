@@ -44,7 +44,7 @@ const SettingsItem: FC<Props> = props => {
 const styles = StyleSheet.create({
   body: {
     width: '97%',
-    height: hp('5%'),
+    height: hp('5.6%'),
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',

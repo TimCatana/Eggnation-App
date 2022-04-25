@@ -6,13 +6,20 @@ import doAddWonPrizeToUserAccount from '../../backend/database/firestore/doAddWo
 import doDeleteAvailablePrize from '../../backend/database/firestore/doDeleteAvailablePrize';
 import doDeleteContestPrize from '../../backend/database/firestore/doDeleteContestPrize';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
-import {MGL_RNG_RANGE, MGL_WIN_CHANCE} from '../../constants/Constants';
+import {
+  DV_LOCAL_COUNT,
+  MGL_RNG_RANGE,
+  MGL_WIN_CHANCE,
+  PCT_NONE,
+} from '../../constants/Constants';
 import {
   AvailablePrizesArray,
   ContestPrizeArray,
   Result,
 } from '../../types/typeAliases';
 import printDevLogs from '../printDevLogs';
+import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
+import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
 
 /**
  * Does the main game logic.
@@ -38,17 +45,32 @@ import printDevLogs from '../printDevLogs';
  * @onSuccessReturn {status: SUCCESS, data: {isWon: true}, message: string}
  * @onErrorReturn {status: ERROR, data: {isWon: false}, message: string}
  */
-const mainGameLogicUC = async (localCount: number): Promise<Result> => {
+const mainGameLogicUC = async (
+  localCount: number,
+  decrementAndGetLocalCount: () => Promise<void>,
+): Promise<Result> => {
   try {
     /**
      * @Phase1 Check internet connection.
      */
     const isConnected = await doCheckInternetConnection();
+    console.log(isConnected);
     if (!isConnected) {
       return {
         status: ERROR,
-        data: {isWon: false},
-        message: 'You need to be connected to the internet',
+        data: {isWon: false, isConnected: false},
+        message: 'You need to be connected to the internet to play',
+      };
+    }
+
+    await decrementAndGetLocalCount();
+
+    const userId = doGetUserId();
+    if (!userId) {
+      return {
+        status: ERROR,
+        data: {isWon: false, isConnected: true},
+        message: '',
       };
     }
 
@@ -57,9 +79,11 @@ const mainGameLogicUC = async (localCount: number): Promise<Result> => {
      *         If localCount is not 1, then do the rng logic
      */
     if (localCount === 1) {
-      return _contestPrizeLogic();
+      return _contestPrizeLogic(userId);
+    } else if (localCount === parseInt(DV_LOCAL_COUNT) - 15) {
+      return _storePromotionPrizeLogic(userId);
     } else {
-      return _rngLogic();
+      return _rngLogic(userId);
     }
   } catch (e: any) {
     return _getErrorResponse(e);
@@ -72,18 +96,18 @@ const mainGameLogicUC = async (localCount: number): Promise<Result> => {
  * The first people to reach a localCount of 1 win.
  * @returns { status: SUCCESS || ERROR, data: {isWon: boolean}, message: string }
  */
-const _contestPrizeLogic = async (): Promise<Result> => {
+const _contestPrizeLogic = async (userId: string): Promise<Result> => {
   const contestPrizes = await doGetAllContestPrizes();
 
   if (contestPrizes.length === 0) {
     return {
       status: SUCCESS,
-      data: {isWon: false},
+      data: {isWon: false, isConnected: true},
       message: '',
     };
   }
 
-  return await _winPrizeLogic(contestPrizes, false);
+  return await _winPrizeLogic(userId, contestPrizes, false);
 };
 
 /**
@@ -93,14 +117,18 @@ const _contestPrizeLogic = async (): Promise<Result> => {
  * If the available prize logic fails, then the user technically loses.
  * @returns { status: SUCCESS || ERROR, data: {isWon: boolean}, message: string }
  */
-const _rngLogic = async (): Promise<Result> => {
+const _rngLogic = async (userId: string): Promise<Result> => {
   const rng = Math.floor(Math.random() * MGL_RNG_RANGE);
 
   if (rng % MGL_WIN_CHANCE !== 0) {
     console.log('lost');
-    return {status: SUCCESS, data: {isWon: false}, message: ''};
+    return {
+      status: SUCCESS,
+      data: {isWon: false, isConnected: true},
+      message: '',
+    };
   } else {
-    return _availablePrizeLogic();
+    return _availablePrizeLogic(userId);
   }
 };
 
@@ -113,18 +141,18 @@ const _rngLogic = async (): Promise<Result> => {
  * is considered to have won.
  * @returns { status: SUCCESS || ERROR, data: {isWon: boolean}, message: string }
  */
-const _availablePrizeLogic = async (): Promise<Result> => {
+const _availablePrizeLogic = async (userId: string): Promise<Result> => {
   const prizes = await doGetAllAvailablePrizes();
 
   if (prizes.length === 0) {
     return {
       status: SUCCESS,
-      data: {isWon: false},
+      data: {isWon: false, isConnected: true},
       message: '',
     };
   }
 
-  return await _winPrizeLogic(prizes, true);
+  return await _winPrizeLogic(userId, prizes, true);
 };
 
 /**
@@ -138,34 +166,23 @@ const _availablePrizeLogic = async (): Promise<Result> => {
  * @returns
  */
 const _winPrizeLogic = async (
+  userId: string,
   prizes: ContestPrizeArray | AvailablePrizesArray,
   isAvailablePrizes: boolean,
 ): Promise<Result> => {
   /**
    * @phase1
    */
-  const userId = doGetUserId();
-  if (!userId) {
-    return {
-      status: ERROR,
-      data: {isWon: false},
-      message: '',
-    };
-  }
-
-  /**
-   * @phase2
-   */
   const prize = prizes[Math.floor(Math.random() * prizes.length)];
 
   /**
-   * @phase3
+   * @phase2
    */
   await doAddWonPrizeToUserAccount(userId, prize);
 
   // TODO - uncomment after
   /**
-   * @phase4
+   * @phase3
    */
   // isAvailablePrizes
   //   ? await doDeleteAvailablePrize(prize.prizeId)
@@ -174,7 +191,7 @@ const _winPrizeLogic = async (
   console.log('won');
   return {
     status: SUCCESS,
-    data: {isWon: true, prize: prize},
+    data: {isWon: true, prize: prize, isConnected: true},
     message: 'Did win',
   };
 };
@@ -194,7 +211,50 @@ const _getErrorResponse = (error: any): Result => {
     );
   }
 
-  return {status: ERROR, data: {isWon: false}, message: ''};
+  return {status: ERROR, data: {isWon: false, isConnected: true}, message: ''};
+};
+
+/**
+ * Get all of the contest prizes and check if the user is a winner.
+ * The user only wins if contest prizes exist.
+ * The first people to reach a localCount of 1 win.
+ * @returns { status: SUCCESS || ERROR, data: {isWon: boolean}, message: string }
+ */
+const _storePromotionPrizeLogic = async (userId: string): Promise<Result> => {
+  const isPromotionCouponClaimed = await doGetAsyncValue(
+    'promotionCouponClaimed',
+  );
+
+  if (isPromotionCouponClaimed) {
+    return {
+      status: SUCCESS,
+      data: {isWon: false, isConnected: true},
+      message: '',
+    };
+  }
+
+  const couponPrize = {
+    prizeId: 'eggnationShopPrize',
+    prizeTitle: 'Free Shipping',
+    prizeDesc:
+      'Get free shipping on any product in the eggnation shop! using the discount code <enter code here"',
+    prizeType: 'shirt',
+    prizeTier: 'gold',
+    prizeClaimType: PCT_NONE,
+  };
+
+  await doAddWonPrizeToUserAccount(userId, couponPrize);
+  await doSetAsyncValue('promotionCouponClaimed', 'true');
+
+  return {
+    status: SUCCESS,
+    data: {
+      isWon: true,
+      prize: couponPrize,
+      isConnected: true,
+    },
+    message: '',
+  };
 };
 
 export default mainGameLogicUC;

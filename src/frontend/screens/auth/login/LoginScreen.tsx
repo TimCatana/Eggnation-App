@@ -12,6 +12,7 @@ import LoginScreenTopView from './components/top-view/LoginScreenTopView';
 import LoginScreenBottomView from './components/bottom-view/LoginScreenBottomView';
 
 import useLoginScreen from './useLoginScreen';
+import FadeIn from '../../../common/animation-components/FadeIn';
 
 const LoginScreen: FC = () => {
   const {

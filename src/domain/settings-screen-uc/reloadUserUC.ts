@@ -3,7 +3,7 @@ import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../types/typeAliases';
 
 // TODO
-const getReloadUserUC = async (): Promise<Result> => {
+const reloadUserUC = async (): Promise<Result> => {
   try {
     await doReloadUser();
     return {
@@ -16,4 +16,4 @@ const getReloadUserUC = async (): Promise<Result> => {
   }
 };
 
-export default getReloadUserUC;
+export default reloadUserUC;

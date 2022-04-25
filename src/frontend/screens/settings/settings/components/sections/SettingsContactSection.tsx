@@ -13,19 +13,24 @@ import {C_BACKGROUND_SETTINGS_SECTION} from '../../../../../theme/Colors';
 import SettingsItem from '../settings-item/SettingsItem';
 import SettingsSectionLabel from '../settings-label/SettingsSectionLabel';
 
-const SettingsContactSection: FC = () => {
+interface Props {
+  navToEggnationShop: () => void;
+  navToContactUs: () => void;
+}
+
+const SettingsContactSection: FC<Props> = props => {
+  const {navToEggnationShop, navToContactUs} = props;
+
   return (
     <View style={styles.body}>
       <SettingsSectionLabel label={S_SS_CONTACT_HEADING} />
       <View style={styles.contentView}>
         <SettingsItem
-          title={S_SS_MYNZA}
+          title={'Eggnation Shop'}
           content={''}
           icon={'chevron-right'}
           isLast={false}
-          onIconPress={() => {
-            console.log('mynza clicked');
-          }}
+          onIconPress={navToEggnationShop}
           iconDisabled={false}
         />
         <SettingsItem
@@ -33,9 +38,7 @@ const SettingsContactSection: FC = () => {
           content={''}
           icon={'chevron-right'}
           isLast={true}
-          onIconPress={() => {
-            console.log('Contact us clicked');
-          }}
+          onIconPress={navToContactUs}
           iconDisabled={false}
         />
       </View>
@@ -46,7 +49,6 @@ const SettingsContactSection: FC = () => {
 const styles = StyleSheet.create({
   body: {
     width: wp('95%'),
-    alignItems: 'center',
   },
   contentView: {
     justifyContent: 'center',

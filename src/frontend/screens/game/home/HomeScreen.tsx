@@ -13,7 +13,13 @@ import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
 import useHomeScreen from './useHomeScreen';
 import Flash from '../../../common/animation-components/Flash';
 
-const HomeScreen: FC = () => {
+interface Props {
+  setSwipeEnabled: (isEnabled: boolean) => void 
+}
+
+const HomeScreen: FC<Props> = (props) => {
+  const {setSwipeEnabled} = props
+  
   const {
     isInitialized,
     isLoading,
@@ -34,7 +40,7 @@ const HomeScreen: FC = () => {
     handleHidePrize,
     handleFlashAnimationFinished,
     navigation,
-  } = useHomeScreen();
+  } = useHomeScreen(setSwipeEnabled);
 
   if (!isInitialized) return null;
 
@@ -54,6 +60,7 @@ const HomeScreen: FC = () => {
       />
 
       <HomeScreenCounter counter={localCount} />
+      
       <HomeScreenEgg
         isLoading={isLoading}
         adShowing={adShowing}

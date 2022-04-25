@@ -4,7 +4,9 @@ import {AvailablePrizesScreenProp} from '../../../navigation/ScreenProps';
 import {SUCCESS} from '../../../../constants/ResultsConstants';
 import getAvailablePrizesUC from '../../../../domain/available-prizes-screen-uc/getAvailablePrizesUC';
 
-const useAvailablePrizesScreen = () => {
+const useAvailablePrizesScreen = (
+  setSwipeEnabled: (isEnabled: boolean) => void,
+) => {
   /******************/
   /***** STATES *****/
   /******************/
@@ -27,6 +29,10 @@ const useAvailablePrizesScreen = () => {
   const [displayPrizeType, setDisplayPrizeType] = useState('');
   const [displayPrizeTier, setDisplayPrizeTier] = useState('');
 
+  navigation.setOptions({
+    swipeEnabled: isInitialized && !isLoading && !isShowingPrize,
+  });
+
   /***********************/
   /***** USE EFFECTS *****/
   /***********************/
@@ -39,6 +45,13 @@ const useAvailablePrizesScreen = () => {
   useEffect(() => {
     initialPrizeFetch();
   }, []);
+
+  /**
+   * Disables swipe when some important logic is running
+   */
+  useEffect(() => {
+    setSwipeEnabled(isInitialized && !isLoading && !isShowingPrize);
+  }, [isInitialized, isLoading, isShowingPrize]);
 
   /******************************/
   /***** USE EFFECT HELPERS *****/
@@ -76,8 +89,19 @@ const useAvailablePrizesScreen = () => {
   /**
    * Shows the prize modal.
    */
-  const handleShowPrize = () => {
+  const handleShowPrize = (
+    prizeId: string,
+    prizeTitle: string,
+    prizeDesc: string,
+    prizeType: string,
+    prizeTier: string,
+  ) => {
     setIsShowingPrize(true);
+    handleDisplayPrizeIdChange(prizeId);
+    handleDisplayPrizeTitleChange(prizeTitle);
+    handleDisplayPrizeDescChange(prizeDesc);
+    handleDisplayPrizeTypeChange(prizeType);
+    handleDisplayPrizeTierChange(prizeTier);
   };
 
   /**

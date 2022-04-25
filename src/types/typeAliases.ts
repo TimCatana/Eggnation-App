@@ -1,7 +1,6 @@
 type SUCCESS = 200;
 type ERROR = 500;
 
-
 /** WON PRIZES */
 export type WonPrize = {
   prizeId: string;
@@ -67,17 +66,8 @@ export type ContestPrizeArray = {
   prizeClaimType: string;
 }[];
 
-/** PRIZE TO ADD */
-export type PrizeToAdd = {
-  prizeId: string;
-  prizeTitle: string;
-  prizeDesc: string;
-  prizeType: string;
-  prizeTier: string;
-};
-
 export type Result = {
-  status: ERROR | SUCCESS,
-  data: any,
-  message: string,
-}
+  status: ERROR | SUCCESS;
+  data: any;
+  message: string;
+};

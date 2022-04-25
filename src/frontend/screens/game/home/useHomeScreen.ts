@@ -12,8 +12,9 @@ import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIf
 import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
 import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
 import {AvailablePrize, ContestPrize} from '../../../../types/typeAliases';
+import Snackbar from 'react-native-snackbar';
 
-const useHomeScreen = () => {
+const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
   /******************/
   /***** STATES *****/
   /******************/
@@ -39,17 +40,12 @@ const useHomeScreen = () => {
   const [displayPrizeType, setDisplayPrizeType] = useState('');
   const [displayPrizeTier, setDisplayPrizeTier] = useState('');
 
+  const [snackbarText, setSnackbarText] = useState('');
+  const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
+
   const {adLoaded, adDismissed, adShowing, show, load} = useInterstitialAd(
     TestIds.INTERSTITIAL,
   );
-
-  navigation.setOptions({
-    swipeEnabled:
-      !isAnimationPlaying &&
-      !isFlashAnimationPlaying &&
-      !isLoading &&
-      isInitialized,
-  });
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -62,6 +58,18 @@ const useHomeScreen = () => {
   useEffect(() => {
     initCounter();
   }, []);
+
+  /**
+   * Disables swipe when some important logic is running
+   */
+  useEffect(() => {
+    setSwipeEnabled(
+      isInitialized &&
+        !isLoading &&
+        !isAnimationPlaying &&
+        !isFlashAnimationPlaying,
+    );
+  }, [isInitialized, isLoading, isAnimationPlaying, isFlashAnimationPlaying]);
 
   /**
    * Plays and resets the crack animation.
@@ -78,6 +86,20 @@ const useHomeScreen = () => {
       isMounted.current = true;
     }
   }, [isAnimationPlaying]);
+
+  /**
+   * Displays a Snackbar showing a message.
+   * Usually used for error messages.
+   * @dependent showSnackbar
+   */
+  useEffect(() => {
+    if (showSnackbar != 0) {
+      Snackbar.show({
+        text: snackbarText,
+        duration: Snackbar.LENGTH_SHORT,
+      });
+    }
+  }, [showSnackbar]);
 
   /******************************/
   /***** USE EFFECT HELPERS *****/
@@ -126,10 +148,15 @@ const useHomeScreen = () => {
       await decrementAndGetLocalCount();
     } else {
       loadAd();
+      const result = await mainGameLogicUC(
+        localCount,
+        decrementAndGetLocalCount,
+      );
 
-      await decrementAndGetLocalCount();
-
-      const result = await mainGameLogicUC(localCount);
+      if (!result.data.isConnected) {
+        setSnackbarText(result.message);
+        setShowSnackbar(showSnackbar + 1);
+      }
 
       if (result.data.isWon) {
         handlePopulateDisplayPrize(result.data.prize);

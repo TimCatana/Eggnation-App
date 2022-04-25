@@ -14,7 +14,13 @@ interface Props {
   isPrizeFetchFailed: boolean;
   prizeFetchFailedText: string;
   data: any; // TODO, make specific type later (availablePrize[])
-  handleShowPrize: () => void;
+  handleShowPrize: (
+    prizeId: string,
+    prizeTitle: string,
+    prizeDesc: string,
+    prizeType: string,
+    prizeTier: string,
+  ) => void;
   handleDisplayPrizeIdChange: (value: string) => void;
   handleDisplayPrizeTitleChange: (value: string) => void;
   handleDisplayPrizeDescChange: (value: string) => void;

@@ -9,6 +9,8 @@ import getUserEmailVerificationStatusUC from '../../../../domain/settings-screen
 import sendVerificationEmailUC from '../../../../domain/settings-screen-uc/sendVerificationEmailUC';
 import logoutUserUC from '../../../../domain/settings-screen-uc/logoutUserUC';
 import deleteUserUC from '../../../../domain/settings-screen-uc/deleteUserUC';
+import reloadUserUC from '../../../../domain/settings-screen-uc/reloadUserUC';
+import {Linking} from 'react-native';
 
 // TODO - refresh token each time the user goes to settings screen. The should rarely go here so it should not be that expensive
 const useSettingsScreen = () => {
@@ -17,6 +19,7 @@ const useSettingsScreen = () => {
   /******************/
   const navigation = useNavigation<SettingsScreenProp>();
 
+  const [isInitialized, setIsInitialized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [email, setEmail] = useState('');
@@ -65,6 +68,19 @@ const useSettingsScreen = () => {
     }
   }, [showSnackbar]);
 
+  /**
+   * Refreshes the page each time this screen comes into focus.
+   * When the email and passwords are changed, it navigates back, but this
+   * component never remounts so we don't get updated profile info.
+   * This function solves that
+   */
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getUserInfo();
+    });
+    return unsubscribe;
+  }, [navigation]);
+
   /******************************/
   /***** USE EFFECT HELPERS *****/
   /******************************/
@@ -72,12 +88,14 @@ const useSettingsScreen = () => {
   /**
    * get's the user info and populates the state variables.
    */
-  const getUserInfo = () => {
+  const getUserInfo = async () => {
+    await reloadUserUC();
     const emailResult = getUserEmailUC();
     const emailVerificationStatusResult = getUserEmailVerificationStatusUC();
 
     setEmail(emailResult.data);
     setEmailVerificationStatus(emailVerificationStatusResult.data);
+    setIsInitialized(true);
   };
 
   /***********************/
@@ -191,6 +209,23 @@ const useSettingsScreen = () => {
     }
   };
 
+  /** Navigates to edit password screen if no process is currently running. */
+  const navToEggnationShop = () => {
+    if (!isLoading) {
+      const url = 'https://mynzaclothing.com/password';
+      Linking.openURL(url);
+    }
+  };
+
+  /** Navigates to edit password screen if no process is currently running. */
+  const navToContactUs = () => {
+    if (!isLoading) {
+      const url =
+        'mailto:contactapplicnation@gmail.com?subject=Enter your subject here&body=Enter your message here';
+      Linking.openURL(url);
+    }
+  };
+
   /** Navigates to privacy policy screen if no process is currently running. */
   const navToPrivacyPolicyScreen = () => {
     if (!isLoading) {
@@ -210,6 +245,7 @@ const useSettingsScreen = () => {
   /*******************/
 
   return {
+    isInitialized,
     isLoading,
     email,
     emailVerificationStatus,
@@ -226,6 +262,8 @@ const useSettingsScreen = () => {
     navigateBack,
     navToEditEmailScreen,
     navToEditPasswordScreen,
+    navToEggnationShop,
+    navToContactUs,
     navToPrivacyPolicyScreen,
     navToTermsScreen,
   };

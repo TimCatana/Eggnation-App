@@ -46,7 +46,7 @@ const SettingsProfileSection: FC<Props> = props => {
         <SettingsItem
           title={S_SS_EMAIL_VERIFIED}
           content={
-            emailVerificationStatus ? `${emailVerificationStatus}` : 'unknown'
+            emailVerificationStatus != null ? `${emailVerificationStatus}` : 'unknown'
           }
           icon={emailVerificationStatus ? 'done' : 'send'}
           isLast={false}
@@ -57,7 +57,7 @@ const SettingsProfileSection: FC<Props> = props => {
         />
         <SettingsItem
           title={S_SS_PASSWORD}
-          content={'........'}
+          content={'●●●●●●●'}
           icon={'edit'}
           isLast={true}
           onIconPress={navToEditPasswordScreen}

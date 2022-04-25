@@ -1,10 +1,10 @@
-import doUpdateUserEmail from '../../backend/auth/doUpdateUserEmail';
 import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 import doReauthenticate from '../../backend/auth/doReauthenticate';
 import doUpdateUserEmailByCloudFunction from '../../backend/cloud-functions/doUpdateUserEmailByCloudFunction';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import printDevLogs from '../printDevLogs';
 import {Result} from '../../types/typeAliases';
+import doReloadUser from '../../backend/auth/doReloadUser';
 
 /**
  * Attempts to update the user's login email.
@@ -47,6 +47,14 @@ const updateUserEmailUC = async (
     await doUpdateUserEmailByCloudFunction(newEmail);
   } catch (e: any) {
     return _getUpdateEmailErrorResponse(e);
+  }
+
+  try {
+    await doReauthenticate(newEmail, password);
+  } catch (e: any) {
+    console.log('reauthenticate failed')
+    return {status: ERROR, data: null, message: ''};
+    // return _getReauthenticateErrorResponse(e);
   }
 
   return {status: SUCCESS, data: null, message: 'Email updated successfully!'};
@@ -103,7 +111,7 @@ const _getUpdateEmailErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
       'domain/edit-email-screen-uc/updateUserEmailUC.js',
-      'updateUserEmailUC/doUpdateUserEmail',
+      'updateUserEmailUC/doUpdateUserEmailByCloudFunction',
       `${error}`,
     );
   }

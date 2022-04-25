@@ -3,7 +3,7 @@ import {
   FS_WON_PRIZES_COLLECTION_KEY,
   FS_USER_WON_PRIZES_COLLECTION_KEY,
 } from '../../../constants/Constants';
-import {PrizeToAdd} from '../../../types/typeAliases';
+import {AvailablePrize, ContestPrize} from '../../../types/typeAliases';
 
 /**
  * Adds a won prize to the user's collection in the database.
@@ -17,7 +17,7 @@ import {PrizeToAdd} from '../../../types/typeAliases';
  */
 const doAddWonPrizeToUserAccount = async (
   userId: string,
-  prizeToAdd: PrizeToAdd,
+  prizeToAdd: AvailablePrize | ContestPrize,
 ) => {
   await firestore()
     .collection(FS_WON_PRIZES_COLLECTION_KEY)
@@ -32,6 +32,7 @@ const doAddWonPrizeToUserAccount = async (
       prizeTier: `${prizeToAdd.prizeTier}`,
       prizeWonDate: `${Date()}`,
       prizeClaimed: false,
+      prizeClaimType: `${prizeToAdd.prizeClaimType}`,
       prizeDelivered: false,
       prizeWinnerId: `${userId}`,
     });

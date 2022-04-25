@@ -10,6 +10,7 @@ import {
   Particles,
   LostAnimation,
 } from '../../../../../../../assets';
+import FadeIn from '../../../../../common/animation-components/FadeIn';
 
 interface Props {
   isLoading: boolean;
@@ -55,20 +56,12 @@ const styles = StyleSheet.create({
     flex: 15,
     justifyContent: 'center',
     alignItems: 'center',
-
+    // backgroundColor: 'red'
   },
   egg: {
     width: wp('100%'),
     height: hp('93%'),
     marginBottom: hp('15%'),
-
-  },
-  particle: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
   },
 });
 

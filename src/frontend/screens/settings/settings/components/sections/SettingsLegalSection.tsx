@@ -27,16 +27,6 @@ const SettingsLegalSection: FC<Props> = props => {
       <SettingsSectionLabel label={S_SS_LEGAL_HEADING} />
       <View style={styles.contentView}>
         <SettingsItem
-          title={S_SS_CONTACT_US}
-          content={''}
-          icon={'chevron-right'}
-          isLast={false}
-          onIconPress={() => {
-            console.log('contact us pressed!');
-          }}
-          iconDisabled={false}
-        />
-        <SettingsItem
           title={S_SS_PRIVACY_POLICY}
           content={''}
           icon={'chevron-right'}

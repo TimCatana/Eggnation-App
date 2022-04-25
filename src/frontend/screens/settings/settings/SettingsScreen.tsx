@@ -15,6 +15,7 @@ import useSettingsScreen from './useSettingsScreen';
 // TODO - there's something wrong with the way flex is working for the sections, I need to fix it later on
 const SettingsScreen: FC = () => {
   const {
+    isInitialized,
     isLoading,
     email,
     emailVerificationStatus,
@@ -31,9 +32,13 @@ const SettingsScreen: FC = () => {
     navigateBack,
     navToEditEmailScreen,
     navToEditPasswordScreen,
+    navToEggnationShop,
+    navToContactUs,
     navToPrivacyPolicyScreen,
     navToTermsScreen,
   } = useSettingsScreen();
+
+  if (!isInitialized) return null;
 
   return (
     <View style={styles.body}>
@@ -61,6 +66,8 @@ const SettingsScreen: FC = () => {
         handleSendVerificationEmailClick={handleSendVerificationEmailClick}
         navToEditEmailScreen={navToEditEmailScreen}
         navToEditPasswordScreen={navToEditPasswordScreen}
+        navToEggnationShop={navToEggnationShop}
+        navToContactUs={navToContactUs}
         navToPrivacyPolicyScreen={navToPrivacyPolicyScreen}
         navToTermsScreen={navToTermsScreen}
       />
