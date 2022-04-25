@@ -11,18 +11,6 @@ exports.updateUserAuth = functions.firestore
     const oldValues = snapshot.before.data();
     const currentValues = snapshot.after.data();
 
-    if (oldValues.email != currentValues.email) {
-      try {
-        _updateUserAuthEmail(context.params.userId, currentValues.email);
-      } catch (e) {
-        console.log(`auth error update email ${e}`);
-        throw new functions.https.HttpsError(
-          "unknown",
-          `failed to update auth email: ${e} ${context.auth.uid} ${values.email}`
-        );
-      }
-    }
-
     if (oldValues.username != currentValues.username) {
       try {
         _updateUserAuthUsername(context.params.userId, currentValues.username);
@@ -38,18 +26,6 @@ exports.updateUserAuth = functions.firestore
     console.log("Update User Auth Ran Successfully");
     return true;
   });
-
-/**
- * Updates the user's email address in authentication
- * @param {*} uid The user's id
- * @param {*} email The user's new email
- */
-const _updateUserAuthEmail = async (uid, email) => {
-  await admin.auth().updateUser(uid, {
-    email: email,
-    emailVerified: false,
-  });
-};
 
 /**
  * Updates the user's username in authentication

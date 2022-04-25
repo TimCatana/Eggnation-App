@@ -18,7 +18,7 @@ const sendMeEmail = require("./src/email/sendMeEmail");
 
 const addUserToFirestore = require("./src/firestore/addUserToFirestore");
 const removeUserFromFirestore = require("./src/firestore/removeUserFromFirestore");
-const updateUserFirestoreEmail = require("./src/firestore/updateUserFirestoreEmail");
+const updateUserEmail = require("./src/firestore/updateUserEmail");
 
 const addToMailingList = require("./src/sib/addToMailingList");
 const deleteFromMailingList = require("./src/sib/deleteFromMailingList");
@@ -31,8 +31,7 @@ exports.sendMeEmail = sendMeEmail.sendMeEmail;
 exports.addUserToFirestore = addUserToFirestore.addUserToFireStore;
 exports.removeUserFromFirestore =
   removeUserFromFirestore.removeUserFromFireStore;
-exports.updateUserFirestoreEmail =
-  updateUserFirestoreEmail.updateUserFirestoreEmail;
+exports.updateUserEmail = updateUserEmail.updateUserEmail;
 
 exports.addToMailingList = addToMailingList.addToMailingList;
 exports.deleteFromMailingList = deleteFromMailingList.deleteFromMailingList;
