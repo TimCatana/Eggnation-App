@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {Image, StyleSheet} from 'react-native';
-import {bookShelfRight} from '../../../../../../../assets';
+import {bookShelfRight} from '../../../../../assets';
 
-const AvailablePrizeScreenRightView: FC = () => {
+const BookShelfRightView: FC = () => {
   return (
     <Image style={styles.image} resizeMode="stretch" source={bookShelfRight} />
   );
@@ -14,4 +14,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AvailablePrizeScreenRightView;
+export default BookShelfRightView;

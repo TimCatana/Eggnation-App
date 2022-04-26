@@ -11,13 +11,13 @@ const useForgotPasswordScreen = () => {
   /******************/
   const navigation = useNavigation<ForgotPasswordScreenProp>();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [email, setEmail] = useState('');
-  const [isEmailError, setIsEmailError] = useState(true);
+  const [email, setEmail] = useState<string>('');
+  const [isEmailError, setIsEmailError] = useState<boolean>(true);
 
-  const [snackbarText, setSnackbarText] = useState('');
-  const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
+  const [snackbarText, setSnackbarText] = useState<string>('');
+  const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
 
   /***********************/
   /***** USE EFFECTS *****/

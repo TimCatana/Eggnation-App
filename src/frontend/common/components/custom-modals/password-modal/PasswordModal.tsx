@@ -7,14 +7,14 @@ import {
 import {
   S_TI_PASSWORD_PLACEHOLDER,
   S_TI_PASSWORD_KEYBOARD_TYPE,
-} from '../../../theme/Strings';
+} from '../../../../theme/Strings';
 import {
   C_BUTTON_DISABLED,
   C_BUTTON_ENABLED,
   C_TEXT_LIGHT,
   C_TEXT_INPUT_TEXT_PRIMARY,
-} from '../../../theme/Colors';
-import {CustomTextInput, CustomButton} from '../index';
+} from '../../../../theme/Colors';
+import {CustomTextInput, CustomButton} from '../../index';
 
 interface Props {
   isLoading: boolean;

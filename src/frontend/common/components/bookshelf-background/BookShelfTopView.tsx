@@ -3,7 +3,7 @@ import {View, Image, StyleSheet} from 'react-native';
 import {bookShelfTop} from '../../../../../assets';
 import {C_BACKGROUND_BOOKSHELF} from '../../../theme/Colors';
 
-const TopShelfImage: FC = () => {
+const BookShelfTopView: FC = () => {
   return (
     <View style={styles.body}>
       <Image style={styles.image} resizeMode="stretch" source={bookShelfTop} />
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TopShelfImage;
+export default BookShelfTopView;

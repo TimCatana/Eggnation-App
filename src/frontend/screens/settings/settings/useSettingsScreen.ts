@@ -5,8 +5,6 @@ import {Screens} from '../../../../constants/NavigationConstants';
 import {ERROR} from '../../../../constants/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
 import getUserEmailUC from '../../../../domain/settings-screen-uc/getUserEmailUC';
-import getUserEmailVerificationStatusUC from '../../../../domain/settings-screen-uc/getUserEmailVerificationStatusUC';
-import sendVerificationEmailUC from '../../../../domain/settings-screen-uc/sendVerificationEmailUC';
 import logoutUserUC from '../../../../domain/settings-screen-uc/logoutUserUC';
 import deleteUserUC from '../../../../domain/settings-screen-uc/deleteUserUC';
 import reloadUserUC from '../../../../domain/settings-screen-uc/reloadUserUC';
@@ -23,7 +21,6 @@ const useSettingsScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [email, setEmail] = useState('');
-  const [emailVerificationStatus, setEmailVerificationStatus] = useState(null);
   const [language, setLanguage] = useState('EN');
 
   const [password, setPassword] = useState('');
@@ -91,10 +88,8 @@ const useSettingsScreen = () => {
   const getUserInfo = async () => {
     await reloadUserUC();
     const emailResult = getUserEmailUC();
-    const emailVerificationStatusResult = getUserEmailVerificationStatusUC();
 
     setEmail(emailResult.data);
-    setEmailVerificationStatus(emailVerificationStatusResult.data);
     setIsInitialized(true);
   };
 
@@ -131,20 +126,6 @@ const useSettingsScreen = () => {
   const hidePasswordModal = () => {
     setIsPasswordModalShowing(false);
     setPassword('');
-  };
-
-  /**
-   * Does the backend logic to send verification email.
-   * @onSuccess Should show a snackbar saying email was sent
-   * @onFailure Should show a snackbar with an error message
-   */
-  const handleSendVerificationEmailClick = async () => {
-    setIsLoading(true);
-    const result = await sendVerificationEmailUC();
-    setIsLoading(false);
-
-    setSnackbarText(result.message);
-    setShowSnackbar(showSnackbar + 1);
   };
 
   /**
@@ -248,7 +229,6 @@ const useSettingsScreen = () => {
     isInitialized,
     isLoading,
     email,
-    emailVerificationStatus,
     language,
     password,
     handlePasswordChange,
@@ -256,7 +236,6 @@ const useSettingsScreen = () => {
     isPasswordModalShowing,
     showPasswordModal,
     hidePasswordModal,
-    handleSendVerificationEmailClick,
     logoutUser,
     deleteUser,
     navigateBack,

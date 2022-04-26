@@ -13,21 +13,24 @@ const useEditPasswordScreen = () => {
   /******************/
   const navigation = useNavigation<EditPasswordScreenProp>();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [newPassword, setNewPassword] = useState('');
-  const [isNewPasswordError, setIsNewPasswordError] = useState(true);
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [isNewPasswordError, setIsNewPasswordError] = useState<boolean>(true);
 
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [isConfirmPasswordError, setIsConfirmPasswordError] = useState(true);
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [isConfirmPasswordError, setIsConfirmPasswordError] =
+    useState<boolean>(true);
 
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [isCurrentPasswordError, setIsCurrentPasswordError] = useState(true);
+  const [currentPassword, setCurrentPassword] = useState<string>('');
+  const [isCurrentPasswordError, setIsCurrentPasswordError] =
+    useState<boolean>(true);
 
-  const [isPasswordModalShowing, setIsPasswordModalShowing] = useState(false);
+  const [isPasswordModalShowing, setIsPasswordModalShowing] =
+    useState<boolean>(false);
 
-  const [snackbarText, setSnackbarText] = useState('');
-  const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
+  const [snackbarText, setSnackbarText] = useState<string>('');
+  const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
 
   /***********************/
   /***** USE EFFECTS *****/

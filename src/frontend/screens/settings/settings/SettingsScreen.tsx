@@ -18,7 +18,6 @@ const SettingsScreen: FC = () => {
     isInitialized,
     isLoading,
     email,
-    emailVerificationStatus,
     language,
     password,
     handlePasswordChange,
@@ -26,7 +25,6 @@ const SettingsScreen: FC = () => {
     isPasswordModalShowing,
     showPasswordModal,
     hidePasswordModal,
-    handleSendVerificationEmailClick,
     logoutUser,
     deleteUser,
     navigateBack,
@@ -62,8 +60,7 @@ const SettingsScreen: FC = () => {
       <SettingsScreenTopView isLoading={isLoading} />
       <SettingsScreenCenterView
         email={email}
-        emailVerificationStatus={emailVerificationStatus}
-        handleSendVerificationEmailClick={handleSendVerificationEmailClick}
+        language={language}
         navToEditEmailScreen={navToEditEmailScreen}
         navToEditPasswordScreen={navToEditPasswordScreen}
         navToEggnationShop={navToEggnationShop}

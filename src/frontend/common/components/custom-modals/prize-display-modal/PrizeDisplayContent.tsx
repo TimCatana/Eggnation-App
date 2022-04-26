@@ -1,25 +1,22 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet, Image, ImageBackground} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {bookShelfTop} from '../../../../../assets';
+import {bookShelfTop} from '../../../../../../assets';
 import {
   C_BUTTON_DISABLED,
   C_BUTTON_ENABLED,
   C_TEXT_INPUT_TEXT_PRIMARY,
   C_TEXT_LIGHT,
   C_TEXT_PRIMARY,
-} from '../../../theme/Colors';
-import {PrizeList} from '../index';
-import LottieView from 'lottie-react-native';
-import {PresentPlaceholder} from '../../../../../assets';
+} from '../../../../theme/Colors';
 import {ScrollView} from 'react-native-gesture-handler';
-import CustomButton from '../custom-button/CustomButton';
-import {Screens} from '../../../../constants/NavigationConstants';
+import {CustomButton} from '../../index';
+import {Screens} from '../../../../../constants/NavigationConstants';
 import {
   PCT_CASH,
   PCT_DELIVERABLE,
   PCT_NONE,
-} from '../../../../constants/Constants';
+} from '../../../../../constants/Constants';
 
 interface Props {
   isLoading: boolean;
@@ -93,8 +90,8 @@ const PrizeDisplayContent: FC<Props> = props => {
               textColor={C_TEXT_LIGHT}
               fontSize={hp('2%')}
               elevation={0}
-              disabled={
-                isLoading || prizeIsClaimed || prizeClaimType == PCT_NONE
+              disabled={false
+                // isLoading || prizeIsClaimed || prizeClaimType == PCT_NONE
               }
             />
           </View>

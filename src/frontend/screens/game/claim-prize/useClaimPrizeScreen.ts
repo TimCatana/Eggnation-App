@@ -2,8 +2,9 @@ import {useState, useEffect} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {ClaimPrizeScreenProp} from '../../../navigation/ScreenProps';
 import claimPrizeUC from '../../../../domain/claim-prize-screen-us/claimPrizeUC';
-import countriesData from '../../../util/countries.json';
+import countriesData from '../../../../util/countries.json';
 import {ClaimPrizeRouteProp} from '../../../navigation/ScreenProps';
+import {Countries, Regions} from '../../../../types/typeAliases';
 
 const useClaimPrizeScreen = () => {
   /******************/
@@ -14,30 +15,25 @@ const useClaimPrizeScreen = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [allCountries, setAllCountries] = useState<
-    {
-      countryName: string;
-      countryShortCode: string;
-    }[]
-  >([]);
-  const [allRegions, setAllRegions] = useState<
-    {name: string; shortCode: string}[]
-  >([]);
+  const [allCountries, setAllCountries] = useState<Countries | []>([]);
+  const [allRegions, setAllRegions] = useState<Regions | []>([]);
 
-  const [selectedCountry, setSelectedCountry] = useState('Afghanistan');
-  const [isCountryError, setIsCountryError] = useState(true);
+  const [selectedCountry, setSelectedCountry] = useState<string>('Afghanistan');
+  const [isCountryError, setIsCountryError] = useState<boolean>(true);
 
-  const [selectedRegion, setSelectedRegion] = useState('Badakhshan');
-  const [isRegionError, setIsRegionError] = useState(true);
+  const [selectedRegion, setSelectedRegion] = useState<string>('Badakhshan');
+  const [isRegionError, setIsRegionError] = useState<boolean>(true);
 
-  const [address, setAddress] = useState('');
-  const [isAddressError, setIsAddressError] = useState(true);
+  const [address, setAddress] = useState<string>('');
+  const [isAddressError, setIsAddressError] = useState<boolean>(true);
 
-  const [postalCode, setPostalCode] = useState('');
-  const [isPostalCodeError, setIsPostalCodeError] = useState(true);
+  const [postalCode, setPostalCode] = useState<string>('');
+  const [isPostalCodeError, setIsPostalCodeError] = useState<boolean>(true);
 
-  const [isModalPickerShowing, setIsModalPickerShowing] = useState(false);
-  const [isSelectingCountries, setIsSelectingCountries] = useState(true);
+  const [isModalPickerShowing, setIsModalPickerShowing] =
+    useState<boolean>(false);
+  const [isSelectingCountries, setIsSelectingCountries] =
+    useState<boolean>(true);
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -48,7 +44,6 @@ const useClaimPrizeScreen = () => {
    * @dependent onMount
    */
   useEffect(() => {
-    // console.log(countriesData[0])
     setAllCountries(
       countriesData.map(it => {
         return {
@@ -58,10 +53,7 @@ const useClaimPrizeScreen = () => {
       }),
     );
 
-    setAllRegions(
-      [],
-      // countriesData.find(it =>  it.countryName === selectedCountry).regions,
-    );
+    setRegions();
   }, []);
 
   /**
@@ -73,10 +65,8 @@ const useClaimPrizeScreen = () => {
     selectedCountry.length > 0
       ? setIsCountryError(false)
       : setIsCountryError(true);
-    setAllRegions(
-      [],
-      // countriesData.find(it => it.countryName === selectedCountry).regions,
-    );
+
+    setRegions();
   }, [selectedCountry]);
 
   /**
@@ -119,6 +109,17 @@ const useClaimPrizeScreen = () => {
       ? setIsPostalCodeError(false)
       : setIsPostalCodeError(true);
   }, [postalCode]);
+
+  /******************************/
+  /***** USE EFFECT HELPERS *****/
+  /******************************/
+
+  const setRegions = () => {
+    const country = countriesData.find(
+      it => it.countryName === selectedCountry,
+    );
+    country ? setAllRegions(country.regions) : setAllRegions([]);
+  };
 
   /***********************/
   /***** TEXT INPUTS *****/

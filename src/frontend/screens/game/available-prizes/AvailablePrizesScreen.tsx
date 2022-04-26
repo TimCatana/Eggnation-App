@@ -2,19 +2,19 @@ import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {C_BACKGROUND_BOOKSHELF} from '../../../theme/Colors';
 import {PrizeDisplayModal} from '../../../common/components';
-import AvailablePrizeScreenLeftView from './components/left-view/AvailablePrizeScreenLeftView';
-import AvailablePrizeScreenCenterView from './components/center-view/AvailablePrizeScreenCenterView';
-import AvailablePrizeScreenRightView from './components/right-view/AvailablePrizeScreenRightView';
 
 import TEST_DATA from '../../../../../test-data/availablePrizes.json'; // TODO - get rid of this after...
-import useAvailablePrizesScreen from './useAvailablePrizesScreen';
+import BookShelfLeftView from '../../../common/components/bookshelf-background/BookShelfLeftView';
+import BookShelfRightView from '../../../common/components/bookshelf-background/BookShelfRightView';
+import PrizeScreenCenterView from '../../../common/components/bookshelf-background/PrizeScreenCenterView';
+import usePrizeScreen from '../../../common/states/usePrizeScreen';
 
 interface Props {
-  setSwipeEnabled: (isEnabled: boolean) => void 
+  setSwipeEnabled: (isEnabled: boolean) => void;
 }
 
-const AvailablePrizesScreen: FC<Props> = (props) => {
-  const {setSwipeEnabled} = props
+const AvailablePrizesScreen: FC<Props> = props => {
+  const {setSwipeEnabled} = props;
 
   const {
     isInitialized,
@@ -22,7 +22,7 @@ const AvailablePrizesScreen: FC<Props> = (props) => {
     isPrizeFetchFailed,
     prizeFetchFailedText,
     isShowingPrize,
-    availablePrizes,
+    prizes,
     handleShowPrize,
     handleHidePrize,
     displayPrizeId,
@@ -32,13 +32,13 @@ const AvailablePrizesScreen: FC<Props> = (props) => {
     displayPrizeType,
     displayPrizeClaimType,
     navigation,
-  } = useAvailablePrizesScreen(setSwipeEnabled);
+  } = usePrizeScreen(true, setSwipeEnabled);
 
   return (
     <View style={styles.body}>
-      <AvailablePrizeScreenLeftView />
+      <BookShelfLeftView />
 
-      <AvailablePrizeScreenCenterView
+      <PrizeScreenCenterView
         isInitialized={isInitialized}
         isLoading={isLoading}
         isPrizeFetchFailed={isPrizeFetchFailed}
@@ -62,7 +62,7 @@ const AvailablePrizesScreen: FC<Props> = (props) => {
         navigation={navigation}
       />
 
-      <AvailablePrizeScreenRightView />
+      <BookShelfRightView />
     </View>
   );
 };

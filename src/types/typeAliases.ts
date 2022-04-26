@@ -66,6 +66,19 @@ export type ContestPrizeArray = {
   prizeClaimType: string;
 }[];
 
+/** COUNTRIES AND REGIONS  */
+export type Regions = {
+  name: string;
+  shortCode?: string;
+}[];
+
+export type Countries = {
+  countryName: string;
+  countryShortCode: string;
+  // postalCodeFormat: string;
+  // regions: Regions;
+}[];
+
 export type Result = {
   status: ERROR | SUCCESS;
   data: any;

@@ -1,36 +1,45 @@
 import {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {AvailablePrizesScreenProp} from '../../../navigation/ScreenProps';
-import {SUCCESS} from '../../../../constants/ResultsConstants';
-import getAvailablePrizesUC from '../../../../domain/available-prizes-screen-uc/getAvailablePrizesUC';
-import {AvailablePrize, WonPrize} from '../../../../types/typeAliases';
+import {
+  AvailablePrizesScreenProp,
+  WonPrizeScreenProp,
+} from '../../navigation/ScreenProps';
+import {SUCCESS} from '../../../constants/ResultsConstants';
+import getAvailablePrizesUC from '../../../domain/available-prizes-screen-uc/getAvailablePrizesUC';
+import {AvailablePrizesArray, WonPrizesArray} from '../../../types/typeAliases';
+import getWonPrizesUC from '../../../domain/won-prizes-screen-us/getWonPrizesUC';
 
-const useAvailablePrizesScreen = (
+const usePrizeScreen = (
+  isAvailablePrizeScreen: boolean,
   setSwipeEnabled: (isEnabled: boolean) => void,
 ) => {
   /******************/
   /***** STATES *****/
   /******************/
-  const navigation = useNavigation<AvailablePrizesScreenProp>();
+  const navigation = isAvailablePrizeScreen
+    ? useNavigation<AvailablePrizesScreenProp>()
+    : useNavigation<WonPrizeScreenProp>();
 
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [isPrizeFetchFailed, setIsPrizeFetchFailed] = useState(true);
-  const [prizeFetchFailedText, setIsPrizeFetchFailedText] = useState(
+  const [isPrizeFetchFailed, setIsPrizeFetchFailed] = useState<boolean>(true);
+  const [prizeFetchFailedText, setIsPrizeFetchFailedText] = useState<string>(
     'Failed to fetch prizes',
   );
 
-  const [availablePrizes, setAvailablePrizes] = useState([]);
-  const [isShowingPrize, setIsShowingPrize] = useState(false);
+  const [prizes, setPrizes] = useState<
+    AvailablePrizesArray | WonPrizesArray | []
+  >([]);
+  const [isShowingPrize, setIsShowingPrize] = useState<boolean>(false);
 
-
-  const [displayPrizeId, setDisplayPrizeId] = useState('');
-  const [displayPrizeTitle, setDisplayPrizeTitle] = useState('');
-  const [displayPrizeDesc, setDisplayPrizeDesc] = useState('');
-  const [displayPrizeType, setDisplayPrizeType] = useState('');
-  const [displayPrizeTier, setDisplayPrizeTier] = useState('');
-  const [displayPrizeClaimType, setDisplayPrizeClaimType] = useState('');
+  const [displayPrizeId, setDisplayPrizeId] = useState<string>('');
+  const [displayPrizeTitle, setDisplayPrizeTitle] = useState<string>('');
+  const [displayPrizeDesc, setDisplayPrizeDesc] = useState<string>('');
+  const [displayPrizeType, setDisplayPrizeType] = useState<string>('');
+  const [displayPrizeTier, setDisplayPrizeTier] = useState<string>('');
+  const [displayPrizeClaimType, setDisplayPrizeClaimType] =
+    useState<string>('');
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -69,12 +78,17 @@ const useAvailablePrizesScreen = (
    * checks whether the fetch was successful or not.
    */
   const getAvailablePrizes = async () => {
-    const result = await getAvailablePrizesUC();
-    setAvailablePrizes(result.data);
+    const result = isAvailablePrizeScreen
+      ? await getAvailablePrizesUC()
+      : await getWonPrizesUC();
+
+    setPrizes(result.data);
 
     if (result.status === SUCCESS) {
       if (result.data.length === 0) {
-        setIsPrizeFetchFailedText('No Prizes Available. More Coming Soon!');
+        isAvailablePrizeScreen
+          ? setIsPrizeFetchFailedText('No Prizes Available. More Coming Soon!')
+          : setIsPrizeFetchFailedText("You haven't won anything yet!");
       } else {
         setIsPrizeFetchFailed(false);
       }
@@ -102,7 +116,7 @@ const useAvailablePrizesScreen = (
     handleDisplayPrizeDescChange(prizeDesc);
     handleDisplayPrizeTypeChange(prizeType);
     handleDisplayPrizeTierChange(prizeTier);
-    handleDisplayPrizeClaimTypeChange(prizeClaimType)
+    handleDisplayPrizeClaimTypeChange(prizeClaimType);
   };
 
   /**
@@ -170,7 +184,7 @@ const useAvailablePrizesScreen = (
     isPrizeFetchFailed,
     prizeFetchFailedText,
     isShowingPrize,
-    availablePrizes,
+    prizes,
     handleShowPrize,
     handleHidePrize,
     displayPrizeId,
@@ -183,4 +197,4 @@ const useAvailablePrizesScreen = (
   };
 };
 
-export default useAvailablePrizesScreen;
+export default usePrizeScreen;

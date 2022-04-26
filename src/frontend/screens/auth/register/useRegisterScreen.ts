@@ -18,21 +18,21 @@ const useRegisterScreen = () => {
 
   const navigation = useNavigation<RegisterScreenProp>();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [email, setEmail] = useState('');
-  const [isEmailError, setIsEmailError] = useState(true);
+  const [email, setEmail] = useState<string>('');
+  const [isEmailError, setIsEmailError] = useState<boolean>(true);
 
-  const [password, setPassword] = useState('');
-  const [isPasswordError, setIsPasswordError] = useState(true);
+  const [password, setPassword] = useState<string>('');
+  const [isPasswordError, setIsPasswordError] = useState<boolean>(true);
 
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [isConfirmPasswordError, setIsConfirmPasswordError] = useState(true);
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [isConfirmPasswordError, setIsConfirmPasswordError] = useState<boolean>(true);
 
-  const [isSubbedToMailingList, setIsSubbedToMailingList] = useState(true);
+  const [isSubbedToMailingList, setIsSubbedToMailingList] = useState<boolean>(true);
 
-  const [snackbarText, setSnackbarText] = useState('');
-  const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
+  const [snackbarText, setSnackbarText] = useState<string>('');
+  const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
 
   /***********************/
   /***** USE EFFECTS *****/

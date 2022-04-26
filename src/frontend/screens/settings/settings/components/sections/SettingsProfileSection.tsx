@@ -16,20 +16,14 @@ import SettingsSectionLabel from '../settings-label/SettingsSectionLabel';
 
 interface Props {
   email: string;
-  emailVerificationStatus: boolean | null;
-  handleSendVerificationEmailClick: () => void;
+  language: string;
   navToEditEmailScreen: () => void;
   navToEditPasswordScreen: () => void;
 }
 
 const SettingsProfileSection: FC<Props> = props => {
-  const {
-    email,
-    emailVerificationStatus,
-    handleSendVerificationEmailClick,
-    navToEditEmailScreen,
-    navToEditPasswordScreen,
-  } = props;
+  const {email, language, navToEditEmailScreen, navToEditPasswordScreen} =
+    props;
 
   return (
     <View style={styles.body}>
@@ -44,21 +38,17 @@ const SettingsProfileSection: FC<Props> = props => {
           iconDisabled={false}
         />
         <SettingsItem
-          title={S_SS_EMAIL_VERIFIED}
-          content={
-            emailVerificationStatus != null ? `${emailVerificationStatus}` : 'unknown'
-          }
-          icon={emailVerificationStatus ? 'done' : 'send'}
-          isLast={false}
-          onIconPress={handleSendVerificationEmailClick}
-          iconDisabled={
-            emailVerificationStatus ? emailVerificationStatus : true
-          }
-        />
-        <SettingsItem
           title={S_SS_PASSWORD}
           content={'●●●●●●●'}
           icon={'edit'}
+          isLast={false}
+          onIconPress={navToEditPasswordScreen}
+          iconDisabled={false}
+        />
+        <SettingsItem
+          title={'Language'}
+          content={language}
+          icon={'check'}
           isLast={true}
           onIconPress={navToEditPasswordScreen}
           iconDisabled={false}

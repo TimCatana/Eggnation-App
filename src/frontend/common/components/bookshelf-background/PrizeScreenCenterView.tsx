@@ -4,16 +4,16 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   C_ACTIVITY_INDICATOR,
   C_BACKGROUND_BOOKSHELF,
-} from '../../../../../theme/Colors';
-import {BookshelfContent} from '../../../../../common/components';
-import TopShelfImage from './TopShelfImage';
+} from '../../../theme/Colors';
+import {BookshelfContent} from '../index';
+import BookShelfTopView from './BookShelfTopView';
 
 interface Props {
   isInitialized: boolean;
   isLoading: boolean;
   isPrizeFetchFailed: boolean;
   prizeFetchFailedText: string;
-  data: any; // todo change to proper type
+  data: any; // TODO, make specific type later (availablePrize[])
   handleShowPrize: (
     prizeId: string,
     prizeTitle: string,
@@ -24,7 +24,7 @@ interface Props {
   ) => void;
 }
 
-const WonPrizeScreenCenterView: FC<Props> = props => {
+const PrizeScreenCenterView: FC<Props> = props => {
   const {
     isInitialized,
     isLoading,
@@ -36,7 +36,7 @@ const WonPrizeScreenCenterView: FC<Props> = props => {
 
   return (
     <View style={styles.body}>
-      <TopShelfImage />
+      <BookShelfTopView />
 
       <BookshelfContent
         isInitialized={isInitialized}
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WonPrizeScreenCenterView;
+export default PrizeScreenCenterView;

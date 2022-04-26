@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
   textInput: {
     display: 'flex',
     flexDirection: 'row',
-    borderWidth: hp('0.2%'),
-    borderRadius: wp('0.5%'),
+    borderWidth: hp('0.32%'),
+    borderRadius: wp('1.5%'),
   },
   input: {
     flex: 7.5,

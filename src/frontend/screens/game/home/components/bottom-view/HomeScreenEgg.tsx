@@ -5,12 +5,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import LottieView from 'lottie-react-native';
-import {
-  WonAnimation,
-  Particles,
-  LostAnimation,
-} from '../../../../../../../assets';
-import FadeIn from '../../../../../common/animation-components/FadeIn';
+import {WonAnimation} from '../../../../../../../assets';
 
 interface Props {
   isLoading: boolean;

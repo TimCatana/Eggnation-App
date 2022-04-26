@@ -6,7 +6,6 @@ import {
 } from 'react-native-responsive-screen';
 import RegisterForm from './RegisterForm';
 import RegisterButton from './RegisterButton';
-import FadeIn from '../../../../../common/animation-components/FadeIn';
 
 interface Props {
   isLoading: boolean;

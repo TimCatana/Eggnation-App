@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {bookShelfLeft} from '../../../../../assets';
 
-const PrizeDisplayModalLeftView: FC = () => {
+const BookShelfLeftView: FC = () => {
   return (
     <Image style={styles.image} resizeMode="stretch" source={bookShelfLeft} />
   );
@@ -14,4 +14,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PrizeDisplayModalLeftView;
+export default BookShelfLeftView;

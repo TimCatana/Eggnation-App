@@ -22,13 +22,14 @@ const GameTabs: FC = () => {
       <Tab.Screen name={Screens.AVAILABLE_PRIZES_SCREEN}>
         {() => <AvailablePrizesScreen setSwipeEnabled={setSwipeEnabled} />}
       </Tab.Screen>
+
       <Tab.Screen name={Screens.HOME_SCREEN}>
         {() => <HomeScreen setSwipeEnabled={setSwipeEnabled} />}
       </Tab.Screen>
-      <Tab.Screen
-        name={Screens.WON_PRIZES_SCREEN}
-        component={WonPrizesScreen}
-      />
+
+      <Tab.Screen name={Screens.WON_PRIZES_SCREEN}>
+        {() => <WonPrizesScreen setSwipeEnabled={setSwipeEnabled} />}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };

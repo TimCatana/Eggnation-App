@@ -20,28 +20,29 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
   /******************/
   const navigation = useNavigation<HomeScreenProp>();
 
-  const isMounted = useRef(false);
+  const isMounted = useRef<boolean>(false);
 
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [localCount, setLocalCount] = useState(1000);
+  const [localCount, setLocalCount] = useState<number>(1000);
 
-  const [isAnimationPlaying, setIsAnimationPlaying] = useState(false);
+  const [isAnimationPlaying, setIsAnimationPlaying] = useState<boolean>(false);
   const winAnimationRef = useRef<any>(null);
 
-  const [isFlashAnimationPlaying, setIsFlashAnimationPlaying] = useState(false);
+  const [isFlashAnimationPlaying, setIsFlashAnimationPlaying] =
+    useState<boolean>(false);
 
-  const [isShowingPrize, setIsShowingPrize] = useState(false);
+  const [isShowingPrize, setIsShowingPrize] = useState<boolean>(false);
 
-  const [displayPrizeId, setDisplayPrizeId] = useState('');
-  const [displayPrizeTitle, setDisplayPrizeTitle] = useState('');
-  const [displayPrizeDesc, setDisplayPrizeDesc] = useState('');
-  const [displayPrizeType, setDisplayPrizeType] = useState('');
-  const [displayPrizeTier, setDisplayPrizeTier] = useState('');
+  const [displayPrizeId, setDisplayPrizeId] = useState<string>('');
+  const [displayPrizeTitle, setDisplayPrizeTitle] = useState<string>('');
+  const [displayPrizeDesc, setDisplayPrizeDesc] = useState<string>('');
+  const [displayPrizeType, setDisplayPrizeType] = useState<string>('');
+  const [displayPrizeTier, setDisplayPrizeTier] = useState<string>('');
 
-  const [snackbarText, setSnackbarText] = useState('');
-  const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
+  const [snackbarText, setSnackbarText] = useState<string>('');
+  const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
 
   const {adLoaded, adDismissed, adShowing, show, load} = useInterstitialAd(
     TestIds.INTERSTITIAL,

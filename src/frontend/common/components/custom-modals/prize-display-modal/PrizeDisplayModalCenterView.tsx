@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_BACKGROUND_BOOKSHELF} from '../../../theme/Colors';
-import TopShelfImage from './TopShelfImage';
+import {C_BACKGROUND_BOOKSHELF} from '../../../../theme/Colors';
 import PrizeDisplayContent from './PrizeDisplayContent';
+import BookShelfTopView from '../../bookshelf-background/BookShelfTopView';
 
 interface Props {
   isLoading: boolean;
@@ -38,7 +38,7 @@ const PrizeDisplayModalCenterView: FC<Props> = props => {
 
   return (
     <View style={styles.body}>
-      <TopShelfImage />
+      <BookShelfTopView />
       <PrizeDisplayContent
         isLoading={isLoading}
         prizeId={prizeId}

@@ -1,33 +1,20 @@
 import React, {FC} from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  Modal,
-  Image,
-  StyleSheet,
-  ImageBackground,
-} from 'react-native';
+import {View, Modal, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {S_PDM_CLAIM_PRIZE_BUTTON} from '../../../theme/Strings';
 import {
-  C_BUTTON_ENABLED,
-  C_BUTTON_DISABLED,
-  C_TEXT_LIGHT,
   C_ICON_PRIMARY,
   C_TEXT_PRIMARY,
   C_BACKGROUND_BOOKSHELF,
-} from '../../../theme/Colors';
-import {Screens} from '../../../../constants/NavigationConstants';
-import {CustomButton, TopLeftCornerIcon} from '../index';
+} from '../../../../theme/Colors';
+import {TopLeftCornerIcon} from '../../';
+import PrizeDisplayModalCenterView from './PrizeDisplayModalCenterView';
 
 import usePrizeDisplayModal from './usePrizeDisplayModal';
-import PrizeDisplayModalLeftView from './PrizeDisplayModalLeftView';
-import PrizeDisplayModalRightView from './PrizeDisplayModalRightView';
-import PrizeDisplayModalCenterView from './PrizeDisplayModalCenterView';
+import BookShelfLeftView from '../../bookshelf-background/BookShelfLeftView';
+import BookShelfRightView from '../../bookshelf-background/BookShelfRightView';
 
 interface Props {
   isLoading: boolean;
@@ -74,7 +61,7 @@ const PrizeDisplayModal: FC<Props> = props => {
         }
       }}>
       <View style={styles.body}>
-        <PrizeDisplayModalLeftView />
+        <BookShelfLeftView />
 
         <PrizeDisplayModalCenterView
           isLoading={isLoading}
@@ -91,7 +78,7 @@ const PrizeDisplayModal: FC<Props> = props => {
           handleHidePrize={handleHidePrize}
         />
 
-        <PrizeDisplayModalRightView />
+        <BookShelfRightView />
 
         <TopLeftCornerIcon
           icon={'arrow-left'}

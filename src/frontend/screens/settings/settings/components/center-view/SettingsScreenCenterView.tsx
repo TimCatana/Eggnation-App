@@ -7,8 +7,7 @@ import SettingsLegalSection from '../sections/SettingsLegalSection';
 
 interface Props {
   email: string;
-  emailVerificationStatus: boolean | null;
-  handleSendVerificationEmailClick: () => void;
+  language: string;
   navToEditEmailScreen: () => void;
   navToEditPasswordScreen: () => void;
   navToEggnationShop: () => void;
@@ -20,8 +19,7 @@ interface Props {
 const SettingsScreenCenterView: FC<Props> = props => {
   const {
     email,
-    emailVerificationStatus,
-    handleSendVerificationEmailClick,
+    language,
     navToEditEmailScreen,
     navToEditPasswordScreen,
     navToEggnationShop,
@@ -34,8 +32,7 @@ const SettingsScreenCenterView: FC<Props> = props => {
     <View style={styles.body}>
       <SettingsProfileSection
         email={email}
-        emailVerificationStatus={emailVerificationStatus}
-        handleSendVerificationEmailClick={handleSendVerificationEmailClick}
+        language={language}
         navToEditEmailScreen={navToEditEmailScreen}
         navToEditPasswordScreen={navToEditPasswordScreen}
       />

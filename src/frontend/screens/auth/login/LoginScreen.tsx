@@ -1,10 +1,5 @@
 import React, {FC} from 'react';
-import {
-  View,
-  ImageBackground,
-  ActivityIndicator,
-  StyleSheet,
-} from 'react-native';
+import {ImageBackground, ActivityIndicator, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {backgroundAuth} from '../../../../../assets';
 import {C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
@@ -12,7 +7,6 @@ import LoginScreenTopView from './components/top-view/LoginScreenTopView';
 import LoginScreenBottomView from './components/bottom-view/LoginScreenBottomView';
 
 import useLoginScreen from './useLoginScreen';
-import FadeIn from '../../../common/animation-components/FadeIn';
 
 const LoginScreen: FC = () => {
   const {

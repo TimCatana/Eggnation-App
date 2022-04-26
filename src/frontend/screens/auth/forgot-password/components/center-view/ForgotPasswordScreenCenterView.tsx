@@ -16,8 +16,7 @@ import {
   C_BUTTON_ENABLED,
   C_TEXT_LIGHT,
 } from '../../../../../theme/Colors';
-import CustomTextInput from '../../../../../common/components/custom-text-input/CustomTextInput';
-import CustomButton from '../../../../../common/components/custom-button/CustomButton';
+import {CustomTextInput, CustomButton} from '../../../../../common/components';
 
 interface Props {
   isLoading: boolean;

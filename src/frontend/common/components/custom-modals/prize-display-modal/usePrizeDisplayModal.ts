@@ -7,7 +7,7 @@ import {
   present,
   shirt,
   tablet,
-} from '../../../../../assets';
+} from '../../../../../../assets';
 
 const usePrizeDisplayModal = () => {
   /**

@@ -99,24 +99,3 @@ export type SettingsScreenProp = StackNavigationProp<
   GameStackParamList,
   Screens.SETTINGS_SCREEN
 >;
-
-// export type ParamList = {
-//   Detail: {
-//     incident: IncidentProps;
-//   };
-// };
-
-// export type RegisterScreenProp = StackNavigationProp<
-//   AuthStackParamList,
-//   Screens.REGISTER_SCREEN
-// >;
-
-// export type LoginScreenProp = StackNavigationProp<
-//   AuthStackParamList,
-//   'ForgotPasswordScreen'
-// >;
-
-// export type availablePrizesScreenProp = CompositeNavigationProp<
-//   StackNavigationProp<GameStackParamList, 'GameTabs'>,
-//   MaterialTopTabNavigationProp<GameTabParamList, 'AvailablePrizesScreen'>
-// >;

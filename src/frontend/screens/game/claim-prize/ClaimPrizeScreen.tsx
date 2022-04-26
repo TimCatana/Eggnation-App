@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
 import useClaimPrizeScreen from './useClaimPrizeScreen';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import {
@@ -11,9 +11,7 @@ import ClaimPrizeScreenBottomView from './components/bottom-view/ClaimPrizeScree
 import ClaimPrizeScreenTopView from './components/top-view/ClaimPrizeScreenTopView';
 import PickerModal from './components/other/PickerModal';
 
-
 const ClaimPrizeScreen: FC = () => {
-
   const {
     isLoading,
     allCountries,

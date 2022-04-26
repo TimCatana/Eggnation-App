@@ -2,21 +2,27 @@ import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {C_BACKGROUND_BOOKSHELF} from '../../../theme/Colors';
 import {PrizeDisplayModal} from '../../../common/components';
-import WonPrizeScreenLeftView from './components/left-view/WonPrizeScreenLeftView';
-import WonPrizeScreenRightView from './components/right-view/WonPrizeScreenRightView';
-import WonPrizeScreenCenterView from './components/center-view/WonPrizeScreenCenterView';
 
 import TEST_DATA from '../../../../../test-data/availablePrizes.json';
-import useWonPrizesScreen from './useWonPrizesScreen';
+import BookShelfLeftView from '../../../common/components/bookshelf-background/BookShelfLeftView';
+import BookShelfRightView from '../../../common/components/bookshelf-background/BookShelfRightView';
+import PrizeScreenCenterView from '../../../common/components/bookshelf-background/PrizeScreenCenterView';
+import usePrizeScreen from '../../../common/states/usePrizeScreen';
 
-const WonPrizesScreen: FC = () => {
+interface Props {
+  setSwipeEnabled: (isEnabled: boolean) => void;
+}
+
+const WonPrizesScreen: FC<Props> = props => {
+  const {setSwipeEnabled} = props;
+
   const {
     isInitialized,
     isLoading,
     isPrizeFetchFailed,
     prizeFetchFailedText,
     isShowingPrize,
-    wonPrizes,
+    prizes,
     handleShowPrize,
     handleHidePrize,
     displayPrizeId,
@@ -26,13 +32,13 @@ const WonPrizesScreen: FC = () => {
     displayPrizeType,
     displayPrizeClaimType,
     navigation,
-  } = useWonPrizesScreen();
+  } = usePrizeScreen(false, setSwipeEnabled);
 
   return (
     <View style={styles.body}>
-      <WonPrizeScreenLeftView />
+      <BookShelfLeftView />
 
-      <WonPrizeScreenCenterView
+      <PrizeScreenCenterView
         isInitialized={isInitialized}
         isLoading={isLoading}
         isPrizeFetchFailed={isPrizeFetchFailed}
@@ -56,7 +62,7 @@ const WonPrizesScreen: FC = () => {
         navigation={navigation}
       />
 
-      <WonPrizeScreenRightView />
+      <BookShelfRightView />
     </View>
   );
 };
