@@ -3,6 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import {AvailablePrizesScreenProp} from '../../../navigation/ScreenProps';
 import {SUCCESS} from '../../../../constants/ResultsConstants';
 import getAvailablePrizesUC from '../../../../domain/available-prizes-screen-uc/getAvailablePrizesUC';
+import {AvailablePrize, WonPrize} from '../../../../types/typeAliases';
 
 const useAvailablePrizesScreen = (
   setSwipeEnabled: (isEnabled: boolean) => void,
@@ -23,15 +24,13 @@ const useAvailablePrizesScreen = (
   const [availablePrizes, setAvailablePrizes] = useState([]);
   const [isShowingPrize, setIsShowingPrize] = useState(false);
 
+
   const [displayPrizeId, setDisplayPrizeId] = useState('');
   const [displayPrizeTitle, setDisplayPrizeTitle] = useState('');
   const [displayPrizeDesc, setDisplayPrizeDesc] = useState('');
   const [displayPrizeType, setDisplayPrizeType] = useState('');
   const [displayPrizeTier, setDisplayPrizeTier] = useState('');
-
-  navigation.setOptions({
-    swipeEnabled: isInitialized && !isLoading && !isShowingPrize,
-  });
+  const [displayPrizeClaimType, setDisplayPrizeClaimType] = useState('');
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -95,6 +94,7 @@ const useAvailablePrizesScreen = (
     prizeDesc: string,
     prizeType: string,
     prizeTier: string,
+    prizeClaimType: string,
   ) => {
     setIsShowingPrize(true);
     handleDisplayPrizeIdChange(prizeId);
@@ -102,6 +102,7 @@ const useAvailablePrizesScreen = (
     handleDisplayPrizeDescChange(prizeDesc);
     handleDisplayPrizeTypeChange(prizeType);
     handleDisplayPrizeTierChange(prizeTier);
+    handleDisplayPrizeClaimTypeChange(prizeClaimType)
   };
 
   /**
@@ -151,6 +152,14 @@ const useAvailablePrizesScreen = (
     setDisplayPrizeTier(tier);
   };
 
+  /**
+   * Sets the prize tier of the prize being shown in the prize modal.
+   * @param claimType (string) The e prize tier of the prize to be shown in the prize modal
+   */
+  const handleDisplayPrizeClaimTypeChange = (claimType: string) => {
+    setDisplayPrizeClaimType(claimType);
+  };
+
   /*******************/
   /***** RETURNS *****/
   /*******************/
@@ -164,16 +173,12 @@ const useAvailablePrizesScreen = (
     availablePrizes,
     handleShowPrize,
     handleHidePrize,
-    handleDisplayPrizeIdChange,
     displayPrizeId,
-    handleDisplayPrizeTitleChange,
     displayPrizeTitle,
-    handleDisplayPrizeDescChange,
     displayPrizeDesc,
-    handleDisplayPrizeTierChange,
     displayPrizeTier,
-    handleDisplayPrizeTypeChange,
     displayPrizeType,
+    displayPrizeClaimType,
     navigation,
   };
 };

@@ -4,6 +4,7 @@ import backgroundHome from './backgrounds/bg_home.png';
 import bookShelfLeft from './backgrounds/bookshelf/book-shelf-left.png';
 import bookShelfRight from './backgrounds/bookshelf/book-shelf-right.png';
 import bookShelfTop from './backgrounds/bookshelf/book-shelf-top.png';
+import bookShelfTopFlat from './backgrounds/bookshelf/book-shelf-top-flat.png';
 
 import singleShelfFirstHalf from './bookshelf/firstHalfShelf.png';
 import singleShelfSecondHalf from './bookshelf/secondHalfShelf.png';
@@ -29,6 +30,7 @@ export {
   bookShelfLeft,
   bookShelfRight,
   bookShelfTop,
+  bookShelfTopFlat,
   singleShelfFirstHalf,
   singleShelfSecondHalf,
   singleShelfFull,

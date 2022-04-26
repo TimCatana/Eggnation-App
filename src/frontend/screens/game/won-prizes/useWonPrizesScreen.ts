@@ -26,6 +26,7 @@ const useWonPrizesScreen = () => {
   const [displayPrizeDesc, setDisplayPrizeDesc] = useState('');
   const [displayPrizeType, setDisplayPrizeType] = useState('');
   const [displayPrizeTier, setDisplayPrizeTier] = useState('');
+  const [displayPrizeClaimType, setDisplayPrizeClaimType] = useState('');
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -77,12 +78,16 @@ const useWonPrizesScreen = () => {
   /***** BUTTON CLICKS *****/
   /*************************/
 
+  /**
+   * Shows the prize modal.
+   */
   const handleShowPrize = (
     prizeId: string,
     prizeTitle: string,
     prizeDesc: string,
     prizeType: string,
     prizeTier: string,
+    prizeClaimType: string,
   ) => {
     setIsShowingPrize(true);
     handleDisplayPrizeIdChange(prizeId);
@@ -90,6 +95,7 @@ const useWonPrizesScreen = () => {
     handleDisplayPrizeDescChange(prizeDesc);
     handleDisplayPrizeTypeChange(prizeType);
     handleDisplayPrizeTierChange(prizeTier);
+    handleDisplayPrizeClaimTypeChange(prizeClaimType);
   };
 
   /**
@@ -139,6 +145,14 @@ const useWonPrizesScreen = () => {
     setDisplayPrizeTier(tier);
   };
 
+  /**
+   * Sets the prize tier of the prize being shown in the prize modal.
+   * @param claimType (string) The e prize tier of the prize to be shown in the prize modal
+   */
+  const handleDisplayPrizeClaimTypeChange = (claimType: string) => {
+    setDisplayPrizeClaimType(claimType);
+  };
+
   /*******************/
   /***** RETURNS *****/
   /*******************/
@@ -152,16 +166,12 @@ const useWonPrizesScreen = () => {
     wonPrizes,
     handleShowPrize,
     handleHidePrize,
-    handleDisplayPrizeIdChange,
     displayPrizeId,
-    handleDisplayPrizeTitleChange,
     displayPrizeTitle,
-    handleDisplayPrizeDescChange,
     displayPrizeDesc,
-    handleDisplayPrizeTierChange,
     displayPrizeTier,
-    handleDisplayPrizeTypeChange,
     displayPrizeType,
+    displayPrizeClaimType,
     navigation,
   };
 };

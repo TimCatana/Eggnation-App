@@ -14,23 +14,15 @@ interface Props {
     prizeDesc: string,
     prizeType: string,
     prizeTier: string,
+    prizeClaimType: string,
+
   ) => void;
-  handleDisplayPrizeIdChange: (value: string) => void;
-  handleDisplayPrizeTitleChange: (value: string) => void;
-  handleDisplayPrizeDescChange: (value: string) => void;
-  handleDisplayPrizeTypeChange: (value: string) => void;
-  handleDisplayPrizeTierChange: (value: string) => void;
 }
 
 const PrizeList: FC<Props> = props => {
   const {
     data,
     handleShowPrize,
-    handleDisplayPrizeIdChange,
-    handleDisplayPrizeTitleChange,
-    handleDisplayPrizeDescChange,
-    handleDisplayPrizeTypeChange,
-    handleDisplayPrizeTierChange,
   } = props;
 
   return (
@@ -58,11 +50,6 @@ const PrizeList: FC<Props> = props => {
             prize={item}
             bgShelfImage={bgShelfImage}
             handleShowPrize={handleShowPrize}
-            handleDisplayPrizeIdChange={handleDisplayPrizeIdChange}
-            handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}
-            handleDisplayPrizeDescChange={handleDisplayPrizeDescChange}
-            handleDisplayPrizeTypeChange={handleDisplayPrizeTypeChange}
-            handleDisplayPrizeTierChange={handleDisplayPrizeTierChange}
           />
         );
       }}

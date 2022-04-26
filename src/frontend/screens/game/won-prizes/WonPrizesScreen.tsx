@@ -19,16 +19,12 @@ const WonPrizesScreen: FC = () => {
     wonPrizes,
     handleShowPrize,
     handleHidePrize,
-    handleDisplayPrizeIdChange,
     displayPrizeId,
-    handleDisplayPrizeTitleChange,
     displayPrizeTitle,
-    handleDisplayPrizeDescChange,
     displayPrizeDesc,
-    handleDisplayPrizeTierChange,
     displayPrizeTier,
-    handleDisplayPrizeTypeChange,
     displayPrizeType,
+    displayPrizeClaimType,
     navigation,
   } = useWonPrizesScreen();
 
@@ -43,11 +39,6 @@ const WonPrizesScreen: FC = () => {
         prizeFetchFailedText={prizeFetchFailedText}
         data={TEST_DATA}
         handleShowPrize={handleShowPrize}
-        handleDisplayPrizeIdChange={handleDisplayPrizeIdChange}
-        handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}
-        handleDisplayPrizeDescChange={handleDisplayPrizeDescChange}
-        handleDisplayPrizeTypeChange={handleDisplayPrizeTypeChange}
-        handleDisplayPrizeTierChange={handleDisplayPrizeTierChange}
       />
 
       <PrizeDisplayModal
@@ -57,8 +48,9 @@ const WonPrizesScreen: FC = () => {
         prizeDesc={displayPrizeDesc}
         prizeTier={displayPrizeTier}
         prizeType={displayPrizeType}
+        prizeClaimType={displayPrizeClaimType}
         prizeIsClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
-        isWonPrize={false}
+        isWonPrize={true}
         isModalVisible={isShowingPrize}
         handleHidePrize={handleHidePrize}
         navigation={navigation}

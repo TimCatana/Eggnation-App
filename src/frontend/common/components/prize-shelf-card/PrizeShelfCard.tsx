@@ -20,25 +20,12 @@ interface Props {
     prizeDesc: string,
     prizeType: string,
     prizeTier: string,
+    prizeClaimType: string,
   ) => void;
-  handleDisplayPrizeIdChange: (value: string) => void;
-  handleDisplayPrizeTitleChange: (value: string) => void;
-  handleDisplayPrizeDescChange: (value: string) => void;
-  handleDisplayPrizeTypeChange: (value: string) => void;
-  handleDisplayPrizeTierChange: (value: string) => void;
 }
 
 const PrizeShelfCard: FC<Props> = props => {
-  const {
-    prize,
-    bgShelfImage,
-    handleShowPrize,
-    handleDisplayPrizeIdChange,
-    handleDisplayPrizeTitleChange,
-    handleDisplayPrizeDescChange,
-    handleDisplayPrizeTypeChange,
-    handleDisplayPrizeTierChange,
-  } = props;
+  const {prize, bgShelfImage, handleShowPrize} = props;
 
   const {getDisplayImage, getShelfImage} = usePrizeShelfCard();
 
@@ -46,17 +33,13 @@ const PrizeShelfCard: FC<Props> = props => {
   const shelfImage = getShelfImage(bgShelfImage);
 
   const handlePrizeClick = () => {
-    // handleDisplayPrizeIdChange(prize.prizeId);
-    // handleDisplayPrizeTitleChange(prize.prizeTitle);
-    // handleDisplayPrizeDescChange(prize.prizeDesc);
-    // handleDisplayPrizeTypeChange(prize.prizeType);
-    // handleDisplayPrizeTierChange(prize.prizeTier);
     handleShowPrize(
       prize.prizeId,
       prize.prizeTitle,
       prize.prizeDesc,
       prize.prizeType,
       prize.prizeTier,
+      prize.prizeClaimType,
     );
   };
 

@@ -20,12 +20,8 @@ interface Props {
     prizeDesc: string,
     prizeType: string,
     prizeTier: string,
+    prizeClaimType: string,
   ) => void;
-  handleDisplayPrizeIdChange: (id: string) => void;
-  handleDisplayPrizeTitleChange: (title: string) => void;
-  handleDisplayPrizeDescChange: (desc: string) => void;
-  handleDisplayPrizeTypeChange: (type: string) => void;
-  handleDisplayPrizeTierChange: (tier: string) => void;
 }
 
 const WonPrizeScreenCenterView: FC<Props> = props => {
@@ -36,11 +32,6 @@ const WonPrizeScreenCenterView: FC<Props> = props => {
     prizeFetchFailedText,
     data,
     handleShowPrize,
-    handleDisplayPrizeIdChange,
-    handleDisplayPrizeTitleChange,
-    handleDisplayPrizeDescChange,
-    handleDisplayPrizeTypeChange,
-    handleDisplayPrizeTierChange,
   } = props;
 
   return (
@@ -54,11 +45,6 @@ const WonPrizeScreenCenterView: FC<Props> = props => {
         prizeFetchFailedText={prizeFetchFailedText}
         data={data}
         handleShowPrize={handleShowPrize}
-        handleDisplayPrizeIdChange={handleDisplayPrizeIdChange}
-        handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}
-        handleDisplayPrizeDescChange={handleDisplayPrizeDescChange}
-        handleDisplayPrizeTypeChange={handleDisplayPrizeTypeChange}
-        handleDisplayPrizeTierChange={handleDisplayPrizeTierChange}
       />
 
       <ActivityIndicator

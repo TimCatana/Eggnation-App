@@ -19,12 +19,8 @@ interface Props {
     prizeDesc: string,
     prizeType: string,
     prizeTier: string,
+    prizeClaimType: string,
   ) => void;
-  handleDisplayPrizeIdChange: (value: string) => void;
-  handleDisplayPrizeTitleChange: (value: string) => void;
-  handleDisplayPrizeDescChange: (value: string) => void;
-  handleDisplayPrizeTypeChange: (value: string) => void;
-  handleDisplayPrizeTierChange: (value: string) => void;
 }
 
 const BookshelfContent: FC<Props> = props => {
@@ -35,11 +31,6 @@ const BookshelfContent: FC<Props> = props => {
     prizeFetchFailedText,
     data,
     handleShowPrize,
-    handleDisplayPrizeIdChange,
-    handleDisplayPrizeTitleChange,
-    handleDisplayPrizeDescChange,
-    handleDisplayPrizeTypeChange,
-    handleDisplayPrizeTierChange,
   } = props;
 
   return (
@@ -65,11 +56,6 @@ const BookshelfContent: FC<Props> = props => {
         <PrizeList
           data={data}
           handleShowPrize={handleShowPrize}
-          handleDisplayPrizeIdChange={handleDisplayPrizeIdChange}
-          handleDisplayPrizeTitleChange={handleDisplayPrizeTitleChange}
-          handleDisplayPrizeDescChange={handleDisplayPrizeDescChange}
-          handleDisplayPrizeTypeChange={handleDisplayPrizeTypeChange}
-          handleDisplayPrizeTierChange={handleDisplayPrizeTierChange}
         />
       )}
     </View>
