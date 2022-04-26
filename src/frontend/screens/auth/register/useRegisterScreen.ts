@@ -27,9 +27,11 @@ const useRegisterScreen = () => {
   const [isPasswordError, setIsPasswordError] = useState<boolean>(true);
 
   const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [isConfirmPasswordError, setIsConfirmPasswordError] = useState<boolean>(true);
+  const [isConfirmPasswordError, setIsConfirmPasswordError] =
+    useState<boolean>(true);
 
-  const [isSubbedToMailingList, setIsSubbedToMailingList] = useState<boolean>(true);
+  const [isSubbedToMailingList, setIsSubbedToMailingList] =
+    useState<boolean>(true);
 
   const [snackbarText, setSnackbarText] = useState<string>('');
   const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
@@ -149,7 +151,7 @@ const useRegisterScreen = () => {
    * @onFailure Should show a snackbar with an error message
    */
   const handleRegisterClick = async () => {
-    console.log("running register user click")
+    console.log('running register user click');
     setIsLoading(true);
     const result = await registerUserUC(email, password, isSubbedToMailingList);
     setIsLoading(false);

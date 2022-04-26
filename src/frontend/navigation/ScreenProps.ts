@@ -3,9 +3,10 @@ import {CompositeNavigationProp, RouteProp} from '@react-navigation/native';
 import {MaterialTopTabNavigationProp} from '@react-navigation/material-top-tabs';
 import {Screens} from '../../constants/NavigationConstants';
 
-/**
- * PARAM LISTS
- */
+/***********************/
+/***** PARAM LISTS *****/
+/***********************/
+
 export type AuthStackParamList = {
   [Screens.LOGIN_SCREEN]: undefined;
   [Screens.REGISTER_SCREEN]: undefined;
@@ -32,9 +33,9 @@ export type GameTabParamList = {
   [Screens.WON_PRIZES_SCREEN]: undefined;
 };
 
-/**
- * Screens
- */
+/******************************/
+/***** AUTH SCREENS PROPS *****/
+/******************************/
 
 export type ForgotPasswordScreenProp = StackNavigationProp<
   AuthStackParamList,
@@ -50,6 +51,10 @@ export type RegisterScreenProp = StackNavigationProp<
   AuthStackParamList,
   Screens.REGISTER_SCREEN
 >;
+
+/******************************/
+/***** GAME SCREENS PROPS *****/
+/******************************/
 
 export type AvailablePrizesScreenProp = CompositeNavigationProp<
   StackNavigationProp<GameStackParamList, Screens.GAME_TABS>,
@@ -79,6 +84,9 @@ export type ClaimPrizeRouteProp = RouteProp<
   Screens.CLAIM_PRIZE_SCREEN
 >;
 
+/**********************************/
+/***** SETTINGS SCREENS PROPS *****/
+/**********************************/
 
 export type EditEmailScreenProp = StackNavigationProp<
   GameStackParamList,

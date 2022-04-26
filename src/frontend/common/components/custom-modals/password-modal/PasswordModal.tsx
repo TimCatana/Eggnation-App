@@ -9,9 +9,7 @@ import {
   S_TI_PASSWORD_KEYBOARD_TYPE,
 } from '../../../../theme/Strings';
 import {
-  C_BUTTON_DISABLED,
-  C_BUTTON_ENABLED,
-  C_TEXT_LIGHT,
+  C_BUTTON_LIGHT,
   C_TEXT_INPUT_TEXT_PRIMARY,
 } from '../../../../theme/Colors';
 import {CustomTextInput, CustomButton} from '../../index';
@@ -39,7 +37,7 @@ const PasswordModal: FC<Props> = props => {
 
   return (
     <Modal
-      style={styles.formView}
+      style={{}}
       animationType="fade"
       transparent={true}
       visible={isModalVisible}
@@ -74,13 +72,12 @@ const PasswordModal: FC<Props> = props => {
             <CustomButton
               label={'Cancel'}
               onPress={() => {
-                console.log('dfsfd');
                 if (!isLoading) {
                   hidePasswordModal();
                 }
               }}
-              buttonEnabledColor={'white'}
-              buttonDisabledColor={'white'}
+              buttonEnabledColor={C_BUTTON_LIGHT}
+              buttonDisabledColor={C_BUTTON_LIGHT}
               textColor={C_TEXT_INPUT_TEXT_PRIMARY}
               fontSize={hp('2%')}
               elevation={0}
@@ -90,8 +87,8 @@ const PasswordModal: FC<Props> = props => {
             <CustomButton
               label={'Confirm'}
               onPress={handleOnConfirm}
-              buttonEnabledColor={'white'}
-              buttonDisabledColor={'white'}
+              buttonEnabledColor={C_BUTTON_LIGHT}
+              buttonDisabledColor={C_BUTTON_LIGHT}
               textColor={C_TEXT_INPUT_TEXT_PRIMARY}
               fontSize={hp('2%')}
               elevation={0}
@@ -105,7 +102,6 @@ const PasswordModal: FC<Props> = props => {
 };
 
 const styles = StyleSheet.create({
-  formView: {},
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -131,13 +127,6 @@ const styles = StyleSheet.create({
   buttonView: {
     display: 'flex',
     flexDirection: 'row',
-  },
-  textInput: {
-    // backgroundColor: 'purple',
-    width: '80%',
-    height: hp('5%'),
-    fontSize: hp('1.5%'),
-    marginBottom: hp('2%'),
   },
 });
 

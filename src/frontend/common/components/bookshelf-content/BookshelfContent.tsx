@@ -1,18 +1,18 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_TEXT_LIGHT} from '../../../theme/Colors';
-import {PrizeList} from '../index';
 import LottieView from 'lottie-react-native';
+import { AvailablePrizesArray, WonPrizesArray } from '../../../../types/typeAliases';
+import {C_TEXT_LIGHT} from '../../../theme/Colors';
 import {PresentPlaceholder} from '../../../../../assets';
-// import PrizeList from '../prize-list/PrizeList';
+import {PrizeList} from '../index';
 
 interface Props {
   isInitialized: boolean;
   isLoading: boolean;
   isPrizeFetchFailed: boolean;
   prizeFetchFailedText: string;
-  data: any; // TODO change to a specific type
+  data: AvailablePrizesArray | WonPrizesArray | []; 
   handleShowPrize: (
     prizeId: string,
     prizeTitle: string,

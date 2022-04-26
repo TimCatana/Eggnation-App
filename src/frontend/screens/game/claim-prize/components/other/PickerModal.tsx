@@ -42,7 +42,7 @@ const DropdownOption: FC<DropdownProps> = props => {
 interface PickerModalProps {
   hideModalPicker: () => void;
   isModalVisible: boolean;
-  data: any; // TODO change after to an actual type
+  data: any; // TODO - make this a specific country | region type
   onSelect: (index: number) => void;
   isSelectingCountries: boolean;
 }

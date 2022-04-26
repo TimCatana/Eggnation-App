@@ -2,8 +2,7 @@ import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_BACKGROUND_BOOKSHELF} from '../../../../theme/Colors';
-import PrizeDisplayContent from './PrizeDisplayContent';
-import BookShelfTopView from '../../bookshelf-background/BookShelfTopView';
+import {BookShelfTopView, PrizeDisplayContent} from '../../index';
 
 interface Props {
   isLoading: boolean;

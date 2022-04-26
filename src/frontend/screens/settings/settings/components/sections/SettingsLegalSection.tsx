@@ -6,7 +6,6 @@ import {
 } from 'react-native-responsive-screen';
 import {
   S_SS_LEGAL_HEADING,
-  S_SS_CONTACT_US,
   S_SS_PRIVACY_POLICY,
   S_SS_TERMS_AND_CONDITIONS,
 } from '../../../../../theme/Strings';

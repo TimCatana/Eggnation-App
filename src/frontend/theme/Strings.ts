@@ -39,12 +39,12 @@ export const S_SS_EMAIL_VERIFIED = 'Verified';
 export const S_SS_PASSWORD = 'Password';
 
 export const S_SS_LEGAL_HEADING = 'LEGAL';
-export const S_SS_CONTACT_US = 'Contact Us'; // move this under contact below once I add the contact section
 export const S_SS_PRIVACY_POLICY = 'Privacy Policy';
 export const S_SS_TERMS_AND_CONDITIONS = 'Terms & Conditions';
 
 export const S_SS_CONTACT_HEADING = 'CONTACT';
-export const S_SS_MYNZA = 'Mynza';
+export const S_SS_EGGNATION = 'Eggnation Shop';
+export const S_SS_CONTACT_US = 'Contact Us';
 
 export const S_SS_LOGOUT_BUTTON = 'Logout';
 export const S_SS_DELETE_ACCOUNT_BUTTON = 'Delete Account';

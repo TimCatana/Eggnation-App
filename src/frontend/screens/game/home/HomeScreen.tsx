@@ -6,20 +6,19 @@ import {
 } from 'react-native-responsive-screen';
 import {backgroundHome} from '../../../../../assets';
 import {C_ICON_PRIMARY} from '../../../theme/Colors';
-import {TopLeftCornerIcon} from '../../../common/components';
-import {PrizeDisplayModal} from '../../../common/components';
+import {TopLeftCornerIcon, PrizeDisplayModal} from '../../../common/components';
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
 import useHomeScreen from './useHomeScreen';
-import Flash from '../../../common/animation-components/Flash';
+import {Flash} from '../../../common/animation-components';
 
 interface Props {
-  setSwipeEnabled: (isEnabled: boolean) => void 
+  setSwipeEnabled: (isEnabled: boolean) => void;
 }
 
-const HomeScreen: FC<Props> = (props) => {
-  const {setSwipeEnabled} = props
-  
+const HomeScreen: FC<Props> = props => {
+  const {setSwipeEnabled} = props;
+
   const {
     isInitialized,
     isLoading,
@@ -49,7 +48,6 @@ const HomeScreen: FC<Props> = (props) => {
       style={styles.body}
       source={backgroundHome}
       resizeMode="cover">
-
       <TopLeftCornerIcon
         icon={'settings'}
         onPress={navToSettingsScreen}
@@ -60,7 +58,7 @@ const HomeScreen: FC<Props> = (props) => {
       />
 
       <HomeScreenCounter counter={localCount} />
-      
+
       <HomeScreenEgg
         isLoading={isLoading}
         adShowing={adShowing}

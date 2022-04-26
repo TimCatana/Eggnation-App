@@ -1,4 +1,5 @@
 import database from '@react-native-firebase/database';
+import { RTDB_GLOBAL_COUNT_KEY } from '../../../constants/Constants';
 
 /**
  * Increments the global count in the realtime database.
@@ -7,7 +8,7 @@ import database from '@react-native-firebase/database';
 const doIncrementGlobalCount = async () => {
   await database()
     .ref()
-    .update({globalCount: database.ServerValue.increment(1)});
+    .update({[RTDB_GLOBAL_COUNT_KEY]: database.ServerValue.increment(1)});
 };
 
 export default doIncrementGlobalCount;

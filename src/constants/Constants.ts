@@ -10,8 +10,8 @@ export const DV_LAST_RESET_TIME = dayjs().toString();
 
 /** MAIN GAME LOGIC CONSTANTS */
 export const MGL_RESET_TIME_IN_HOURS = 12;
-export const MGL_RNG_RANGE = 1000001; // 1000001
-export const MGL_WIN_CHANCE = 4; // rng(0 -OC_RNG_RANGE) % OC_WIN_CHANCE === 0 means a win 200000
+export const MGL_RNG_RANGE = 5000001; // 1000001
+export const MGL_WIN_CHANCE = 1000000; // rng(0 - MGL_RNG_RANGE) % MGL_WIN_CHANCE === 0 means a win 200000
 export const MGL_AD_FREQUENCY = 25;
 
 /** BOOKSHELF UI CONSTANTS */
@@ -25,6 +25,9 @@ export const FS_WON_PRIZES_COLLECTION_KEY = 'won-prizes';
 export const FS_USER_WON_PRIZES_COLLECTION_KEY = 'user-prizes';
 export const FS_CONTEST_PRIZES_COLLECTION_KEY = 'contest-prizes';
 export const FS_USERS_COLLECTION_KEY = 'users';
+
+/** REALTIME DATABASE CONSTANTS */
+export const RTDB_GLOBAL_COUNT_KEY = 'global-count';
 
 /** SHELF IMAGE */
 export const SI_FIRST_HALF_SHELF = 'firstHalfShelf';

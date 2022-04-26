@@ -1,10 +1,9 @@
 import {useState, useEffect} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {ClaimPrizeScreenProp} from '../../../navigation/ScreenProps';
+import {ClaimPrizeScreenProp, ClaimPrizeRouteProp} from '../../../navigation/ScreenProps';
+import {Countries, Regions} from '../../../../types/typeAliases';
 import claimPrizeUC from '../../../../domain/claim-prize-screen-us/claimPrizeUC';
 import countriesData from '../../../../util/countries.json';
-import {ClaimPrizeRouteProp} from '../../../navigation/ScreenProps';
-import {Countries, Regions} from '../../../../types/typeAliases';
 
 const useClaimPrizeScreen = () => {
   /******************/

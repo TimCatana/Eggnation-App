@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import {Screens} from '../../constants/NavigationConstants';
 import {
   LoginScreen,
   RegisterScreen,
@@ -7,7 +8,6 @@ import {
   PrivacyPolicyScreen,
   TermsScreen,
 } from '../screens';
-import {Screens} from '../../constants/NavigationConstants';
 import {AuthStackParamList} from './ScreenProps';
 
 const Stack = createStackNavigator<AuthStackParamList>();

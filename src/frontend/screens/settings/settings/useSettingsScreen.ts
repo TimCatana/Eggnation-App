@@ -2,15 +2,14 @@ import {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {SettingsScreenProp} from '../../../navigation/ScreenProps';
 import {Screens} from '../../../../constants/NavigationConstants';
+import {Linking} from 'react-native';
 import {ERROR} from '../../../../constants/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
 import getUserEmailUC from '../../../../domain/settings-screen-uc/getUserEmailUC';
 import logoutUserUC from '../../../../domain/settings-screen-uc/logoutUserUC';
 import deleteUserUC from '../../../../domain/settings-screen-uc/deleteUserUC';
 import reloadUserUC from '../../../../domain/settings-screen-uc/reloadUserUC';
-import {Linking} from 'react-native';
 
-// TODO - refresh token each time the user goes to settings screen. The should rarely go here so it should not be that expensive
 const useSettingsScreen = () => {
   /******************/
   /***** STATES *****/

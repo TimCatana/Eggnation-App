@@ -12,7 +12,7 @@ interface Props {
   adShowing: boolean;
   playGame: () => void;
   isAnimationPlaying: boolean;
-  winAnimationRef: React.LegacyRef<LottieView> | null; // TODO - find out what to do for this
+  winAnimationRef: any;
   handleWinAnimationFinished: () => void;
 }
 

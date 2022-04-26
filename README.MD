@@ -8,3 +8,21 @@ IN THE FUTURE, I WILL NEED TO GO THROUGH ALL DEPENDENCIES AND MAKE SURE THEY WOR
 
 - in `doAddWonPrizeToUserAccount` check what happens if you try to add a null field.
 - Test <b>all</b> functionality while offline to see if it breaks or not
+
+
+
+## Imports order
+
+- react stuff
+- react-native stuff
+- react-native-responsive-screenn stuff
+- constants
+- type aliasses
+- Screens
+- assets
+- strings
+- colors
+- components
+- other
+
+- hooks

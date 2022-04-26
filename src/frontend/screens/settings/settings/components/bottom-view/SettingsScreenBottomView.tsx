@@ -7,7 +7,6 @@ import {
 } from '../../../../../theme/Strings';
 import {
   C_BUTTON_ENABLED_SETTINGS,
-  C_BUTTON_DISABLED,
   C_TEXT_ERROR,
   C_TEXT_LIGHT,
 } from '../../../../../theme/Colors';
@@ -30,7 +29,7 @@ const SettingsScreenBottomView: FC<Props> = props => {
         disabled={isLoading}
         textColor={C_TEXT_LIGHT}
         buttonEnabledColor={C_BUTTON_ENABLED_SETTINGS}
-        buttonDisabledColor={C_BUTTON_ENABLED_SETTINGS}
+        buttonDisabledColor={C_BUTTON_ENABLED_SETTINGS} // TODO find a disabled color that looks good
         fontSize={hp('2%')}
         marginBottom={hp('0.7%')}
       />
@@ -40,7 +39,7 @@ const SettingsScreenBottomView: FC<Props> = props => {
         disabled={isLoading}
         textColor={C_TEXT_ERROR}
         buttonEnabledColor={C_BUTTON_ENABLED_SETTINGS}
-        buttonDisabledColor={C_BUTTON_ENABLED_SETTINGS}
+        buttonDisabledColor={C_BUTTON_ENABLED_SETTINGS}  // TODO find a disabled color that looks good
         fontSize={hp('2%')}
       />
     </View>

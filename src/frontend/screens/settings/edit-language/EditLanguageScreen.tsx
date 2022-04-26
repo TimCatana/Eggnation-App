@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import useEditLanguageScreen from './useEditLanguageScreen';
 

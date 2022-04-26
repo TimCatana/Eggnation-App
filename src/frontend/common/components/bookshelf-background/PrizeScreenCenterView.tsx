@@ -2,18 +2,21 @@ import React, {FC} from 'react';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
+  AvailablePrizesArray,
+  WonPrizesArray,
+} from '../../../../types/typeAliases';
+import {
   C_ACTIVITY_INDICATOR,
   C_BACKGROUND_BOOKSHELF,
 } from '../../../theme/Colors';
-import {BookshelfContent} from '../index';
-import BookShelfTopView from './BookShelfTopView';
+import {BookshelfContent, BookShelfTopView} from '../index';
 
 interface Props {
   isInitialized: boolean;
   isLoading: boolean;
   isPrizeFetchFailed: boolean;
   prizeFetchFailedText: string;
-  data: any; // TODO, make specific type later (availablePrize[])
+  data: AvailablePrizesArray | WonPrizesArray | [];
   handleShowPrize: (
     prizeId: string,
     prizeTitle: string,

@@ -13,12 +13,13 @@ export const C_TEXT_INPUT_TEXT_LIGHT = 'white';
 /** ICONS */
 export const C_ICON_PRIMARY = 'dimgray'; // '#60717a'
 export const C_ICON_LIGHT = 'white';
-export const C_ICON_SETTINGS = '#666666'
+export const C_ICON_SETTINGS = '#666666';
 
 /** BUTTONS */
 export const C_BUTTON_DISABLED = 'gray'; // '#808080'
 export const C_BUTTON_ENABLED = 'pink'; // '#ffc0cb'
 export const C_BUTTON_ENABLED_SETTINGS = '#1c1c1e';
+export const C_BUTTON_LIGHT = 'white';
 
 /** ACTIVITY INDICATOR */
 export const C_ACTIVITY_INDICATOR = 'pink'; // '#ffc0cb'

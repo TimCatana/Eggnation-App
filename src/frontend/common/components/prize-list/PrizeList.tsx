@@ -5,9 +5,13 @@ import {
   SI_FIRST_HALF_SHELF,
   SI_SECOND_HALF_SHELF,
 } from '../../../../constants/Constants';
+import {
+  AvailablePrizesArray,
+  WonPrizesArray,
+} from '../../../../types/typeAliases';
 import {PrizeShelfCard} from '../index';
 interface Props {
-  data: any;
+  data: AvailablePrizesArray | WonPrizesArray | [];
   handleShowPrize: (
     prizeId: string,
     prizeTitle: string,
@@ -15,15 +19,11 @@ interface Props {
     prizeType: string,
     prizeTier: string,
     prizeClaimType: string,
-
   ) => void;
 }
 
 const PrizeList: FC<Props> = props => {
-  const {
-    data,
-    handleShowPrize,
-  } = props;
+  const {data, handleShowPrize} = props;
 
   return (
     <FlatList

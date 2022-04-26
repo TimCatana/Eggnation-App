@@ -5,7 +5,6 @@ import {SUCCESS} from '../../../../constants/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
 import isEmailValid from '../../../common/helpers/isEmailValid';
 import updateUserEmailUC from '../../../../domain/edit-email-screen-uc/updateUserEmailUC';
-import {Screens} from '../../../../constants/NavigationConstants';
 
 const useEditEmailScreen = () => {
   /******************/

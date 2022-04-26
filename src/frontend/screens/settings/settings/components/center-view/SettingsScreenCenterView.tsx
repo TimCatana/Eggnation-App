@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import SettingsProfileSection from '../sections/SettingsProfileSection';
-// TODO - once I release the app, work on implementing the contact section
 import SettingsContactSection from '../sections/SettingsContactSection';
 import SettingsLegalSection from '../sections/SettingsLegalSection';
 

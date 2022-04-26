@@ -71,7 +71,6 @@ const CustomTextInput: FC<Props> = props => {
         style={[
           styles.textInput,
           {
-            // TODO fix this
             width: width,
             height: height,
             borderColor: isError

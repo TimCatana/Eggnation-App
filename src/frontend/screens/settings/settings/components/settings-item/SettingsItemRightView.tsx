@@ -5,7 +5,7 @@ import {C_TEXT_SETTINGS_LIGHT} from '../../../../../theme/Colors';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons'; // chevron-right, edit, done, send
 
 interface Props {
-  icon: any; // todo change to more exact type
+  icon: string;
   onIconPress: () => void;
   iconDisabled: boolean;
 }

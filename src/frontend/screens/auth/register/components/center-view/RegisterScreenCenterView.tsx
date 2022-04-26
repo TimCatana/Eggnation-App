@@ -45,31 +45,29 @@ const RegisterScreenCenterView: FC<Props> = props => {
   return (
     <View style={styles.body}>
       <View style={styles.formView}>
-          <RegisterForm
-            isLoading={isLoading}
-            email={email}
-            handleEmailChange={handleEmailChange}
-            isEmailError={isEmailError}
-            password={password}
-            handlePasswordChange={handlePasswordChange}
-            isPasswordError={isPasswordError}
-            confirmPassword={confirmPassword}
-            handleConfirmPasswordChange={handleConfirmPasswordChange}
-            isConfirmPasswordError={isConfirmPasswordError}
-            isSubbedToMailingList={isSubbedToMailingList}
-            handleIsSubbedToMailingListChange={
-              handleIsSubbedToMailingListChange
-            }
-            handleEggnationShopLinkClick={handleEggnationShopLinkClick}
-          />
+        <RegisterForm
+          isLoading={isLoading}
+          email={email}
+          handleEmailChange={handleEmailChange}
+          isEmailError={isEmailError}
+          password={password}
+          handlePasswordChange={handlePasswordChange}
+          isPasswordError={isPasswordError}
+          confirmPassword={confirmPassword}
+          handleConfirmPasswordChange={handleConfirmPasswordChange}
+          isConfirmPasswordError={isConfirmPasswordError}
+          isSubbedToMailingList={isSubbedToMailingList}
+          handleIsSubbedToMailingListChange={handleIsSubbedToMailingListChange}
+          handleEggnationShopLinkClick={handleEggnationShopLinkClick}
+        />
 
-          <RegisterButton
-            isLoading={isLoading}
-            isEmailError={isEmailError}
-            isPasswordError={isPasswordError}
-            isConfirmPasswordError={isConfirmPasswordError}
-            handleRegisterClick={handleRegisterClick}
-          />
+        <RegisterButton
+          isLoading={isLoading}
+          isEmailError={isEmailError}
+          isPasswordError={isPasswordError}
+          isConfirmPasswordError={isConfirmPasswordError}
+          handleRegisterClick={handleRegisterClick}
+        />
       </View>
     </View>
   );

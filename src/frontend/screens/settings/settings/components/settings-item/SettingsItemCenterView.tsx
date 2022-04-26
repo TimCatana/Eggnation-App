@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, ScrollView, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_TEXT_SETTINGS_LIGHT} from '../../../../../theme/Colors';
 
@@ -12,19 +12,32 @@ const SettingsItemCenterView: FC<Props> = props => {
 
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>{content}</Text>
+      <ScrollView
+        horizontal={true}
+        style={styles.scrollViewBody}
+        contentContainerStyle={{alignItems: 'center'}}>
+        <Text style={styles.text} numberOfLines={1}>
+          {content}
+        </Text>
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   body: {
-    flex: 5,
+    flex: 6,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
+  scrollViewBody: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+  },
   text: {
+    width: '100%',
     fontSize: hp('1.8%'),
     color: C_TEXT_SETTINGS_LIGHT,
   },

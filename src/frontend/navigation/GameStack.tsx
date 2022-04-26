@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import {Screens} from '../../constants/NavigationConstants';
 import GameTabs from './GameTabs';
 import {
   SettingsScreen,
@@ -10,7 +11,6 @@ import {
   PrivacyPolicyScreen,
   TermsScreen,
 } from '../screens';
-import {Screens} from '../../constants/NavigationConstants';
 import {GameStackParamList} from './ScreenProps';
 
 const Stack = createStackNavigator<GameStackParamList>();

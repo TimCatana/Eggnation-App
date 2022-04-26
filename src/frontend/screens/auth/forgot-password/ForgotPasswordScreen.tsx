@@ -1,10 +1,5 @@
 import React, {FC} from 'react';
-import {
-  View,
-  ImageBackground,
-  ActivityIndicator,
-  StyleSheet,
-} from 'react-native';
+import {ImageBackground, ActivityIndicator, StyleSheet} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

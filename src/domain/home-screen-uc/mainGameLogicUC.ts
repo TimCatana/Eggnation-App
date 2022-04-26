@@ -20,6 +20,7 @@ import {
 import printDevLogs from '../printDevLogs';
 import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
 import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
+import doIncrementGlobalCount from '../../backend/database/realtime/doIncrementGlobalCount';
 
 /**
  * Does the main game logic.
@@ -64,6 +65,7 @@ const mainGameLogicUC = async (
     }
 
     await decrementAndGetLocalCount();
+    doIncrementGlobalCount();
 
     const userId = doGetUserId();
     if (!userId) {

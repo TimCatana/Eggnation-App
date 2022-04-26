@@ -6,8 +6,8 @@ import {
 } from 'react-native-responsive-screen';
 import {
   S_SS_CONTACT_HEADING,
-  S_SS_MYNZA,
   S_SS_CONTACT_US,
+  S_SS_EGGNATION,
 } from '../../../../../theme/Strings';
 import {C_BACKGROUND_SETTINGS_SECTION} from '../../../../../theme/Colors';
 import SettingsItem from '../settings-item/SettingsItem';
@@ -26,7 +26,7 @@ const SettingsContactSection: FC<Props> = props => {
       <SettingsSectionLabel label={S_SS_CONTACT_HEADING} />
       <View style={styles.contentView}>
         <SettingsItem
-          title={'Eggnation Shop'}
+          title={S_SS_EGGNATION}
           content={''}
           icon={'chevron-right'}
           isLast={false}

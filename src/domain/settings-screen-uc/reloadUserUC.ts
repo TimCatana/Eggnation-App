@@ -2,7 +2,6 @@ import doReloadUser from '../../backend/auth/doReloadUser';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../types/typeAliases';
 
-// TODO
 const reloadUserUC = async (): Promise<Result> => {
   try {
     await doReloadUser();

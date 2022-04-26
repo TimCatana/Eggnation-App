@@ -7,7 +7,6 @@ import {
 import {
   S_SS_PROFILE_HEADING,
   S_SS_EMAIL,
-  S_SS_EMAIL_VERIFIED,
   S_SS_PASSWORD,
 } from '../../../../../theme/Strings';
 import {C_BACKGROUND_SETTINGS_SECTION} from '../../../../../theme/Colors';

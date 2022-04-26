@@ -9,12 +9,14 @@ import {
   C_TEXT_PRIMARY,
   C_BACKGROUND_BOOKSHELF,
 } from '../../../../theme/Colors';
-import {TopLeftCornerIcon} from '../../';
+import {
+  TopLeftCornerIcon,
+  BookShelfLeftView,
+  BookShelfRightView,
+} from '../../index';
 import PrizeDisplayModalCenterView from './PrizeDisplayModalCenterView';
 
 import usePrizeDisplayModal from './usePrizeDisplayModal';
-import BookShelfLeftView from '../../bookshelf-background/BookShelfLeftView';
-import BookShelfRightView from '../../bookshelf-background/BookShelfRightView';
 
 interface Props {
   isLoading: boolean;

@@ -9,7 +9,7 @@ import SettingsItemRightView from './SettingsItemRightView';
 interface Props {
   title: string;
   content: string;
-  icon: any; // todo change to more exact type
+  icon: string;
   isLast: boolean;
   onIconPress: () => void;
   iconDisabled: boolean;

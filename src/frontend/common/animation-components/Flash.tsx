@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from 'react';
-import {View, Text, StyleSheet, Animated} from 'react-native';
+import {View, StyleSheet, Animated} from 'react-native';
 
 interface Props {
   duration: number;
