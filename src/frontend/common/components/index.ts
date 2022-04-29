@@ -25,6 +25,8 @@ import PrizeShelfCard from './prize-shelf-card/PrizeShelfCard';
 
 import TopLeftCornerIcon from './top-left-corner-icon/TopLeftCornerIcon';
 
+import PolicySection from './policy-section/PolicySection';
+
 export {
   CustomButton,
   CustomDropdownMenu,
@@ -45,4 +47,5 @@ export {
   PrizeList,
   PrizeShelfCard,
   TopLeftCornerIcon,
+  PolicySection
 };

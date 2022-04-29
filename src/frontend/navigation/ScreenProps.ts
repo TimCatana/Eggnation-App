@@ -107,3 +107,17 @@ export type SettingsScreenProp = StackNavigationProp<
   GameStackParamList,
   Screens.SETTINGS_SCREEN
 >;
+
+/********************************/
+/***** POLICY SCREENS PROPS *****/
+/********************************/
+
+export type PrivacyPolicyScreenProp = StackNavigationProp<
+  GameStackParamList,
+  Screens.PRIVACY_POLICY_SCREEN
+>;
+
+export type TermsScreenProp = StackNavigationProp<
+  GameStackParamList,
+  Screens.TERMS_SCREEN
+>;
