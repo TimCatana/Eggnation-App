@@ -49,7 +49,7 @@ const SettingsProfileSection: FC<Props> = props => {
           content={language}
           icon={'check'}
           isLast={true}
-          onIconPress={navToEditPasswordScreen}
+          onIconPress={() => {}}
           iconDisabled={false}
         />
       </View>

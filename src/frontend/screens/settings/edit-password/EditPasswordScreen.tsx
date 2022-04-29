@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_ICON_LIGHT, C_BACKGROUND_DARK} from '../../../theme/Colors';
-import {TopLeftCornerIcon, PasswordModal} from '../../../common/components';
+import {PressableIcon, PasswordModal} from '../../../common/components';
 import UpdatePasswordScreenTopView from './components/top-view/UpdatePasswordScreenTopView';
 import UpdatePasswordScreenBottomView from './components/bottom-view/UpdatePasswordScreenBottomView';
 
@@ -41,7 +41,7 @@ const EditPasswordScreen: FC = () => {
         hidePasswordModal={hidePasswordModal}
         handleOnConfirm={updatePasswordAndNavBackIfSuccess}
       />
-      <TopLeftCornerIcon
+      <PressableIcon
         icon={'arrow-left'}
         onPress={navigateBack}
         iconSize={hp('3.5%')}

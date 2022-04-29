@@ -14,6 +14,7 @@ export enum Screens {
   WON_PRIZES_SCREEN = 'WonPrizesScreen',
   AVAILABLE_PRIZES_SCREEN = 'AvailablePrizesScreen',
   CLAIM_PRIZE_SCREEN = 'ClaimPrizeScreen',
+  HOW_TO_PLAY_SCREEN = 'HowToPlayScreen',
 
   /** Settings Screens */
   SETTINGS_STACK = 'SettingsStack',

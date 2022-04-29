@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     borderRadius: wp('1.5%'),
   },
   input: {
-    flex: 7.5,
+    flex: 7.5, // To push any icon to the right
     paddingLeft: wp('1.5%'),
   },
   icon: {

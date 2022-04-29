@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../theme/Colors';
-import {TopLeftCornerIcon, PasswordModal} from '../../../common/components';
+import {PressableIcon, PasswordModal} from '../../../common/components';
 import UpdateEmailScreenTopView from './components/top-view/UpdateEmailScreenTopView';
 import UpdateEmailScreenBottomView from './components/bottom-view/UpdateEmailScreenBottomView';
 
@@ -38,7 +38,7 @@ const EditEmailScreen: FC = () => {
         hidePasswordModal={hidePasswordModal}
         handleOnConfirm={updateEmailAndNavBackIfSuccess}
       />
-      <TopLeftCornerIcon
+      <PressableIcon
         icon={'arrow-left'}
         onPress={navigateBack}
         iconSize={hp('3.5%')}

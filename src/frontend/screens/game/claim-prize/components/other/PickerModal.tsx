@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_TEXT_PRIMARY, C_ICON_PRIMARY} from '../../../../../theme/Colors';
-import {TopLeftCornerIcon} from '../../../../../common/components';
+import {PressableIcon} from '../../../../../common/components';
 
 interface DropdownProps {
   item: any;
@@ -63,7 +63,7 @@ const PickerModal: FC<PickerModalProps> = props => {
       visible={isModalVisible}
       onRequestClose={hideModalPicker}>
       <View style={styles.body}>
-        <TopLeftCornerIcon
+        <PressableIcon
           icon={'arrow-left'}
           onPress={hideModalPicker}
           viewStyle={styles.icon}

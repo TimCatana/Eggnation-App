@@ -15,7 +15,7 @@ import TOSPlatformChanges from './components/other/TOSPlatformChanges';
 import TOSConsentToAds from './components/other/TOSConsentToAds';
 import TOSChanges from './components/other/TOSChanges';
 import useTermsScreen from './useTermsScreen';
-import {TopLeftCornerIcon} from '../../../common/components';
+import {PressableIcon} from '../../../common/components';
 
 const TermsScreen: FC = () => {
   const {navigateBack} = useTermsScreen();
@@ -27,7 +27,7 @@ const TermsScreen: FC = () => {
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
       }}>
-      <TopLeftCornerIcon
+      <PressableIcon
         icon={'arrow-left'}
         onPress={navigateBack}
         iconSize={hp('3.5%')}

@@ -25,6 +25,7 @@ export type GameStackParamList = {
   [Screens.PRIVACY_POLICY_SCREEN]: undefined;
   [Screens.TERMS_SCREEN]: undefined;
   [Screens.GAME_TABS]: undefined;
+  [Screens.HOW_TO_PLAY_SCREEN]: undefined;
 };
 
 export type GameTabParamList = {
@@ -82,6 +83,11 @@ export type ClaimPrizeScreenProp = StackNavigationProp<
 export type ClaimPrizeRouteProp = RouteProp<
   GameStackParamList,
   Screens.CLAIM_PRIZE_SCREEN
+>;
+
+export type HowToPlayScreenRouteProp = RouteProp<
+  GameStackParamList,
+  Screens.HOW_TO_PLAY_SCREEN
 >;
 
 /**********************************/

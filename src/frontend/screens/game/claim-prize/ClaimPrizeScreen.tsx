@@ -6,7 +6,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_ICON_LIGHT, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
-import {TopLeftCornerIcon} from '../../../common/components';
+import {PressableIcon} from '../../../common/components';
 import ClaimPrizeScreenBottomView from './components/bottom-view/ClaimPrizeScreenBottomView';
 import ClaimPrizeScreenTopView from './components/top-view/ClaimPrizeScreenTopView';
 import PickerModal from './components/other/PickerModal';
@@ -38,7 +38,7 @@ const ClaimPrizeScreen: FC = () => {
 
   return (
     <View style={styles.body}>
-      <TopLeftCornerIcon
+      <PressableIcon
         icon={'arrow-left'}
         onPress={navigateBack}
         iconSize={hp('3.5%')}

@@ -23,7 +23,7 @@ import PrizeList from './prize-list/PrizeList';
 
 import PrizeShelfCard from './prize-shelf-card/PrizeShelfCard';
 
-import TopLeftCornerIcon from './top-left-corner-icon/TopLeftCornerIcon';
+import PressableIcon from './top-left-corner-icon/PressableIcon';
 
 import PolicySection from './policy-section/PolicySection';
 
@@ -46,6 +46,6 @@ export {
   PrizeDisplayModal,
   PrizeList,
   PrizeShelfCard,
-  TopLeftCornerIcon,
+  PressableIcon,
   PolicySection
 };

@@ -45,7 +45,7 @@ const LoginForm: FC<Props> = props => {
         keyboardType={S_TI_EMAIL_KEYBOARD_TYPE}
         maxLength={100}
         width={'100%'}
-        height={hp('6%')}
+        height={hp('6.5%')}
         marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_PRIMARY}
@@ -64,7 +64,7 @@ const LoginForm: FC<Props> = props => {
         keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
         maxLength={30}
         width={'100%'}
-        height={hp('6%')}
+        height={hp('6.5%')}
         marginBottom={hp('0.6%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_PRIMARY}

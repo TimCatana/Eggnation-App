@@ -21,6 +21,7 @@ import printDevLogs from '../printDevLogs';
 import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
 import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
 import doIncrementGlobalCount from '../../backend/database/realtime/doIncrementGlobalCount';
+import doGetWonPrize from '../../backend/database/firestore/doGetWonPrize';
 
 /**
  * Does the main game logic.
@@ -82,7 +83,7 @@ const mainGameLogicUC = async (
      */
     if (localCount === 1) {
       return _contestPrizeLogic(userId);
-    } else if (localCount === parseInt(DV_LOCAL_COUNT) - 15) {
+    } else if (localCount === parseInt(DV_LOCAL_COUNT) - 5) {
       return _storePromotionPrizeLogic(userId);
     } else {
       return _rngLogic(userId);
@@ -223,11 +224,9 @@ const _getErrorResponse = (error: any): Result => {
  * @returns { status: SUCCESS || ERROR, data: {isWon: boolean}, message: string }
  */
 const _storePromotionPrizeLogic = async (userId: string): Promise<Result> => {
-  const isPromotionCouponClaimed = await doGetAsyncValue(
-    'promotionCouponClaimed',
-  );
+  const result = await doGetWonPrize(userId, 'eggnation-promo-code');
 
-  if (isPromotionCouponClaimed) {
+  if (result) {
     return {
       status: SUCCESS,
       data: {isWon: false, isConnected: true},
@@ -236,10 +235,10 @@ const _storePromotionPrizeLogic = async (userId: string): Promise<Result> => {
   }
 
   const couponPrize = {
-    prizeId: 'eggnationShopPrize',
-    prizeTitle: 'Free Shipping',
+    prizeId: 'eggnation-promo-code',
+    prizeTitle: 'Eggnation Shop Coupon',
     prizeDesc:
-      'Get free shipping on any product in the eggnation shop! using the discount code <enter code here"',
+      'Get free shipping on any product in the eggnation shop! using the discount code EGGNATIONMERCH"',
     prizeType: 'shirt',
     prizeTier: 'gold',
     prizeClaimType: PCT_NONE,

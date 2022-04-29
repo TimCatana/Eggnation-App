@@ -6,7 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import {backgroundHome} from '../../../../../assets';
 import {C_ICON_PRIMARY} from '../../../theme/Colors';
-import {TopLeftCornerIcon, PrizeDisplayModal} from '../../../common/components';
+import {PressableIcon, PrizeDisplayModal} from '../../../common/components';
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
 import useHomeScreen from './useHomeScreen';
@@ -29,16 +29,20 @@ const HomeScreen: FC<Props> = props => {
     winAnimationRef,
     handleWinAnimationFinished,
     isFlashAnimationPlaying,
-    navToSettingsScreen,
     displayPrizeId,
     displayPrizeTitle,
     displayPrizeDesc,
     displayPrizeTier,
     displayPrizeType,
+    displayPrizeClaimType,
     isShowingPrize,
     handleHidePrize,
     handleFlashAnimationFinished,
     navigation,
+    navToSettingsScreen,
+    navToAvailablePrizesTab,
+    navToWonPrizesTab,
+    navToHowToPlayScreen,
   } = useHomeScreen(setSwipeEnabled);
 
   if (!isInitialized) return null;
@@ -48,12 +52,21 @@ const HomeScreen: FC<Props> = props => {
       style={styles.body}
       source={backgroundHome}
       resizeMode="cover">
-      <TopLeftCornerIcon
+      <PressableIcon
         icon={'settings'}
         onPress={navToSettingsScreen}
         iconSize={hp('3.5%')}
         iconColor={C_ICON_PRIMARY}
         viewStyle={styles.iconView}
+        iconStyle={{}}
+      />
+
+      <PressableIcon
+        icon={'info'}
+        onPress={navToHowToPlayScreen}
+        iconSize={hp('3.5%')}
+        iconColor={C_ICON_PRIMARY}
+        viewStyle={styles.infoIconView}
         iconStyle={{}}
       />
 
@@ -66,6 +79,24 @@ const HomeScreen: FC<Props> = props => {
         isAnimationPlaying={isAnimationPlaying}
         winAnimationRef={winAnimationRef}
         handleWinAnimationFinished={handleWinAnimationFinished}
+      />
+
+      <PressableIcon
+        icon={'chevron-left'}
+        onPress={navToAvailablePrizesTab}
+        iconSize={hp('8%')}
+        iconColor={C_ICON_PRIMARY}
+        viewStyle={styles.leftArrowView}
+        iconStyle={{}}
+      />
+
+      <PressableIcon
+        icon={'chevron-right'}
+        onPress={navToWonPrizesTab}
+        iconSize={hp('8%')}
+        iconColor={C_ICON_PRIMARY}
+        viewStyle={styles.rightArrowView}
+        iconStyle={{}}
       />
 
       {isFlashAnimationPlaying && (
@@ -85,6 +116,7 @@ const HomeScreen: FC<Props> = props => {
         prizeDesc={displayPrizeDesc}
         prizeTier={displayPrizeTier}
         prizeType={displayPrizeType}
+        prizeClaimType={displayPrizeClaimType}
         prizeIsClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
         isWonPrize={false}
         isModalVisible={isShowingPrize}
@@ -106,6 +138,27 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: hp('1%'),
     left: wp('1%'),
+  },
+  infoIconView: {
+    position: 'absolute',
+    top: hp('1%'),
+    right: wp('1%'),
+  },
+  leftArrowView: {
+    position: 'absolute',
+    top: '50%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    left: wp('1%'),
+  },
+  rightArrowView: {
+    position: 'absolute',
+    top: '50%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    right: wp('1%'),
   },
   flashView: {
     position: 'absolute',

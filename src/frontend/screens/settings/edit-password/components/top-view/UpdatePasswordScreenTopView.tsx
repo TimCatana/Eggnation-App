@@ -49,7 +49,7 @@ const UpdatePasswordScreenTopView: FC<Props> = props => {
         keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
         maxLength={30}
         width={'100%'}
-        height={hp('5.5%')}
+        height={hp('6.5%')}
         marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
@@ -68,7 +68,7 @@ const UpdatePasswordScreenTopView: FC<Props> = props => {
         keyboardType={S_TI_CONFIRM_PASSWORD_KEYBOARD_TYPE}
         maxLength={30}
         width={'100%'}
-        height={hp('5.5%')}
+        height={hp('6.5%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
         unfocusedBorderColor={'gray'}

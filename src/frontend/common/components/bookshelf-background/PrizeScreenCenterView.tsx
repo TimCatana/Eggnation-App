@@ -25,6 +25,7 @@ interface Props {
     prizeTier: string,
     prizeClaimType: string,
   ) => void;
+  title: string;
 }
 
 const PrizeScreenCenterView: FC<Props> = props => {
@@ -35,11 +36,12 @@ const PrizeScreenCenterView: FC<Props> = props => {
     prizeFetchFailedText,
     data,
     handleShowPrize,
+    title,
   } = props;
 
   return (
     <View style={styles.body}>
-      <BookShelfTopView />
+      <BookShelfTopView title={title} />
 
       <BookshelfContent
         isInitialized={isInitialized}

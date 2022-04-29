@@ -1,13 +1,17 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {C_BACKGROUND_BOOKSHELF} from '../../../theme/Colors';
-import {PrizeDisplayModal} from '../../../common/components';
+import {C_BACKGROUND_BOOKSHELF, C_ICON_BOOKSHELF, C_ICON_PRIMARY} from '../../../theme/Colors';
+import {PrizeDisplayModal, PressableIcon} from '../../../common/components';
 
 import TEST_DATA from '../../../../../test-data/availablePrizes.json'; // TODO - get rid of this after...
 import BookShelfLeftView from '../../../common/components/bookshelf-background/BookShelfLeftView';
 import BookShelfRightView from '../../../common/components/bookshelf-background/BookShelfRightView';
 import PrizeScreenCenterView from '../../../common/components/bookshelf-background/PrizeScreenCenterView';
 import usePrizeScreen from '../../../common/states/usePrizeScreen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
 interface Props {
   setSwipeEnabled: (isEnabled: boolean) => void;
@@ -32,7 +36,8 @@ const AvailablePrizesScreen: FC<Props> = props => {
     displayPrizeType,
     displayPrizeClaimType,
     navigation,
-  } = usePrizeScreen(true, setSwipeEnabled);
+    navToHomeTab,
+  } = usePrizeScreen(true);
 
   return (
     <View style={styles.body}>
@@ -45,6 +50,7 @@ const AvailablePrizesScreen: FC<Props> = props => {
         prizeFetchFailedText={prizeFetchFailedText}
         data={TEST_DATA}
         handleShowPrize={handleShowPrize}
+        title={'Available Prizes'}
       />
 
       <PrizeDisplayModal
@@ -63,6 +69,15 @@ const AvailablePrizesScreen: FC<Props> = props => {
       />
 
       <BookShelfRightView />
+
+      <PressableIcon
+        icon={'chevron-right'}
+        onPress={navToHomeTab}
+        iconSize={hp('5%')}
+        iconColor={C_ICON_BOOKSHELF}
+        viewStyle={styles.backArrowView}
+        iconStyle={{}}
+      />
     </View>
   );
 };
@@ -73,6 +88,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: C_BACKGROUND_BOOKSHELF,
+  },
+  backArrowView: {
+    position: 'absolute',
+    right: hp('-0.5%'),
+    top: hp('0.2%'),
   },
 });
 

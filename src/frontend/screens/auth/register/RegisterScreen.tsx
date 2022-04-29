@@ -6,7 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import {backgroundAuth} from '../../../../../assets';
 import {C_ICON_PRIMARY, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
-import {TopLeftCornerIcon} from '../../../common/components';
+import {PressableIcon} from '../../../common/components';
 import RegisterScreenCenterView from './components/center-view/RegisterScreenCenterView';
 import RegisterScreenBottomView from './components/bottom-view/RegisterScreenBottomView';
 
@@ -38,7 +38,7 @@ const RegisterScreen: FC = () => {
       style={styles.body}
       source={backgroundAuth}
       resizeMode="cover">
-      <TopLeftCornerIcon
+      <PressableIcon
         icon={'arrow-left'}
         onPress={navigateBack}
         iconSize={hp('3.5%')}

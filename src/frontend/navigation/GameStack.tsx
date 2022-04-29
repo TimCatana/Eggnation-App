@@ -12,6 +12,7 @@ import {
   TermsScreen,
 } from '../screens';
 import {GameStackParamList} from './ScreenProps';
+import HowToPlayScreen from '../screens/game/how-to-play/HowToPlayScreen';
 
 const Stack = createStackNavigator<GameStackParamList>();
 
@@ -44,6 +45,10 @@ const GameStack: FC = () => {
       <Stack.Screen
         name={Screens.PRIVACY_POLICY_SCREEN}
         component={PrivacyPolicyScreen}
+      />
+       <Stack.Screen
+        name={Screens.HOW_TO_PLAY_SCREEN}
+        component={HowToPlayScreen}
       />
       <Stack.Screen name={Screens.TERMS_SCREEN} component={TermsScreen} />
     </Stack.Navigator>

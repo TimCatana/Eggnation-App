@@ -48,7 +48,7 @@ const ForgotPasswordScreenCenterView: FC<Props> = props => {
         keyboardType={S_TI_EMAIL_KEYBOARD_TYPE}
         maxLength={100}
         width={'100%'}
-        height={hp('6%')}
+        height={hp('6.5%')}
         marginBottom={hp('1.5%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_PRIMARY}

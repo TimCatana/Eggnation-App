@@ -8,9 +8,10 @@ import {
   C_ICON_PRIMARY,
   C_TEXT_PRIMARY,
   C_BACKGROUND_BOOKSHELF,
+  C_ICON_BOOKSHELF,
 } from '../../../../theme/Colors';
 import {
-  TopLeftCornerIcon,
+  PressableIcon,
   BookShelfLeftView,
   BookShelfRightView,
 } from '../../index';
@@ -82,13 +83,13 @@ const PrizeDisplayModal: FC<Props> = props => {
 
         <BookShelfRightView />
 
-        <TopLeftCornerIcon
-          icon={'arrow-left'}
+        <PressableIcon
+          icon={'chevron-left'}
           onPress={handleHidePrize}
           viewStyle={styles.icon}
           iconStyle={{}}
-          iconSize={hp('3.5%')}
-          iconColor={C_ICON_PRIMARY}
+          iconSize={hp('5%')}
+          iconColor={C_ICON_BOOKSHELF}
         />
       </View>
     </Modal>
@@ -123,8 +124,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    top: hp('1%'),
-    left: wp('1%'),
+    left: hp('-0.5%'),
+    top: hp('0.2%'),
   },
   titleText: {
     fontSize: hp('5%'),

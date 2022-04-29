@@ -1,4 +1,5 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useState, useEffect} from 'react';
+import {Alert, BackHandler} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {HomeScreen, WonPrizesScreen, AvailablePrizesScreen} from '../screens';
 import {Screens} from '../../constants/NavigationConstants';
@@ -7,7 +8,6 @@ import {GameTabParamList} from './ScreenProps';
 const Tab = createMaterialTopTabNavigator<GameTabParamList>();
 
 const GameTabs: FC = () => {
-  const [swipeEnabled, setSwipeEnabled] = useState(true);
 
   return (
     <Tab.Navigator
@@ -16,20 +16,18 @@ const GameTabs: FC = () => {
       screenOptions={{
         lazy: true,
         tabBarStyle: {display: 'none'},
-        swipeEnabled: swipeEnabled,
+        swipeEnabled: false,
       }}
       backBehavior="none">
-      <Tab.Screen name={Screens.AVAILABLE_PRIZES_SCREEN}>
-        {() => <AvailablePrizesScreen setSwipeEnabled={setSwipeEnabled} />}
-      </Tab.Screen>
-
-      <Tab.Screen name={Screens.HOME_SCREEN}>
-        {() => <HomeScreen setSwipeEnabled={setSwipeEnabled} />}
-      </Tab.Screen>
-
-      <Tab.Screen name={Screens.WON_PRIZES_SCREEN}>
-        {() => <WonPrizesScreen setSwipeEnabled={setSwipeEnabled} />}
-      </Tab.Screen>
+      <Tab.Screen
+        name={Screens.AVAILABLE_PRIZES_SCREEN}
+        component={AvailablePrizesScreen}
+      />
+      <Tab.Screen name={Screens.HOME_SCREEN} component={HomeScreen} />
+      <Tab.Screen
+        name={Screens.WON_PRIZES_SCREEN}
+        component={WonPrizesScreen}
+      />
     </Tab.Navigator>
   );
 };

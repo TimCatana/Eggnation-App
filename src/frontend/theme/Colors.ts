@@ -5,6 +5,7 @@ export const C_TEXT_LINK_PRIMARY = 'pink'; // '#ffc0cb'
 export const C_TEXT_LINK_DARK = 'black';
 export const C_TEXT_ERROR = '#ae0000';
 export const C_TEXT_SETTINGS_LIGHT = '#e2e2e2';
+export const C_TEXT_BOOKSHELF_TITLE = '#53351e';
 
 /** TEXT INPUTS */
 export const C_TEXT_INPUT_TEXT_PRIMARY = '#64757f'; // '#808080'
@@ -14,6 +15,7 @@ export const C_TEXT_INPUT_TEXT_LIGHT = 'white';
 export const C_ICON_PRIMARY = 'dimgray'; // '#60717a'
 export const C_ICON_LIGHT = 'white';
 export const C_ICON_SETTINGS = '#666666';
+export const C_ICON_BOOKSHELF = '#53351e';
 
 /** BUTTONS */
 export const C_BUTTON_DISABLED = 'gray'; // '#808080'

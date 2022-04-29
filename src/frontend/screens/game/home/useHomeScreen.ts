@@ -1,4 +1,5 @@
 import {useState, useEffect, useRef} from 'react';
+import {Alert, BackHandler} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {HomeScreenProp} from '../../../navigation/ScreenProps';
 import {Screens} from '../../../../constants/NavigationConstants';
@@ -40,6 +41,8 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
   const [displayPrizeDesc, setDisplayPrizeDesc] = useState<string>('');
   const [displayPrizeType, setDisplayPrizeType] = useState<string>('');
   const [displayPrizeTier, setDisplayPrizeTier] = useState<string>('');
+  const [displayPrizeClaimType, setDisplayPrizeClaimType] =
+    useState<string>('');
 
   const [snackbarText, setSnackbarText] = useState<string>('');
   const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
@@ -59,18 +62,6 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
   useEffect(() => {
     initCounter();
   }, []);
-
-  /**
-   * Disables swipe when some important logic is running
-   */
-  useEffect(() => {
-    setSwipeEnabled(
-      isInitialized &&
-        !isLoading &&
-        !isAnimationPlaying &&
-        !isFlashAnimationPlaying,
-    );
-  }, [isInitialized, isLoading, isAnimationPlaying, isFlashAnimationPlaying]);
 
   /**
    * Plays and resets the crack animation.
@@ -204,6 +195,7 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
     handleDisplayPrizeDescChange(prize.prizeTitle);
     handleDisplayPrizeTypeChange(prize.prizeType);
     handleDisplayPrizeTierChange(prize.prizeTier);
+    handleDisplayPrizeClaimTypeChange(prize.prizeClaimType);
   };
 
   /**
@@ -244,6 +236,14 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
    */
   const handleDisplayPrizeTierChange = (tier: string) => {
     setDisplayPrizeTier(tier);
+  };
+
+  /**
+   * Sets the prize tier of the prize being shown in the prize modal.
+   * @param claimType (string) The e prize tier of the prize to be shown in the prize modal
+   */
+  const handleDisplayPrizeClaimTypeChange = (claimType: string) => {
+    setDisplayPrizeClaimType(claimType);
   };
 
   /**********************/
@@ -343,6 +343,27 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
     }
   };
 
+  /** Navigates back to the how to play screen if no process is currently running. */
+  const navToHowToPlayScreen = () => {
+    if (!isLoading && !isAnimationPlaying && !adShowing) {
+      navigation.navigate(Screens.HOW_TO_PLAY_SCREEN);
+    }
+  };
+
+  /** Navigates back to the available prizes tab if no process is currently running. */
+  const navToAvailablePrizesTab = () => {
+    if (!isLoading && !isAnimationPlaying && !adShowing) {
+      navigation.jumpTo(Screens.AVAILABLE_PRIZES_SCREEN);
+    }
+  };
+
+  /** Navigates back to the won prizes tab if no process is currently running. */
+  const navToWonPrizesTab = () => {
+    if (!isLoading && !isAnimationPlaying && !adShowing) {
+      navigation.jumpTo(Screens.WON_PRIZES_SCREEN);
+    }
+  };
+
   /*******************/
   /***** RETURNS *****/
   /*******************/
@@ -357,16 +378,20 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
     winAnimationRef,
     handleWinAnimationFinished,
     isFlashAnimationPlaying,
-    navToSettingsScreen,
     displayPrizeId,
     displayPrizeTitle,
     displayPrizeDesc,
     displayPrizeTier,
     displayPrizeType,
+    displayPrizeClaimType,
     isShowingPrize,
     handleHidePrize,
     handleFlashAnimationFinished,
     navigation,
+    navToSettingsScreen,
+    navToAvailablePrizesTab,
+    navToWonPrizesTab,
+    navToHowToPlayScreen
   };
 };
 

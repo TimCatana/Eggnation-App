@@ -59,7 +59,7 @@ const PasswordModal: FC<Props> = props => {
             keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
             maxLength={30}
             width={'90%'}
-            height={hp('6%')}
+            height={hp('6.5%')}
             marginBottom={hp('0.6%')}
             fontSize={hp('2%')}
             textColor={C_TEXT_INPUT_TEXT_PRIMARY}

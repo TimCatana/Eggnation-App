@@ -8,10 +8,10 @@ import {SUCCESS} from '../../../constants/ResultsConstants';
 import getAvailablePrizesUC from '../../../domain/available-prizes-screen-uc/getAvailablePrizesUC';
 import {AvailablePrizesArray, WonPrizesArray} from '../../../types/typeAliases';
 import getWonPrizesUC from '../../../domain/won-prizes-screen-us/getWonPrizesUC';
+import {Screens} from '../../../constants/NavigationConstants';
 
 const usePrizeScreen = (
   isAvailablePrizeScreen: boolean,
-  setSwipeEnabled: (isEnabled: boolean) => void,
 ) => {
   /******************/
   /***** STATES *****/
@@ -53,13 +53,6 @@ const usePrizeScreen = (
   useEffect(() => {
     initialPrizeFetch();
   }, []);
-
-  /**
-   * Disables swipe when some important logic is running
-   */
-  useEffect(() => {
-    setSwipeEnabled(isInitialized && !isLoading && !isShowingPrize);
-  }, [isInitialized, isLoading, isShowingPrize]);
 
   /******************************/
   /***** USE EFFECT HELPERS *****/
@@ -174,6 +167,17 @@ const usePrizeScreen = (
     setDisplayPrizeClaimType(claimType);
   };
 
+  /******************************/
+  /***** NAVIGATION HELPERS *****/
+  /******************************/
+
+  /** Navigates back to the home tab if no process is currently running. */
+  const navToHomeTab = () => {
+    if (isInitialized && !isLoading && !isShowingPrize) {
+      navigation.jumpTo(Screens.HOME_SCREEN);
+    }
+  };
+
   /*******************/
   /***** RETURNS *****/
   /*******************/
@@ -194,6 +198,7 @@ const usePrizeScreen = (
     displayPrizeType,
     displayPrizeClaimType,
     navigation,
+    navToHomeTab,
   };
 };
 

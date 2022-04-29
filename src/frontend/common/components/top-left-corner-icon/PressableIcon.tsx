@@ -11,7 +11,7 @@ interface Props {
   iconStyle: any;
 }
 
-const TopLeftCornerIcon: FC<Props> = props => {
+const PressableIcon: FC<Props> = props => {
   const {icon, onPress, iconSize, iconColor, viewStyle, iconStyle} = props;
 
   return (
@@ -23,4 +23,4 @@ const TopLeftCornerIcon: FC<Props> = props => {
   );
 };
 
-export default TopLeftCornerIcon;
+export default PressableIcon;

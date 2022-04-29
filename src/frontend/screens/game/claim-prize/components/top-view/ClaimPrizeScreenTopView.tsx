@@ -71,7 +71,7 @@ const ClaimPrizeScreenTopView: FC<Props> = props => {
         keyboardType="default"
         maxLength={30}
         width={'100%'}
-        height={hp('5.5%')}
+        height={hp('6.5%')}
         marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor="white"
@@ -90,7 +90,7 @@ const ClaimPrizeScreenTopView: FC<Props> = props => {
         keyboardType="default"
         maxLength={30}
         width={'100%'}
-        height={hp('5.5%')}
+        height={hp('6.5%')}
         fontSize={hp('2%')}
         textColor="white"
         unfocusedBorderColor={'gray'}
