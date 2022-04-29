@@ -47,5 +47,5 @@ export {
   PrizeList,
   PrizeShelfCard,
   PressableIcon,
-  PolicySection
+  PolicySection,
 };

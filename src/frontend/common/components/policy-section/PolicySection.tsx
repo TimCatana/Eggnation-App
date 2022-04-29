@@ -30,14 +30,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: hp('5%'),
     color: C_TEXT_LIGHT,
-    marginBottom: hp('1%')
+    marginBottom: hp('1%'),
   },
   text: {
     fontSize: hp('2.5%'),
     textAlign: 'justify',
     color: C_TEXT_LIGHT,
-    marginBottom: hp('3%')
-
+    marginBottom: hp('3%'),
   },
 });
 

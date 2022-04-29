@@ -8,6 +8,10 @@ import {
   CustomTextInput,
   CustomDropdownMenu,
 } from '../../../../../common/components';
+import {
+  S_TI_ADDRESS_KEYBOARD_TYPE,
+  S_TI_ADDRESS_PLACEHOLDER,
+} from '../../../../../theme/Strings';
 
 interface Props {
   isLoading: boolean;
@@ -67,8 +71,8 @@ const ClaimPrizeScreenTopView: FC<Props> = props => {
         errorText={''}
         disabled={isLoading}
         isPassword={false}
-        placeholder="address"
-        keyboardType="default"
+        placeholder={S_TI_ADDRESS_PLACEHOLDER}
+        keyboardType={S_TI_ADDRESS_KEYBOARD_TYPE}
         maxLength={30}
         width={'100%'}
         height={hp('6.5%')}

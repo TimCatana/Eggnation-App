@@ -2,6 +2,7 @@ import doSendMeEmail from '../../backend/cloud-functions/doSendMeEmail';
 
 /**
  * @returns
+ * TODO Finish this
  */
 const claimPrizeUC = async (
   prizeId: string,

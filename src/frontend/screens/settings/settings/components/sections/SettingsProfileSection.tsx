@@ -8,6 +8,7 @@ import {
   S_SS_PROFILE_HEADING,
   S_SS_EMAIL,
   S_SS_PASSWORD,
+  S_SS_LANGUAGE,
 } from '../../../../../theme/Strings';
 import {C_BACKGROUND_SETTINGS_SECTION} from '../../../../../theme/Colors';
 import SettingsItem from '../settings-item/SettingsItem';
@@ -45,7 +46,7 @@ const SettingsProfileSection: FC<Props> = props => {
           iconDisabled={false}
         />
         <SettingsItem
-          title={'Language'}
+          title={S_SS_LANGUAGE}
           content={language}
           icon={'check'}
           isLast={true}

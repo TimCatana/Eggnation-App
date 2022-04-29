@@ -1,5 +1,12 @@
 import doSendForgotPasswordEmail from '../../backend/auth/doSendForgotPasswordEmail';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {
+  S_E_FPS_EMAIL_NOT_FOUND,
+  S_E_INVALID_EMAIL,
+  S_E_NOT_CONNECTED_TO_INTERNET,
+  S_E_UNEXPECTED_ERROR,
+  S_S_FPS_EMAIL_SENT,
+} from '../../frontend/theme/Strings';
 import {Result} from '../../types/typeAliases';
 import printDevLogs from '../printDevLogs';
 
@@ -24,8 +31,7 @@ const sendForgotPasswordEmailUC = async (email: string): Promise<Result> => {
     return {
       status: SUCCESS,
       data: null,
-      message:
-        "Email sent successfully! If you can't find it, check your spam folder",
+      message: S_S_FPS_EMAIL_SENT,
     };
   } catch (e: any) {
     return _getErrorResponse(e);
@@ -52,21 +58,21 @@ const _getErrorResponse = (error: any): Result => {
       return {
         status: ERROR,
         data: null,
-        message: "You're not connected to the internet!",
+        message: S_E_NOT_CONNECTED_TO_INTERNET,
       };
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: 'Invalid email address!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
     case 'auth/user-not-found':
       return {
         status: ERROR,
         data: null,
-        message: 'Email not found! Did you register an account yet?',
+        message: S_E_FPS_EMAIL_NOT_FOUND,
       };
     default:
       return {
         status: ERROR,
         data: null,
-        message: 'An unexpected error occurred!',
+        message: S_E_UNEXPECTED_ERROR,
       };
   }
 };

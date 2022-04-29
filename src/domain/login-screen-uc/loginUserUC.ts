@@ -1,5 +1,10 @@
 import doLogin from '../../backend/auth/doLogin';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {
+  S_E_INVALID_CREDENTIALS,
+  S_E_LS_ACCOUNT_DISABLED,
+  S_E_UNEXPECTED_ERROR,
+} from '../../frontend/theme/Strings';
 import {Result} from '../../types/typeAliases';
 import printDevLogs from '../printDevLogs';
 
@@ -51,22 +56,22 @@ const _getErrorResponse = (error: any): Result => {
         message: "You're not connected to the internet!",
       };
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/wrong-password':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/user-not-found':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/user-disabled':
       return {
         status: ERROR,
         data: null,
-        message: "Account disabled. Can't login",
+        message: S_E_LS_ACCOUNT_DISABLED,
       };
     default:
       return {
         status: ERROR,
         data: null,
-        message: 'An unexpected error occurred!',
+        message: S_E_UNEXPECTED_ERROR,
       };
   }
 };

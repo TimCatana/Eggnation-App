@@ -1,6 +1,10 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {C_BACKGROUND_BOOKSHELF, C_ICON_BOOKSHELF, C_ICON_PRIMARY} from '../../../theme/Colors';
+import {
+  C_BACKGROUND_BOOKSHELF,
+  C_ICON_BOOKSHELF,
+  C_ICON_PRIMARY,
+} from '../../../theme/Colors';
 import {PrizeDisplayModal, PressableIcon} from '../../../common/components';
 
 import TEST_DATA from '../../../../../test-data/availablePrizes.json'; // TODO - get rid of this after...
@@ -12,6 +16,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {S_APS_TITLE} from '../../../theme/Strings';
 
 interface Props {
   setSwipeEnabled: (isEnabled: boolean) => void;
@@ -50,7 +55,7 @@ const AvailablePrizesScreen: FC<Props> = props => {
         prizeFetchFailedText={prizeFetchFailedText}
         data={TEST_DATA}
         handleShowPrize={handleShowPrize}
-        title={'Available Prizes'}
+        title={S_APS_TITLE}
       />
 
       <PrizeDisplayModal

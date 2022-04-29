@@ -10,9 +10,7 @@ import {AvailablePrizesArray, WonPrizesArray} from '../../../types/typeAliases';
 import getWonPrizesUC from '../../../domain/won-prizes-screen-us/getWonPrizesUC';
 import {Screens} from '../../../constants/NavigationConstants';
 
-const usePrizeScreen = (
-  isAvailablePrizeScreen: boolean,
-) => {
+const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
   /******************/
   /***** STATES *****/
   /******************/

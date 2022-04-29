@@ -18,10 +18,16 @@ import {
   Result,
 } from '../../types/typeAliases';
 import printDevLogs from '../printDevLogs';
-import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
-import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
 import doIncrementGlobalCount from '../../backend/database/realtime/doIncrementGlobalCount';
 import doGetWonPrize from '../../backend/database/firestore/doGetWonPrize';
+import {
+  S_CPT_PRIZE_DESC,
+  S_CPT_PRIZE_ID,
+  S_CPT_PRIZE_TIER,
+  S_CPT_PRIZE_TITLE,
+  S_CPT_PRIZE_TYPE,
+  S_E_HS_CONNECTIVITY_NOTICE,
+} from '../../frontend/theme/Strings';
 
 /**
  * Does the main game logic.
@@ -61,7 +67,7 @@ const mainGameLogicUC = async (
       return {
         status: ERROR,
         data: {isWon: false, isConnected: false},
-        message: 'You need to be connected to the internet to play',
+        message: S_E_HS_CONNECTIVITY_NOTICE,
       };
     }
 
@@ -224,7 +230,7 @@ const _getErrorResponse = (error: any): Result => {
  * @returns { status: SUCCESS || ERROR, data: {isWon: boolean}, message: string }
  */
 const _storePromotionPrizeLogic = async (userId: string): Promise<Result> => {
-  const result = await doGetWonPrize(userId, 'eggnation-promo-code');
+  const result = await doGetWonPrize(userId, S_CPT_PRIZE_ID);
 
   if (result) {
     return {
@@ -235,17 +241,15 @@ const _storePromotionPrizeLogic = async (userId: string): Promise<Result> => {
   }
 
   const couponPrize = {
-    prizeId: 'eggnation-promo-code',
-    prizeTitle: 'Eggnation Shop Coupon',
-    prizeDesc:
-      'Get free shipping on any product in the eggnation shop! using the discount code EGGNATIONMERCH"',
-    prizeType: 'shirt',
-    prizeTier: 'gold',
+    prizeId: S_CPT_PRIZE_ID,
+    prizeTitle: S_CPT_PRIZE_TITLE,
+    prizeDesc: S_CPT_PRIZE_DESC,
+    prizeType: S_CPT_PRIZE_TYPE,
+    prizeTier: S_CPT_PRIZE_TIER,
     prizeClaimType: PCT_NONE,
   };
 
   await doAddWonPrizeToUserAccount(userId, couponPrize);
-  await doSetAsyncValue('promotionCouponClaimed', 'true');
 
   return {
     status: SUCCESS,

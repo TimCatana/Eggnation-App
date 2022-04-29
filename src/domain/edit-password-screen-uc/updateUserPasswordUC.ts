@@ -3,6 +3,15 @@ import doReauthenticate from '../../backend/auth/doReauthenticate';
 import doReloadUser from '../../backend/auth/doReloadUser';
 import doUpdateUserPassword from '../../backend/auth/doUpdateUserPassword';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {
+  S_E_EPS_WEAK_PASSWORD,
+  S_E_INVALID_CREDENTIALS,
+  S_E_INVALID_EMAIL,
+  S_E_INVALID_PASSWORD,
+  S_E_NOT_CONNECTED_TO_INTERNET,
+  S_E_UNEXPECTED_ERROR,
+  S_S_EPS_PASSWORD_UPDATED,
+} from '../../frontend/theme/Strings';
 import {Result} from '../../types/typeAliases';
 import printDevLogs from '../printDevLogs';
 
@@ -37,7 +46,7 @@ const updateUserPasswordUC = async (
     return {
       status: ERROR,
       data: null,
-      message: 'An unexpected error occurred!',
+      message: S_E_UNEXPECTED_ERROR,
     };
   }
 
@@ -62,7 +71,7 @@ const updateUserPasswordUC = async (
   return {
     status: SUCCESS,
     data: null,
-    message: 'Password updated successfully!',
+    message: S_S_EPS_PASSWORD_UPDATED,
   };
 };
 
@@ -86,23 +95,23 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
       return {
         status: ERROR,
         data: null,
-        message: "You're not connected to the internet!",
+        message: S_E_NOT_CONNECTED_TO_INTERNET,
       };
     case 'auth/user-mismatch':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/user-not-found':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-credential':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: 'Email address is invalid!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
     case 'auth/wrong-password':
-      return {status: ERROR, data: null, message: 'Invalid password!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_PASSWORD};
     default:
       return {
         status: ERROR,
         data: null,
-        message: 'An unexpected error occurred!',
+        message: S_E_UNEXPECTED_ERROR,
       };
   }
 };
@@ -127,19 +136,19 @@ const _getUpdatePasswordErrorResponse = (error: any): Result => {
       return {
         status: ERROR,
         data: null,
-        message: "You're not connected to the internet!",
+        message: S_E_NOT_CONNECTED_TO_INTERNET,
       };
     case 'auth/weak-password':
       return {
         status: ERROR,
         data: null,
-        message: 'Please enter a stronger password!',
+        message: S_E_EPS_WEAK_PASSWORD,
       };
     default:
       return {
         status: ERROR,
         data: null,
-        message: 'An unexpected error occurred!',
+        message: S_E_UNEXPECTED_ERROR,
       };
   }
 };

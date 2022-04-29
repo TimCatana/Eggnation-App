@@ -37,7 +37,7 @@ const PrizeDisplayModalCenterView: FC<Props> = props => {
 
   return (
     <View style={styles.body}>
-      <BookShelfTopView />
+      <BookShelfTopView title="" />
       <PrizeDisplayContent
         isLoading={isLoading}
         prizeId={prizeId}

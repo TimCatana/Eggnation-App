@@ -18,7 +18,6 @@ interface Props {
 const SettingsItem: FC<Props> = props => {
   const {title, content, icon, isLast, onIconPress, iconDisabled} = props;
 
-  //  TODO - add max character limit then add ellipse to content text
   return (
     <View
       style={[

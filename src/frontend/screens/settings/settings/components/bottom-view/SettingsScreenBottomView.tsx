@@ -39,7 +39,7 @@ const SettingsScreenBottomView: FC<Props> = props => {
         disabled={isLoading}
         textColor={C_TEXT_ERROR}
         buttonEnabledColor={C_BUTTON_ENABLED_SETTINGS}
-        buttonDisabledColor={C_BUTTON_ENABLED_SETTINGS}  // TODO find a disabled color that looks good
+        buttonDisabledColor={C_BUTTON_ENABLED_SETTINGS} // TODO find a disabled color that looks good
         fontSize={hp('2%')}
       />
     </View>

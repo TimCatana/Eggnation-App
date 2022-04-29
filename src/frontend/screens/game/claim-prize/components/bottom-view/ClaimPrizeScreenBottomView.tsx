@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {CustomButton} from '../../../../../common/components';
+import {S_CPS_CLAIM_BUTTON} from '../../../../../theme/Strings';
 
 interface Props {
   handleClaimPrizeClick: () => void;
@@ -25,7 +26,7 @@ const ClaimPrizeScreenBottomView: FC<Props> = props => {
   return (
     <View style={styles.body}>
       <CustomButton
-        label={'Claim Prize'}
+        label={S_CPS_CLAIM_BUTTON}
         onPress={handleClaimPrizeClick}
         buttonEnabledColor={'pink'}
         buttonDisabledColor={'gray'}

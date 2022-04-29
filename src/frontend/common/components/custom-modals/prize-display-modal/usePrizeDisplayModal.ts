@@ -8,6 +8,15 @@ import {
   shirt,
   tablet,
 } from '../../../../../../assets';
+import {
+  S_PT_CASH,
+  S_PT_EARBUDS,
+  S_PT_HOODIE,
+  S_PT_LAPTOP,
+  S_PT_PHONE,
+  S_PT_SHIRT,
+  S_PT_TABLET,
+} from '../../../../theme/Strings';
 
 const usePrizeDisplayModal = () => {
   /**
@@ -17,19 +26,19 @@ const usePrizeDisplayModal = () => {
    */
   const getDisplayImage = (prizeType: string) => {
     switch (prizeType) {
-      case 'phone':
+      case S_PT_PHONE:
         return phone;
-      case 'tablet':
+      case S_PT_TABLET:
         return tablet;
-      case 'laptop':
+      case S_PT_LAPTOP:
         return laptop;
-      case 'earbuds':
+      case S_PT_EARBUDS:
         return earbuds;
-      case 'shirt':
+      case S_PT_SHIRT:
         return shirt;
-      case 'hoodie':
+      case S_PT_HOODIE:
         return hoodie;
-      case 'cash':
+      case S_PT_CASH:
         return cash;
       default:
         return present;

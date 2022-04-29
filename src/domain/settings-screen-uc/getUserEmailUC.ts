@@ -1,5 +1,6 @@
 import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {S_E_UNEXPECTED_ERROR} from '../../frontend/theme/Strings';
 import {Result} from '../../types/typeAliases';
 import printDevLogs from '../printDevLogs';
 
@@ -41,7 +42,7 @@ const _getErrorResponse = (): Result => {
   return {
     status: ERROR,
     data: 'Failed to get email',
-    message: 'An unexpected error occurred!',
+    message: S_E_UNEXPECTED_ERROR,
   };
 };
 

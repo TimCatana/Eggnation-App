@@ -13,7 +13,6 @@ const getWonPrizeUC = async prizeId => {
       return {status: ERROR, message: ''};
     }
 
-    console.log('Running getwonprize');
     await doGetAvailablePrize(userId, prizeId);
     return {status: SUCCESS, message: ''};
   } catch (e) {

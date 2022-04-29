@@ -1,5 +1,6 @@
 import doLogout from '../../backend/auth/doLogout';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {S_E_UNEXPECTED_ERROR} from '../../frontend/theme/Strings';
 import {Result} from '../../types/typeAliases';
 import printDevLogs from '../printDevLogs';
 
@@ -32,7 +33,7 @@ const _getErrorResponse = (error: any): Result => {
     );
   }
 
-  return {status: ERROR, data: null, message: 'An unexpected error occurred!'};
+  return {status: ERROR, data: null, message: S_E_UNEXPECTED_ERROR};
 };
 
 export default logoutUserUC;

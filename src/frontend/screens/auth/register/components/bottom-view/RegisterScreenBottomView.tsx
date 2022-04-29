@@ -2,6 +2,10 @@ import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_TEXT_LIGHT} from '../../../../../theme/Colors';
+import {
+  S_RS_AND,
+  S_RS_BY_REGISTERING_NOTICE,
+} from '../../../../../theme/Strings';
 import PrivacyPolicyText from './PrivacyPolicyText';
 import TermsText from './TermsText';
 
@@ -17,14 +21,14 @@ const RegisterScreenBottomView: FC<Props> = props => {
   return (
     <View style={styles.body}>
       <View style={styles.topRow}>
-        <Text style={styles.text}>By registering you agree to our </Text>
+        <Text style={styles.text}>{S_RS_BY_REGISTERING_NOTICE}</Text>
       </View>
       <View style={styles.bottomRow}>
         <PrivacyPolicyText
           isLoading={isLoading}
           navToPrivacyPolicyScreen={navToPrivacyPolicyScreen}
         />
-        <Text style={styles.text}> and </Text>
+        <Text style={styles.text}>{S_RS_AND}</Text>
         <TermsText isLoading={isLoading} navToTermsScreen={navToTermsScreen} />
       </View>
     </View>

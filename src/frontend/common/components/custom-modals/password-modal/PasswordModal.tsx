@@ -7,6 +7,8 @@ import {
 import {
   S_TI_PASSWORD_PLACEHOLDER,
   S_TI_PASSWORD_KEYBOARD_TYPE,
+  S_PM_CANCEL_BUTTON,
+  S_PM_CONFIRM_BUTTON,
 } from '../../../../theme/Strings';
 import {
   C_BUTTON_LIGHT,
@@ -70,7 +72,7 @@ const PasswordModal: FC<Props> = props => {
 
           <View style={styles.buttonView}>
             <CustomButton
-              label={'Cancel'}
+              label={S_PM_CANCEL_BUTTON}
               onPress={() => {
                 if (!isLoading) {
                   hidePasswordModal();
@@ -85,7 +87,7 @@ const PasswordModal: FC<Props> = props => {
             />
 
             <CustomButton
-              label={'Confirm'}
+              label={S_PM_CONFIRM_BUTTON}
               onPress={handleOnConfirm}
               buttonEnabledColor={C_BUTTON_LIGHT}
               buttonDisabledColor={C_BUTTON_LIGHT}

@@ -6,6 +6,11 @@ import {
 } from 'react-native-responsive-screen';
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import {C_TEXT_LINK_PRIMARY, C_TEXT_PRIMARY} from '../../../../../theme/Colors';
+import {
+  S_RS_EGGNATION_SHOP_COM,
+  S_RS_EMAILS,
+  S_RS_SUBSCRIBE_TO,
+} from '../../../../../theme/Strings';
 
 interface Props {
   isSubbedToMailingList: boolean;
@@ -35,11 +40,11 @@ const SubscribeBox: FC<Props> = props => {
         />
       </Pressable>
 
-      <Text style={styles.text}>Subscribe to</Text>
+      <Text style={styles.text}>{S_RS_SUBSCRIBE_TO}</Text>
       <Pressable onPress={handleEggnationShopLinkClick}>
-        <Text style={styles.linkText}> eggnationshop.com </Text>
+        <Text style={styles.linkText}> {S_RS_EGGNATION_SHOP_COM} </Text>
       </Pressable>
-      <Text style={styles.text}>emails</Text>
+      <Text style={styles.text}>{S_RS_EMAILS}</Text>
     </View>
   );
 };

@@ -39,10 +39,8 @@ const CustomButton: FC<Props> = props => {
           elevation: elevation,
           marginBottom: marginBottom,
         },
-        // {...rest},
       ]}
       onPress={onPress}
-      // android_ripple={true}
       disabled={disabled}>
       <Text style={[{fontSize: fontSize, color: textColor}]}>{label}</Text>
     </Pressable>

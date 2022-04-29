@@ -1,6 +1,13 @@
 import doRegister from '../../backend/auth/doRegister';
 import doSubscribeToMailingList from '../../backend/cloud-functions/doSubscribeToMailingList';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {
+  S_E_INVALID_CREDENTIALS,
+  S_E_INVALID_PASSWORD,
+  S_E_NOT_CONNECTED_TO_INTERNET,
+  S_E_RS_EMAIL_IN_USE,
+  S_E_UNEXPECTED_ERROR,
+} from '../../frontend/theme/Strings';
 import {Result} from '../../types/typeAliases';
 import printDevLogs from '../printDevLogs';
 
@@ -44,7 +51,7 @@ const registerUserUC = async (
  * changes the stack right when the firebase auth token becomes valid.
  * So if the registration fails, I need to delete from the mailing list.
  * This operation can also throw an error, so I need to make sure the correct error get's
- * propagated. 
+ * propagated.
  * @param email The user email
  * @param e The error that was thrown from doRegister
  * @returns {status: ERROR, data: null, message: string}
@@ -78,19 +85,19 @@ const _getErrorResponse = (error: any): Result => {
       return {
         status: ERROR,
         data: null,
-        message: "You're not connected to the internet!",
+        message: S_E_NOT_CONNECTED_TO_INTERNET,
       };
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/weak-password':
-      return {status: ERROR, data: null, message: 'Invalid password!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_PASSWORD};
     case 'auth/email-already-in-use':
-      return {status: ERROR, data: null, message: 'Email already in use!'};
+      return {status: ERROR, data: null, message: S_E_RS_EMAIL_IN_USE};
     default:
       return {
         status: ERROR,
         data: null,
-        message: 'An unexpected error occurred!',
+        message: S_E_UNEXPECTED_ERROR,
       };
   }
 };

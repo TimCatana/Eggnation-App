@@ -5,7 +5,6 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {
-  C_ICON_PRIMARY,
   C_TEXT_PRIMARY,
   C_BACKGROUND_BOOKSHELF,
   C_ICON_BOOKSHELF,

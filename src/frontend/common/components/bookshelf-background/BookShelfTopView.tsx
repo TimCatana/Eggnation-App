@@ -2,7 +2,10 @@ import React, {FC} from 'react';
 import {View, Image, StyleSheet, Text} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {bookShelfTop} from '../../../../../assets';
-import {C_BACKGROUND_BOOKSHELF, C_TEXT_BOOKSHELF_TITLE, C_TEXT_LINK_PRIMARY, C_TEXT_PRIMARY} from '../../../theme/Colors';
+import {
+  C_BACKGROUND_BOOKSHELF,
+  C_TEXT_BOOKSHELF_TITLE,
+} from '../../../theme/Colors';
 
 interface Props {
   title: string;
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: hp('3%'),
     fontWeight: '500',
-    color: C_TEXT_BOOKSHELF_TITLE
+    color: C_TEXT_BOOKSHELF_TITLE,
   },
 });
 

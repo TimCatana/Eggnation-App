@@ -4,6 +4,13 @@ import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import printDevLogs from '../printDevLogs';
 import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 import {Result} from '../../types/typeAliases';
+import {
+  S_E_INVALID_CREDENTIALS,
+  S_E_INVALID_EMAIL,
+  S_E_INVALID_PASSWORD,
+  S_E_NOT_CONNECTED_TO_INTERNET,
+  S_E_UNEXPECTED_ERROR,
+} from '../../frontend/theme/Strings';
 
 /**
  * Attempts to delete the currently logged in user's account.
@@ -31,7 +38,7 @@ const deleteUserUC = async (password: string): Promise<Result> => {
     return {
       status: ERROR,
       data: null,
-      message: 'An unexpected error occurred!',
+      message: S_E_UNEXPECTED_ERROR,
     };
   }
 
@@ -71,23 +78,23 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
       return {
         status: ERROR,
         data: null,
-        message: "You're not connected to the internet!",
+        message: S_E_NOT_CONNECTED_TO_INTERNET,
       };
     case 'auth/user-mismatch':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/user-not-found':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-credential':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: 'Email address is invalid!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
     case 'auth/wrong-password':
-      return {status: ERROR, data: null, message: 'Invalid password!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_PASSWORD};
     default:
       return {
         status: ERROR,
         data: null,
-        message: 'An unexpected error occurred!',
+        message: S_E_UNEXPECTED_ERROR,
       };
   }
 };
@@ -112,13 +119,13 @@ const _getDeleteUserErrorResponse = (error: any): Result => {
       return {
         status: ERROR,
         data: null,
-        message: "You're not connected to the internet!",
+        message: S_E_NOT_CONNECTED_TO_INTERNET,
       };
     default:
       return {
         status: ERROR,
         data: null,
-        message: 'An unexpected error occurred!',
+        message: S_E_UNEXPECTED_ERROR,
       };
   }
 };

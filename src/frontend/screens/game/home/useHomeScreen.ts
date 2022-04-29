@@ -1,5 +1,4 @@
 import {useState, useEffect, useRef} from 'react';
-import {Alert, BackHandler} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {HomeScreenProp} from '../../../navigation/ScreenProps';
 import {Screens} from '../../../../constants/NavigationConstants';
@@ -391,7 +390,7 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
     navToSettingsScreen,
     navToAvailablePrizesTab,
     navToWonPrizesTab,
-    navToHowToPlayScreen
+    navToHowToPlayScreen,
   };
 };
 

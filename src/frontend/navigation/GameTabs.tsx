@@ -8,7 +8,6 @@ import {GameTabParamList} from './ScreenProps';
 const Tab = createMaterialTopTabNavigator<GameTabParamList>();
 
 const GameTabs: FC = () => {
-
   return (
     <Tab.Navigator
       initialRouteName={Screens.HOME_SCREEN}

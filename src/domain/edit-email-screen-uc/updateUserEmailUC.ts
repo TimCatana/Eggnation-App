@@ -5,6 +5,14 @@ import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import printDevLogs from '../printDevLogs';
 import {Result} from '../../types/typeAliases';
 import doReloadUser from '../../backend/auth/doReloadUser';
+import {
+  S_E_EES_EMAIL_IN_USE,
+  S_E_INVALID_CREDENTIALS,
+  S_E_INVALID_EMAIL,
+  S_E_NOT_CONNECTED_TO_INTERNET,
+  S_E_UNEXPECTED_ERROR,
+  S_S_EES_EMAIL_UPDATED,
+} from '../../frontend/theme/Strings';
 
 /**
  * Attempts to update the user's login email.
@@ -34,7 +42,7 @@ const updateUserEmailUC = async (
   const email = doGetUserEmail();
 
   if (!email) {
-    return {status: ERROR, data: null, message: 'An unexpected error occurred'};
+    return {status: ERROR, data: null, message: S_E_UNEXPECTED_ERROR};
   }
 
   try {
@@ -52,12 +60,11 @@ const updateUserEmailUC = async (
   try {
     await doReauthenticate(newEmail, password);
   } catch (e: any) {
-    console.log('reauthenticate failed')
-    return {status: ERROR, data: null, message: ''};
+    return {status: ERROR, data: null, message: S_S_EES_EMAIL_UPDATED};
     // return _getReauthenticateErrorResponse(e);
   }
 
-  return {status: SUCCESS, data: null, message: 'Email updated successfully!'};
+  return {status: SUCCESS, data: null, message: S_S_EES_EMAIL_UPDATED};
 };
 
 /**
@@ -80,23 +87,23 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
       return {
         status: ERROR,
         data: null,
-        message: "You're not connected to the internet!",
+        message: S_E_NOT_CONNECTED_TO_INTERNET,
       };
     case 'auth/user-mismatch':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/user-not-found':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-credential':
-      return {status: ERROR, data: null, message: 'Invalid credentials!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: 'Email address is invalid!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
     case 'auth/wrong-password':
-      return {status: ERROR, data: null, message: 'Invalid password!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
     default:
       return {
         status: ERROR,
         data: null,
-        message: 'An unexpected error occurred!',
+        message: S_E_UNEXPECTED_ERROR,
       };
   }
 };
@@ -121,21 +128,21 @@ const _getUpdateEmailErrorResponse = (error: any): Result => {
       return {
         status: ERROR,
         data: null,
-        message: "You're not connected to the internet!",
+        message: S_E_NOT_CONNECTED_TO_INTERNET,
       };
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: 'Email address is invalid!'};
+      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
     case 'auth/email-already-in-use':
       return {
         status: ERROR,
         data: null,
-        message: 'Email address already in use!',
+        message: S_E_EES_EMAIL_IN_USE,
       };
     default:
       return {
         status: ERROR,
         data: null,
-        message: 'An unexpected error occurred!',
+        message: S_E_UNEXPECTED_ERROR,
       };
   }
 };

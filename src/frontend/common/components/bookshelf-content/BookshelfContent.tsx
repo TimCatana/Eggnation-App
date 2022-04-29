@@ -2,7 +2,10 @@ import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import LottieView from 'lottie-react-native';
-import { AvailablePrizesArray, WonPrizesArray } from '../../../../types/typeAliases';
+import {
+  AvailablePrizesArray,
+  WonPrizesArray,
+} from '../../../../types/typeAliases';
 import {C_TEXT_LIGHT} from '../../../theme/Colors';
 import {PresentPlaceholder} from '../../../../../assets';
 import {PrizeList} from '../index';
@@ -12,7 +15,7 @@ interface Props {
   isLoading: boolean;
   isPrizeFetchFailed: boolean;
   prizeFetchFailedText: string;
-  data: AvailablePrizesArray | WonPrizesArray | []; 
+  data: AvailablePrizesArray | WonPrizesArray | [];
   handleShowPrize: (
     prizeId: string,
     prizeTitle: string,
@@ -53,10 +56,7 @@ const BookshelfContent: FC<Props> = props => {
       )}
 
       {isInitialized && !isLoading && !isPrizeFetchFailed && (
-        <PrizeList
-          data={data}
-          handleShowPrize={handleShowPrize}
-        />
+        <PrizeList data={data} handleShowPrize={handleShowPrize} />
       )}
     </View>
   );

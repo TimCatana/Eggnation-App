@@ -46,7 +46,7 @@ const GameStack: FC = () => {
         name={Screens.PRIVACY_POLICY_SCREEN}
         component={PrivacyPolicyScreen}
       />
-       <Stack.Screen
+      <Stack.Screen
         name={Screens.HOW_TO_PLAY_SCREEN}
         component={HowToPlayScreen}
       />
