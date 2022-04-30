@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const useHomeScreen = () => {
-  const [collection, setCollection] = useState("");
+  const URL = "http://localhost:4400";
+
+  const [collection, setCollection] = useState("available-prizes");
   const [collectionError, setCollectionError] = useState(true);
 
   const [prizeId, setPrizeId] = useState("");
@@ -122,7 +125,7 @@ const useHomeScreen = () => {
   /***** BUTTON CLICKS *****/
   /*************************/
 
-  const handleAddPrizeToDB = () => {
+  const handleAddPrizeToDB = async () => {
     console.log(prizeIdError);
     console.log(prizeId);
 
@@ -134,7 +137,9 @@ const useHomeScreen = () => {
       !prizeTypeError &&
       !prizeClaimTypeError
     ) {
-      console.log("Running add prize");
+      await axios.get(
+        `${URL}/home/addPrizeToDatabase/${collection}/${prizeId}?prizeTitle=${prizeTitle}&prizeDesc=${prizeDesc}&prizeTier=${prizeTier}&prizeType=${prizeType}&prizeClaimType=${prizeClaimType}`
+      );
     }
   };
 
