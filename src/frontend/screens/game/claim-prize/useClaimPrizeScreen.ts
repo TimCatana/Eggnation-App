@@ -5,8 +5,10 @@ import {
   ClaimPrizeRouteProp,
 } from '../../../navigation/ScreenProps';
 import {Countries, Regions} from '../../../../types/typeAliases';
-import claimPrizeUC from '../../../../domain/claim-prize-screen-us/claimPrizeUC';
+import claimPrizeUC from '../../../../domain/claim-prize-screen-uc/claimPrizeUC';
 import countriesData from '../../../../util/countries.json';
+import {ERROR} from '../../../../constants/ResultsConstants';
+import Snackbar from 'react-native-snackbar';
 
 const useClaimPrizeScreen = () => {
   /******************/
@@ -37,6 +39,12 @@ const useClaimPrizeScreen = () => {
   const [isSelectingCountries, setIsSelectingCountries] =
     useState<boolean>(true);
 
+  const [isConfirmationModalShowing, setIsConfirmationModalShowing] =
+    useState<boolean>(false);
+
+  const [snackbarText, setSnackbarText] = useState<string>('');
+  const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
+
   /***********************/
   /***** USE EFFECTS *****/
   /***********************/
@@ -49,7 +57,7 @@ const useClaimPrizeScreen = () => {
     setAllCountries(
       countriesData.map(it => {
         return {
-          countryName: it.countryName,
+          name: it.name,
           countryShortCode: it.countryShortCode,
         };
       }),
@@ -112,14 +120,26 @@ const useClaimPrizeScreen = () => {
       : setIsPostalCodeError(true);
   }, [postalCode]);
 
+  /**
+   * Displays a Snackbar showing a message.
+   * Usually used for error messages.
+   * @dependent showSnackbar
+   */
+  useEffect(() => {
+    if (showSnackbar != 0) {
+      Snackbar.show({
+        text: snackbarText,
+        duration: Snackbar.LENGTH_SHORT,
+      });
+    }
+  }, [showSnackbar]);
+
   /******************************/
   /***** USE EFFECT HELPERS *****/
   /******************************/
 
   const setRegions = () => {
-    const country = countriesData.find(
-      it => it.countryName === selectedCountry,
-    );
+    const country = countriesData.find(it => it.name === selectedCountry);
     country ? setAllRegions(country.regions) : setAllRegions([]);
   };
 
@@ -132,7 +152,7 @@ const useClaimPrizeScreen = () => {
    * @param index The index of the available countries array to select
    */
   const handleCountryChange = (index: number) => {
-    setSelectedCountry(allCountries[index].countryName);
+    setSelectedCountry(allCountries[index].name);
     setIsModalPickerShowing(false);
   };
 
@@ -184,6 +204,24 @@ const useClaimPrizeScreen = () => {
   };
 
   /**
+   * Shows the password modal.
+   * This modal is used to enter the user's current password before they can
+   * actually update any information. This is in place for security purposes
+   */
+  const showConfirmationModal = () => {
+    setIsConfirmationModalShowing(true);
+  };
+
+  /**
+   * Hides the password modal.
+   * This modal is used to enter the user's current password before they can
+   * actually update any information. This is in place for security purposes
+   */
+  const hideConfirmationModal = () => {
+    setIsConfirmationModalShowing(false);
+  };
+
+  /**
    * Does the backend logic to claim the won prize.
    * @onSuccess // TODO
    * @onFailure // TODO
@@ -199,7 +237,12 @@ const useClaimPrizeScreen = () => {
     );
     setIsLoading(false);
 
-    // SHOW
+    if (result.status === ERROR) {
+      setSnackbarText(result.message);
+      setShowSnackbar(showSnackbar + 1);
+    } else {
+      showConfirmationModal();
+    }
   };
 
   /******************************/
@@ -207,9 +250,13 @@ const useClaimPrizeScreen = () => {
   /******************************/
 
   /** Navigates back to the login screen if no process is currently running. */
-  const navigateBack = () => {
+  const hideModalAndNavigateBack = () => {
     if (!isLoading) {
-      navigation.pop();
+      hideConfirmationModal();
+
+      setTimeout(() => {
+        navigation.pop();
+      }, 500);
     }
   };
 
@@ -236,9 +283,10 @@ const useClaimPrizeScreen = () => {
     isModalPickerShowing,
     showModalPicker,
     hideModalPicker,
+    isConfirmationModalShowing,
     isSelectingCountries,
     handleClaimPrizeClick,
-    navigateBack,
+    hideModalAndNavigateBack,
   };
 };
 

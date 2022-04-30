@@ -17,7 +17,8 @@ interface Props {
   prizeTier: string;
   prizeType: string;
   prizeClaimType: string;
-  prizeIsClaimed: boolean;
+  prizeClaimed: boolean;
+  prizeDelivered: boolean;
   isWonPrize: boolean;
   navigation: any;
   handleHidePrize: () => void;
@@ -33,7 +34,8 @@ const PrizeDisplayContent: FC<Props> = props => {
     prizeTier,
     prizeType,
     prizeClaimType,
-    prizeIsClaimed,
+    prizeClaimed,
+    prizeDelivered,
     isWonPrize,
     navigation,
     handleHidePrize,
@@ -52,7 +54,8 @@ const PrizeDisplayContent: FC<Props> = props => {
             navigation={navigation}
             prizeId={prizeId}
             prizeClaimType={prizeClaimType}
-            prizeIsClaimed={prizeIsClaimed}
+            prizeClaimed={prizeClaimed}
+            prizeDelivered={prizeDelivered}
             handleHidePrize={handleHidePrize}
           />
         )}

@@ -15,8 +15,10 @@ export const S_TI_CONFIRM_PASSWORD_ERROR_TEXT = 'passwords must match';
 export const S_TI_CONFIRM_PASSWORD_KEYBOARD_TYPE = 'default';
 
 export const S_TI_ADDRESS_PLACEHOLDER = 'address';
-export const S_TI_ADDRESS_ERROR_TEXT = 'please enter a valid email';
 export const S_TI_ADDRESS_KEYBOARD_TYPE = 'default';
+
+export const S_TI_POSTAL_CODE_PLACEHOLDER = 'postal code';
+export const S_TI_POSTAL_CODE_KEYBOARD_TYPE = 'default';
 
 /** LOGIN SCREEN */
 export const S_LS_LOGIN_HEADING = 'LOGIN';

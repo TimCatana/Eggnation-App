@@ -140,6 +140,7 @@ const useEditPasswordScreen = () => {
    */
   const handleUpdatePasswordClick = async () => {
     setIsLoading(true);
+    hidePasswordModal();
     const result = await updateUserPasswordUC(newPassword, currentPassword);
     setIsLoading(false);
 
@@ -161,7 +162,6 @@ const useEditPasswordScreen = () => {
   /** Navigates back to the login screen if no process is currently running. */
   const updatePasswordAndNavBackIfSuccess = async () => {
     const status = await handleUpdatePasswordClick();
-    hidePasswordModal();
 
     setTimeout(() => {
       setShowSnackbar(showSnackbar + 1);

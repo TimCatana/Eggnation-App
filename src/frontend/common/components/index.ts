@@ -11,6 +11,8 @@ import BookshelfContent from './bookshelf-content/BookshelfContent';
 
 import PasswordModal from './custom-modals/password-modal/PasswordModal';
 
+import PrizeClaimedModal from './custom-modals/prize-claimed-modal/PrizeClaimedModal';
+
 import PrizeDisplayModal from './custom-modals/prize-display-modal/PrizeDisplayModal';
 import PrizeDisplayModalCenterView from './custom-modals/prize-display-modal/PrizeDisplayModalCenterView';
 import PrizeDisplayContent from './custom-modals/prize-display-modal/PrizeDisplayContent';
@@ -37,6 +39,7 @@ export {
   PrizeScreenCenterView,
   BookshelfContent,
   PasswordModal,
+  PrizeClaimedModal,
   PrizeDisplayModalCenterView,
   PrizeDisplayContent,
   PrizeDisplayContentTopView,

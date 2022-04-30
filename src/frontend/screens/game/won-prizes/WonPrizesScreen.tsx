@@ -1,6 +1,10 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {C_BACKGROUND_BOOKSHELF, C_ICON_BOOKSHELF, C_ICON_PRIMARY} from '../../../theme/Colors';
+import {
+  C_BACKGROUND_BOOKSHELF,
+  C_ICON_BOOKSHELF,
+  C_ICON_PRIMARY,
+} from '../../../theme/Colors';
 import {PrizeDisplayModal, PressableIcon} from '../../../common/components';
 
 import TEST_DATA from '../../../../../test-data/availablePrizes.json';
@@ -8,15 +12,12 @@ import BookShelfLeftView from '../../../common/components/bookshelf-background/B
 import BookShelfRightView from '../../../common/components/bookshelf-background/BookShelfRightView';
 import PrizeScreenCenterView from '../../../common/components/bookshelf-background/PrizeScreenCenterView';
 import usePrizeScreen from '../../../common/states/usePrizeScreen';
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
-interface Props {
-  setSwipeEnabled: (isEnabled: boolean) => void;
-}
-
-const WonPrizesScreen: FC<Props> = props => {
-  const {setSwipeEnabled} = props;
-
+const WonPrizesScreen: FC = () => {
   const {
     isInitialized,
     isLoading,
@@ -32,8 +33,11 @@ const WonPrizesScreen: FC<Props> = props => {
     displayPrizeTier,
     displayPrizeType,
     displayPrizeClaimType,
+    displayPrizeClaimed,
+    displayPrizeDelivered,
+    displayPrizeWonDate,
     navigation,
-    navToHomeTab
+    navToHomeTab,
   } = usePrizeScreen(false);
 
   return (
@@ -45,9 +49,9 @@ const WonPrizesScreen: FC<Props> = props => {
         isLoading={isLoading}
         isPrizeFetchFailed={isPrizeFetchFailed}
         prizeFetchFailedText={prizeFetchFailedText}
-        data={TEST_DATA}
+        data={prizes}
         handleShowPrize={handleShowPrize}
-        title={"Won Prizes"}
+        title={'Won Prizes'}
       />
 
       <PrizeDisplayModal
@@ -58,7 +62,9 @@ const WonPrizesScreen: FC<Props> = props => {
         prizeTier={displayPrizeTier}
         prizeType={displayPrizeType}
         prizeClaimType={displayPrizeClaimType}
-        prizeIsClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
+        prizeClaimed={displayPrizeClaimed}
+        prizeDelivered={displayPrizeDelivered}
+        prizeWonDate={displayPrizeWonDate}
         isWonPrize={true}
         isModalVisible={isShowingPrize}
         handleHidePrize={handleHidePrize}
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
   backArrowView: {
     position: 'absolute',
     left: hp('-0.5%'),
-    top: hp('0.2%')
+    top: hp('0.2%'),
   },
 });
 

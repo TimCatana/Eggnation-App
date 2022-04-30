@@ -1,6 +1,11 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  PCT_CASH,
+  PCT_DELIVERABLE,
+  PCT_NONE,
+} from '../../../../../constants/Constants';
 import {Screens} from '../../../../../constants/NavigationConstants';
 import {
   C_BUTTON_DISABLED,
@@ -14,7 +19,8 @@ interface Props {
   navigation: any;
   prizeId: string;
   prizeClaimType: string;
-  prizeIsClaimed: boolean;
+  prizeClaimed: boolean;
+  prizeDelivered: boolean;
   handleHidePrize: () => void;
 }
 
@@ -24,9 +30,12 @@ const PrizeDisplayContentBottomCenterView: FC<Props> = props => {
     navigation,
     prizeId,
     prizeClaimType,
-    prizeIsClaimed,
+    prizeClaimed,
+    prizeDelivered,
     handleHidePrize,
   } = props;
+
+  console.log(`${isLoading} ${prizeClaimType} ${prizeClaimed} ${prizeDelivered}`)
 
   return (
     <View style={styles.body}>
@@ -48,8 +57,10 @@ const PrizeDisplayContentBottomCenterView: FC<Props> = props => {
         fontSize={hp('2%')}
         elevation={0}
         disabled={
-          false
-          // isLoading || prizeIsClaimed || prizeClaimType == PCT_NONE
+          isLoading ||
+          (prizeClaimType !== PCT_DELIVERABLE && prizeClaimType !== PCT_CASH) ||
+          prizeClaimed ||
+          prizeDelivered
         }
       />
     </View>

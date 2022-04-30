@@ -1,7 +1,9 @@
 import React, {FC} from 'react';
 import {View, Image, Text, StyleSheet} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {bookShelfTop} from '../../../../../../assets';
+import {C_TEXT_BOOKSHELF_TITLE} from '../../../../theme/Colors';
 
 interface Props {
   prizeTitle: string;
@@ -17,9 +19,14 @@ const PrizeDisplayContentTopCenterView: FC<Props> = props => {
         resizeMode="stretch"
         source={bookShelfTop}
       />
-      <View style={styles.titleView}>
+      <ScrollView
+        style={styles.titleView}
+        contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        horizontal>
         <Text style={styles.titleText}>{prizeTitle}</Text>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -37,15 +44,13 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   titleView: {
-    position: 'absolute',
-    width: '100%',
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    position: 'absolute',
   },
   titleText: {
     fontSize: hp('4.4%'),
     marginBottom: hp('2%'),
+    color: C_TEXT_BOOKSHELF_TITLE,
   },
 });
 

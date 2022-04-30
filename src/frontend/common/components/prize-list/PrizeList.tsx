@@ -19,6 +19,9 @@ interface Props {
     prizeType: string,
     prizeTier: string,
     prizeClaimType: string,
+    prizeWonDate: string,
+    prizeClaimed: boolean,
+    prizeDelivered: boolean,
   ) => void;
 }
 

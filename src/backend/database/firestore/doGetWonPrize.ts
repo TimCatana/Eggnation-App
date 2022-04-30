@@ -47,8 +47,14 @@ const doGetWonPrize = async (
         prizeTier: data.prizeTier ? `${data.prizeTier}` : '',
         prizeClaimType: data.prizeClaimType ? `${data.prizeClaimType}` : '',
         prizeWonDate: data.prizeWonDate ? `${data.prizeWonDate}` : '',
-        prizeClaimed: data.prizeClaimed ? data.prizeClaimed : true,
-        prizeDelivered: data.prizeDelivered ? data.prizeDelivered : true,
+        prizeClaimed:
+          data.prizeDelivered !== null && data.prizeDelivered !== undefined
+            ? data.prizeClaimed
+            : true,
+        prizeDelivered:
+          data.prizeDelivered !== null && data.prizeDelivered !== undefined
+            ? data.prizeDelivered
+            : true,
       };
     } else {
       return null;

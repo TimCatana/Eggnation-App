@@ -18,13 +18,7 @@ import {
 } from 'react-native-responsive-screen';
 import {S_APS_TITLE} from '../../../theme/Strings';
 
-interface Props {
-  setSwipeEnabled: (isEnabled: boolean) => void;
-}
-
-const AvailablePrizesScreen: FC<Props> = props => {
-  const {setSwipeEnabled} = props;
-
+const AvailablePrizesScreen: FC = () => {
   const {
     isInitialized,
     isLoading,
@@ -40,6 +34,8 @@ const AvailablePrizesScreen: FC<Props> = props => {
     displayPrizeTier,
     displayPrizeType,
     displayPrizeClaimType,
+    displayPrizeDelivered,
+    displayPrizeWonDate,
     navigation,
     navToHomeTab,
   } = usePrizeScreen(true);
@@ -66,7 +62,9 @@ const AvailablePrizesScreen: FC<Props> = props => {
         prizeTier={displayPrizeTier}
         prizeType={displayPrizeType}
         prizeClaimType={displayPrizeClaimType}
-        prizeIsClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
+        prizeClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
+        prizeDelivered={displayPrizeDelivered}
+        prizeWonDate={displayPrizeWonDate}
         isWonPrize={false}
         isModalVisible={isShowingPrize}
         handleHidePrize={handleHidePrize}

@@ -149,12 +149,10 @@ const useSettingsScreen = () => {
    * @onFailure Should show a snackbar with an error message
    */
   const deleteUser = async () => {
-    // console.log('delete user clicked, add functionality now...');
     setIsLoading(true);
+    hidePasswordModal();
     const result = await deleteUserUC(password);
     setIsLoading(false);
-
-    hidePasswordModal();
 
     if (result.status === ERROR) {
       setSnackbarText(result.message);

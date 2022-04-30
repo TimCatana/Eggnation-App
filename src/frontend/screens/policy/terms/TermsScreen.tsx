@@ -9,6 +9,7 @@ import TOSAccount from './components/other/TOSAccount';
 import TOSLicense from './components/other/TOSLicense';
 import TOSProhibitedActivities from './components/other/TOSProhibitedActivities';
 import TOSFeedback from './components/other/TOSFeedback';
+import TOSPrizeShipment from './components/other/TOSPrizeShipment';
 import TOSDisclaimer from './components/other/TOSDisclaimer';
 import TOSIndemnification from './components/other/TOSIndemnification';
 import TOSPlatformChanges from './components/other/TOSPlatformChanges';
@@ -41,6 +42,7 @@ const TermsScreen: FC = () => {
       <TOSLicense />
       <TOSProhibitedActivities />
       <TOSFeedback />
+      <TOSPrizeShipment />
       <TOSDisclaimer />
       <TOSIndemnification />
       <TOSPlatformChanges />
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
   icon: {
     marginLeft: hp('0.5%'),
     marginTop: hp('0.5%'),
-    marginBottom: hp('1%')
+    marginBottom: hp('1%'),
   },
 });
 export default TermsScreen;

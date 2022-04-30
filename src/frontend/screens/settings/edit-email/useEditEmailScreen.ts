@@ -110,6 +110,7 @@ const useEditEmailScreen = () => {
    */
   const handleUpdateEmailClick = async () => {
     setIsLoading(true);
+    hidePasswordModal();
     const result = await updateUserEmailUC(newEmail, password);
     setIsLoading(false);
 

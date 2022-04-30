@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../theme/Colors';
+import {C_ACTIVITY_INDICATOR, C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../theme/Colors';
 import {PressableIcon, PasswordModal} from '../../../common/components';
 import SettingsScreenTopView from './components/top-view/SettingsScreenTopView';
 import SettingsScreenCenterView from './components/center-view/SettingsScreenCenterView';
@@ -73,6 +73,12 @@ const SettingsScreen: FC = () => {
         logoutUser={logoutUser}
         showPasswordModal={showPasswordModal}
       />
+      <ActivityIndicator
+        style={styles.loading}
+        animating={isLoading}
+        size={hp('10%')}
+        color={C_ACTIVITY_INDICATOR}
+      />
     </View>
   );
 };
@@ -90,6 +96,13 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingLeft: wp('1%'),
     paddingTop: hp('1%'),
+  },
+  loading: {
+    position: 'absolute',
+    top: hp('43%'),
+    right: 0,
+    left: 0,
+    center: 0,
   },
 });
 

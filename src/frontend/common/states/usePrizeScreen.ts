@@ -10,6 +10,7 @@ import {AvailablePrizesArray, WonPrizesArray} from '../../../types/typeAliases';
 import getWonPrizesUC from '../../../domain/won-prizes-screen-us/getWonPrizesUC';
 import {Screens} from '../../../constants/NavigationConstants';
 
+// TODO - need to refresh wonprizes once the prize has been claimed
 const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
   /******************/
   /***** STATES *****/
@@ -38,6 +39,10 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
   const [displayPrizeTier, setDisplayPrizeTier] = useState<string>('');
   const [displayPrizeClaimType, setDisplayPrizeClaimType] =
     useState<string>('');
+  const [displayPrizeClaimed, setDisplayPrizeClaimed] = useState<boolean>(true);
+  const [displayPrizeDelivered, setDisplayPrizeDelivered] =
+    useState<boolean>(true);
+  const [displayPrizeWonDate, setDisplayPrizeWonDate] = useState<string>('');
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -100,7 +105,13 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
     prizeType: string,
     prizeTier: string,
     prizeClaimType: string,
+    prizeWonDate: string,
+    prizeClaimed: boolean,
+    prizeDelivered: boolean,
   ) => {
+    // console.log(
+    //   `${prizeId} ${prizeTitle} ${prizeDesc} ${prizeType} ${prizeTier} ${prizeClaimType} ${prizeClaimed} ${prizeDelivered} ${prizeWonDate}`,
+    // );
     setIsShowingPrize(true);
     handleDisplayPrizeIdChange(prizeId);
     handleDisplayPrizeTitleChange(prizeTitle);
@@ -108,6 +119,9 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
     handleDisplayPrizeTypeChange(prizeType);
     handleDisplayPrizeTierChange(prizeTier);
     handleDisplayPrizeClaimTypeChange(prizeClaimType);
+    handleDisplayPrizeClaimedChange(prizeClaimed);
+    handleDisplayPrizeDeliveredChange(prizeDelivered);
+    handleDisplayPrizeWonDateChange(prizeWonDate);
   };
 
   /**
@@ -165,6 +179,29 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
     setDisplayPrizeClaimType(claimType);
   };
 
+  /**
+   * Sets the prize tier of the prize being shown in the prize modal.
+   * @param claimed (boolean) The e prize tier of the prize to be shown in the prize modal
+   */
+  const handleDisplayPrizeClaimedChange = (claimed: boolean) => {
+    setDisplayPrizeClaimed(claimed);
+  };
+  /**
+   * Sets the prize tier of the prize being shown in the prize modal.
+   * @param delivered (boolean) The e prize tier of the prize to be shown in the prize modal
+   */
+
+  const handleDisplayPrizeDeliveredChange = (delivered: boolean) => {
+    setDisplayPrizeDelivered(delivered);
+  };
+  /**
+   * Sets the prize tier of the prize being shown in the prize modal.
+   * @param wonDate (boolean) The e prize tier of the prize to be shown in the prize modal
+   */
+  const handleDisplayPrizeWonDateChange = (wonDate: string) => {
+    setDisplayPrizeWonDate(wonDate);
+  };
+
   /******************************/
   /***** NAVIGATION HELPERS *****/
   /******************************/
@@ -195,6 +232,9 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
     displayPrizeTier,
     displayPrizeType,
     displayPrizeClaimType,
+    displayPrizeClaimed,
+    displayPrizeDelivered,
+    displayPrizeWonDate,
     navigation,
     navToHomeTab,
   };

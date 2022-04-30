@@ -1,107 +1,211 @@
 [
   {
     "prizeId": "id1",
-    "prizeTitle": "First Item",
+    "prizeTitle": "Nothing wrong",
     "prizeDesc": "Description of item 1",
     "prizeType": "phone",
-    "prizeTier": "bronze"
+    "prizeTier": "bronze",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
   },
   {
     "prizeId": "id2",
-    "prizeTitle": "Second Item",
-    "prizeDesc": "Description of item 2",
+    "prizeTitle": "Item with long description and title but nothing is wrong",
+    "prizeDesc": "Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2Description of item 2",
     "prizeType": "tablet",
-    "prizeTier": "silver"
+    "prizeTier": "silver",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
   },
   {
     "prizeId": "id3",
-    "prizeTitle": "Third Item",
+    "prizeTitle": "Testing different variations still nothing wrong",
     "prizeDesc": "Description of item 3",
     "prizeType": "laptop",
-    "prizeTier": "gold"
+    "prizeTier": "gold",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
   },
   {
     "prizeId": "id4",
-    "prizeTitle": "Fourth Item",
+    "prizeTitle": "Testing different variations still nothing wrong 2",
     "prizeDesc": "Description of item 4",
     "prizeType": "shirt",
-    "prizeTier": "diamond"
+    "prizeTier": "diamond",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
   },
   {
     "prizeId": "id5",
-    "prizeTitle": "Fifth Item",
+    "prizeTitle": "This prize is claimed and not delivered",
     "prizeDesc": "Description of item 5",
     "prizeType": "cash",
-    "prizeTier": "gold"
+    "prizeTier": "gold",
+    "prizeClaimType": "transfer",
+    "prizeClaimed": true,
+    "prizeDelivered": false
   },
   {
-    "prizeId": null,
-    "prizeTitle": "Sixth Item",
-    "prizeDesc": "Description of item 6",
-    "prizeType": "shirt",
-    "prizeTier": "gold"
+    "prizeId": "id6",
+    "prizeTitle": "This prize is claimed and delivered",
+    "prizeDesc": "Description of item 5",
+    "prizeType": "cash",
+    "prizeTier": "gold",
+    "prizeClaimType": "transfer",
+    "prizeClaimed": true,
+    "prizeDelivered": true
   },
   {
     "prizeId": "id7",
-    "prizeTitle": null,
-    "prizeDesc": "Description of item 7",
+    "prizeTitle": "This prize is not claimed claimed and delivered (should never happen)",
+    "prizeDesc": "Description of item 5",
+    "prizeType": "cash",
+    "prizeTier": "gold",
+    "prizeClaimType": "transfer",
+    "prizeClaimed": false,
+    "prizeDelivered": true
+  },
+  {
+    "prizeId": null,
+    "prizeTitle": "prizeId is null",
+    "prizeDesc": "Description of item 6",
     "prizeType": "shirt",
-    "prizeTier": "diamond"
+    "prizeTier": "gold",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
   },
   {
     "prizeId": "id8",
-    "prizeTitle": "Eighth Item",
-    "prizeDesc": null,
-    "prizeType": "tablet",
-    "prizeTier": "diamond"
+    "prizeTitle": null,
+    "prizeDesc": "prize title is null",
+    "prizeType": "shirt",
+    "prizeTier": "diamond",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
   },
   {
     "prizeId": "id9",
-    "prizeTitle": "Ninth Item",
-    "prizeDesc": "Description of item 9",
-    "prizeType": null,
-    "prizeTier": "diamond"
+    "prizeTitle": "prize description is null",
+    "prizeDesc": null,
+    "prizeType": "tablet",
+    "prizeTier": "diamond",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
   },
   {
     "prizeId": "id10",
-    "prizeTitle": "Tenth Item",
-    "prizeDesc": "Description of item 10",
-    "prizeType": "phone",
-    "prizeTier": null
+    "prizeTitle": "prize type is null",
+    "prizeDesc": "Description of item 9",
+    "prizeType": null,
+    "prizeTier": "diamond",
+    "prizeClaimType": "none",
+    "prizeClaimed": false,
+    "prizeDelivered": false
   },
   {
     "prizeId": "id11",
-    "prizeTitle": "eleventh Item",
-    "prizeDesc": "Description of item 11",
-    "prizeType": "invalid",
-    "prizeTier": "gold"
+    "prizeTitle": "prize tier is null",
+    "prizeDesc": "Description of item 10",
+    "prizeType": "phone",
+    "prizeTier": null,
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false
   },
   {
     "prizeId": "id12",
-    "prizeTitle": "Twelfth Item",
-    "prizeDesc": "Description of item 12",
-    "prizeType": "earbuds",
-    "prizeTier": "invalid"
+    "prizeTitle": "prize claim type is null and prize is not claimed and not delivered should be disabled button ",
+    "prizeDesc": "Description of item 10",
+    "prizeType": "phone",
+    "prizeTier": "bronze",
+    "prizeClaimType": null,
+    "prizeClaimed": false,
+    "prizeDelivered": false
   },
   {
     "prizeId": "id13",
-    "prizeTitle": 13,
-    "prizeDesc": "Description of item 13",
+    "prizeTitle": "prize claim type is null and prize is claimed and not delivered should be disabled button and not delivered",
+    "prizeDesc": "Description of item 10",
     "prizeType": "phone",
-    "prizeTier": "invalid"
+    "prizeTier": "bronze",
+    "prizeClaimType": null,
+    "prizeClaimed": true,
+    "prizeDelivered": false
   },
   {
     "prizeId": "id14",
-    "prizeTitle": "Fourteenth Item",
-    "prizeDesc": 14,
-    "prizeType": "cash",
-    "prizeTier": "invalid"
+    "prizeTitle": "prize claim type is null and prize isclaimed should and is delivered should be disabled button",
+    "prizeDesc": "Description of item 10",
+    "prizeType": "phone",
+    "prizeTier": "bronze",
+    "prizeClaimType": null,
+    "prizeClaimed": true,
+    "prizeDelivered": true
   },
   {
     "prizeId": "id15",
-    "prizeTitle": "Twelfth Item",
+    "prizeTitle": "prize claim type is null and prize is not claimed should and is delivered should be disabled button (should never happen)",
+    "prizeDesc": "Description of item 10",
+    "prizeType": "phone",
+    "prizeTier": "bronze",
+    "prizeClaimType": null,
+    "prizeClaimed": false,
+    "prizeDelivered": true
+  },
+  {
+    "prizeId": "id16",
+    "prizeTitle": "Invalid prizetype",
+    "prizeDesc": "Description of item 11",
+    "prizeType": "invalid",
+    "prizeTier": "gold",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
+  },
+  {
+    "prizeId": "id17",
+    "prizeTitle": "invalid tier type",
     "prizeDesc": "Description of item 12",
+    "prizeType": "earbuds",
+    "prizeTier": "invalid",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
+  },
+  {
+    "prizeId": "id18",
+    "prizeTitle": "invalid prize claim type",
+    "prizeDesc": "Description of item 12",
+    "prizeType": "earbuds",
+    "prizeTier": "gold",
+    "prizeClaimType": "invalid",
+    "prizeClaimed": false,
+    "prizeDelivered": false
+  },
+  {
+    "prizeId": "id19",
+    "prizeTitle": 13,
+    "prizeDesc": "prize title is a number not a string",
+    "prizeType": "phone",
+    "prizeTier": "invalid",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
+  },
+  {
+    "prizeId": "id20",
+    "prizeTitle": "prize description is a number not a string",
+    "prizeDesc": 14,
     "prizeType": "cash",
-    "prizeTier": "invalid"
+    "prizeTier": "invalid",
+    "prizeClaimType": "shipment",
+    "prizeClaimed": false,
+    "prizeDelivered": false
   }
 ]

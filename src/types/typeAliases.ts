@@ -72,12 +72,24 @@ export type Regions = {
   shortCode?: string;
 }[];
 
+export type Region= {
+  name: string;
+  shortCode?: string;
+};
+
 export type Countries = {
-  countryName: string;
+  name: string;
   countryShortCode: string;
   // postalCodeFormat: string;
   // regions: Regions;
 }[];
+
+export type Country = {
+  name: string;
+  countryShortCode: string;
+  // postalCodeFormat: string;
+  // regions: Regions;
+};
 
 export type Result = {
   status: ERROR | SUCCESS;

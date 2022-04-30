@@ -1,10 +1,14 @@
 import React, {FC} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_ICON_LIGHT, C_BACKGROUND_DARK} from '../../../theme/Colors';
+import {
+  C_ICON_LIGHT,
+  C_BACKGROUND_DARK,
+  C_ACTIVITY_INDICATOR,
+} from '../../../theme/Colors';
 import {PressableIcon, PasswordModal} from '../../../common/components';
 import UpdatePasswordScreenTopView from './components/top-view/UpdatePasswordScreenTopView';
 import UpdatePasswordScreenBottomView from './components/bottom-view/UpdatePasswordScreenBottomView';
@@ -64,6 +68,12 @@ const EditPasswordScreen: FC = () => {
         isConfirmPasswordError={isConfirmPasswordError}
         handleShowPasswordModal={showPasswordModal}
       />
+      <ActivityIndicator
+        style={styles.loading}
+        animating={isLoading}
+        size={hp('10%')}
+        color={C_ACTIVITY_INDICATOR}
+      />
     </View>
   );
 };
@@ -85,6 +95,13 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingLeft: wp('1%'),
     paddingTop: hp('1%'),
+  },
+  loading: {
+    position: 'absolute',
+    top: hp('43%'),
+    right: 0,
+    left: 0,
+    center: 0,
   },
 });
 

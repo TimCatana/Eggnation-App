@@ -10,6 +10,7 @@ interface Props {
   onPress: () => void;
   buttonEnabledColor: string;
   buttonDisabledColor: string;
+  width?: number | string;
   textColor: string;
   fontSize: number;
   disabled: boolean;
@@ -23,6 +24,7 @@ const CustomButton: FC<Props> = props => {
     onPress,
     buttonEnabledColor,
     buttonDisabledColor,
+    width,
     textColor,
     fontSize,
     disabled,
@@ -35,6 +37,7 @@ const CustomButton: FC<Props> = props => {
       style={[
         styles.button,
         {
+          width: width,
           backgroundColor: disabled ? buttonDisabledColor : buttonEnabledColor,
           elevation: elevation,
           marginBottom: marginBottom,

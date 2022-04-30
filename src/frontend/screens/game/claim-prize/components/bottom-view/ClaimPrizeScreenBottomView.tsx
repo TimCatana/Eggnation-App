@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {CustomButton} from '../../../../../common/components';
+import {C_BUTTON_DISABLED, C_BUTTON_ENABLED} from '../../../../../theme/Colors';
 import {S_CPS_CLAIM_BUTTON} from '../../../../../theme/Strings';
 
 interface Props {
@@ -28,8 +29,8 @@ const ClaimPrizeScreenBottomView: FC<Props> = props => {
       <CustomButton
         label={S_CPS_CLAIM_BUTTON}
         onPress={handleClaimPrizeClick}
-        buttonEnabledColor={'pink'}
-        buttonDisabledColor={'gray'}
+        buttonEnabledColor={C_BUTTON_ENABLED}
+        buttonDisabledColor={C_BUTTON_DISABLED}
         textColor={'white'}
         fontSize={hp('2%')}
         disabled={

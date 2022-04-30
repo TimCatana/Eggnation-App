@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -7,10 +7,14 @@ import {
 import {
   CustomTextInput,
   CustomDropdownMenu,
+  PressableIcon,
 } from '../../../../../common/components';
+import {C_TEXT_LIGHT} from '../../../../../theme/Colors';
 import {
   S_TI_ADDRESS_KEYBOARD_TYPE,
   S_TI_ADDRESS_PLACEHOLDER,
+  S_TI_POSTAL_CODE_KEYBOARD_TYPE,
+  S_TI_POSTAL_CODE_PLACEHOLDER,
 } from '../../../../../theme/Strings';
 
 interface Props {
@@ -38,11 +42,12 @@ const ClaimPrizeScreenTopView: FC<Props> = props => {
 
   return (
     <View style={styles.formView}>
+      <Text style={styles.headingText}>Shipping Address</Text>
       <CustomDropdownMenu
         value={selectedCountry}
         disabled={isLoading}
         width={'100%'}
-        height={hp('5.5%')}
+        height={hp('6.5%')}
         marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor="white"
@@ -55,7 +60,7 @@ const ClaimPrizeScreenTopView: FC<Props> = props => {
         value={selectedRegion}
         disabled={isLoading}
         width={'100%'}
-        height={hp('5.5%')}
+        height={hp('6.5%')}
         marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor="white"
@@ -90,8 +95,8 @@ const ClaimPrizeScreenTopView: FC<Props> = props => {
         errorText={''}
         disabled={isLoading}
         isPassword={false}
-        placeholder="postal code"
-        keyboardType="default"
+        placeholder={S_TI_POSTAL_CODE_PLACEHOLDER}
+        keyboardType={S_TI_POSTAL_CODE_KEYBOARD_TYPE}
         maxLength={30}
         width={'100%'}
         height={hp('6.5%')}
@@ -112,6 +117,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  headingText: {
+    marginBottom: hp('4%'),
+    fontSize: hp('5%'),
+    color: C_TEXT_LIGHT,
   },
 });
 

@@ -1,60 +1,45 @@
 import React, {FC} from 'react';
-import {View, Text, StyleSheet, Pressable, FlatList, Modal} from 'react-native';
+import {View, StyleSheet, FlatList, Modal} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_TEXT_PRIMARY, C_ICON_PRIMARY} from '../../../../../theme/Colors';
+import {C_ICON_LIGHT} from '../../../../../theme/Colors';
 import {PressableIcon} from '../../../../../common/components';
-
-interface DropdownProps {
-  item: any;
-  index: number;
-  onSelect: (index: number) => void;
-  isSelectingCountries: boolean;
-}
-
-const DropdownOption: FC<DropdownProps> = props => {
-  const {item, index, onSelect, isSelectingCountries} = props;
-
-  return (
-    <View
-      style={{
-        width: '100%',
-        height: hp('4.5%'),
-        display: 'flex',
-        paddingLeft: wp('3%'),
-        borderBottomWidth: wp('0.2%'),
-      }}>
-      <Pressable
-        style={{flex: 1, display: 'flex', justifyContent: 'center'}}
-        onPress={() => {
-          onSelect(index);
-        }}>
-        <Text style={{fontSize: hp('1.7%'), color: C_TEXT_PRIMARY}}>
-          {isSelectingCountries ? item.countryName : item.name}
-        </Text>
-      </Pressable>
-    </View>
-  );
-};
+import DropdownOption from './DropdownOptions';
+import {Country, Region} from '../../../../../../types/typeAliases';
 
 interface PickerModalProps {
   hideModalPicker: () => void;
   isModalVisible: boolean;
   data: any; // TODO - make this a specific country | region type
   onSelect: (index: number) => void;
-  isSelectingCountries: boolean;
 }
 
 const PickerModal: FC<PickerModalProps> = props => {
-  const {
-    hideModalPicker,
-    isModalVisible,
-    data,
-    onSelect,
-    isSelectingCountries,
-  } = props;
+  const {hideModalPicker, isModalVisible, data, onSelect} = props;
+  const ITEM_HEIGHT = hp('5%');
+
+  const renderItem = ({item, index}: {item: any; index: number}) => (
+    <DropdownOption item={item} index={index} onSelect={onSelect} />
+  );
+
+  /**
+   * Adding this stops the list from getting blocked while scrolling,
+   * but leaves gaps in the list if you scroll too fast
+   * @param data
+   * @param index
+   * @returns
+   */
+  const getItemLayout = (data: any, index: number) => {
+    return {
+      length: ITEM_HEIGHT,
+      offset: ITEM_HEIGHT * index,
+      index,
+    };
+  };
+
+  const keyExtractor = (item: Country | Region) => item.name;
 
   return (
     <Modal
@@ -69,7 +54,7 @@ const PickerModal: FC<PickerModalProps> = props => {
           viewStyle={styles.icon}
           iconStyle={{}}
           iconSize={hp('3.5%')}
-          iconColor={C_ICON_PRIMARY}
+          iconColor={C_ICON_LIGHT}
         />
         <View style={styles.topView}>
           <FlatList
@@ -78,17 +63,11 @@ const PickerModal: FC<PickerModalProps> = props => {
             numColumns={1}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
-            renderItem={({item, index}) => (
-              <DropdownOption
-                item={item}
-                index={index}
-                onSelect={onSelect}
-                isSelectingCountries={isSelectingCountries}
-              />
-            )}
-            keyExtractor={item =>
-              isSelectingCountries ? item.countryName : item.name
-            }
+            renderItem={renderItem}
+            // getItemLayout={getItemLayout} // Need to optimize this after release
+            initialNumToRender={50}
+            windowSize={31}
+            keyExtractor={keyExtractor}
           />
         </View>
       </View>
@@ -100,15 +79,11 @@ const styles = StyleSheet.create({
   prizeList: {},
   body: {
     flex: 1,
-    disply: 'flex',
+    display: 'flex',
+    backgroundColor: 'black',
   },
   topView: {
     flex: 19,
-    // display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // width: '100%',
-    // backgroundColor: 'red',
   },
   icon: {
     flex: 1,

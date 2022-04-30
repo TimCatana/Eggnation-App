@@ -21,6 +21,9 @@ interface Props {
     prizeType: string,
     prizeTier: string,
     prizeClaimType: string,
+    prizeWonDate: string,
+    prizeClaimed: boolean,
+    prizeDelivered: boolean,
   ) => void;
 }
 
@@ -33,6 +36,11 @@ const PrizeShelfCard: FC<Props> = props => {
   const shelfImage = getShelfImage(bgShelfImage);
 
   const handlePrizeClick = () => {
+    // console.log(
+    //   `${prize.prizeId} ${prize.prizeTitle} ${prize.prizeDesc} ${prize.prizeType} ${prize.prizeTier} ${prize.prizeClaimType} ${prize.prizeClaimed} ${prize.prizeDelivered} ${prize.prizeWonDate}`,
+    // );
+
+    // Type checks are done in backend, the types should be valid if the user isn't messing with the app
     handleShowPrize(
       prize.prizeId,
       prize.prizeTitle,
@@ -40,6 +48,9 @@ const PrizeShelfCard: FC<Props> = props => {
       prize.prizeType,
       prize.prizeTier,
       prize.prizeClaimType,
+      prize.prizeWonDate,
+      prize.prizeClaimed,
+      prize.prizeDelivered,
     );
   };
 

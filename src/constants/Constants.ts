@@ -25,6 +25,7 @@ export const FS_WON_PRIZES_COLLECTION_KEY = 'won-prizes';
 export const FS_USER_WON_PRIZES_COLLECTION_KEY = 'user-prizes';
 export const FS_CONTEST_PRIZES_COLLECTION_KEY = 'contest-prizes';
 export const FS_USERS_COLLECTION_KEY = 'users';
+export const FS_PRIZE_CLAIMED_FIELD_KEY = 'prizeClaimed'
 
 /** REALTIME DATABASE CONSTANTS */
 export const RTDB_GLOBAL_COUNT_KEY = 'global-count';
@@ -36,7 +37,7 @@ export const SI_FULL_SHELF = 'fullHalfShelf';
 
 /** PRIZE CLAIM TYPE */
 export const PCT_DELIVERABLE = 'shipment'; // the product needs to be shipped
-export const PCT_CASH = 'cash'; // the product is a cash prize, no shipment
+export const PCT_CASH = 'transfer'; // the product is a cash prize, no shipment
 export const PCT_NONE = 'none'; // the product is claimable by the user without need for me
 
 /** CLOUD FUNCTION NAMES */

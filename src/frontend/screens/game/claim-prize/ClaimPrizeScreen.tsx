@@ -6,7 +6,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {C_ICON_LIGHT, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
-import {PressableIcon} from '../../../common/components';
+import {PressableIcon, PrizeClaimedModal} from '../../../common/components';
 import ClaimPrizeScreenBottomView from './components/bottom-view/ClaimPrizeScreenBottomView';
 import ClaimPrizeScreenTopView from './components/top-view/ClaimPrizeScreenTopView';
 import PickerModal from './components/other/PickerModal';
@@ -31,16 +31,17 @@ const ClaimPrizeScreen: FC = () => {
     isModalPickerShowing,
     showModalPicker,
     hideModalPicker,
+    isConfirmationModalShowing,
     isSelectingCountries,
     handleClaimPrizeClick,
-    navigateBack,
+    hideModalAndNavigateBack,
   } = useClaimPrizeScreen();
 
   return (
     <View style={styles.body}>
       <PressableIcon
         icon={'arrow-left'}
-        onPress={navigateBack}
+        onPress={hideModalAndNavigateBack}
         iconSize={hp('3.5%')}
         iconColor={C_ICON_LIGHT}
         viewStyle={styles.icon}
@@ -71,7 +72,11 @@ const ClaimPrizeScreen: FC = () => {
         onSelect={
           isSelectingCountries ? handleCountryChange : handleRegionChange
         }
-        isSelectingCountries={isSelectingCountries}
+      />
+      <PrizeClaimedModal
+        isLoading={isLoading}
+        isModalVisible={isConfirmationModalShowing}
+        navigateBack={hideModalAndNavigateBack}
       />
       <ActivityIndicator
         style={styles.loading}
