@@ -1,0 +1,14 @@
+{
+  "name": "EggnationAdmin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "backend": "cd backend && yarn run start",
+    "frontend": "cd frontend && yarn run start",
+    "start": "concurrently \"yarn run backend\" \"yarn run frontend\""
+  },
+  "dependencies": {
+    "concurrently": "^7.1.0"
+  }
+}
