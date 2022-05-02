@@ -38,21 +38,35 @@ const PrizeClaimedModal: FC<Props> = props => {
       }}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={{fontSize: 30}}>text</Text>
-          <CustomButton
-            label={'OK'}
-            onPress={() => {
-              if (!isLoading) {
-                navigateBack();
-              }
-            }}
-            buttonEnabledColor={C_BUTTON_LIGHT}
-            buttonDisabledColor={C_BUTTON_LIGHT}
-            textColor={C_TEXT_INPUT_TEXT_PRIMARY}
-            fontSize={hp('2%')}
-            elevation={0}
-            disabled={false}
-          />
+          <View style={styles.topView}>
+            <Text style={{fontSize: hp('2.5%'), textAlign: 'left'}}>
+              Success!
+            </Text>
+          </View>
+
+          <View style={styles.centerView}>
+            <Text style={{fontSize: hp('1.8%'), textAlign: 'left'}}>
+              Your prize has been claimed! We will email you about further details
+              from eggnationprizes@outlook.com
+            </Text>
+          </View>
+
+          <View style={styles.bottomView}>
+            <CustomButton
+              label={'OK'}
+              onPress={() => {
+                if (!isLoading) {
+                  navigateBack();
+                }
+              }}
+              buttonEnabledColor={C_BUTTON_LIGHT}
+              buttonDisabledColor={C_BUTTON_LIGHT}
+              textColor={C_TEXT_INPUT_TEXT_PRIMARY}
+              fontSize={hp('2%')}
+              elevation={0}
+              disabled={false}
+            />
+          </View>
         </View>
       </View>
     </Modal>
@@ -69,10 +83,9 @@ const styles = StyleSheet.create({
   modalView: {
     width: wp('90%'),
     height: hp('20%'),
+    display: 'flex',
     backgroundColor: 'white',
-    borderRadius: 10,
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    paddingHorizontal: wp('3%'),
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -82,9 +95,23 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  buttonView: {
+  topView: {
+    flex: 3,
     display: 'flex',
-    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+  },
+  centerView: {
+    flex: 5,
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+  },
+  bottomView: {
+    flex: 4,
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
   },
 });
 

@@ -35,8 +35,6 @@ const PrizeDisplayContentBottomCenterView: FC<Props> = props => {
     handleHidePrize,
   } = props;
 
-  console.log(`${isLoading} ${prizeClaimType} ${prizeClaimed} ${prizeDelivered}`)
-
   return (
     <View style={styles.body}>
       <CustomButton

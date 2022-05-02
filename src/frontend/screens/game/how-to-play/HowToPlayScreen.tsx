@@ -25,7 +25,7 @@ const HowToPlayScreen: FC = () => {
         viewStyle={styles.icon}
         iconStyle={{}}
       />
-      <Text style={{fontSize: 100}}>LOL</Text>
+      <Text style={{fontSize: 100}}>lol</Text>
     </ScrollView>
   );
 };

@@ -9,6 +9,7 @@ import claimPrizeUC from '../../../../domain/claim-prize-screen-uc/claimPrizeUC'
 import countriesData from '../../../../util/countries.json';
 import {ERROR} from '../../../../constants/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
+import {Alert} from 'react-native';
 
 const useClaimPrizeScreen = () => {
   /******************/
@@ -241,6 +242,11 @@ const useClaimPrizeScreen = () => {
       setSnackbarText(result.message);
       setShowSnackbar(showSnackbar + 1);
     } else {
+      // Alert.alert(
+      //   'Success',
+      //   'we will contact you shortly from eggnationprizes@outlook.com for further details.',
+      //   [{text: 'OK', onPress: () => navigateBack}],
+      // );
       showConfirmationModal();
     }
   };
@@ -248,6 +254,8 @@ const useClaimPrizeScreen = () => {
   /******************************/
   /***** NAVIGATION HELPERS *****/
   /******************************/
+
+ 
 
   /** Navigates back to the login screen if no process is currently running. */
   const hideModalAndNavigateBack = () => {

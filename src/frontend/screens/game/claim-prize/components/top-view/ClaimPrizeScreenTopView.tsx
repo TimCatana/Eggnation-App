@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   },
   headingText: {
     marginBottom: hp('4%'),
-    fontSize: hp('5%'),
+    fontSize: hp('4%'),
     color: C_TEXT_LIGHT,
   },
 });

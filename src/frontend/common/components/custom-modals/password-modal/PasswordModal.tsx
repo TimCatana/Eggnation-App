@@ -5,13 +5,15 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {
-  S_TI_PASSWORD_PLACEHOLDER,
-  S_TI_PASSWORD_KEYBOARD_TYPE,
   S_PM_CANCEL_BUTTON,
   S_PM_CONFIRM_BUTTON,
+  S_TI_CURRENT_PASSWORD,
+  S_TI_CURRENT_PASSWORD_KEYBOARD_TYPE,
 } from '../../../../theme/Strings';
 import {
+  C_BUTTON_ENABLED,
   C_BUTTON_LIGHT,
+  C_TEXT_ERROR,
   C_TEXT_INPUT_TEXT_PRIMARY,
 } from '../../../../theme/Colors';
 import {CustomTextInput, CustomButton} from '../../index';
@@ -50,27 +52,29 @@ const PasswordModal: FC<Props> = props => {
       }}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <CustomTextInput
-            value={password}
-            onValueChange={handlePasswordChange}
-            isError={false}
-            errorText={''}
-            disabled={isLoading}
-            isPassword={true}
-            placeholder={S_TI_PASSWORD_PLACEHOLDER}
-            keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
-            maxLength={30}
-            width={'90%'}
-            height={hp('6.5%')}
-            marginBottom={hp('0.6%')}
-            fontSize={hp('2%')}
-            textColor={C_TEXT_INPUT_TEXT_PRIMARY}
-            unfocusedBorderColor={'gray'}
-            focusedBorderColor={'pink'}
-            returnKeyType={'done'}
-          />
+          <View style={styles.topView}>
+            <CustomTextInput
+              value={password}
+              onValueChange={handlePasswordChange}
+              isError={false}
+              errorText={''}
+              disabled={isLoading}
+              isPassword={true}
+              placeholder={S_TI_CURRENT_PASSWORD}
+              keyboardType={S_TI_CURRENT_PASSWORD_KEYBOARD_TYPE}
+              maxLength={30}
+              width={'90%'}
+              height={hp('6.5%')}
+              marginBottom={hp('0.6%')}
+              fontSize={hp('2%')}
+              textColor={C_TEXT_INPUT_TEXT_PRIMARY}
+              unfocusedBorderColor={'gray'}
+              focusedBorderColor={'pink'}
+              returnKeyType={'done'}
+            />
+          </View>
 
-          <View style={styles.buttonView}>
+          <View style={styles.bottomView}>
             <CustomButton
               label={S_PM_CANCEL_BUTTON}
               onPress={() => {
@@ -91,7 +95,9 @@ const PasswordModal: FC<Props> = props => {
               onPress={handleOnConfirm}
               buttonEnabledColor={C_BUTTON_LIGHT}
               buttonDisabledColor={C_BUTTON_LIGHT}
-              textColor={C_TEXT_INPUT_TEXT_PRIMARY}
+              textColor={
+                isPasswordError ? C_TEXT_INPUT_TEXT_PRIMARY : '#64b450'
+              }
               fontSize={hp('2%')}
               elevation={0}
               disabled={isLoading || isPasswordError}
@@ -113,10 +119,8 @@ const styles = StyleSheet.create({
   modalView: {
     width: wp('90%'),
     height: hp('20%'),
+    display: 'flex',
     backgroundColor: 'white',
-    borderRadius: 10,
-    justifyContent: 'space-around',
-    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -126,10 +130,24 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  buttonView: {
+  topView: {
+    flex: 3,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomView: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
+  // buttonView: {
+  //   width: '100%',
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  //   justifyContent: 'flex-end',
+  // },
 });
 
 export default PasswordModal;

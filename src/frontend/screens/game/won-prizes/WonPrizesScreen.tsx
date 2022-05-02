@@ -3,7 +3,6 @@ import {View, StyleSheet} from 'react-native';
 import {
   C_BACKGROUND_BOOKSHELF,
   C_ICON_BOOKSHELF,
-  C_ICON_PRIMARY,
 } from '../../../theme/Colors';
 import {PrizeDisplayModal, PressableIcon} from '../../../common/components';
 

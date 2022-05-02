@@ -151,7 +151,6 @@ const useRegisterScreen = () => {
    * @onFailure Should show a snackbar with an error message
    */
   const handleRegisterClick = async () => {
-    console.log('running register user click');
     setIsLoading(true);
     const result = await registerUserUC(email, password, isSubbedToMailingList);
     setIsLoading(false);

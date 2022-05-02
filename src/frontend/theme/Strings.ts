@@ -10,6 +10,9 @@ export const S_TI_PASSWORD_ERROR_TEXT =
   'password must be at least 8 characters long, contain numbers, uppercase and lowercase letters and no whitespace';
 export const S_TI_PASSWORD_KEYBOARD_TYPE = 'default';
 
+export const S_TI_CURRENT_PASSWORD = 'current password';
+export const S_TI_CURRENT_PASSWORD_KEYBOARD_TYPE = 'default';
+
 export const S_TI_CONFIRM_PASSWORD_PLACEHOLDER = 'confirm password';
 export const S_TI_CONFIRM_PASSWORD_ERROR_TEXT = 'passwords must match';
 export const S_TI_CONFIRM_PASSWORD_KEYBOARD_TYPE = 'default';
