@@ -10,23 +10,20 @@ import {
   C_ICON_LIGHT,
 } from '../../../theme/Colors';
 import {PressableIcon} from '../../../common/components';
-import UpdateEmailScreenTopView from './components/top-view/UpdateEmailScreenTopView';
-import UpdateEmailScreenBottomView from './components/bottom-view/UpdateEmailScreenBottomView';
 
-import useEditEmailScreen from './useEditEmailScreen';
+import useDeleteAccountScreen from './useDeleteAccountScreen';
+import DeleteAccountTopView from './components/top-view/DeleteAccountTopView';
+import DeleteAccountBottomView from './components/bottom-view/DeleteAccountBottomView';
 
-const EditEmailScreen: FC = () => {
+const DeleteAccountScreen: FC = () => {
   const {
     isLoading,
-    newEmail,
-    handleNewEmailChange,
-    isNewEmailError,
     password,
     handlePasswordChange,
     isPasswordError,
     navigateBack,
-    updateEmailAndNavBackIfSuccess,
-  } = useEditEmailScreen();
+    handleDeleteUserClick,
+  } = useDeleteAccountScreen();
 
   return (
     <View style={styles.body}>
@@ -38,20 +35,16 @@ const EditEmailScreen: FC = () => {
         viewStyle={styles.icon}
         iconStyle={{}}
       />
-      <UpdateEmailScreenTopView
+      <DeleteAccountTopView
         isLoading={isLoading}
-        newEmail={newEmail}
-        handleNewEmailChange={handleNewEmailChange}
-        isNewEmailError={isNewEmailError}
         password={password}
         handlePasswordChange={handlePasswordChange}
         isPasswordError={isPasswordError}
       />
-      <UpdateEmailScreenBottomView
+      <DeleteAccountBottomView
         isLoading={isLoading}
-        isNewEmailError={isNewEmailError}
         isPasswordError={isPasswordError}
-        updateEmailAndNavBackIfSuccess={updateEmailAndNavBackIfSuccess}
+        handleDeleteUserClick={handleDeleteUserClick}
       />
       <ActivityIndicator
         style={styles.loading}
@@ -90,4 +83,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditEmailScreen;
+export default DeleteAccountScreen;

@@ -22,6 +22,7 @@ export type GameStackParamList = {
   [Screens.EDIT_EMAIL_SCREEN]: undefined;
   [Screens.EDIT_PASSWORD_SCREEN]: undefined;
   [Screens.EDIT_LANGUAGE_SCREEN]: undefined;
+  [Screens.DELETE_ACCOUNT_SCREEN]: undefined;
   [Screens.PRIVACY_POLICY_SCREEN]: undefined;
   [Screens.TERMS_SCREEN]: undefined;
   [Screens.GAME_TABS]: undefined;
@@ -107,6 +108,11 @@ export type EditPasswordScreenProp = StackNavigationProp<
 export type EditLanguageScreenProp = StackNavigationProp<
   GameStackParamList,
   Screens.EDIT_LANGUAGE_SCREEN
+>;
+
+export type DeleteAccountScreenProp = StackNavigationProp<
+  GameStackParamList,
+  Screens.DELETE_ACCOUNT_SCREEN
 >;
 
 export type SettingsScreenProp = StackNavigationProp<

@@ -10,6 +10,7 @@ import {
   ClaimPrizeScreen,
   PrivacyPolicyScreen,
   TermsScreen,
+  DeleteAccountScreen,
 } from '../screens';
 import {GameStackParamList} from './ScreenProps';
 import HowToPlayScreen from '../screens/game/how-to-play/HowToPlayScreen';
@@ -37,6 +38,10 @@ const GameStack: FC = () => {
       <Stack.Screen
         name={Screens.EDIT_PASSWORD_SCREEN}
         component={EditPasswordScreen}
+      />
+      <Stack.Screen
+        name={Screens.DELETE_ACCOUNT_SCREEN}
+        component={DeleteAccountScreen}
       />
       <Stack.Screen
         name={Screens.EDIT_LANGUAGE_SCREEN}

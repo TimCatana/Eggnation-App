@@ -18,27 +18,17 @@ interface Props {
   isLoading: boolean;
   navigation: any;
   prizeId: string;
-  prizeClaimType: string;
-  prizeClaimed: boolean;
-  prizeDelivered: boolean;
   handleHidePrize: () => void;
+  isClaimed: boolean;
 }
 
 const PrizeDisplayContentBottomCenterView: FC<Props> = props => {
-  const {
-    isLoading,
-    navigation,
-    prizeId,
-    prizeClaimType,
-    prizeClaimed,
-    prizeDelivered,
-    handleHidePrize,
-  } = props;
+  const {isLoading, navigation, prizeId, handleHidePrize, isClaimed} = props;
 
   return (
     <View style={styles.body}>
       <CustomButton
-        label={'Claim'}
+        label={isClaimed ? 'Claimed' : 'Claim'}
         onPress={async () => {
           if (!isLoading) {
             await navigation.navigate(Screens.CLAIM_PRIZE_SCREEN, {
@@ -54,12 +44,7 @@ const PrizeDisplayContentBottomCenterView: FC<Props> = props => {
         textColor={C_TEXT_LIGHT}
         fontSize={hp('2%')}
         elevation={0}
-        disabled={
-          isLoading ||
-          (prizeClaimType !== PCT_DELIVERABLE && prizeClaimType !== PCT_CASH) ||
-          prizeClaimed ||
-          prizeDelivered
-        }
+        disabled={isClaimed}
       />
     </View>
   );

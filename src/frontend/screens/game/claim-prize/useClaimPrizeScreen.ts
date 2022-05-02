@@ -255,16 +255,10 @@ const useClaimPrizeScreen = () => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
- 
-
   /** Navigates back to the login screen if no process is currently running. */
   const hideModalAndNavigateBack = () => {
     if (!isLoading) {
-      hideConfirmationModal();
-
-      setTimeout(() => {
-        navigation.pop();
-      }, 500);
+      navigation.pop();
     }
   };
 

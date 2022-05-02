@@ -11,29 +11,23 @@ import {CustomButton} from '../../../../../common/components';
 
 interface Props {
   isLoading: boolean;
-  isNewEmailError: boolean;
   isPasswordError: boolean;
-  updateEmailAndNavBackIfSuccess: () => void;
+  handleDeleteUserClick: () => void;
 }
 
-const UpdateEmailScreenBottomView: FC<Props> = props => {
-  const {
-    isLoading,
-    isNewEmailError,
-    isPasswordError,
-    updateEmailAndNavBackIfSuccess,
-  } = props;
+const DeleteAccountBottomView: FC<Props> = props => {
+  const {isLoading, isPasswordError, handleDeleteUserClick} = props;
 
   return (
     <View style={styles.body}>
       <CustomButton
-        label={S_EES_UPDATE_EMAIL_BUTTON}
-        onPress={updateEmailAndNavBackIfSuccess}
+        label={'Delete Account'}
+        onPress={handleDeleteUserClick}
         buttonEnabledColor={C_BUTTON_ENABLED}
         buttonDisabledColor={C_BUTTON_DISABLED}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
         fontSize={hp('2%')}
-        disabled={isLoading || isNewEmailError || isPasswordError}
+        disabled={isLoading || isPasswordError}
       />
     </View>
   );
@@ -47,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UpdateEmailScreenBottomView;
+export default DeleteAccountBottomView;

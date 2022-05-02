@@ -22,4 +22,5 @@ export enum Screens {
   EDIT_EMAIL_SCREEN = 'EditEmailScreen',
   EDIT_PASSWORD_SCREEN = 'EditPasswordScreen',
   EDIT_LANGUAGE_SCREEN = 'EditLanguageScreen',
+  DELETE_ACCOUNT_SCREEN = 'DeleteAccountScreen',
 }

@@ -15,11 +15,11 @@ import {CustomButton} from '../../../../../common/components';
 interface Props {
   isLoading: boolean;
   logoutUser: () => void;
-  showPasswordModal: () => void;
+  navToDeleteAccountScreenScreen: () => void;
 }
 
 const SettingsScreenBottomView: FC<Props> = props => {
-  const {isLoading, logoutUser, showPasswordModal} = props;
+  const {isLoading, logoutUser, navToDeleteAccountScreenScreen} = props;
 
   return (
     <View style={styles.body}>
@@ -35,7 +35,7 @@ const SettingsScreenBottomView: FC<Props> = props => {
       />
       <CustomButton
         label={S_SS_DELETE_ACCOUNT_BUTTON}
-        onPress={showPasswordModal}
+        onPress={navToDeleteAccountScreenScreen}
         disabled={isLoading}
         textColor={C_TEXT_ERROR}
         buttonEnabledColor={C_BUTTON_ENABLED_SETTINGS}

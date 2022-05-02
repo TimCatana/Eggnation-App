@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {PCT_CASH, PCT_DELIVERABLE} from '../../../../../constants/Constants';
 import {
   PrizeDisplayContentTopView,
   PrizeDisplayContentTopCenterView,
@@ -53,10 +54,14 @@ const PrizeDisplayContent: FC<Props> = props => {
             isLoading={isLoading}
             navigation={navigation}
             prizeId={prizeId}
-            prizeClaimType={prizeClaimType}
-            prizeClaimed={prizeClaimed}
-            prizeDelivered={prizeDelivered}
             handleHidePrize={handleHidePrize}
+            isClaimed={
+              isLoading ||
+              (prizeClaimType !== PCT_DELIVERABLE &&
+                prizeClaimType !== PCT_CASH) ||
+              prizeClaimed ||
+              prizeDelivered
+            }
           />
         )}
 

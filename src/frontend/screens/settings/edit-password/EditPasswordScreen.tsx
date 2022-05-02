@@ -9,7 +9,7 @@ import {
   C_BACKGROUND_DARK,
   C_ACTIVITY_INDICATOR,
 } from '../../../theme/Colors';
-import {PressableIcon, PasswordModal} from '../../../common/components';
+import {PressableIcon} from '../../../common/components';
 import UpdatePasswordScreenTopView from './components/top-view/UpdatePasswordScreenTopView';
 import UpdatePasswordScreenBottomView from './components/bottom-view/UpdatePasswordScreenBottomView';
 
@@ -27,24 +27,12 @@ const EditPasswordScreen: FC = () => {
     currentPassword,
     handleCurrentPasswordChange,
     isCurrentPasswordError,
-    isPasswordModalShowing,
-    showPasswordModal,
-    hidePasswordModal,
     navigateBack,
     updatePasswordAndNavBackIfSuccess,
   } = useEditPasswordScreen();
 
   return (
     <View style={styles.body}>
-      <PasswordModal
-        isLoading={isLoading}
-        password={currentPassword}
-        handlePasswordChange={handleCurrentPasswordChange}
-        isPasswordError={isCurrentPasswordError}
-        isModalVisible={isPasswordModalShowing}
-        hidePasswordModal={hidePasswordModal}
-        handleOnConfirm={updatePasswordAndNavBackIfSuccess}
-      />
       <PressableIcon
         icon={'arrow-left'}
         onPress={navigateBack}
@@ -61,12 +49,16 @@ const EditPasswordScreen: FC = () => {
         confirmPassword={confirmPassword}
         handleConfirmPasswordChange={handleConfirmPasswordChange}
         isConfirmPasswordError={isConfirmPasswordError}
+        currentPassword={currentPassword}
+        handleCurrentPasswordChange={handleCurrentPasswordChange}
+        isCurrentPasswordError={isCurrentPasswordError}
       />
       <UpdatePasswordScreenBottomView
         isLoading={isLoading}
         isPasswordError={isNewPasswordError}
         isConfirmPasswordError={isConfirmPasswordError}
-        handleShowPasswordModal={showPasswordModal}
+        isCurrentPasswordError={isCurrentPasswordError}
+        updatePasswordAndNavBackIfSuccess={updatePasswordAndNavBackIfSuccess}
       />
       <ActivityIndicator
         style={styles.loading}

@@ -13,7 +13,8 @@ interface Props {
   isLoading: boolean;
   isPasswordError: boolean;
   isConfirmPasswordError: boolean;
-  handleShowPasswordModal: () => void;
+  isCurrentPasswordError: boolean;
+  updatePasswordAndNavBackIfSuccess: () => void;
 }
 
 const UpdatePasswordScreenBottomView: FC<Props> = props => {
@@ -21,19 +22,25 @@ const UpdatePasswordScreenBottomView: FC<Props> = props => {
     isLoading,
     isPasswordError,
     isConfirmPasswordError,
-    handleShowPasswordModal,
+    isCurrentPasswordError,
+    updatePasswordAndNavBackIfSuccess,
   } = props;
 
   return (
     <View style={styles.body}>
       <CustomButton
         label={S_EPS_UPDATE_PASSWORD_BUTTON}
-        onPress={handleShowPasswordModal}
+        onPress={updatePasswordAndNavBackIfSuccess}
         buttonEnabledColor={C_BUTTON_ENABLED}
         buttonDisabledColor={C_BUTTON_DISABLED}
         textColor={C_TEXT_LIGHT}
         fontSize={hp('2%')}
-        disabled={isLoading || isPasswordError || isConfirmPasswordError}
+        disabled={
+          isLoading ||
+          isPasswordError ||
+          isConfirmPasswordError ||
+          isCurrentPasswordError
+        }
       />
     </View>
   );

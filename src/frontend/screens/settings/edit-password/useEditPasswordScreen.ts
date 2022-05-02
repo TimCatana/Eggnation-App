@@ -26,9 +26,6 @@ const useEditPasswordScreen = () => {
   const [isCurrentPasswordError, setIsCurrentPasswordError] =
     useState<boolean>(true);
 
-  const [isPasswordModalShowing, setIsPasswordModalShowing] =
-    useState<boolean>(false);
-
   const [snackbarText, setSnackbarText] = useState<string>('');
   const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
 
@@ -115,32 +112,12 @@ const useEditPasswordScreen = () => {
   /*************************/
 
   /**
-   * Shows the password modal.
-   * This modal is used to enter the user's current password before they can
-   * actually update any information. This is in place for security purposes
-   */
-  const showPasswordModal = () => {
-    setIsPasswordModalShowing(true);
-  };
-
-  /**
-   * Hides the password modal.
-   * This modal is used to enter the user's current password before they can
-   * actually update any information. This is in place for security purposes
-   */
-  const hidePasswordModal = () => {
-    setIsPasswordModalShowing(false);
-    setCurrentPassword('');
-  };
-
-  /**
    * Does the backend logic to update the user email address.
    * @onSuccess Should update the user's password
    * @onFailure Should show a snackbar with an error message
    */
   const handleUpdatePasswordClick = async () => {
     setIsLoading(true);
-    hidePasswordModal();
     const result = await updateUserPasswordUC(newPassword, currentPassword);
     setIsLoading(false);
 
@@ -187,9 +164,6 @@ const useEditPasswordScreen = () => {
     currentPassword,
     handleCurrentPasswordChange,
     isCurrentPasswordError,
-    isPasswordModalShowing,
-    showPasswordModal,
-    hidePasswordModal,
     navigateBack,
     updatePasswordAndNavBackIfSuccess,
   };

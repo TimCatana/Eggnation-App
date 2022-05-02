@@ -11,6 +11,7 @@ import EditPasswordScreen from './settings/edit-password/EditPasswordScreen';
 import EditLanguageScreen from './settings/edit-language/EditLanguageScreen';
 import PrivacyPolicyScreen from './policy/privacy-policy/PrivacyPolicyScreen';
 import TermsScreen from './policy/terms/TermsScreen';
+import DeleteAccountScreen from './settings/delete-account/DeleteAccountScreen';
 
 export {
   ForgotPasswordScreen,
@@ -26,4 +27,5 @@ export {
   EditLanguageScreen,
   PrivacyPolicyScreen,
   TermsScreen,
+  DeleteAccountScreen,
 };

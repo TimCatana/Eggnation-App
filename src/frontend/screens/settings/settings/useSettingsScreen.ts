@@ -22,11 +22,6 @@ const useSettingsScreen = () => {
   const [email, setEmail] = useState('');
   const [language, setLanguage] = useState('EN');
 
-  const [password, setPassword] = useState('');
-  const [isPasswordError, setIsPasswordError] = useState(true);
-
-  const [isPasswordModalShowing, setIsPasswordModalShowing] = useState(false);
-
   const [snackbarText, setSnackbarText] = useState('');
   const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
 
@@ -41,14 +36,6 @@ const useSettingsScreen = () => {
   useEffect(() => {
     getUserInfo();
   }, []);
-
-  /**
-   * Checks to see if current password input is a valid password.
-   * @dependent password
-   */
-  useEffect(() => {
-    password.length > 0 ? setIsPasswordError(false) : setIsPasswordError(true);
-  }, [password]);
 
   /**
    * Displays a Snackbar showing a message.
@@ -92,40 +79,9 @@ const useSettingsScreen = () => {
     setIsInitialized(true);
   };
 
-  /***********************/
-  /***** TEXT INPUTS *****/
-  /***********************/
-
-  /**
-   * Updates the current password state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
-   */
-  const handlePasswordChange = (value: string) => {
-    setPassword(value);
-  };
-
   /*************************/
   /***** BUTTON CLICKS *****/
   /*************************/
-
-  /**
-   * Shows the password modal.
-   * This modal is used to enter the user's current password before they can
-   * actually update any information. This is in place for security purposes
-   */
-  const showPasswordModal = () => {
-    setIsPasswordModalShowing(true);
-  };
-
-  /**
-   * Hides the password modal.
-   * This modal is used to enter the user's current password before they can
-   * actually update any information. This is in place for security purposes
-   */
-  const hidePasswordModal = () => {
-    setIsPasswordModalShowing(false);
-    setPassword('');
-  };
 
   /**
    * Does the backend logic to logout the user
@@ -140,25 +96,6 @@ const useSettingsScreen = () => {
     if (result.status === ERROR) {
       setSnackbarText(result.message);
       setShowSnackbar(showSnackbar + 1);
-    }
-  };
-
-  /**
-   * Does the backend logic to delete the user
-   * @onSuccess Should navigate automatically to the auth stack
-   * @onFailure Should show a snackbar with an error message
-   */
-  const deleteUser = async () => {
-    setIsLoading(true);
-    hidePasswordModal();
-    const result = await deleteUserUC(password);
-    setIsLoading(false);
-
-    if (result.status === ERROR) {
-      setSnackbarText(result.message);
-      setTimeout(() => {
-        setShowSnackbar(showSnackbar + 1);
-      }, 250);
     }
   };
 
@@ -218,6 +155,13 @@ const useSettingsScreen = () => {
     }
   };
 
+  /** Navigates to edit password screen if no process is currently running. */
+  const navToDeleteAccountScreenScreen = () => {
+    if (!isLoading) {
+      navigation.navigate(Screens.DELETE_ACCOUNT_SCREEN);
+    }
+  };
+
   /*******************/
   /***** RETURNS *****/
   /*******************/
@@ -227,17 +171,11 @@ const useSettingsScreen = () => {
     isLoading,
     email,
     language,
-    password,
-    handlePasswordChange,
-    isPasswordError,
-    isPasswordModalShowing,
-    showPasswordModal,
-    hidePasswordModal,
     logoutUser,
-    deleteUser,
     navigateBack,
     navToEditEmailScreen,
     navToEditPasswordScreen,
+    navToDeleteAccountScreenScreen,
     navToEggnationShop,
     navToContactUs,
     navToPrivacyPolicyScreen,

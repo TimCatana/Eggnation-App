@@ -23,6 +23,9 @@ interface Props {
   confirmPassword: string;
   handleConfirmPasswordChange: (value: string) => void;
   isConfirmPasswordError: boolean;
+  currentPassword: string;
+  handleCurrentPasswordChange: (value: string) => void;
+  isCurrentPasswordError: boolean;
 }
 
 const UpdatePasswordScreenTopView: FC<Props> = props => {
@@ -34,10 +37,32 @@ const UpdatePasswordScreenTopView: FC<Props> = props => {
     confirmPassword,
     handleConfirmPasswordChange,
     isConfirmPasswordError,
+    currentPassword,
+    handleCurrentPasswordChange,
+    isCurrentPasswordError,
   } = props;
 
   return (
     <View style={styles.formView}>
+      <CustomTextInput
+        value={currentPassword}
+        onValueChange={handleCurrentPasswordChange}
+        isError={isCurrentPasswordError && currentPassword.length > 0}
+        errorText={''}
+        disabled={isLoading}
+        isPassword={true}
+        placeholder={'current password'}
+        keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
+        maxLength={100}
+        width={'100%'}
+        height={hp('6.5%')}
+        marginBottom={hp('2%')}
+        fontSize={hp('2%')}
+        textColor={C_TEXT_INPUT_TEXT_LIGHT}
+        unfocusedBorderColor={'gray'}
+        focusedBorderColor={'pink'}
+        returnKeyType={'done'}
+      />
       <CustomTextInput
         value={newPassword}
         onValueChange={handleNewPasswordChange}
@@ -45,7 +70,7 @@ const UpdatePasswordScreenTopView: FC<Props> = props => {
         errorText={S_TI_PASSWORD_ERROR_TEXT}
         disabled={isLoading}
         isPassword={true}
-        placeholder={S_TI_PASSWORD_PLACEHOLDER}
+        placeholder={'new password'}
         keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
         maxLength={30}
         width={'100%'}
@@ -64,7 +89,7 @@ const UpdatePasswordScreenTopView: FC<Props> = props => {
         errorText={S_TI_CONFIRM_PASSWORD_ERROR_TEXT}
         disabled={isLoading}
         isPassword={true}
-        placeholder={S_TI_CONFIRM_PASSWORD_PLACEHOLDER}
+        placeholder={'confirm new password'}
         keyboardType={S_TI_CONFIRM_PASSWORD_KEYBOARD_TYPE}
         maxLength={30}
         width={'100%'}
