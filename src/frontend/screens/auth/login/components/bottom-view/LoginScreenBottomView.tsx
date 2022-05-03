@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {S_LS_DONT_HAVE_AN_ACCOUNT} from '../../../../../theme/Strings';
-import {C_TEXT_LIGHT} from '../../../../../theme/Colors';
+import {S_LS_DONT_HAVE_AN_ACCOUNT} from '../../../../../../constants/Strings';
+import {C_TEXT_LIGHT} from '../../../../../../constants/Colors';
 import RegisterHereText from './RegisterHereText';
 
 interface Props {

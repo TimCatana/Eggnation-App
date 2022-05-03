@@ -3,9 +3,10 @@ import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {
   S_E_INVALID_CREDENTIALS,
   S_E_LS_ACCOUNT_DISABLED,
+  S_E_NOT_CONNECTED_TO_INTERNET,
   S_E_UNEXPECTED_ERROR,
-} from '../../frontend/theme/Strings';
-import {Result} from '../../types/typeAliases';
+} from '../../constants/Strings';
+import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
 /**
@@ -18,8 +19,8 @@ import printDevLogs from '../printDevLogs';
  * @error auth/user-not-found Thrown if there is no user corresponding to the given email.
  * @error auth/user-disabled Thrown if the user corresponding to the given email has been disabled.
  * @note all other errors are unexpected
- * @onSuccessReturn {status: SUCCESS, data: null, message: string}
- * @onErrorReturn {status: ERROR, data: null, message: string}
+ * @onSuccessReturn {status: SUCCESS, message: string}
+ * @onErrorReturn {status: ERROR, message: string}
  * */
 const loginUserUC = async (
   email: string,
@@ -27,7 +28,7 @@ const loginUserUC = async (
 ): Promise<Result> => {
   try {
     await doLogin(email, password);
-    return {status: SUCCESS, data: null, message: ''};
+    return {status: SUCCESS, message: ''};
   } catch (e: any) {
     return _getErrorResponse(e);
   }
@@ -36,13 +37,13 @@ const loginUserUC = async (
 /**
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
- * @param error The error
- * @returns {status: ERROR, data: null, message: string}
+ * @param error (error) The error
+ * @returns {status: ERROR, message: string}
  */
 const _getErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/login-screen-uc/loginUserUC.js',
+      'domain/login-screen-uc/loginUserUC.ts',
       'loginUserUC',
       `${error}`,
     );
@@ -50,29 +51,17 @@ const _getErrorResponse = (error: any): Result => {
 
   switch (error.code) {
     case 'auth/network-request-failed':
-      return {
-        status: ERROR,
-        data: null,
-        message: "You're not connected to the internet!",
-      };
+      return {status: ERROR, message: S_E_NOT_CONNECTED_TO_INTERNET};
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/wrong-password':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/user-not-found':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/user-disabled':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_LS_ACCOUNT_DISABLED,
-      };
+      return {status: ERROR, message: S_E_LS_ACCOUNT_DISABLED};
     default:
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_UNEXPECTED_ERROR,
-      };
+      return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 };
 

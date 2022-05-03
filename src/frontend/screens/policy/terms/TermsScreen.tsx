@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../theme/Colors';
+import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../../constants/Colors';
 import TOSIntroduction from './components/other/TOSIntroduction';
 import TOSEligibility from './components/other/TOSEligibility';
 import TOSAccount from './components/other/TOSAccount';

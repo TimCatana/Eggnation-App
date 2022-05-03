@@ -1,6 +1,6 @@
 import doGetUserEmailVerificationStatus from '../../backend/auth/doGetUserEmailVerificationStatus';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
-import {Result} from '../../types/typeAliases';
+import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
 /**

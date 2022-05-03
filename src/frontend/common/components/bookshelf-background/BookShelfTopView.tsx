@@ -5,7 +5,7 @@ import {bookShelfTop} from '../../../../../assets';
 import {
   C_BACKGROUND_BOOKSHELF,
   C_TEXT_BOOKSHELF_TITLE,
-} from '../../../theme/Colors';
+} from '../../../../constants/Colors';
 
 interface Props {
   title: string;

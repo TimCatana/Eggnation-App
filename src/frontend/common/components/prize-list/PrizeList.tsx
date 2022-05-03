@@ -8,7 +8,7 @@ import {
 import {
   AvailablePrizesArray,
   WonPrizesArray,
-} from '../../../../types/typeAliases';
+} from '../../../../constants/typeAliases';
 import {PrizeShelfCard} from '../index';
 interface Props {
   data: AvailablePrizesArray | WonPrizesArray | [];

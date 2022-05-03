@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_BORDER_BOTTOM_SETTINGS_SECTION} from '../../../../../theme/Colors';
+import {C_BORDER_BOTTOM_SETTINGS_SECTION} from '../../../../../../constants/Colors';
 import SettingsItemLeftView from './SettingsItemLeftView';
 import SettingsItemCenterView from './SettingsItemCenterView';
 import SettingsItemRightView from './SettingsItemRightView';

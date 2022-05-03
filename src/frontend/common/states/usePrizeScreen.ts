@@ -6,7 +6,7 @@ import {
 } from '../../navigation/ScreenProps';
 import {SUCCESS} from '../../../constants/ResultsConstants';
 import getAvailablePrizesUC from '../../../domain/available-prizes-screen-uc/getAvailablePrizesUC';
-import {AvailablePrizesArray, WonPrizesArray} from '../../../types/typeAliases';
+import {AvailablePrizesArray, WonPrizesArray} from '../../../constants/typeAliases';
 import getWonPrizesUC from '../../../domain/won-prizes-screen-us/getWonPrizesUC';
 import {Screens} from '../../../constants/NavigationConstants';
 

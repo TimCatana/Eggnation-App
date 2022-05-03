@@ -8,7 +8,7 @@ import {
   C_ACTIVITY_INDICATOR,
   C_BACKGROUND_DARK,
   C_ICON_LIGHT,
-} from '../../../theme/Colors';
+} from '../../../../constants/Colors';
 import {PressableIcon} from '../../../common/components';
 import UpdateEmailScreenTopView from './components/top-view/UpdateEmailScreenTopView';
 import UpdateEmailScreenBottomView from './components/bottom-view/UpdateEmailScreenBottomView';

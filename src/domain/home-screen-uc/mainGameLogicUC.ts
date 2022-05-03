@@ -16,7 +16,7 @@ import {
   AvailablePrizesArray,
   ContestPrizeArray,
   Result,
-} from '../../types/typeAliases';
+} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 import doIncrementGlobalCount from '../../backend/database/realtime/doIncrementGlobalCount';
 import doGetWonPrize from '../../backend/database/firestore/doGetWonPrize';
@@ -27,7 +27,7 @@ import {
   S_CPT_PRIZE_TITLE,
   S_CPT_PRIZE_TYPE,
   S_E_HS_CONNECTIVITY_NOTICE,
-} from '../../frontend/theme/Strings';
+} from '../../constants/Strings';
 
 /**
  * Does the main game logic.

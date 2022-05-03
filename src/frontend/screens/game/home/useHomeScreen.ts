@@ -11,7 +11,7 @@ import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';
 import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIfTimeToResetCountUC';
 import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
 import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
-import {AvailablePrize, ContestPrize} from '../../../../types/typeAliases';
+import {AvailablePrize, ContestPrize} from '../../../../constants/typeAliases';
 import Snackbar from 'react-native-snackbar';
 
 const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {

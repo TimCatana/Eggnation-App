@@ -9,7 +9,7 @@ import {
   DV_LAST_RESET_TIME,
   MGL_RESET_TIME_IN_HOURS,
 } from '../../constants/Constants';
-import {Result} from '../../types/typeAliases';
+import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
 /**

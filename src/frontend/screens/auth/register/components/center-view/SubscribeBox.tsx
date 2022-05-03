@@ -5,12 +5,16 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
-import {C_TEXT_LINK_PRIMARY, C_TEXT_PRIMARY} from '../../../../../theme/Colors';
+import {
+  C_ICON_PRIMARY,
+  C_TEXT_LINK_PRIMARY,
+  C_TEXT_PRIMARY,
+} from '../../../../../../constants/Colors';
 import {
   S_RS_EGGNATION_SHOP_COM,
   S_RS_EMAILS,
   S_RS_SUBSCRIBE_TO,
-} from '../../../../../theme/Strings';
+} from '../../../../../../constants/Strings';
 
 interface Props {
   isSubbedToMailingList: boolean;
@@ -29,7 +33,7 @@ const SubscribeBox: FC<Props> = props => {
     <View style={styles.body}>
       <Pressable onPress={handleIsSubbedToMailingListChange}>
         <IconMaterialCommunity
-          color={'gray'}
+          color={C_ICON_PRIMARY}
           name={
             isSubbedToMailingList
               ? 'checkbox-marked-outline'
@@ -41,9 +45,11 @@ const SubscribeBox: FC<Props> = props => {
       </Pressable>
 
       <Text style={styles.text}>{S_RS_SUBSCRIBE_TO}</Text>
+
       <Pressable onPress={handleEggnationShopLinkClick}>
-        <Text style={styles.linkText}> {S_RS_EGGNATION_SHOP_COM} </Text>
+        <Text style={styles.linkText}>{S_RS_EGGNATION_SHOP_COM}</Text>
       </Pressable>
+
       <Text style={styles.text}>{S_RS_EMAILS}</Text>
     </View>
   );
@@ -58,7 +64,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: hp('1%'),
     marginBottom: hp('3%'),
-    marginRight: wp('2%'),
+    paddingRight: wp('1%'),
   },
   text: {
     fontSize: hp('2%'),

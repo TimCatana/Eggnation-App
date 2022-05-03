@@ -3,7 +3,7 @@ import {
   FS_USER_WON_PRIZES_COLLECTION_KEY,
   FS_WON_PRIZES_COLLECTION_KEY,
 } from '../../../constants/Constants';
-import {WonPrizesArray} from '../../../types/typeAliases';
+import {WonPrizesArray} from '../../../constants/typeAliases';
 
 /**
  * Get's the list of all of the prizes that the user has won.

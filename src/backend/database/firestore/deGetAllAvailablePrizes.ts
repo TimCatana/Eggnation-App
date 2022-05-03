@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import {FS_AVAILABLE_PRIZES_COLLECTION_KEY} from '../../../constants/Constants';
-import {AvailablePrizesArray} from '../../../types/typeAliases';
+import {AvailablePrizesArray} from '../../../constants/typeAliases';
 
 /**
  * Returns the list of all prizes from the database in the Available Prizes Collection.

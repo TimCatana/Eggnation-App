@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import {FS_CONTEST_PRIZES_COLLECTION_KEY} from '../../../constants/Constants';
-import {ContestPrizeArray} from '../../../types/typeAliases';
+import {ContestPrizeArray} from '../../../constants/typeAliases';
 
 /**
  * Get's the list of all of the contest prizes.

@@ -2,7 +2,7 @@ import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
 import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {KC_LOCAL_COUNT, DV_LOCAL_COUNT} from '../../constants/Constants';
-import {Result} from '../../types/typeAliases';
+import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
 /**

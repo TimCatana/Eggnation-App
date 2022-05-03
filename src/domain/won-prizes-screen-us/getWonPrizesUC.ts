@@ -1,7 +1,7 @@
 import doGetUserId from '../../backend/auth/doGetUserId';
 import doGetAllWonPrizes from '../../backend/database/firestore/doGetAllWonPrizes';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
-import {Result} from '../../types/typeAliases';
+import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
 /**

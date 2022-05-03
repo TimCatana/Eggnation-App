@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {S_EES_UPDATE_EMAIL_BUTTON} from '../../../../../theme/Strings';
+import {S_EES_UPDATE_EMAIL_BUTTON} from '../../../../../../constants/Strings';
 import {
   C_BUTTON_ENABLED,
   C_BUTTON_DISABLED,
   C_TEXT_INPUT_TEXT_LIGHT,
-} from '../../../../../theme/Colors';
+} from '../../../../../../constants/Colors';
 import {CustomButton} from '../../../../../common/components';
 
 interface Props {

@@ -9,13 +9,13 @@ import {
   CustomDropdownMenu,
   PressableIcon,
 } from '../../../../../common/components';
-import {C_TEXT_LIGHT} from '../../../../../theme/Colors';
+import {C_TEXT_LIGHT} from '../../../../../../constants/Colors';
 import {
   S_TI_ADDRESS_KEYBOARD_TYPE,
   S_TI_ADDRESS_PLACEHOLDER,
   S_TI_POSTAL_CODE_KEYBOARD_TYPE,
   S_TI_POSTAL_CODE_PLACEHOLDER,
-} from '../../../../../theme/Strings';
+} from '../../../../../../constants/Strings';
 
 interface Props {
   isLoading: boolean;

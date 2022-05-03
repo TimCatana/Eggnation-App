@@ -10,7 +10,6 @@ import isPasswordValid from '../../../common/helpers/isPasswordValid';
 import isConfirmPasswordValid from '../../../common/helpers/isConfirmPasswordValid';
 import registerUserUC from '../../../../domain/register-screen-uc/registerUserUC';
 
-// TODO - need to find a way to disable native back button on isLoading
 const useRegisterScreen = () => {
   /******************/
   /***** STATES *****/
@@ -39,7 +38,6 @@ const useRegisterScreen = () => {
   /***********************/
   /***** USE EFFECTS *****/
   /***********************/
-
   /**
    * Checks to see if current email is a valid email address.
    * @dependent email
@@ -90,7 +88,7 @@ const useRegisterScreen = () => {
 
   /**
    * Updates the current email state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handleEmailChange = (value: string) => {
     setEmail(value);
@@ -98,7 +96,7 @@ const useRegisterScreen = () => {
 
   /**
    * Updates the current password state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handlePasswordChange = (value: string) => {
     setPassword(value);
@@ -106,7 +104,7 @@ const useRegisterScreen = () => {
 
   /**
    * Updates the current confirm password state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handleConfirmPasswordChange = (value: string) => {
     setConfirmPassword(value);
@@ -130,18 +128,17 @@ const useRegisterScreen = () => {
   /*************************/
 
   /**
-   * Updates the current password state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * Updates the subscript to mailing list option.
    */
   const handleIsSubbedToMailingListChange = () => {
     setIsSubbedToMailingList(!isSubbedToMailingList);
   };
 
   /**
-   *
+   * Handles the navigation to Eggnation store
    */
   const handleEggnationShopLinkClick = () => {
-    const url = 'https://mynzaclothing.com/password';
+    const url = 'https://eggnationshop.com';
     Linking.openURL(url);
   };
 
@@ -165,7 +162,9 @@ const useRegisterScreen = () => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /** Navigates back to the login screen if no process is currently running. */
+  /**
+   *  Navigates back to the login screen if no process is currently running.
+   */
   const navigateBack = () => {
     if (!isLoading) {
       navigation.pop();
@@ -173,12 +172,15 @@ const useRegisterScreen = () => {
   };
 
   /**
-   * Navigates to privacy policy screen if no process is currently running.
+   *  Navigates to privacy policy screen if no process is currently running.
    */
   const navToPrivacyPolicyScreen = () => {
     if (!isLoading) {
       navigation.navigate(Screens.PRIVACY_POLICY_SCREEN);
-      clearTextInputs();
+
+      setTimeout(() => {
+        clearTextInputs();
+      }, 250);
     }
   };
 
@@ -188,7 +190,10 @@ const useRegisterScreen = () => {
   const navToTermsScreen = () => {
     if (!isLoading) {
       navigation.navigate(Screens.TERMS_SCREEN);
-      clearTextInputs();
+
+      setTimeout(() => {
+        clearTextInputs();
+      }, 250);
     }
   };
 

@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {View, Modal, StyleSheet} from 'react-native';
-import {C_BACKGROUND_DARK} from '../../../../theme/Colors';
+import {C_BACKGROUND_DARK} from '../../../../../constants/Colors';
 import PrizeClaimedModalCenterView from './PrizeClaimedModalCenterView';
 import PrizeClaimedModalBottomView from './PrizeColaimedModalBottomView';
 import PrizeClaimedModalTopView from './PrizeClaimedModalTopView';

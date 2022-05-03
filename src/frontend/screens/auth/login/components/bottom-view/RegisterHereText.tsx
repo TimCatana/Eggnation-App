@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {Text, Pressable, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {S_LS_REGISTER_HERE} from '../../../../../theme/Strings';
-import {C_TEXT_LINK_PRIMARY} from '../../../../../theme/Colors';
+import {S_LS_REGISTER_HERE} from '../../../../../../constants/Strings';
+import {C_TEXT_LINK_PRIMARY} from '../../../../../../constants/Colors';
 
 interface Props {
   isLoading: boolean;

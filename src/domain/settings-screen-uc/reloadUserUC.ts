@@ -1,6 +1,6 @@
 import doReloadUser from '../../backend/auth/doReloadUser';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
-import {Result} from '../../types/typeAliases';
+import {Result} from '../../constants/typeAliases';
 
 const reloadUserUC = async (): Promise<Result> => {
   try {

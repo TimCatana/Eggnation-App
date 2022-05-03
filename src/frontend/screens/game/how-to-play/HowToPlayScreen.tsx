@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../theme/Colors';
+import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../../constants/Colors';
 
 import usePrivacyPolicyScreen from './useHowToPlayScreen';
 import {ScrollView} from 'react-native-gesture-handler';

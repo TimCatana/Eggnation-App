@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, Pressable, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_TEXT_SETTINGS_LIGHT} from '../../../../../theme/Colors';
+import {C_TEXT_SETTINGS_LIGHT} from '../../../../../../constants/Colors';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons'; // chevron-right, edit, done, send
 
 interface Props {

@@ -8,7 +8,7 @@ import {
   C_ICON_LIGHT,
   C_BACKGROUND_DARK,
   C_ACTIVITY_INDICATOR,
-} from '../../../theme/Colors';
+} from '../../../../constants/Colors';
 import {PressableIcon} from '../../../common/components';
 import UpdatePasswordScreenTopView from './components/top-view/UpdatePasswordScreenTopView';
 import UpdatePasswordScreenBottomView from './components/bottom-view/UpdatePasswordScreenBottomView';

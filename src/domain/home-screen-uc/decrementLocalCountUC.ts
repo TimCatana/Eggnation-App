@@ -3,7 +3,7 @@ import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {KC_LOCAL_COUNT} from '../../constants/Constants';
 import printDevLogs from '../printDevLogs';
-import {Result} from '../../types/typeAliases';
+import {Result} from '../../constants/typeAliases';
 
 /**
  * Attempts to decrement the local counter by 1.

@@ -3,7 +3,7 @@ import {
   FS_WON_PRIZES_COLLECTION_KEY,
   FS_USER_WON_PRIZES_COLLECTION_KEY,
 } from '../../../constants/Constants';
-import {AvailablePrize, ContestPrize} from '../../../types/typeAliases';
+import {AvailablePrize, ContestPrize} from '../../../constants/typeAliases';
 
 /**
  * Adds a won prize to the user's collection in the database.

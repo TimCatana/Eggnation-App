@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import {FS_AVAILABLE_PRIZES_COLLECTION_KEY} from '../../../constants/Constants';
-import {AvailablePrize} from '../../../types/typeAliases';
+import {AvailablePrize} from '../../../constants/typeAliases';
 
 /**
  * @note This is not used because I changed the way the user wins a prize

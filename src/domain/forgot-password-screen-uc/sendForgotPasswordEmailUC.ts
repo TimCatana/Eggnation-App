@@ -6,13 +6,13 @@ import {
   S_E_NOT_CONNECTED_TO_INTERNET,
   S_E_UNEXPECTED_ERROR,
   S_S_FPS_EMAIL_SENT,
-} from '../../frontend/theme/Strings';
-import {Result} from '../../types/typeAliases';
+} from '../../constants/Strings';
+import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
 /**
  * Sends a password reset email to the given email address.
- * @param email The users email address.
+ * @param email (string) The users email address.
  * @error auth/network-request-failed Thrown if the email address is not valid.
  * @error SHOULD NEVER BE THROWN auth/invalid-email Thrown if the email address is not valid.
  * @error auth/user-not-found There is no user corresponding to the email address.
@@ -30,7 +30,6 @@ const sendForgotPasswordEmailUC = async (email: string): Promise<Result> => {
     await doSendForgotPasswordEmail(email);
     return {
       status: SUCCESS,
-      data: null,
       message: S_S_FPS_EMAIL_SENT,
     };
   } catch (e: any) {
@@ -41,13 +40,13 @@ const sendForgotPasswordEmailUC = async (email: string): Promise<Result> => {
 /**
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
- * @param error The error
+ * @param error (error) The error
  * @returns {status: ERROR, message: string}
  */
 const _getErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/forgot-password-screen-uc/sendForgotPasswordEmailUC.js',
+      'domain/forgot-password-screen-uc/sendForgotPasswordEmailUC.ts',
       'sendForgotPasswordEmailUC',
       `${error}`,
     );
@@ -55,25 +54,13 @@ const _getErrorResponse = (error: any): Result => {
 
   switch (error.code) {
     case 'auth/network-request-failed':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_NOT_CONNECTED_TO_INTERNET,
-      };
+      return {status: ERROR, message: S_E_NOT_CONNECTED_TO_INTERNET};
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
+      return {status: ERROR, message: S_E_INVALID_EMAIL};
     case 'auth/user-not-found':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_FPS_EMAIL_NOT_FOUND,
-      };
+      return {status: ERROR, message: S_E_FPS_EMAIL_NOT_FOUND};
     default:
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_UNEXPECTED_ERROR,
-      };
+      return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 };
 

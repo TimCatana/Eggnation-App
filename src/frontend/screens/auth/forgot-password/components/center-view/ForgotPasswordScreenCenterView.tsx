@@ -7,15 +7,16 @@ import {
 import {
   S_TI_EMAIL_ERROR_TEXT,
   S_TI_EMAIL_PLACEHOLDER,
-  S_TI_EMAIL_KEYBOARD_TYPE,
   S_FPS_SEND_BUTTON,
-} from '../../../../../theme/Strings';
+} from '../../../../../../constants/Strings';
 import {
   C_TEXT_INPUT_TEXT_PRIMARY,
   C_BUTTON_DISABLED,
   C_BUTTON_ENABLED,
   C_TEXT_LIGHT,
-} from '../../../../../theme/Colors';
+  C_UNFOCUSED_BORDER_COLOR,
+  C_FOCUSED_BORDER_COLOR,
+} from '../../../../../../constants/Colors';
 import {CustomTextInput, CustomButton} from '../../../../../common/components';
 
 interface Props {
@@ -37,37 +38,37 @@ const ForgotPasswordScreenCenterView: FC<Props> = props => {
 
   return (
     <View style={styles.body}>
-      <CustomTextInput
-        value={email}
-        onValueChange={handleEmailChange}
-        isError={isEmailError && email.length > 0}
-        errorText={S_TI_EMAIL_ERROR_TEXT}
-        disabled={isLoading}
-        isPassword={false}
-        placeholder={S_TI_EMAIL_PLACEHOLDER}
-        keyboardType={S_TI_EMAIL_KEYBOARD_TYPE}
-        maxLength={100}
-        width={'100%'}
-        height={hp('6.5%')}
-        marginBottom={hp('1.5%')}
-        fontSize={hp('2%')}
-        textColor={C_TEXT_INPUT_TEXT_PRIMARY}
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
-        returnKeyType={'done'}
-        iconColor={'red'}
-      />
+      <View style={styles.formView}>
+        <CustomTextInput
+          value={email}
+          onValueChange={handleEmailChange}
+          placeholder={S_TI_EMAIL_PLACEHOLDER}
+          errorText={S_TI_EMAIL_ERROR_TEXT}
+          isError={isEmailError && email.length > 0}
+          disabled={isLoading}
+          maxLength={100}
+          width={'100%'}
+          height={hp('6.5%')}
+          marginBottom={hp('1.5%')}
+          fontSize={hp('2%')}
+          textColor={C_TEXT_INPUT_TEXT_PRIMARY}
+          unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
+          focusedBorderColor={C_FOCUSED_BORDER_COLOR}
+          keyboardType={'default'}
+          returnKeyType={'done'}
+          isPassword={false}
+        />
 
-      <CustomButton
-        label={S_FPS_SEND_BUTTON}
-        onPress={handleSendForgotPasswordEmailClick}
-        buttonEnabledColor={C_BUTTON_ENABLED}
-        buttonDisabledColor={C_BUTTON_DISABLED}
-        textColor={C_TEXT_LIGHT}
-        fontSize={hp('2%')}
-        disabled={isLoading || isEmailError}
-        elevation={hp('0.3%')}
-      />
+        <CustomButton
+          label={S_FPS_SEND_BUTTON}
+          onPress={handleSendForgotPasswordEmailClick}
+          disabled={isLoading || isEmailError}
+          buttonEnabledColor={C_BUTTON_ENABLED}
+          buttonDisabledColor={C_BUTTON_DISABLED}
+          textColor={C_TEXT_LIGHT}
+          fontSize={hp('2%')}
+        />
+      </View>
     </View>
   );
 };
@@ -75,11 +76,17 @@ const ForgotPasswordScreenCenterView: FC<Props> = props => {
 const styles = StyleSheet.create({
   body: {
     flex: 6,
+    width: '100%',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    paddingTop: hp('25%'),
+  },
+  formView: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: wp('75%'),
-    marginTop: hp('20%'),
   },
 });
 

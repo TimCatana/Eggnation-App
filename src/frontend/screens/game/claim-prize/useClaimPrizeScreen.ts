@@ -4,7 +4,7 @@ import {
   ClaimPrizeScreenProp,
   ClaimPrizeRouteProp,
 } from '../../../navigation/ScreenProps';
-import {Countries, Regions} from '../../../../types/typeAliases';
+import {Countries, Regions} from '../../../../constants/typeAliases';
 import claimPrizeUC from '../../../../domain/claim-prize-screen-uc/claimPrizeUC';
 import countriesData from '../../../../util/countries.json';
 import {ERROR} from '../../../../constants/ResultsConstants';

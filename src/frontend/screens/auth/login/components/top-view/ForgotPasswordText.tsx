@@ -1,8 +1,11 @@
 import React, {FC} from 'react';
 import {View, Text, Pressable, StyleSheet} from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {S_LS_FORGOT_PASSWORD} from '../../../../../theme/Strings';
-import {C_TEXT_LINK_DARK} from '../../../../../theme/Colors';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import {S_LS_FORGOT_PASSWORD} from '../../../../../../constants/Strings';
+import {C_TEXT_LINK_DARK} from '../../../../../../constants/Colors';
 
 interface Props {
   isLoading: boolean;
@@ -23,11 +26,11 @@ const ForgotPasswordText: FC<Props> = props => {
 
 const styles = StyleSheet.create({
   body: {
+    width: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    width: '100%',
-    paddingRight: '2%',
+    paddingRight: wp('2%'),
     marginBottom: hp('2%'),
   },
   forgotPasswordText: {

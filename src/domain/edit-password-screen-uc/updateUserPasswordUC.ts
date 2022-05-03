@@ -11,8 +11,8 @@ import {
   S_E_NOT_CONNECTED_TO_INTERNET,
   S_E_UNEXPECTED_ERROR,
   S_S_EPS_PASSWORD_UPDATED,
-} from '../../frontend/theme/Strings';
-import {Result} from '../../types/typeAliases';
+} from '../../constants/Strings';
+import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
 /**

@@ -9,8 +9,8 @@ import {
   S_TI_EMAIL_KEYBOARD_TYPE,
   S_TI_EMAIL_ERROR_TEXT,
   S_TI_PASSWORD_KEYBOARD_TYPE,
-} from '../../../../../theme/Strings';
-import {C_TEXT_INPUT_TEXT_LIGHT} from '../../../../../theme/Colors';
+} from '../../../../../../constants/Strings';
+import {C_TEXT_INPUT_TEXT_LIGHT} from '../../../../../../constants/Colors';
 import {CustomTextInput} from '../../../../../common/components';
 
 interface Props {

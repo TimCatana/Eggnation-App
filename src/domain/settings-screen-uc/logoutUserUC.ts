@@ -1,7 +1,7 @@
 import doLogout from '../../backend/auth/doLogout';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
-import {S_E_UNEXPECTED_ERROR} from '../../frontend/theme/Strings';
-import {Result} from '../../types/typeAliases';
+import {S_E_UNEXPECTED_ERROR} from '../../constants/Strings';
+import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
 /**

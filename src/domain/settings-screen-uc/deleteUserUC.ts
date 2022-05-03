@@ -3,14 +3,14 @@ import doDeleteUser from '../../backend/auth/doDeleteUser';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import printDevLogs from '../printDevLogs';
 import doGetUserEmail from '../../backend/auth/deGetUserEmail';
-import {Result} from '../../types/typeAliases';
+import {Result} from '../../constants/typeAliases';
 import {
   S_E_INVALID_CREDENTIALS,
   S_E_INVALID_EMAIL,
   S_E_INVALID_PASSWORD,
   S_E_NOT_CONNECTED_TO_INTERNET,
   S_E_UNEXPECTED_ERROR,
-} from '../../frontend/theme/Strings';
+} from '../../constants/Strings';
 
 /**
  * Attempts to delete the currently logged in user's account.

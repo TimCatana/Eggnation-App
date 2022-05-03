@@ -4,10 +4,10 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_ICON_LIGHT} from '../../../../../theme/Colors';
+import {C_ICON_LIGHT} from '../../../../../../constants/Colors';
 import {PressableIcon} from '../../../../../common/components';
 import DropdownOption from './DropdownOptions';
-import {Country, Region} from '../../../../../../types/typeAliases';
+import {Country, Region} from '../../../../../../constants/typeAliases';
 
 interface PickerModalProps {
   hideModalPicker: () => void;

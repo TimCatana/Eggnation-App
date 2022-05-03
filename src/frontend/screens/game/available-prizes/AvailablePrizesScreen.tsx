@@ -4,7 +4,7 @@ import {
   C_BACKGROUND_BOOKSHELF,
   C_ICON_BOOKSHELF,
   C_ICON_PRIMARY,
-} from '../../../theme/Colors';
+} from '../../../../constants/Colors';
 import {PrizeDisplayModal, PressableIcon} from '../../../common/components';
 
 import TEST_DATA from '../../../../../test-data/availablePrizes.json'; // TODO - get rid of this after...
@@ -16,7 +16,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {S_APS_TITLE} from '../../../theme/Strings';
+import {S_APS_TITLE} from '../../../../constants/Strings';
 
 const AvailablePrizesScreen: FC = () => {
   const {

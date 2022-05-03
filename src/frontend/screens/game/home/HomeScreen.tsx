@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {backgroundHome} from '../../../../../assets';
-import {C_ICON_PRIMARY} from '../../../theme/Colors';
+import {C_ICON_PRIMARY} from '../../../../constants/Colors';
 import {PressableIcon, PrizeDisplayModal} from '../../../common/components';
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';

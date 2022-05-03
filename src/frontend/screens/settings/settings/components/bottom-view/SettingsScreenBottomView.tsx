@@ -4,12 +4,12 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   S_SS_LOGOUT_BUTTON,
   S_SS_DELETE_ACCOUNT_BUTTON,
-} from '../../../../../theme/Strings';
+} from '../../../../../../constants/Strings';
 import {
   C_BUTTON_ENABLED_SETTINGS,
   C_TEXT_ERROR,
   C_TEXT_LIGHT,
-} from '../../../../../theme/Colors';
+} from '../../../../../../constants/Colors';
 import {CustomButton} from '../../../../../common/components';
 
 interface Props {

@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_ICON_LIGHT, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
+import {C_ICON_LIGHT, C_ACTIVITY_INDICATOR} from '../../../../constants/Colors';
 import {PressableIcon, PrizeClaimedModal} from '../../../common/components';
 import ClaimPrizeScreenBottomView from './components/bottom-view/ClaimPrizeScreenBottomView';
 import ClaimPrizeScreenTopView from './components/top-view/ClaimPrizeScreenTopView';

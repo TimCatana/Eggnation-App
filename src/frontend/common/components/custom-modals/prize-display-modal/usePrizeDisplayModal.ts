@@ -16,7 +16,7 @@ import {
   S_PT_PHONE,
   S_PT_SHIRT,
   S_PT_TABLET,
-} from '../../../../theme/Strings';
+} from '../../../../../constants/Strings';
 
 const usePrizeDisplayModal = () => {
   /**

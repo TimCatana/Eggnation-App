@@ -9,8 +9,8 @@ import {
   S_SS_EMAIL,
   S_SS_PASSWORD,
   S_SS_LANGUAGE,
-} from '../../../../../theme/Strings';
-import {C_BACKGROUND_SETTINGS_SECTION} from '../../../../../theme/Colors';
+} from '../../../../../../constants/Strings';
+import {C_BACKGROUND_SETTINGS_SECTION} from '../../../../../../constants/Colors';
 import SettingsItem from '../settings-item/SettingsItem';
 import SettingsSectionLabel from '../settings-label/SettingsSectionLabel';
 

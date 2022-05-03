@@ -64,10 +64,11 @@ const LoginScreenTopView: FC<Props> = props => {
 const styles = StyleSheet.create({
   body: {
     flex: 9,
+    width: '100%',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: hp('15%'),
+    paddingTop: hp('15%'),
   },
   formView: {
     display: 'flex',

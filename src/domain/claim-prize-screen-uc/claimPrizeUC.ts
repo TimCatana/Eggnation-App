@@ -3,7 +3,7 @@ import doSendMeEmail from '../../backend/cloud-functions/doSendMeEmail';
 import doUpdatePrizeClaimedValue from '../../backend/database/firestore/doUpdatePrizeClaimedValue';
 import doGetWonPrize from '../../backend/database/firestore/doGetWonPrize';
 import {ERROR, SUCCESS} from '../../constants/ResultsConstants';
-import {Result} from '../../types/typeAliases';
+import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
 /**

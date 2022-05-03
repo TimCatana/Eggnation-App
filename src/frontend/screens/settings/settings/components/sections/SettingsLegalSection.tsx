@@ -8,8 +8,8 @@ import {
   S_SS_LEGAL_HEADING,
   S_SS_PRIVACY_POLICY,
   S_SS_TERMS_AND_CONDITIONS,
-} from '../../../../../theme/Strings';
-import {C_BACKGROUND_SETTINGS_SECTION} from '../../../../../theme/Colors';
+} from '../../../../../../constants/Strings';
+import {C_BACKGROUND_SETTINGS_SECTION} from '../../../../../../constants/Colors';
 import SettingsItem from '../settings-item/SettingsItem';
 import SettingsSectionLabel from '../settings-label/SettingsSectionLabel';
 

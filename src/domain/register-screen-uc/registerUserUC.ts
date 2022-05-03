@@ -7,8 +7,8 @@ import {
   S_E_NOT_CONNECTED_TO_INTERNET,
   S_E_RS_EMAIL_IN_USE,
   S_E_UNEXPECTED_ERROR,
-} from '../../frontend/theme/Strings';
-import {Result} from '../../types/typeAliases';
+} from '../../constants/Strings';
+import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
 /**
@@ -20,8 +20,8 @@ import printDevLogs from '../printDevLogs';
  * @error SHOULD NEVER BE THROWN auth/weak-password Thrown if the password is not strong enough.
  * @error NOT CHECKED auth/operation-not-allowed Thrown if email/password accounts are not enabled. Enable email/password accounts in the Firebase Console, under the Auth tab.
  * @note all other errors are unexpected
- * @onSuccessReturn {status: SUCCESS, data: null, message: string}
- * @onErrorReturn {status: ERROR, data: null, message: string}
+ * @onSuccessReturn {status: SUCCESS, message: string}
+ * @onErrorReturn {status: ERROR, message: string}
  */
 const registerUserUC = async (
   email: string,
@@ -32,7 +32,9 @@ const registerUserUC = async (
     try {
       await doSubscribeToMailingList(email);
     } catch (e) {
-      console.log(`failed to sub to mailing list --> ${e}`);
+      if (__DEV__) {
+        console.log(`failed to sub to mailing list --> ${e}`);
+      }
     }
   }
 
@@ -43,7 +45,7 @@ const registerUserUC = async (
     return _deleteFromMailingList(email, e);
   }
 
-  return {status: SUCCESS, data: null, message: ''};
+  return {status: SUCCESS, message: ''};
 };
 
 /**
@@ -52,9 +54,9 @@ const registerUserUC = async (
  * So if the registration fails, I need to delete from the mailing list.
  * This operation can also throw an error, so I need to make sure the correct error get's
  * propagated.
- * @param email The user email
- * @param e The error that was thrown from doRegister
- * @returns {status: ERROR, data: null, message: string}
+ * @param email (string) The user email
+ * @param e (error) The error that was thrown from doRegister
+ * @returns {status: ERROR, message: string}
  */
 const _deleteFromMailingList = (email: string, e: any) => {
   try {
@@ -69,12 +71,12 @@ const _deleteFromMailingList = (email: string, e: any) => {
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
  * @param error The error
- * @returns {status: ERROR, data: null, message: string}
+ * @returns {status: ERROR, message: string}
  */
 const _getErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/login-screen-uc/loginUserUC.js',
+      'domain/login-screen-uc/loginUserUC.ts',
       'loginUserUC',
       `${error}`,
     );
@@ -82,23 +84,15 @@ const _getErrorResponse = (error: any): Result => {
 
   switch (error.code) {
     case 'auth/network-request-failed':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_NOT_CONNECTED_TO_INTERNET,
-      };
+      return {status: ERROR, message: S_E_NOT_CONNECTED_TO_INTERNET};
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/weak-password':
-      return {status: ERROR, data: null, message: S_E_INVALID_PASSWORD};
+      return {status: ERROR, message: S_E_INVALID_PASSWORD};
     case 'auth/email-already-in-use':
-      return {status: ERROR, data: null, message: S_E_RS_EMAIL_IN_USE};
+      return {status: ERROR, message: S_E_RS_EMAIL_IN_USE};
     default:
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_UNEXPECTED_ERROR,
-      };
+      return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 };
 

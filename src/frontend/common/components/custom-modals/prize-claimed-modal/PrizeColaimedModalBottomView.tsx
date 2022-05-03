@@ -5,7 +5,7 @@ import {
   C_BUTTON_DISABLED,
   C_BUTTON_ENABLED,
   C_TEXT_INPUT_TEXT_LIGHT,
-} from '../../../../theme/Colors';
+} from '../../../../../constants/Colors';
 import CustomButton from '../../custom-inputs/CustomButton';
 
 interface Props {

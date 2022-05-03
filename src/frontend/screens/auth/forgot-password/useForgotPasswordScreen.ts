@@ -51,7 +51,7 @@ const useForgotPasswordScreen = () => {
 
   /**
    * Updates the current email state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handleEmailChange = (value: string) => {
     setEmail(value);
@@ -79,8 +79,8 @@ const useForgotPasswordScreen = () => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /**
-   * Navigates back to the login screen if no process is currently running.
+  /** 
+   * Navigates back to the login screen if no process is currently running. 
    */
   const navigateBack = () => {
     if (!isLoading) {

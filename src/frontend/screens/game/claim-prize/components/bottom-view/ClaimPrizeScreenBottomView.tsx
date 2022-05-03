@@ -2,8 +2,8 @@ import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {CustomButton} from '../../../../../common/components';
-import {C_BUTTON_DISABLED, C_BUTTON_ENABLED} from '../../../../../theme/Colors';
-import {S_CPS_CLAIM_BUTTON} from '../../../../../theme/Strings';
+import {C_BUTTON_DISABLED, C_BUTTON_ENABLED} from '../../../../../../constants/Colors';
+import {S_CPS_CLAIM_BUTTON} from '../../../../../../constants/Strings';
 
 interface Props {
   handleClaimPrizeClick: () => void;

@@ -4,11 +4,11 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   AvailablePrizesArray,
   WonPrizesArray,
-} from '../../../../types/typeAliases';
+} from '../../../../constants/typeAliases';
 import {
   C_ACTIVITY_INDICATOR,
   C_BACKGROUND_BOOKSHELF,
-} from '../../../theme/Colors';
+} from '../../../../constants/Colors';
 import {BookshelfContent, BookShelfTopView} from '../index';
 
 interface Props {

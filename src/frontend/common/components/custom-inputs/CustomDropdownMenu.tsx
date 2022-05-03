@@ -4,7 +4,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_TEXT_ERROR, C_ICON_SETTINGS} from '../../../theme/Colors';
+import {C_TEXT_ERROR, C_ICON_SETTINGS} from '../../../../constants/Colors';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
 interface Props {

@@ -4,7 +4,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_TEXT_LIGHT} from '../../../theme/Colors';
+import {C_TEXT_LIGHT} from '../../../../constants/Colors';
 
 interface Props {
   title: string;

@@ -5,8 +5,8 @@ import LottieView from 'lottie-react-native';
 import {
   AvailablePrizesArray,
   WonPrizesArray,
-} from '../../../../types/typeAliases';
-import {C_TEXT_LIGHT} from '../../../theme/Colors';
+} from '../../../../constants/typeAliases';
+import {C_TEXT_LIGHT} from '../../../../constants/Colors';
 import {PresentPlaceholder} from '../../../../../assets';
 import {PrizeList} from '../index';
 

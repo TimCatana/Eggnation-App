@@ -5,7 +5,10 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {backgroundAuth} from '../../../../../assets';
-import {C_ICON_PRIMARY, C_ACTIVITY_INDICATOR} from '../../../theme/Colors';
+import {
+  C_ICON_PRIMARY,
+  C_ACTIVITY_INDICATOR,
+} from '../../../../constants/Colors';
 import {PressableIcon} from '../../../common/components';
 import ForgotPasswordScreenCenterView from './components/center-view/ForgotPasswordScreenCenterView';
 
@@ -26,21 +29,21 @@ const ForgotPasswordScreen: FC = () => {
       style={styles.body}
       source={backgroundAuth}
       resizeMode="cover">
-      <PressableIcon
-        icon={'arrow-left'}
-        onPress={navigateBack}
-        iconSize={hp('3.5%')}
-        iconColor={C_ICON_PRIMARY}
-        viewStyle={styles.icon}
-        iconStyle={{}}
-      />
-
       <ForgotPasswordScreenCenterView
         isLoading={isLoading}
         email={email}
         handleEmailChange={handleEmailChange}
         isEmailError={isEmailError}
         handleSendForgotPasswordEmailClick={handleSendForgotPasswordEmailClick}
+      />
+
+      <PressableIcon
+        icon={'arrow-left'}
+        onPress={navigateBack}
+        iconSize={hp('4%')}
+        iconColor={C_ICON_PRIMARY}
+        viewStyle={styles.icon}
+        iconStyle={{}}
       />
 
       <ActivityIndicator
@@ -61,17 +64,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    width: '100%',
-    paddingLeft: wp('1%'),
-    paddingTop: hp('1%'),
+    position: 'absolute',
+    left: hp('0.4%'),
+    top: hp('0.4%'),
   },
   loading: {
     position: 'absolute',
-    top: hp('5%'),
+    top: 0,
     right: 0,
     bottom: 0,
     left: 0,

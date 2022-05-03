@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Pressable} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_ICON_LIGHT} from '../../../../../theme/Colors';
+import {C_ICON_LIGHT} from '../../../../../../constants/Colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 interface Props {

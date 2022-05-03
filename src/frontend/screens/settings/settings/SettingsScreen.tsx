@@ -8,7 +8,7 @@ import {
   C_ACTIVITY_INDICATOR,
   C_BACKGROUND_DARK,
   C_ICON_LIGHT,
-} from '../../../theme/Colors';
+} from '../../../../constants/Colors';
 import {PressableIcon} from '../../../common/components';
 import SettingsScreenTopView from './components/top-view/SettingsScreenTopView';
 import SettingsScreenCenterView from './components/center-view/SettingsScreenCenterView';

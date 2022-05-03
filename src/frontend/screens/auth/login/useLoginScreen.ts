@@ -64,7 +64,7 @@ const useLoginScreen = () => {
 
   /**
    * Updates the current email state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handleEmailChange = (value: string) => {
     setEmail(value);
@@ -72,7 +72,7 @@ const useLoginScreen = () => {
 
   /**
    * Updates the current password state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handlePasswordChange = (value: string) => {
     setPassword(value);
@@ -114,8 +114,8 @@ const useLoginScreen = () => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /**
-   * Navigates to forgot password screen if no process is currently running.
+  /** 
+   * Navigates to forgot password screen if no process is currently running. 
    */
   const navToForgotPasswordScreen = () => {
     if (!isLoading) {
@@ -123,12 +123,12 @@ const useLoginScreen = () => {
 
       setTimeout(() => {
         clearTextInputs();
-      }, 500);
+      }, 250);
     }
   };
 
-  /**
-   * Navigates to register screen if no process is currently running.
+  /** 
+   * Navigates to register screen if no process is currently running. 
    */
   const navToRegisterScreen = () => {
     if (!isLoading) {
@@ -136,7 +136,7 @@ const useLoginScreen = () => {
 
       setTimeout(() => {
         clearTextInputs();
-      }, 500);
+      }, 250);
     }
   };
 

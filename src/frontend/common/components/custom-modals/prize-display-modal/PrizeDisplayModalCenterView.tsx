@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_BACKGROUND_BOOKSHELF} from '../../../../theme/Colors';
+import {C_BACKGROUND_BOOKSHELF} from '../../../../../constants/Colors';
 import {BookShelfTopView, PrizeDisplayContent} from '../../index';
 
 interface Props {

@@ -3,7 +3,7 @@ import doReauthenticate from '../../backend/auth/doReauthenticate';
 import doUpdateUserEmailByCloudFunction from '../../backend/cloud-functions/doUpdateUserEmailByCloudFunction';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import printDevLogs from '../printDevLogs';
-import {Result} from '../../types/typeAliases';
+import {Result} from '../../constants/typeAliases';
 import doReloadUser from '../../backend/auth/doReloadUser';
 import {
   S_E_EES_EMAIL_IN_USE,
@@ -12,7 +12,7 @@ import {
   S_E_NOT_CONNECTED_TO_INTERNET,
   S_E_UNEXPECTED_ERROR,
   S_S_EES_EMAIL_UPDATED,
-} from '../../frontend/theme/Strings';
+} from '../../constants/Strings';
 
 /**
  * Attempts to update the user's login email.

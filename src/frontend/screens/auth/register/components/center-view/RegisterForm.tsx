@@ -3,20 +3,19 @@ import {Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   S_TI_EMAIL_PLACEHOLDER,
-  S_TI_EMAIL_KEYBOARD_TYPE,
   S_TI_EMAIL_ERROR_TEXT,
   S_TI_PASSWORD_PLACEHOLDER,
-  S_TI_PASSWORD_KEYBOARD_TYPE,
   S_TI_PASSWORD_ERROR_TEXT,
   S_TI_CONFIRM_PASSWORD_PLACEHOLDER,
-  S_TI_CONFIRM_PASSWORD_KEYBOARD_TYPE,
   S_TI_CONFIRM_PASSWORD_ERROR_TEXT,
   S_RS_REGISTER_HEADING,
-} from '../../../../../theme/Strings';
+} from '../../../../../../constants/Strings';
 import {
+  C_FOCUSED_BORDER_COLOR,
+  C_TEXT_HEADING,
   C_TEXT_INPUT_TEXT_PRIMARY,
-  C_TEXT_PRIMARY,
-} from '../../../../../theme/Colors';
+  C_UNFOCUSED_BORDER_COLOR,
+} from '../../../../../../constants/Colors';
 import {CustomTextInput} from '../../../../../common/components';
 import SubscribeBox from './SubscribeBox';
 
@@ -59,61 +58,60 @@ const RegisterForm: FC<Props> = props => {
       <CustomTextInput
         value={email}
         onValueChange={handleEmailChange}
-        isError={isEmailError && email.length > 0}
-        errorText={S_TI_EMAIL_ERROR_TEXT}
-        disabled={isLoading}
-        isPassword={false}
         placeholder={S_TI_EMAIL_PLACEHOLDER}
-        keyboardType={S_TI_EMAIL_KEYBOARD_TYPE}
+        errorText={S_TI_EMAIL_ERROR_TEXT}
+        isError={isEmailError && email.length > 0}
+        disabled={isLoading}
         maxLength={100}
         width={'100%'}
         height={hp('6.5%')}
         marginBottom={hp('1.7%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_PRIMARY}
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
+        unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
+        focusedBorderColor={C_FOCUSED_BORDER_COLOR}
+        keyboardType={'email-address'}
         returnKeyType={'next'}
+        isPassword={false}
       />
       <CustomTextInput
         value={password}
         onValueChange={handlePasswordChange}
-        isError={isPasswordError && password.length > 0}
-        errorText={S_TI_PASSWORD_ERROR_TEXT}
-        disabled={isLoading}
-        isPassword={true}
         placeholder={S_TI_PASSWORD_PLACEHOLDER}
-        keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
+        errorText={S_TI_PASSWORD_ERROR_TEXT}
+        isError={isPasswordError && password.length > 0}
+        disabled={isLoading}
         maxLength={30}
         width={'100%'}
         height={hp('6.5%')}
         marginBottom={hp('1.7%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_PRIMARY}
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
+        unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
+        focusedBorderColor={C_FOCUSED_BORDER_COLOR}
+        keyboardType={'default'}
         returnKeyType={'next'}
+        isPassword={true}
       />
       <CustomTextInput
         value={confirmPassword}
         onValueChange={handleConfirmPasswordChange}
-        isError={isConfirmPasswordError && confirmPassword.length > 0}
-        errorText={S_TI_CONFIRM_PASSWORD_ERROR_TEXT}
-        disabled={isLoading}
-        isPassword={true}
         placeholder={S_TI_CONFIRM_PASSWORD_PLACEHOLDER}
-        keyboardType={S_TI_CONFIRM_PASSWORD_KEYBOARD_TYPE}
+        errorText={S_TI_CONFIRM_PASSWORD_ERROR_TEXT}
+        isError={isConfirmPasswordError && confirmPassword.length > 0}
+        disabled={isLoading}
         maxLength={30}
         width={'100%'}
         height={hp('6.5%')}
         marginBottom={hp('1.7%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_PRIMARY}
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
+        unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
+        focusedBorderColor={C_FOCUSED_BORDER_COLOR}
+        keyboardType={'default'}
         returnKeyType={'done'}
+        isPassword={true}
       />
-
       <SubscribeBox
         isSubbedToMailingList={isSubbedToMailingList}
         handleIsSubbedToMailingListChange={handleIsSubbedToMailingListChange}
@@ -127,7 +125,7 @@ const styles = StyleSheet.create({
   headingText: {
     fontSize: hp('5%'),
     marginBottom: hp('2%'),
-    color: C_TEXT_PRIMARY,
+    color: C_TEXT_HEADING,
   },
 });
 

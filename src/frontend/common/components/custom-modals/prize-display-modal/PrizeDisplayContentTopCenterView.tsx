@@ -3,7 +3,7 @@ import {View, Image, Text, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {bookShelfTop} from '../../../../../../assets';
-import {C_TEXT_BOOKSHELF_TITLE} from '../../../../theme/Colors';
+import {C_TEXT_BOOKSHELF_TITLE} from '../../../../../constants/Colors';
 
 interface Props {
   prizeTitle: string;

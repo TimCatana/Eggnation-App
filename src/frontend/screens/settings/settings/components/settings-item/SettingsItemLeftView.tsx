@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_TEXT_SETTINGS_LIGHT} from '../../../../../theme/Colors';
+import {C_TEXT_SETTINGS_LIGHT} from '../../../../../../constants/Colors';
 
 interface Props {
   title: string;

@@ -8,7 +8,7 @@ import {
   C_TEXT_PRIMARY,
   C_BACKGROUND_BOOKSHELF,
   C_ICON_BOOKSHELF,
-} from '../../../../theme/Colors';
+} from '../../../../../constants/Colors';
 import {
   PressableIcon,
   BookShelfLeftView,
