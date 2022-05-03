@@ -1,10 +1,7 @@
 import React, {FC} from 'react';
 import useClaimPrizeScreen from './useClaimPrizeScreen';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_ICON_LIGHT, C_ACTIVITY_INDICATOR} from '../../../../constants/Colors';
 import {PressableIcon, PrizeClaimedModal} from '../../../common/components';
 import ClaimPrizeScreenBottomView from './components/bottom-view/ClaimPrizeScreenBottomView';
@@ -14,6 +11,7 @@ import PickerModal from './components/other/PickerModal';
 const ClaimPrizeScreen: FC = () => {
   const {
     isLoading,
+    prizeClaimType,
     allCountries,
     allRegions,
     selectedCountry,
@@ -28,42 +26,52 @@ const ClaimPrizeScreen: FC = () => {
     postalCode,
     handlePostalCodeChange,
     isPostalCodeError,
+    paypalEmail,
+    handlePaypalEmailChange,
+    isPaypalEmailError,
     isModalPickerShowing,
     showModalPicker,
     hideModalPicker,
     isConfirmationModalShowing,
     isSelectingCountries,
     handleClaimPrizeClick,
-    hideModalAndNavigateBack,
+    navigateBack,
   } = useClaimPrizeScreen();
 
   return (
     <View style={styles.body}>
-      <PressableIcon
-        icon={'arrow-left'}
-        onPress={hideModalAndNavigateBack}
-        iconSize={hp('3.5%')}
-        iconColor={C_ICON_LIGHT}
-        viewStyle={styles.icon}
-        iconStyle={{}}
-      />
       <ClaimPrizeScreenTopView
         isLoading={isLoading}
+        prizeClaimType={prizeClaimType}
         selectedCountry={selectedCountry}
         selectedRegion={selectedRegion}
         address={address}
         handleAddressChange={handleAddressChange}
         postalCode={postalCode}
         handlePostalCodeChange={handlePostalCodeChange}
+        paypalEmail={paypalEmail}
+        handlePaypalEmailChange={handlePaypalEmailChange}
+        isPaypalEmailError={isPaypalEmailError}
         showModalPicker={showModalPicker}
       />
       <ClaimPrizeScreenBottomView
-        isLoading={isLoading}
-        isCountryError={isCountryError}
-        isRegionError={isRegionError}
-        isAddressError={isAddressError}
-        isPostalCodeError={isPostalCodeError}
+        disabled={
+          isLoading ||
+          isCountryError ||
+          isRegionError ||
+          isAddressError ||
+          isPostalCodeError ||
+          isPaypalEmailError
+        }
         handleClaimPrizeClick={handleClaimPrizeClick}
+      />
+      <PressableIcon
+        icon={'arrow-left'}
+        onPress={navigateBack}
+        iconSize={hp('4%')}
+        iconColor={C_ICON_LIGHT}
+        viewStyle={styles.icon}
+        iconStyle={{}}
       />
       <PickerModal
         hideModalPicker={hideModalPicker}
@@ -76,7 +84,7 @@ const ClaimPrizeScreen: FC = () => {
       <PrizeClaimedModal
         isLoading={isLoading}
         isModalVisible={isConfirmationModalShowing}
-        navigateBack={hideModalAndNavigateBack}
+        navigateBack={navigateBack}
       />
       <ActivityIndicator
         style={styles.loading}
@@ -98,13 +106,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   icon: {
-    flex: 0.5,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    width: '100%',
-    paddingLeft: wp('1%'),
-    paddingTop: hp('1%'),
+    position: 'absolute',
+    left: hp('0.5%'),
+    top: hp('0.5%'),
   },
   loading: {
     position: 'absolute',

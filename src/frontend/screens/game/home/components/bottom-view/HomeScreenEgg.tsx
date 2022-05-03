@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     flex: 15,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'red'
   },
   egg: {
     width: wp('100%'),

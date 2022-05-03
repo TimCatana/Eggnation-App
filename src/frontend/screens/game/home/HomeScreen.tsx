@@ -12,13 +12,7 @@ import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
 import useHomeScreen from './useHomeScreen';
 import {Flash} from '../../../common/animation-components';
 
-interface Props {
-  setSwipeEnabled: (isEnabled: boolean) => void;
-}
-
-const HomeScreen: FC<Props> = props => {
-  const {setSwipeEnabled} = props;
-
+const HomeScreen: FC = () => {
   const {
     isInitialized,
     isLoading,
@@ -43,33 +37,22 @@ const HomeScreen: FC<Props> = props => {
     navToAvailablePrizesTab,
     navToWonPrizesTab,
     navToHowToPlayScreen,
-  } = useHomeScreen(setSwipeEnabled);
+  } = useHomeScreen();
 
-  if (!isInitialized) return null;
+  if (!isInitialized)
+    return (
+      <ImageBackground
+        style={styles.body}
+        source={backgroundHome}
+        resizeMode="cover"
+      />
+    );
 
   return (
     <ImageBackground
       style={styles.body}
       source={backgroundHome}
       resizeMode="cover">
-      <PressableIcon
-        icon={'settings'}
-        onPress={navToSettingsScreen}
-        iconSize={hp('3.5%')}
-        iconColor={C_ICON_PRIMARY}
-        viewStyle={styles.iconView}
-        iconStyle={{}}
-      />
-
-      <PressableIcon
-        icon={'info'}
-        onPress={navToHowToPlayScreen}
-        iconSize={hp('3.5%')}
-        iconColor={C_ICON_PRIMARY}
-        viewStyle={styles.infoIconView}
-        iconStyle={{}}
-      />
-
       <HomeScreenCounter counter={localCount} />
 
       <HomeScreenEgg
@@ -79,6 +62,24 @@ const HomeScreen: FC<Props> = props => {
         isAnimationPlaying={isAnimationPlaying}
         winAnimationRef={winAnimationRef}
         handleWinAnimationFinished={handleWinAnimationFinished}
+      />
+
+      <PressableIcon
+        icon={'settings'}
+        onPress={navToSettingsScreen}
+        iconSize={hp('4%')}
+        iconColor={C_ICON_PRIMARY}
+        viewStyle={styles.iconView}
+        iconStyle={{}}
+      />
+
+      <PressableIcon
+        icon={'info'}
+        onPress={navToHowToPlayScreen}
+        iconSize={hp('4%')}
+        iconColor={C_ICON_PRIMARY}
+        viewStyle={styles.infoIconView}
+        iconStyle={{}}
       />
 
       <PressableIcon
@@ -117,7 +118,9 @@ const HomeScreen: FC<Props> = props => {
         prizeTier={displayPrizeTier}
         prizeType={displayPrizeType}
         prizeClaimType={displayPrizeClaimType}
-        prizeIsClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
+        prizeClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
+        prizeDelivered={false}
+        prizeWonDate={''}
         isWonPrize={false}
         isModalVisible={isShowingPrize}
         handleHidePrize={handleHidePrize}

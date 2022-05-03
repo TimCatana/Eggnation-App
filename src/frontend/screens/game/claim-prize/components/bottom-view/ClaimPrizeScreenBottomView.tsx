@@ -1,27 +1,23 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {CustomButton} from '../../../../../common/components';
-import {C_BUTTON_DISABLED, C_BUTTON_ENABLED} from '../../../../../../constants/Colors';
 import {S_CPS_CLAIM_BUTTON} from '../../../../../../constants/Strings';
+import {
+  C_BUTTON_DISABLED,
+  C_BUTTON_ENABLED,
+  C_TEXT_LIGHT,
+} from '../../../../../../constants/Colors';
+import {CustomButton} from '../../../../../common/components';
 
 interface Props {
+  disabled: boolean;
   handleClaimPrizeClick: () => void;
-  isCountryError: boolean;
-  isRegionError: boolean;
-  isAddressError: boolean;
-  isPostalCodeError: boolean;
-  isLoading: boolean;
 }
 
 const ClaimPrizeScreenBottomView: FC<Props> = props => {
   const {
+    disabled,
     handleClaimPrizeClick,
-    isCountryError,
-    isRegionError,
-    isAddressError,
-    isPostalCodeError,
-    isLoading,
   } = props;
 
   return (
@@ -29,17 +25,11 @@ const ClaimPrizeScreenBottomView: FC<Props> = props => {
       <CustomButton
         label={S_CPS_CLAIM_BUTTON}
         onPress={handleClaimPrizeClick}
+        disabled={disabled}
         buttonEnabledColor={C_BUTTON_ENABLED}
         buttonDisabledColor={C_BUTTON_DISABLED}
-        textColor={'white'}
+        textColor={C_TEXT_LIGHT}
         fontSize={hp('2%')}
-        disabled={
-          isLoading ||
-          isCountryError ||
-          isRegionError ||
-          isAddressError ||
-          isPostalCodeError
-        }
       />
     </View>
   );

@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {PCT_CASH, PCT_DELIVERABLE} from '../../../../../constants/Constants';
+import {PCT_TRANSFER, PCT_DELIVERABLE} from '../../../../../constants/Constants';
 import {
   PrizeDisplayContentTopView,
   PrizeDisplayContentTopCenterView,
@@ -52,16 +52,17 @@ const PrizeDisplayContent: FC<Props> = props => {
         {/* only show button if the prize is "claimable". That is, if personal information (e.g. address) is required in order for the user to get the prize */}
         {isWonPrize &&
           (prizeClaimType === PCT_DELIVERABLE ||
-            prizeClaimType === PCT_CASH) && (
+            prizeClaimType === PCT_TRANSFER) && (
             <PrizeDisplayContentBottomCenterView
               isLoading={isLoading}
               navigation={navigation}
               prizeId={prizeId}
+              prizeClaimType={prizeClaimType}
               handleHidePrize={handleHidePrize}
               isClaimed={
                 isLoading ||
                 (prizeClaimType !== PCT_DELIVERABLE &&
-                  prizeClaimType !== PCT_CASH) ||
+                  prizeClaimType !== PCT_TRANSFER) ||
                 prizeClaimed ||
                 prizeDelivered
               }

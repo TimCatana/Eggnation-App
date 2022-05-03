@@ -37,7 +37,7 @@ export const SI_FULL_SHELF = 'fullHalfShelf';
 
 /** PRIZE CLAIM TYPE */
 export const PCT_DELIVERABLE = 'shipment'; // the product needs to be shipped
-export const PCT_CASH = 'transfer'; // the product is a cash prize, no shipment
+export const PCT_TRANSFER = 'transfer'; // the product is a cash prize, no shipment
 export const PCT_NONE = 'none'; // the product is claimable by the user without need for me
 
 /** CLOUD FUNCTION NAMES */

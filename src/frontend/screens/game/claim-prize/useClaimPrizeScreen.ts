@@ -1,15 +1,16 @@
 import {useState, useEffect} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {ERROR} from '../../../../constants/ResultsConstants';
+import Snackbar from 'react-native-snackbar';
+import countriesData from '../../../../util/countries.json';
 import {
   ClaimPrizeScreenProp,
   ClaimPrizeRouteProp,
 } from '../../../navigation/ScreenProps';
 import {Countries, Regions} from '../../../../constants/typeAliases';
 import claimPrizeUC from '../../../../domain/claim-prize-screen-uc/claimPrizeUC';
-import countriesData from '../../../../util/countries.json';
-import {ERROR} from '../../../../constants/ResultsConstants';
-import Snackbar from 'react-native-snackbar';
-import {Alert} from 'react-native';
+import isEmailValid from '../../../common/helpers/isEmailValid';
+import {PCT_TRANSFER, PCT_DELIVERABLE} from '../../../../constants/Constants';
 
 const useClaimPrizeScreen = () => {
   /******************/
@@ -24,16 +25,25 @@ const useClaimPrizeScreen = () => {
   const [allRegions, setAllRegions] = useState<Regions | []>([]);
 
   const [selectedCountry, setSelectedCountry] = useState<string>('Afghanistan');
-  const [isCountryError, setIsCountryError] = useState<boolean>(true);
+  const [isCountryError, setIsCountryError] = useState<boolean>(false);
 
   const [selectedRegion, setSelectedRegion] = useState<string>('Badakhshan');
-  const [isRegionError, setIsRegionError] = useState<boolean>(true);
+  const [isRegionError, setIsRegionError] = useState<boolean>(false);
 
   const [address, setAddress] = useState<string>('');
-  const [isAddressError, setIsAddressError] = useState<boolean>(true);
+  const [isAddressError, setIsAddressError] = useState<boolean>(
+    route.params.prizeClaimType === PCT_DELIVERABLE ? true : false,
+  );
 
   const [postalCode, setPostalCode] = useState<string>('');
-  const [isPostalCodeError, setIsPostalCodeError] = useState<boolean>(true);
+  const [isPostalCodeError, setIsPostalCodeError] = useState<boolean>(
+    route.params.prizeClaimType === PCT_DELIVERABLE ? true : false,
+  );
+
+  const [paypalEmail, setPayPalEmail] = useState<string>('');
+  const [isPaypalEmailError, setIsPaypalEmailError] = useState<boolean>(
+    route.params.prizeClaimType === PCT_DELIVERABLE ? false : true,
+  );
 
   const [isModalPickerShowing, setIsModalPickerShowing] =
     useState<boolean>(false);
@@ -87,8 +97,10 @@ const useClaimPrizeScreen = () => {
    * @dependent allRegions
    */
   useEffect(() => {
-    if (allRegions.length != 0) {
-      setSelectedRegion(allRegions[0].name);
+    if (route.params.prizeClaimType === PCT_DELIVERABLE) {
+      if (allRegions.length != 0) {
+        setSelectedRegion(allRegions[0].name);
+      }
     }
   }, [allRegions]);
 
@@ -98,9 +110,11 @@ const useClaimPrizeScreen = () => {
    * @dependent selectedRegion
    */
   useEffect(() => {
-    selectedRegion.length > 0
-      ? setIsRegionError(false)
-      : setIsRegionError(true);
+    if (route.params.prizeClaimType === PCT_DELIVERABLE) {
+      selectedRegion.length > 0
+        ? setIsRegionError(false)
+        : setIsRegionError(true);
+    }
   }, [selectedRegion]);
 
   /**
@@ -108,7 +122,9 @@ const useClaimPrizeScreen = () => {
    * @dependent region
    */
   useEffect(() => {
-    address.length > 0 ? setIsAddressError(false) : setIsAddressError(true);
+    if (route.params.prizeClaimType === PCT_DELIVERABLE) {
+      address.length > 0 ? setIsAddressError(false) : setIsAddressError(true);
+    }
   }, [address]);
 
   /**
@@ -116,10 +132,23 @@ const useClaimPrizeScreen = () => {
    * @dependent postalCode
    */
   useEffect(() => {
-    postalCode.length > 0
-      ? setIsPostalCodeError(false)
-      : setIsPostalCodeError(true);
+    if (route.params.prizeClaimType === PCT_DELIVERABLE) {
+      postalCode.length > 0
+        ? setIsPostalCodeError(false)
+        : setIsPostalCodeError(true);
+    }
   }, [postalCode]);
+
+  /**
+   * Checks to see if current paypal email is a valid email address.
+   * @dependent email
+   */
+  useEffect(() => {
+    console.log('sfd');
+    if (route.params.prizeClaimType === PCT_TRANSFER) {
+      setIsPaypalEmailError(!isEmailValid(paypalEmail));
+    }
+  }, [paypalEmail]);
 
   /**
    * Displays a Snackbar showing a message.
@@ -150,7 +179,7 @@ const useClaimPrizeScreen = () => {
 
   /**
    * Updates the current selected country when dropdown menu item is clicked.
-   * @param index The index of the available countries array to select
+   * @param index (number) The index of the available countries array to select
    */
   const handleCountryChange = (index: number) => {
     setSelectedCountry(allCountries[index].name);
@@ -159,7 +188,7 @@ const useClaimPrizeScreen = () => {
 
   /**
    * Updates the current selected region when dropdown menu item is clicked.
-   * @param index The index of the available countries array to select
+   * @param index (number) The index of the available countries array to select
    */
   const handleRegionChange = (index: number) => {
     setSelectedRegion(allRegions[index].name);
@@ -168,7 +197,7 @@ const useClaimPrizeScreen = () => {
 
   /**
    * Updates the current address state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handleAddressChange = (value: string) => {
     setAddress(value);
@@ -176,10 +205,18 @@ const useClaimPrizeScreen = () => {
 
   /**
    * Updates the current postal code state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handlePostalCodeChange = (value: string) => {
     setPostalCode(value);
+  };
+
+  /**
+   * Updates the current paypal email state when user inputs a value into a textInput
+   * @param value (string) The value inputted into the textInput
+   */
+  const handlePaypalEmailChange = (value: string) => {
+    setPayPalEmail(value);
   };
 
   /*************************/
@@ -230,11 +267,13 @@ const useClaimPrizeScreen = () => {
   const handleClaimPrizeClick = async () => {
     setIsLoading(true);
     const result = await claimPrizeUC(
+      route.params.prizeClaimType,
       route.params.prizeId,
       selectedCountry,
       selectedRegion,
       address,
       postalCode,
+      paypalEmail,
     );
     setIsLoading(false);
 
@@ -242,11 +281,6 @@ const useClaimPrizeScreen = () => {
       setSnackbarText(result.message);
       setShowSnackbar(showSnackbar + 1);
     } else {
-      // Alert.alert(
-      //   'Success',
-      //   'we will contact you shortly from eggnationprizes@outlook.com for further details.',
-      //   [{text: 'OK', onPress: () => navigateBack}],
-      // );
       showConfirmationModal();
     }
   };
@@ -256,7 +290,7 @@ const useClaimPrizeScreen = () => {
   /******************************/
 
   /** Navigates back to the login screen if no process is currently running. */
-  const hideModalAndNavigateBack = () => {
+  const navigateBack = () => {
     if (!isLoading) {
       navigation.pop();
     }
@@ -268,6 +302,7 @@ const useClaimPrizeScreen = () => {
 
   return {
     isLoading,
+    prizeClaimType: route.params.prizeClaimType,
     allCountries,
     allRegions,
     selectedCountry,
@@ -282,13 +317,16 @@ const useClaimPrizeScreen = () => {
     postalCode,
     handlePostalCodeChange,
     isPostalCodeError,
+    paypalEmail,
+    handlePaypalEmailChange,
+    isPaypalEmailError,
     isModalPickerShowing,
     showModalPicker,
     hideModalPicker,
     isConfirmationModalShowing,
     isSelectingCountries,
     handleClaimPrizeClick,
-    hideModalAndNavigateBack,
+    navigateBack,
   };
 };
 

@@ -5,107 +5,76 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {
-  CustomTextInput,
-  CustomDropdownMenu,
-  PressableIcon,
-} from '../../../../../common/components';
-import {C_TEXT_LIGHT} from '../../../../../../constants/Colors';
-import {
   S_TI_ADDRESS_KEYBOARD_TYPE,
   S_TI_ADDRESS_PLACEHOLDER,
   S_TI_POSTAL_CODE_KEYBOARD_TYPE,
   S_TI_POSTAL_CODE_PLACEHOLDER,
 } from '../../../../../../constants/Strings';
+import {C_TEXT_LIGHT} from '../../../../../../constants/Colors';
+import {
+  CustomTextInput,
+  CustomDropdownMenu,
+} from '../../../../../common/components';
+import AddressForm from './AddressForm';
+import {PCT_TRANSFER, PCT_DELIVERABLE} from '../../../../../../constants/Constants';
+import CashTransferForm from './CashTransferForm';
 
 interface Props {
   isLoading: boolean;
+  prizeClaimType: string;
   selectedCountry: string;
   selectedRegion: string;
   address: string;
   handleAddressChange: (value: string) => void;
   postalCode: string;
   handlePostalCodeChange: (value: string) => void;
+  paypalEmail: string;
+  handlePaypalEmailChange: (value: string) => void;
+  isPaypalEmailError: boolean;
   showModalPicker: (isCountries: boolean) => void;
 }
 
 const ClaimPrizeScreenTopView: FC<Props> = props => {
   const {
     isLoading,
+    prizeClaimType,
     selectedCountry,
     selectedRegion,
     address,
     handleAddressChange,
     postalCode,
     handlePostalCodeChange,
+    paypalEmail,
+    handlePaypalEmailChange,
+    isPaypalEmailError,
     showModalPicker,
   } = props;
 
+  console.log(prizeClaimType);
+
   return (
     <View style={styles.formView}>
-      <Text style={styles.headingText}>Shipping Address</Text>
-      <CustomDropdownMenu
-        value={selectedCountry}
-        disabled={isLoading}
-        width={'100%'}
-        height={hp('6.5%')}
-        marginBottom={hp('2%')}
-        fontSize={hp('2%')}
-        textColor="white"
-        borderColor="gray"
-        handleIconPress={() => {
-          showModalPicker(true);
-        }}
-      />
-      <CustomDropdownMenu
-        value={selectedRegion}
-        disabled={isLoading}
-        width={'100%'}
-        height={hp('6.5%')}
-        marginBottom={hp('2%')}
-        fontSize={hp('2%')}
-        textColor="white"
-        borderColor="gray"
-        handleIconPress={() => {
-          showModalPicker(false);
-        }}
-      />
-      <CustomTextInput
-        value={address}
-        onValueChange={handleAddressChange}
-        isError={false}
-        errorText={''}
-        disabled={isLoading}
-        isPassword={false}
-        placeholder={S_TI_ADDRESS_PLACEHOLDER}
-        keyboardType={S_TI_ADDRESS_KEYBOARD_TYPE}
-        maxLength={30}
-        width={'100%'}
-        height={hp('6.5%')}
-        marginBottom={hp('2%')}
-        fontSize={hp('2%')}
-        textColor="white"
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
-        returnKeyType={'done'}
-      />
-      <CustomTextInput
-        value={postalCode}
-        onValueChange={handlePostalCodeChange}
-        isError={false}
-        errorText={''}
-        disabled={isLoading}
-        isPassword={false}
-        placeholder={S_TI_POSTAL_CODE_PLACEHOLDER}
-        keyboardType={S_TI_POSTAL_CODE_KEYBOARD_TYPE}
-        maxLength={30}
-        width={'100%'}
-        height={hp('6.5%')}
-        fontSize={hp('2%')}
-        textColor="white"
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
-        returnKeyType={'done'}
-      />
+      {prizeClaimType === PCT_DELIVERABLE && (
+        <AddressForm
+          isLoading={isLoading}
+          selectedCountry={selectedCountry}
+          selectedRegion={selectedRegion}
+          address={address}
+          handleAddressChange={handleAddressChange}
+          postalCode={postalCode}
+          handlePostalCodeChange={handlePostalCodeChange}
+          showModalPicker={showModalPicker}
+        />
+      )}
+
+      {prizeClaimType === PCT_TRANSFER && (
+        <CashTransferForm
+          isLoading={isLoading}
+          paypalEmail={paypalEmail}
+          handlePaypalEmailChange={handlePaypalEmailChange}
+          isPaypalEmailError={isPaypalEmailError}
+        />
+      )}
     </View>
   );
 };

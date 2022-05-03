@@ -51,8 +51,11 @@ export const S_E_FPS_EMAIL_NOT_FOUND =
   'Email not found! Did you register an account yet?';
 export const S_E_LS_ACCOUNT_DISABLED = "Account disabled. Can't login";
 export const S_E_RS_EMAIL_IN_USE = 'Email already in use!';
-export const S_E_APS_FAILED_TO_FETCH_PRIZES = 'Failed to fetch available prizes'
-export const S_E_WPS_FAILED_TO_FETCH_PRIZES = 'Failed to fetch won prizes'
+export const S_E_APS_FAILED_TO_FETCH_PRIZES =
+  'Failed to fetch available prizes';
+export const S_E_WPS_FAILED_TO_FETCH_PRIZES = 'Failed to fetch won prizes';
+export const S_E_CPS_FAILED_TO_FETCH_PRIZE =
+  'Failed to fetch prize, you will be redirected back to the won prize screen. If error persists please contact us';
 
 /*******************************/
 /***** UI SUCCESS MESSAGES *****/
@@ -80,6 +83,9 @@ export const S_TI_ADDRESS_KEYBOARD_TYPE = 'default';
 
 export const S_TI_POSTAL_CODE_PLACEHOLDER = 'postal code';
 export const S_TI_POSTAL_CODE_KEYBOARD_TYPE = 'default';
+
+export const S_TI_PAYPAL_EMAIL_PLACEHOLDER = 'paypal email';
+
 
 /** FORGOT PASSWORD SCREEN */
 

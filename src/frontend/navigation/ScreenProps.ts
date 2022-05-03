@@ -17,7 +17,7 @@ export type AuthStackParamList = {
 
 export type GameStackParamList = {
   [Screens.LOGIN_SCREEN]: undefined;
-  [Screens.CLAIM_PRIZE_SCREEN]: {prizeId: string};
+  [Screens.CLAIM_PRIZE_SCREEN]: {prizeId: string, prizeClaimType: string};
   [Screens.SETTINGS_SCREEN]: undefined;
   [Screens.EDIT_EMAIL_SCREEN]: undefined;
   [Screens.EDIT_PASSWORD_SCREEN]: undefined;

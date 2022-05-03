@@ -14,7 +14,7 @@ import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
 import {AvailablePrize, ContestPrize} from '../../../../constants/typeAliases';
 import Snackbar from 'react-native-snackbar';
 
-const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
+const useHomeScreen = () => {
   /******************/
   /***** STATES *****/
   /******************/
@@ -98,8 +98,8 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
 
   /**
    * Get's the local count from async storage.
-   * Resets the count to 1000 is a certain amount of time passed since the last
-   * time that the user opened the app.
+   * Resets the count to the default counter value is a certain amount of time
+   * passed since the last time that the user opened the app.
    */
   const initCounter = async () => {
     await checkIfTimeToResetCountUC();
@@ -109,7 +109,6 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
 
   /**
    * Get's the local count from async storage.
-   * Handles any possible errors with fetching the local count.
    */
   const getLocalCount = async () => {
     const result = await getLocalCountUC();
@@ -223,7 +222,7 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
 
   /**
    * Sets the prize type of the prize being shown in the prize modal.
-   * @param type (string) The e prize type of the prize to be shown in the prize modal
+   * @param type (string) The prize type of the prize to be shown in the prize modal
    */
   const handleDisplayPrizeTypeChange = (type: string) => {
     setDisplayPrizeType(type);
@@ -231,15 +230,15 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
 
   /**
    * Sets the prize tier of the prize being shown in the prize modal.
-   * @param tier (string) The e prize tier of the prize to be shown in the prize modal
+   * @param tier (string) The prize tier of the prize to be shown in the prize modal
    */
   const handleDisplayPrizeTierChange = (tier: string) => {
     setDisplayPrizeTier(tier);
   };
 
   /**
-   * Sets the prize tier of the prize being shown in the prize modal.
-   * @param claimType (string) The e prize tier of the prize to be shown in the prize modal
+   * Sets the prize claim type of the prize being shown in the prize modal.
+   * @param claimType (string) The prize claim type of the prize to be shown in the prize modal
    */
   const handleDisplayPrizeClaimTypeChange = (claimType: string) => {
     setDisplayPrizeClaimType(claimType);
@@ -326,7 +325,7 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
 
   /** Plays an Ad if one is loaded. */
   const playAd = () => {
-    if (adLoaded && localCount != 1000) {
+    if (adLoaded && localCount != parseInt(DV_LOCAL_COUNT)) {
       show();
     }
   };
@@ -335,28 +334,36 @@ const useHomeScreen = (setSwipeEnabled: (isEnabled: boolean) => void) => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /** Navigates back to the settings screen if no process is currently running. */
+  /**
+   * Navigates back to the settings screen if no process is currently running.
+   */
   const navToSettingsScreen = () => {
     if (!isLoading && !isAnimationPlaying && !adShowing) {
       navigation.navigate(Screens.SETTINGS_SCREEN);
     }
   };
 
-  /** Navigates back to the how to play screen if no process is currently running. */
+  /**
+   * Navigates back to the how to play screen if no process is currently running.
+   */
   const navToHowToPlayScreen = () => {
     if (!isLoading && !isAnimationPlaying && !adShowing) {
       navigation.navigate(Screens.HOW_TO_PLAY_SCREEN);
     }
   };
 
-  /** Navigates back to the available prizes tab if no process is currently running. */
+  /**
+   * Navigates back to the available prizes tab if no process is currently running.
+   */
   const navToAvailablePrizesTab = () => {
     if (!isLoading && !isAnimationPlaying && !adShowing) {
       navigation.jumpTo(Screens.AVAILABLE_PRIZES_SCREEN);
     }
   };
 
-  /** Navigates back to the won prizes tab if no process is currently running. */
+  /**
+   * Navigates back to the won prizes tab if no process is currently running.
+   */
   const navToWonPrizesTab = () => {
     if (!isLoading && !isAnimationPlaying && !adShowing) {
       navigation.jumpTo(Screens.WON_PRIZES_SCREEN);

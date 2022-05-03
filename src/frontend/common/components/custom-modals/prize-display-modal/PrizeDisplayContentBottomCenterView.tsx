@@ -13,12 +13,20 @@ interface Props {
   isLoading: boolean;
   navigation: any;
   prizeId: string;
+  prizeClaimType: string;
   handleHidePrize: () => void;
   isClaimed: boolean;
 }
 
 const PrizeDisplayContentBottomCenterView: FC<Props> = props => {
-  const {isLoading, navigation, prizeId, handleHidePrize, isClaimed} = props;
+  const {
+    isLoading,
+    navigation,
+    prizeId,
+    prizeClaimType,
+    handleHidePrize,
+    isClaimed,
+  } = props;
 
   /**
    * Navigates to the claim prize screen and hides
@@ -28,6 +36,7 @@ const PrizeDisplayContentBottomCenterView: FC<Props> = props => {
     if (!isLoading) {
       navigation.navigate(Screens.CLAIM_PRIZE_SCREEN, {
         prizeId: prizeId,
+        prizeClaimType: prizeClaimType,
       });
 
       setTimeout(() => {
