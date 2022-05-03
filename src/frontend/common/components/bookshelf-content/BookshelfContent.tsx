@@ -91,10 +91,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   text: {
-    // flex: 1,
-    // backgroundColor: 'blue',
     fontSize: hp('3%'),
-    // width: '75%',
     textAlign: 'center',
     color: C_TEXT_LIGHT,
   },

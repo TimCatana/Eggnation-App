@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_TEXT_PRIMARY} from '../../../../../constants/Colors';
 
@@ -10,15 +10,10 @@ interface Props {
 const PrizeDisplayContentBottomView: FC<Props> = props => {
   const {prizeDesc} = props;
 
-  return (
-    <View style={styles.body}>
-      <Text style={styles.text}>{prizeDesc}</Text>
-    </View>
-  );
+  return <Text style={styles.text}>{prizeDesc}</Text>;
 };
 
 const styles = StyleSheet.create({
-  body: {},
   text: {
     paddingHorizontal: hp('2%'),
     paddingTop: hp('2%'),

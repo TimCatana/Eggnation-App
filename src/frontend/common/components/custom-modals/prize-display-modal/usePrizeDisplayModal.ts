@@ -8,6 +8,7 @@ import {
   shirt,
   tablet,
 } from '../../../../../../assets';
+
 import {
   S_PT_CASH,
   S_PT_EARBUDS,

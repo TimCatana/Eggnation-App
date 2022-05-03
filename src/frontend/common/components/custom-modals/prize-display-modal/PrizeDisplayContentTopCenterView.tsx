@@ -21,7 +21,7 @@ const PrizeDisplayContentTopCenterView: FC<Props> = props => {
       />
       <ScrollView
         style={styles.titleView}
-        contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}
+        contentContainerStyle={styles.titleViewContent}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         horizontal>
@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
   titleView: {
     display: 'flex',
     position: 'absolute',
+  },
+  titleViewContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   titleText: {
     fontSize: hp('4.4%'),

@@ -23,7 +23,7 @@ import PrizeList from './prize-list/PrizeList';
 
 import PrizeShelfCard from './prize-shelf-card/PrizeShelfCard';
 
-import PressableIcon from './top-left-corner-icon/PressableIcon';
+import PressableIcon from './pressable-icon/PressableIcon';
 
 import PolicySection from './policy-section/PolicySection';
 

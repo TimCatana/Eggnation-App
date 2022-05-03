@@ -4,17 +4,17 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {C_TEXT_LIGHT} from '../../../../../constants/Colors';
+import {
+  S_PCM_CONGRATULATIONS,
+  S_PCM_INFO_TEXT,
+} from '../../../../../constants/Strings';
 
 const PrizeClaimedModalCenterView: FC = () => {
   return (
     <View style={styles.body}>
-      <Text style={styles.titleText}>Congratulations!</Text>
-      <Text style={styles.contentText}>
-        Your prize has been claimed. We will be emailing your currently
-        registered email with further details. Please keep an eye out for an
-        email from eggnationprizes@outlook.com. Contact us using this address if
-        you do not receive anything within a week. 
-      </Text>
+      <Text style={styles.titleText}>{S_PCM_CONGRATULATIONS}</Text>
+      <Text style={styles.contentText}>{S_PCM_INFO_TEXT}</Text>
     </View>
   );
 };
@@ -29,12 +29,12 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: hp('5%'),
-    color: 'white',
+    color: C_TEXT_LIGHT,
     marginBottom: hp('4%'),
   },
   contentText: {
     fontSize: hp('2%'),
-    color: 'white',
+    color: C_TEXT_LIGHT,
     textAlign: 'justify',
   },
 });

@@ -51,6 +51,8 @@ export const S_E_FPS_EMAIL_NOT_FOUND =
   'Email not found! Did you register an account yet?';
 export const S_E_LS_ACCOUNT_DISABLED = "Account disabled. Can't login";
 export const S_E_RS_EMAIL_IN_USE = 'Email already in use!';
+export const S_E_APS_FAILED_TO_FETCH_PRIZES = 'Failed to fetch available prizes'
+export const S_E_WPS_FAILED_TO_FETCH_PRIZES = 'Failed to fetch won prizes'
 
 /*******************************/
 /***** UI SUCCESS MESSAGES *****/
@@ -154,3 +156,13 @@ export const S_E_EPS_WEAK_PASSWORD = 'Please enter a stronger password!';
 export const S_S_EES_EMAIL_UPDATED = 'Email updated successfully!';
 
 export const S_S_EPS_PASSWORD_UPDATED = 'Password updated successfully!';
+
+/** PRIZE CLAIMED MODAL */
+export const S_PCM_CONGRATULATIONS = 'Congratulations!';
+export const S_PCM_INFO_TEXT = `Your prize has been claimed. We will be emailing your currently registered email with further details. Please keep an eye out for an email from eggnationprizes@outlook.com. Contact us using this address if you do not receive anything within a week.`;
+
+/** PRIZES SCREEM */
+export const S_PS_FAILED_PRIZE_FETCH = 'Failed to fetch prizes';
+export const S_PS_NO_AVAILABLE_PRIZES =
+  'No Prizes Available. More Coming Soon!';
+export const S_PS_NO_WON_PRIZES = "You haven't won anything yet!";

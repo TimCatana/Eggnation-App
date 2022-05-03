@@ -1,16 +1,24 @@
 import {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {Screens} from '../../../constants/NavigationConstants';
+import {SUCCESS} from '../../../constants/ResultsConstants';
 import {
   AvailablePrizesScreenProp,
   WonPrizeScreenProp,
 } from '../../navigation/ScreenProps';
-import {SUCCESS} from '../../../constants/ResultsConstants';
+import {
+  S_PS_FAILED_PRIZE_FETCH,
+  S_PS_NO_AVAILABLE_PRIZES,
+  S_PS_NO_WON_PRIZES,
+} from '../../../constants/Strings';
+import {
+  AvailablePrizesArray,
+  WonPrizesArray,
+} from '../../../constants/typeAliases';
 import getAvailablePrizesUC from '../../../domain/available-prizes-screen-uc/getAvailablePrizesUC';
-import {AvailablePrizesArray, WonPrizesArray} from '../../../constants/typeAliases';
 import getWonPrizesUC from '../../../domain/won-prizes-screen-us/getWonPrizesUC';
-import {Screens} from '../../../constants/NavigationConstants';
 
-// TODO - need to refresh wonprizes once the prize has been claimed
+// TODO - need to find a way to effeciently refresh wonprizes once the prize has been claimed
 const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
   /******************/
   /***** STATES *****/
@@ -24,7 +32,7 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
 
   const [isPrizeFetchFailed, setIsPrizeFetchFailed] = useState<boolean>(true);
   const [prizeFetchFailedText, setIsPrizeFetchFailedText] = useState<string>(
-    'Failed to fetch prizes',
+    S_PS_FAILED_PRIZE_FETCH,
   );
 
   const [prizes, setPrizes] = useState<
@@ -62,10 +70,10 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
   /******************************/
 
   /**
-   * Fetches the available prizes from the database.
+   * Fetches the prizes from the database.
    */
   const initialPrizeFetch = async () => {
-    await getAvailablePrizes();
+    await getPrizes();
     setIsInitialized(true);
   };
 
@@ -73,7 +81,7 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
    * Fetches the available prizes from the database and
    * checks whether the fetch was successful or not.
    */
-  const getAvailablePrizes = async () => {
+  const getPrizes = async () => {
     const result = isAvailablePrizeScreen
       ? await getAvailablePrizesUC()
       : await getWonPrizesUC();
@@ -83,8 +91,8 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
     if (result.status === SUCCESS) {
       if (result.data.length === 0) {
         isAvailablePrizeScreen
-          ? setIsPrizeFetchFailedText('No Prizes Available. More Coming Soon!')
-          : setIsPrizeFetchFailedText("You haven't won anything yet!");
+          ? setIsPrizeFetchFailedText(S_PS_NO_AVAILABLE_PRIZES)
+          : setIsPrizeFetchFailedText(S_PS_NO_WON_PRIZES);
       } else {
         setIsPrizeFetchFailed(false);
       }
@@ -157,7 +165,7 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
 
   /**
    * Sets the prize type of the prize being shown in the prize modal.
-   * @param type (string) The e prize type of the prize to be shown in the prize modal
+   * @param type (string) The prize type of the prize to be shown in the prize modal
    */
   const handleDisplayPrizeTypeChange = (type: string) => {
     setDisplayPrizeType(type);
@@ -165,38 +173,38 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
 
   /**
    * Sets the prize tier of the prize being shown in the prize modal.
-   * @param tier (string) The e prize tier of the prize to be shown in the prize modal
+   * @param tier (string) The prize tier of the prize to be shown in the prize modal
    */
   const handleDisplayPrizeTierChange = (tier: string) => {
     setDisplayPrizeTier(tier);
   };
 
   /**
-   * Sets the prize tier of the prize being shown in the prize modal.
-   * @param claimType (string) The e prize tier of the prize to be shown in the prize modal
+   * Sets the prize claim type of the prize being shown in the prize modal.
+   * @param claimType (string) The prize claim type of the prize to be shown in the prize modal
    */
   const handleDisplayPrizeClaimTypeChange = (claimType: string) => {
     setDisplayPrizeClaimType(claimType);
   };
 
   /**
-   * Sets the prize tier of the prize being shown in the prize modal.
-   * @param claimed (boolean) The e prize tier of the prize to be shown in the prize modal
+   * Sets the prize claimed status of the prize being shown in the prize modal.
+   * @param claimed (boolean) The prize claimed status of the prize to be shown in the prize modal
    */
   const handleDisplayPrizeClaimedChange = (claimed: boolean) => {
     setDisplayPrizeClaimed(claimed);
   };
   /**
-   * Sets the prize tier of the prize being shown in the prize modal.
-   * @param delivered (boolean) The e prize tier of the prize to be shown in the prize modal
+   * Sets the prize delivered status of the prize being shown in the prize modal.
+   * @param delivered (boolean) The prize delivered status of the prize to be shown in the prize modal
    */
 
   const handleDisplayPrizeDeliveredChange = (delivered: boolean) => {
     setDisplayPrizeDelivered(delivered);
   };
   /**
-   * Sets the prize tier of the prize being shown in the prize modal.
-   * @param wonDate (boolean) The e prize tier of the prize to be shown in the prize modal
+   * Sets the prize won date of the prize being shown in the prize modal.
+   * @param wonDate (boolean) The prize won date of the prize to be shown in the prize modal
    */
   const handleDisplayPrizeWonDateChange = (wonDate: string) => {
     setDisplayPrizeWonDate(wonDate);
@@ -206,7 +214,9 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /** Navigates back to the home tab if no process is currently running. */
+  /**
+   * Navigates back to the home tab if no process is currently running.
+   */
   const navToHomeTab = () => {
     if (isInitialized && !isLoading && !isShowingPrize) {
       navigation.jumpTo(Screens.HOME_SCREEN);

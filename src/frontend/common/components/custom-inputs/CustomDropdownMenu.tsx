@@ -4,7 +4,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {C_TEXT_ERROR, C_ICON_SETTINGS} from '../../../../constants/Colors';
+import {C_ICON_SETTINGS} from '../../../../constants/Colors';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
 interface Props {
@@ -23,12 +23,12 @@ interface Props {
 const CustomDropdownMenu: FC<Props> = props => {
   const {
     value,
-    width,
+    disabled,
     height,
+    width,
     fontSize,
     textColor,
     marginBottom,
-    disabled,
     iconColor,
     borderColor,
     handleIconPress,
@@ -82,10 +82,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  errorText: {
-    fontSize: hp('1.5%'),
-    color: C_TEXT_ERROR,
   },
 });
 

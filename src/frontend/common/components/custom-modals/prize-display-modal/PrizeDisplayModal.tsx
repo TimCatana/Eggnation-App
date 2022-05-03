@@ -1,11 +1,7 @@
 import React, {FC} from 'react';
 import {View, Modal, StyleSheet} from 'react-native';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
-import {
-  C_TEXT_PRIMARY,
   C_BACKGROUND_BOOKSHELF,
   C_ICON_BOOKSHELF,
 } from '../../../../../constants/Colors';
@@ -108,37 +104,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: C_BACKGROUND_BOOKSHELF,
   },
-  topView: {
-    flex: 6,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'red',
-  },
-  centerView: {
-    flex: 2,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'blue',
-  },
-  bottomView: {
-    flex: 10,
-    paddingHorizontal: wp('3%'),
-    // backgroundColor: 'yellow',
-  },
   icon: {
     position: 'absolute',
     left: hp('-0.5%'),
     top: hp('0.2%'),
-  },
-  titleText: {
-    fontSize: hp('5%'),
-    color: C_TEXT_PRIMARY,
-  },
-  text: {
-    fontSize: 30,
-    color: C_TEXT_PRIMARY,
   },
 });
 

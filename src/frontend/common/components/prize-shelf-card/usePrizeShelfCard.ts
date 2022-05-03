@@ -59,7 +59,7 @@ const usePrizeShelfCard = () => {
    * Gets the background image to display.
    * @param bgShelfImage  The constant representing which background shelf image to display
    * @returns
-   */ // todo, make the type of param  FIRST_HALF_SHELF | FULL_SHELF | SECOND_HALF_SHELF
+   */
   const getShelfImage = (bgShelfImage: string) => {
     switch (bgShelfImage) {
       case SI_FIRST_HALF_SHELF:

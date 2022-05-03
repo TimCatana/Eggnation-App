@@ -29,7 +29,6 @@ interface Props {
 
 const PrizeShelfCard: FC<Props> = props => {
   const {prize, bgShelfImage, handleShowPrize} = props;
-
   const {getDisplayImage, getShelfImage} = usePrizeShelfCard();
 
   const displayImage = getDisplayImage(prize.prizeType);

@@ -49,21 +49,24 @@ const PrizeDisplayContent: FC<Props> = props => {
 
         <PrizeDisplayContentTopCenterView prizeTitle={prizeTitle} />
 
-        {isWonPrize && (
-          <PrizeDisplayContentBottomCenterView
-            isLoading={isLoading}
-            navigation={navigation}
-            prizeId={prizeId}
-            handleHidePrize={handleHidePrize}
-            isClaimed={
-              isLoading ||
-              (prizeClaimType !== PCT_DELIVERABLE &&
-                prizeClaimType !== PCT_CASH) ||
-              prizeClaimed ||
-              prizeDelivered
-            }
-          />
-        )}
+        {/* only show button if the prize is "claimable". That is, if personal information (e.g. address) is required in order for the user to get the prize */}
+        {isWonPrize &&
+          (prizeClaimType === PCT_DELIVERABLE ||
+            prizeClaimType === PCT_CASH) && (
+            <PrizeDisplayContentBottomCenterView
+              isLoading={isLoading}
+              navigation={navigation}
+              prizeId={prizeId}
+              handleHidePrize={handleHidePrize}
+              isClaimed={
+                isLoading ||
+                (prizeClaimType !== PCT_DELIVERABLE &&
+                  prizeClaimType !== PCT_CASH) ||
+                prizeClaimed ||
+                prizeDelivered
+              }
+            />
+          )}
 
         <PrizeDisplayContentBottomView prizeDesc={prizeDesc} />
       </ScrollView>
@@ -73,7 +76,7 @@ const PrizeDisplayContent: FC<Props> = props => {
 
 const styles = StyleSheet.create({
   body: {
-    flex: 13,
+    flex: 13, // Need this because it shares space with the bookshelf top image
     display: 'flex',
   },
 });

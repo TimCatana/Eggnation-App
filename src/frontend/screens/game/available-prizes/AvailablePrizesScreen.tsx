@@ -1,9 +1,10 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {S_APS_TITLE} from '../../../../constants/Strings';
 import {
   C_BACKGROUND_BOOKSHELF,
   C_ICON_BOOKSHELF,
-  C_ICON_PRIMARY,
 } from '../../../../constants/Colors';
 import {PrizeDisplayModal, PressableIcon} from '../../../common/components';
 
@@ -12,11 +13,6 @@ import BookShelfLeftView from '../../../common/components/bookshelf-background/B
 import BookShelfRightView from '../../../common/components/bookshelf-background/BookShelfRightView';
 import PrizeScreenCenterView from '../../../common/components/bookshelf-background/PrizeScreenCenterView';
 import usePrizeScreen from '../../../common/states/usePrizeScreen';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
-import {S_APS_TITLE} from '../../../../constants/Strings';
 
 const AvailablePrizesScreen: FC = () => {
   const {

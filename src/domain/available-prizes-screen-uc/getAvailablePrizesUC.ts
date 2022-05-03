@@ -1,7 +1,8 @@
 import deGetAllAvailablePrizes from '../../backend/database/firestore/deGetAllAvailablePrizes';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
-import printDevLogs from '../printDevLogs';
+import {S_E_APS_FAILED_TO_FETCH_PRIZES} from '../../constants/Strings';
 import {Result} from '../../constants/typeAliases';
+import printDevLogs from '../printDevLogs';
 
 /**
  * Attempts to fetch available prizes from the database.
@@ -19,11 +20,7 @@ const getAvailablePrizesUC = async (): Promise<Result> => {
     const availablePrizes = await deGetAllAvailablePrizes();
 
     if (availablePrizes.length === 0) {
-      return {
-        status: SUCCESS,
-        data: [],
-        message: 'No Prizes Available. More Coming Soon!',
-      };
+      return {status: SUCCESS, data: [], message: ''};
     }
 
     return {status: SUCCESS, data: availablePrizes, message: ''};
@@ -35,19 +32,19 @@ const getAvailablePrizesUC = async (): Promise<Result> => {
 /**
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
- * @param error The error
+ * @param error (error) The error
  * @returns {status: ERROR, data: [], message: string}
  */
 const _getErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/available-prizes-screen-uc/getAvailablePrizesUC.js',
+      'domain/available-prizes-screen-uc/getAvailablePrizesUC.ts',
       'getAvailablePrizesUC',
       `${error}`,
     );
   }
 
-  return {status: ERROR, data: [], message: 'failed to fetch prizes'};
+  return {status: ERROR, data: [], message: S_E_APS_FAILED_TO_FETCH_PRIZES};
 };
 
 export default getAvailablePrizesUC;

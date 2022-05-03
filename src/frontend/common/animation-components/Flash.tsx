@@ -51,15 +51,4 @@ const Flash: FC<Props> = props => {
   );
 };
 
-const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 50,
-  },
-});
-
 export default Flash;

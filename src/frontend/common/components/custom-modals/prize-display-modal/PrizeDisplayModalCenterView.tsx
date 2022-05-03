@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_BACKGROUND_BOOKSHELF} from '../../../../../constants/Colors';
 import {BookShelfTopView, PrizeDisplayContent} from '../../index';
 
@@ -66,13 +65,6 @@ const styles = StyleSheet.create({
     flex: 15,
     display: 'flex',
     backgroundColor: C_BACKGROUND_BOOKSHELF,
-  },
-  loading: {
-    position: 'absolute',
-    top: hp('43%'),
-    right: 0,
-    left: 0,
-    center: 0,
   },
 });
 

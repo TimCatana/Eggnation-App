@@ -20,11 +20,11 @@ const PrizeClaimedModalBottomView: FC<Props> = props => {
       <CustomButton
         label={'Go Back'}
         onPress={navigateBack}
+        disabled={false}
         buttonEnabledColor={C_BUTTON_ENABLED}
         buttonDisabledColor={C_BUTTON_DISABLED}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
         fontSize={hp('2%')}
-        disabled={false}
       />
     </View>
   );
