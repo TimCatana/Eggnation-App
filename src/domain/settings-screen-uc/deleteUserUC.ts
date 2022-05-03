@@ -35,11 +35,7 @@ const deleteUserUC = async (password: string): Promise<Result> => {
   const email = doGetUserEmail();
 
   if (!email) {
-    return {
-      status: ERROR,
-      data: null,
-      message: S_E_UNEXPECTED_ERROR,
-    };
+    return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 
   try {
@@ -55,14 +51,14 @@ const deleteUserUC = async (password: string): Promise<Result> => {
     return _getDeleteUserErrorResponse(e);
   }
 
-  return {status: SUCCESS, data: null, message: ''};
+  return {status: SUCCESS, message: ''};
 };
 
 /**
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
  * @param error The error
- * @returns {status: ERROR, data: null, message: string}
+ * @returns {status: ERROR, message: string}
  */
 const _getReauthenticateErrorResponse = (error: any): Result => {
   if (__DEV__) {
@@ -75,27 +71,19 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
 
   switch (error.code) {
     case 'auth/network-request-failed':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_NOT_CONNECTED_TO_INTERNET,
-      };
+      return {status: ERROR, message: S_E_NOT_CONNECTED_TO_INTERNET};
     case 'auth/user-mismatch':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/user-not-found':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-credential':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
+      return {status: ERROR, message: S_E_INVALID_EMAIL};
     case 'auth/wrong-password':
-      return {status: ERROR, data: null, message: S_E_INVALID_PASSWORD};
+      return {status: ERROR, message: S_E_INVALID_PASSWORD};
     default:
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_UNEXPECTED_ERROR,
-      };
+      return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 };
 
@@ -103,7 +91,7 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
  * @param error The error
- * @returns {status: ERROR, data: null, message: string}
+ * @returns {status: ERROR, message: string}
  */
 const _getDeleteUserErrorResponse = (error: any): Result => {
   if (__DEV__) {
@@ -116,17 +104,9 @@ const _getDeleteUserErrorResponse = (error: any): Result => {
 
   switch (error.code) {
     case 'auth/network-request-failed':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_NOT_CONNECTED_TO_INTERNET,
-      };
+      return {status: ERROR, message: S_E_NOT_CONNECTED_TO_INTERNET};
     default:
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_UNEXPECTED_ERROR,
-      };
+      return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 };
 

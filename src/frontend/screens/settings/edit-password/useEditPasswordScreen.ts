@@ -85,7 +85,7 @@ const useEditPasswordScreen = () => {
 
   /**
    * Updates the current newPassword state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handleNewPasswordChange = (value: string) => {
     setNewPassword(value);
@@ -93,7 +93,7 @@ const useEditPasswordScreen = () => {
 
   /**
    * Updates the current confirmPassword state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handleConfirmPasswordChange = (value: string) => {
     setConfirmPassword(value);
@@ -101,7 +101,7 @@ const useEditPasswordScreen = () => {
 
   /**
    * Updates the current currentPassword state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handleCurrentPasswordChange = (value: string) => {
     setCurrentPassword(value);
@@ -129,14 +129,18 @@ const useEditPasswordScreen = () => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /** Navigates back to the login screen if no process is currently running. */
+  /** 
+   * Navigates back to the login screen if no process is currently running. 
+   */
   const navigateBack = () => {
     if (!isLoading) {
       navigation.pop();
     }
   };
 
-  /** Navigates back to the login screen if no process is currently running. */
+  /** 
+   * Navigates back to the login screen if no process is currently running. 
+   */
   const updatePasswordAndNavBackIfSuccess = async () => {
     const status = await handleUpdatePasswordClick();
 

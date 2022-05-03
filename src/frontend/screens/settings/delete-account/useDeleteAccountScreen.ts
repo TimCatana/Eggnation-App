@@ -73,9 +73,7 @@ const useDeleteAccountScreen = () => {
 
     if (result.status === ERROR) {
       setSnackbarText(result.message);
-      setTimeout(() => {
-        setShowSnackbar(showSnackbar + 1);
-      }, 250);
+      setShowSnackbar(showSnackbar + 1);
     }
   };
 

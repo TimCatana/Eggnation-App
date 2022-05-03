@@ -1,9 +1,6 @@
 import React, {FC} from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   C_ICON_LIGHT,
   C_BACKGROUND_DARK,
@@ -33,14 +30,6 @@ const EditPasswordScreen: FC = () => {
 
   return (
     <View style={styles.body}>
-      <PressableIcon
-        icon={'arrow-left'}
-        onPress={navigateBack}
-        iconSize={hp('3.5%')}
-        iconColor={C_ICON_LIGHT}
-        viewStyle={styles.icon}
-        iconStyle={{}}
-      />
       <UpdatePasswordScreenTopView
         isLoading={isLoading}
         newPassword={newPassword}
@@ -59,6 +48,14 @@ const EditPasswordScreen: FC = () => {
         isConfirmPasswordError={isConfirmPasswordError}
         isCurrentPasswordError={isCurrentPasswordError}
         updatePasswordAndNavBackIfSuccess={updatePasswordAndNavBackIfSuccess}
+      />
+      <PressableIcon
+        icon={'arrow-left'}
+        onPress={navigateBack}
+        iconSize={hp('3.6%')}
+        iconColor={C_ICON_LIGHT}
+        viewStyle={styles.icon}
+        iconStyle={{}}
       />
       <ActivityIndicator
         style={styles.loading}
@@ -80,17 +77,13 @@ const styles = StyleSheet.create({
     backgroundColor: C_BACKGROUND_DARK,
   },
   icon: {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    width: '100%',
-    paddingLeft: wp('1%'),
-    paddingTop: hp('1%'),
+    position: 'absolute',
+    left: hp('0.6%'),
+    top: hp('0.6%'),
   },
   loading: {
     position: 'absolute',
-    top: hp('43%'),
+    top: hp('55%'),
     right: 0,
     left: 0,
     center: 0,

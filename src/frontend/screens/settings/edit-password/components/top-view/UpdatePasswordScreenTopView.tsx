@@ -6,13 +6,18 @@ import {
 } from 'react-native-responsive-screen';
 import {
   S_TI_PASSWORD_ERROR_TEXT,
-  S_TI_PASSWORD_KEYBOARD_TYPE,
   S_TI_PASSWORD_PLACEHOLDER,
   S_TI_CONFIRM_PASSWORD_ERROR_TEXT,
-  S_TI_CONFIRM_PASSWORD_KEYBOARD_TYPE,
   S_TI_CONFIRM_PASSWORD_PLACEHOLDER,
+  S_TI_CURRENT_PASSWORD_PLACEHOLDER,
+  S_TI_NEW_PASSWORD_PLACEHOLDER,
+  S_TI_CONFIRM_NEW_PASSWORD_PLACEHOLDER,
 } from '../../../../../../constants/Strings';
-import {C_TEXT_INPUT_TEXT_LIGHT} from '../../../../../../constants/Colors';
+import {
+  C_FOCUSED_BORDER_COLOR,
+  C_TEXT_INPUT_TEXT_LIGHT,
+  C_UNFOCUSED_BORDER_COLOR,
+} from '../../../../../../constants/Colors';
 import {CustomTextInput} from '../../../../../common/components';
 
 interface Props {
@@ -47,58 +52,58 @@ const UpdatePasswordScreenTopView: FC<Props> = props => {
       <CustomTextInput
         value={currentPassword}
         onValueChange={handleCurrentPasswordChange}
-        isError={isCurrentPasswordError && currentPassword.length > 0}
+        placeholder={S_TI_CURRENT_PASSWORD_PLACEHOLDER}
         errorText={''}
+        isError={isCurrentPasswordError && currentPassword.length > 0}
         disabled={isLoading}
-        isPassword={true}
-        placeholder={'current password'}
-        keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
         maxLength={100}
         width={'100%'}
         height={hp('6.5%')}
         marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
-        returnKeyType={'done'}
+        unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
+        focusedBorderColor={C_FOCUSED_BORDER_COLOR}
+        keyboardType={'default'}
+        returnKeyType={'next'}
+        isPassword={true}
       />
       <CustomTextInput
         value={newPassword}
         onValueChange={handleNewPasswordChange}
-        isError={isNewPasswordError && newPassword.length > 0}
+        placeholder={S_TI_NEW_PASSWORD_PLACEHOLDER}
         errorText={S_TI_PASSWORD_ERROR_TEXT}
+        isError={isNewPasswordError && newPassword.length > 0}
         disabled={isLoading}
-        isPassword={true}
-        placeholder={'new password'}
-        keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
         maxLength={30}
         width={'100%'}
         height={hp('6.5%')}
         marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
+        unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
+        focusedBorderColor={C_FOCUSED_BORDER_COLOR}
+        keyboardType={'default'}
         returnKeyType={'next'}
+        isPassword={true}
       />
       <CustomTextInput
         value={confirmPassword}
         onValueChange={handleConfirmPasswordChange}
-        isError={isConfirmPasswordError && confirmPassword.length > 0}
+        placeholder={S_TI_CONFIRM_NEW_PASSWORD_PLACEHOLDER}
         errorText={S_TI_CONFIRM_PASSWORD_ERROR_TEXT}
+        isError={isConfirmPasswordError && confirmPassword.length > 0}
         disabled={isLoading}
-        isPassword={true}
-        placeholder={'confirm new password'}
-        keyboardType={S_TI_CONFIRM_PASSWORD_KEYBOARD_TYPE}
         maxLength={30}
         width={'100%'}
         height={hp('6.5%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
+        unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
+        focusedBorderColor={C_FOCUSED_BORDER_COLOR}
+        keyboardType={'default'}
         returnKeyType={'done'}
+        isPassword={true}
       />
     </View>
   );

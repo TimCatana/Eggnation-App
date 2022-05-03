@@ -30,14 +30,6 @@ const EditEmailScreen: FC = () => {
 
   return (
     <View style={styles.body}>
-      <PressableIcon
-        icon={'arrow-left'}
-        onPress={navigateBack}
-        iconSize={hp('3.5%')}
-        iconColor={C_ICON_LIGHT}
-        viewStyle={styles.icon}
-        iconStyle={{}}
-      />
       <UpdateEmailScreenTopView
         isLoading={isLoading}
         newEmail={newEmail}
@@ -52,6 +44,14 @@ const EditEmailScreen: FC = () => {
         isNewEmailError={isNewEmailError}
         isPasswordError={isPasswordError}
         updateEmailAndNavBackIfSuccess={updateEmailAndNavBackIfSuccess}
+      />
+      <PressableIcon
+        icon={'arrow-left'}
+        onPress={navigateBack}
+        iconSize={hp('3.6%')}
+        iconColor={C_ICON_LIGHT}
+        viewStyle={styles.icon}
+        iconStyle={{}}
       />
       <ActivityIndicator
         style={styles.loading}
@@ -73,17 +73,13 @@ const styles = StyleSheet.create({
     backgroundColor: C_BACKGROUND_DARK,
   },
   icon: {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    width: '100%',
-    paddingLeft: wp('1%'),
-    paddingTop: hp('1%'),
+    position: 'absolute',
+    left: hp('0.6%'),
+    top: hp('0.6%'),
   },
   loading: {
     position: 'absolute',
-    top: hp('43%'),
+    top: hp('50%'),
     right: 0,
     left: 0,
     center: 0,

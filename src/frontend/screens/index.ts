@@ -9,9 +9,9 @@ import SettingsScreen from './settings/settings/SettingsScreen';
 import EditEmailScreen from './settings/edit-email/EditEmailScreen';
 import EditPasswordScreen from './settings/edit-password/EditPasswordScreen';
 import EditLanguageScreen from './settings/edit-language/EditLanguageScreen';
+import DeleteAccountScreen from './settings/delete-account/DeleteAccountScreen';
 import PrivacyPolicyScreen from './policy/privacy-policy/PrivacyPolicyScreen';
 import TermsScreen from './policy/terms/TermsScreen';
-import DeleteAccountScreen from './settings/delete-account/DeleteAccountScreen';
 
 export {
   ForgotPasswordScreen,

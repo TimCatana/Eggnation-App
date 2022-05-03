@@ -63,7 +63,7 @@ const useEditEmailScreen = () => {
 
   /**
    * Updates the current newEmail state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handleNewEmailChange = (value: string) => {
     setNewEmail(value);
@@ -71,7 +71,7 @@ const useEditEmailScreen = () => {
 
   /**
    * Updates the current password state when user inputs a value into a textInput
-   * @param value The value inputted into the textInput
+   * @param value (string) The value inputted into the textInput
    */
   const handlePasswordChange = (value: string) => {
     setPassword(value);
@@ -99,14 +99,18 @@ const useEditEmailScreen = () => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /** Navigates back to the login screen if no process is currently running. */
+  /** 
+   * Navigates back to the login screen if no process is currently running. 
+   */
   const navigateBack = () => {
     if (!isLoading) {
       navigation.pop();
     }
   };
 
-  /** Navigates back to the login screen if no process is currently running. */
+  /** 
+   * Navigates back to the login screen if no process is currently running. 
+   */
   const updateEmailAndNavBackIfSuccess = async () => {
     const status = await handleUpdateEmailClick();
 

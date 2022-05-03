@@ -31,16 +31,16 @@ const UpdatePasswordScreenBottomView: FC<Props> = props => {
       <CustomButton
         label={S_EPS_UPDATE_PASSWORD_BUTTON}
         onPress={updatePasswordAndNavBackIfSuccess}
-        buttonEnabledColor={C_BUTTON_ENABLED}
-        buttonDisabledColor={C_BUTTON_DISABLED}
-        textColor={C_TEXT_LIGHT}
-        fontSize={hp('2%')}
         disabled={
           isLoading ||
           isPasswordError ||
           isConfirmPasswordError ||
           isCurrentPasswordError
         }
+        buttonEnabledColor={C_BUTTON_ENABLED}
+        buttonDisabledColor={C_BUTTON_DISABLED}
+        textColor={C_TEXT_LIGHT}
+        fontSize={hp('2%')}
       />
     </View>
   );

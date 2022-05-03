@@ -4,7 +4,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {S_TI_CURRENT_PASSWORD} from '../../../../../../constants/Strings';
+import {S_TI_CURRENT_PASSWORD_PLACEHOLDER} from '../../../../../../constants/Strings';
 import {
   C_FOCUSED_BORDER_COLOR,
   C_TEXT_INPUT_TEXT_LIGHT,
@@ -27,7 +27,7 @@ const DeleteAccountTopView: FC<Props> = props => {
       <CustomTextInput
         value={password}
         onValueChange={handlePasswordChange}
-        placeholder={S_TI_CURRENT_PASSWORD}
+        placeholder={S_TI_CURRENT_PASSWORD_PLACEHOLDER}
         errorText={''}
         isError={isPasswordError && password.length > 0}
         disabled={isLoading}

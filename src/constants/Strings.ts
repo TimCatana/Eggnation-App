@@ -35,7 +35,20 @@ export const S_RS_EMAILS = 'emails';
 /***********************/
 
 export const S_TI_EMAIL_PLACEHOLDER = 'email';
+export const S_TI_PASSWORD_PLACEHOLDER = 'password';
+export const S_TI_CURRENT_PASSWORD_PLACEHOLDER = 'current password';
+export const S_TI_CONFIRM_PASSWORD_PLACEHOLDER = 'confirm password';
+export const S_TI_NEW_EMAIL_PLACEHOLDER = 'new email';
+export const S_TI_NEW_PASSWORD_PLACEHOLDER = 'new password';
+export const S_TI_CONFIRM_NEW_PASSWORD_PLACEHOLDER = 'confirm new password';
+export const S_TI_ADDRESS_PLACEHOLDER = 'address';
+export const S_TI_POSTAL_CODE_PLACEHOLDER = 'postal code';
+export const S_TI_PAYPAL_EMAIL_PLACEHOLDER = 'paypal email';
+
 export const S_TI_EMAIL_ERROR_TEXT = 'please enter a valid email';
+export const S_TI_PASSWORD_ERROR_TEXT =
+  'password must be at least 8 characters long, contain numbers, uppercase and lowercase letters and no whitespace';
+export const S_TI_CONFIRM_PASSWORD_ERROR_TEXT = 'passwords must match';
 
 /*****************************/
 /***** UI ERROR MESSAGES *****/
@@ -56,6 +69,14 @@ export const S_E_APS_FAILED_TO_FETCH_PRIZES =
 export const S_E_WPS_FAILED_TO_FETCH_PRIZES = 'Failed to fetch won prizes';
 export const S_E_CPS_FAILED_TO_FETCH_PRIZE =
   'Failed to fetch prize, you will be redirected back to the won prize screen. If error persists please contact us';
+export const S_E_EES_EMAIL_IN_USE = 'Email already in use!';
+export const S_E_EPS_WEAK_PASSWORD = 'Please enter a stronger password!';
+
+/*******************************/
+/***** UI SUCCESS MESSAGES *****/
+/*******************************/
+export const S_S_EES_EMAIL_UPDATED = 'Email updated successfully!';
+export const S_S_EPS_PASSWORD_UPDATED = 'Password updated successfully!';
 
 /*******************************/
 /***** UI SUCCESS MESSAGES *****/
@@ -63,29 +84,6 @@ export const S_E_CPS_FAILED_TO_FETCH_PRIZE =
 
 export const S_S_FPS_EMAIL_SENT =
   "Email sent successfully! If you can't find it, check your spam folder";
-
-export const S_TI_EMAIL_KEYBOARD_TYPE = 'email-address';
-
-export const S_TI_PASSWORD_PLACEHOLDER = 'password';
-export const S_TI_PASSWORD_ERROR_TEXT =
-  'password must be at least 8 characters long, contain numbers, uppercase and lowercase letters and no whitespace';
-export const S_TI_PASSWORD_KEYBOARD_TYPE = 'default';
-
-export const S_TI_CURRENT_PASSWORD = 'current password';
-export const S_TI_CURRENT_PASSWORD_KEYBOARD_TYPE = 'default';
-
-export const S_TI_CONFIRM_PASSWORD_PLACEHOLDER = 'confirm password';
-export const S_TI_CONFIRM_PASSWORD_ERROR_TEXT = 'passwords must match';
-export const S_TI_CONFIRM_PASSWORD_KEYBOARD_TYPE = 'default';
-
-export const S_TI_ADDRESS_PLACEHOLDER = 'address';
-export const S_TI_ADDRESS_KEYBOARD_TYPE = 'default';
-
-export const S_TI_POSTAL_CODE_PLACEHOLDER = 'postal code';
-export const S_TI_POSTAL_CODE_KEYBOARD_TYPE = 'default';
-
-export const S_TI_PAYPAL_EMAIL_PLACEHOLDER = 'paypal email';
-
 
 /** FORGOT PASSWORD SCREEN */
 
@@ -153,15 +151,7 @@ export const S_PT_CASH = 'cash';
 export const S_E_HS_CONNECTIVITY_NOTICE =
   'You need to be connected to the internet to play';
 
-export const S_E_EES_EMAIL_IN_USE = 'Email already in use!';
-
-export const S_E_EPS_WEAK_PASSWORD = 'Please enter a stronger password!';
-
 /** SUCCESS MESSAGES */
-
-export const S_S_EES_EMAIL_UPDATED = 'Email updated successfully!';
-
-export const S_S_EPS_PASSWORD_UPDATED = 'Password updated successfully!';
 
 /** PRIZE CLAIMED MODAL */
 export const S_PCM_CONGRATULATIONS = 'Congratulations!';

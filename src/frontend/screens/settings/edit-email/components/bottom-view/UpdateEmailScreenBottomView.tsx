@@ -29,11 +29,11 @@ const UpdateEmailScreenBottomView: FC<Props> = props => {
       <CustomButton
         label={S_EES_UPDATE_EMAIL_BUTTON}
         onPress={updateEmailAndNavBackIfSuccess}
+        disabled={isLoading || isNewEmailError || isPasswordError}
         buttonEnabledColor={C_BUTTON_ENABLED}
         buttonDisabledColor={C_BUTTON_DISABLED}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
         fontSize={hp('2%')}
-        disabled={isLoading || isNewEmailError || isPasswordError}
       />
     </View>
   );

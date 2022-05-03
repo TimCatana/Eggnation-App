@@ -5,12 +5,15 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {
-  S_TI_EMAIL_PLACEHOLDER,
-  S_TI_EMAIL_KEYBOARD_TYPE,
   S_TI_EMAIL_ERROR_TEXT,
-  S_TI_PASSWORD_KEYBOARD_TYPE,
+  S_TI_NEW_EMAIL_PLACEHOLDER,
+  S_TI_CURRENT_PASSWORD_PLACEHOLDER,
 } from '../../../../../../constants/Strings';
-import {C_TEXT_INPUT_TEXT_LIGHT} from '../../../../../../constants/Colors';
+import {
+  C_FOCUSED_BORDER_COLOR,
+  C_TEXT_INPUT_TEXT_LIGHT,
+  C_UNFOCUSED_BORDER_COLOR,
+} from '../../../../../../constants/Colors';
 import {CustomTextInput} from '../../../../../common/components';
 
 interface Props {
@@ -39,39 +42,39 @@ const UpdateEmailScreenTopView: FC<Props> = props => {
       <CustomTextInput
         value={password}
         onValueChange={handlePasswordChange}
-        isError={isPasswordError && password.length > 0}
+        placeholder={S_TI_CURRENT_PASSWORD_PLACEHOLDER}
         errorText={''}
+        isError={isPasswordError && password.length > 0}
         disabled={isLoading}
-        isPassword={true}
-        placeholder={'current password'}
-        keyboardType={S_TI_PASSWORD_KEYBOARD_TYPE}
         maxLength={100}
         width={'100%'}
         height={hp('6.5%')}
         marginBottom={hp('2%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
+        unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
+        focusedBorderColor={C_FOCUSED_BORDER_COLOR}
+        keyboardType={'default'}
         returnKeyType={'next'}
+        isPassword={true}
       />
       <CustomTextInput
         value={newEmail}
         onValueChange={handleNewEmailChange}
-        isError={isNewEmailError && newEmail.length > 0}
+        placeholder={S_TI_NEW_EMAIL_PLACEHOLDER}
         errorText={S_TI_EMAIL_ERROR_TEXT}
+        isError={isNewEmailError && newEmail.length > 0}
         disabled={isLoading}
-        isPassword={false}
-        placeholder={'new email'}
-        keyboardType={S_TI_EMAIL_KEYBOARD_TYPE}
         maxLength={100}
         width={'100%'}
         height={hp('6.5%')}
         fontSize={hp('2%')}
         textColor={C_TEXT_INPUT_TEXT_LIGHT}
-        unfocusedBorderColor={'gray'}
-        focusedBorderColor={'pink'}
+        unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
+        focusedBorderColor={C_FOCUSED_BORDER_COLOR}
+        keyboardType={'email-address'}
         returnKeyType={'done'}
+        isPassword={false}
       />
     </View>
   );

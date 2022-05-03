@@ -4,7 +4,6 @@ import doUpdateUserEmailByCloudFunction from '../../backend/cloud-functions/doUp
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import printDevLogs from '../printDevLogs';
 import {Result} from '../../constants/typeAliases';
-import doReloadUser from '../../backend/auth/doReloadUser';
 import {
   S_E_EES_EMAIL_IN_USE,
   S_E_INVALID_CREDENTIALS,
@@ -18,8 +17,8 @@ import {
  * Attempts to update the user's login email.
  * The user must re-authenticate themselves by entering their current password first
  * as a security measure.
- * @param newEmail The new login email the user wants to use
- * @param password The current login password used to reauthenticate the user
+ * @param newEmail (string) The new login email the user wants to use
+ * @param password (string) The current login password used to reauthenticate the user
  * @REAUTHENTICATION Below are errors thrown by the re-authentication function
  * @error auth/user-mismatch Thrown if the credential given does not correspond to the user.
  * @error auth/user-not-found Thrown if the credential given does not correspond to any existing user.
@@ -42,7 +41,7 @@ const updateUserEmailUC = async (
   const email = doGetUserEmail();
 
   if (!email) {
-    return {status: ERROR, data: null, message: S_E_UNEXPECTED_ERROR};
+    return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 
   try {
@@ -60,8 +59,7 @@ const updateUserEmailUC = async (
   try {
     await doReauthenticate(newEmail, password);
   } catch (e: any) {
-    return {status: ERROR, data: null, message: S_S_EES_EMAIL_UPDATED};
-    // return _getReauthenticateErrorResponse(e);
+    return {status: SUCCESS, message: S_S_EES_EMAIL_UPDATED};
   }
 
   return {status: SUCCESS, data: null, message: S_S_EES_EMAIL_UPDATED};
@@ -71,7 +69,7 @@ const updateUserEmailUC = async (
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
  * @param error The error
- * @returns {status: ERROR, data: null message: string}
+ * @returns {status: ERROR, message: string}
  */
 const _getReauthenticateErrorResponse = (error: any): Result => {
   if (__DEV__) {
@@ -84,27 +82,19 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
 
   switch (error.code) {
     case 'auth/network-request-failed':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_NOT_CONNECTED_TO_INTERNET,
-      };
+      return {status: ERROR, message: S_E_NOT_CONNECTED_TO_INTERNET};
     case 'auth/user-mismatch':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/user-not-found':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-credential':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
+      return {status: ERROR, message: S_E_INVALID_EMAIL};
     case 'auth/wrong-password':
-      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
+      return {status: ERROR, message: S_E_INVALID_EMAIL};
     default:
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_UNEXPECTED_ERROR,
-      };
+      return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 };
 
@@ -112,7 +102,7 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
  * @param error The error
- * @returns {status: ERROR, data: null message: string}
+ * @returns {status: ERROR, message: string}
  */
 const _getUpdateEmailErrorResponse = (error: any): Result => {
   if (__DEV__) {
@@ -125,25 +115,13 @@ const _getUpdateEmailErrorResponse = (error: any): Result => {
 
   switch (error.code) {
     case 'auth/network-request-failed':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_NOT_CONNECTED_TO_INTERNET,
-      };
+      return {status: ERROR, message: S_E_NOT_CONNECTED_TO_INTERNET};
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
+      return {status: ERROR, message: S_E_INVALID_EMAIL};
     case 'auth/email-already-in-use':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_EES_EMAIL_IN_USE,
-      };
+      return {status: ERROR, message: S_E_EES_EMAIL_IN_USE};
     default:
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_UNEXPECTED_ERROR,
-      };
+      return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 };
 

@@ -1,6 +1,5 @@
 import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 import doReauthenticate from '../../backend/auth/doReauthenticate';
-import doReloadUser from '../../backend/auth/doReloadUser';
 import doUpdateUserPassword from '../../backend/auth/doUpdateUserPassword';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {
@@ -19,8 +18,8 @@ import printDevLogs from '../printDevLogs';
  * Attempts to update the user's login password.
  * The user must re-authenticate themselves by entering their current password first
  * as a security measure.
- * @param newPassword The new login password the user wants to use
- * @param password The current login password used to reauthenticate the user
+ * @param newPassword (string) The new login password the user wants to use
+ * @param password (string) The current login password used to reauthenticate the user
  * @REAUTHENTICATION Below are errors thrown by the re-authentication function
  * @error auth/user-mismatch Thrown if the credential given does not correspond to the user.
  * @error auth/user-not-found Thrown if the credential given does not correspond to any existing user.
@@ -43,11 +42,7 @@ const updateUserPasswordUC = async (
   const email = doGetUserEmail();
 
   if (!email) {
-    return {
-      status: ERROR,
-      data: null,
-      message: S_E_UNEXPECTED_ERROR,
-    };
+    return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 
   try {
@@ -65,14 +60,10 @@ const updateUserPasswordUC = async (
   try {
     await doReauthenticate(email, newPassword);
   } catch (e: any) {
-    return _getReauthenticateErrorResponse(e);
+    return {status: SUCCESS, message: S_S_EPS_PASSWORD_UPDATED};
   }
 
-  return {
-    status: SUCCESS,
-    data: null,
-    message: S_S_EPS_PASSWORD_UPDATED,
-  };
+  return {status: SUCCESS, message: S_S_EPS_PASSWORD_UPDATED};
 };
 
 /**
@@ -92,27 +83,19 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
 
   switch (error.code) {
     case 'auth/network-request-failed':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_NOT_CONNECTED_TO_INTERNET,
-      };
+      return {status: ERROR, message: S_E_NOT_CONNECTED_TO_INTERNET};
     case 'auth/user-mismatch':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/user-not-found':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-credential':
-      return {status: ERROR, data: null, message: S_E_INVALID_CREDENTIALS};
+      return {status: ERROR, message: S_E_INVALID_CREDENTIALS};
     case 'auth/invalid-email':
-      return {status: ERROR, data: null, message: S_E_INVALID_EMAIL};
+      return {status: ERROR, message: S_E_INVALID_EMAIL};
     case 'auth/wrong-password':
-      return {status: ERROR, data: null, message: S_E_INVALID_PASSWORD};
+      return {status: ERROR, message: S_E_INVALID_PASSWORD};
     default:
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_UNEXPECTED_ERROR,
-      };
+      return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 };
 
@@ -133,23 +116,11 @@ const _getUpdatePasswordErrorResponse = (error: any): Result => {
 
   switch (error.code) {
     case 'auth/network-request-failed':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_NOT_CONNECTED_TO_INTERNET,
-      };
+      return {status: ERROR, message: S_E_NOT_CONNECTED_TO_INTERNET};
     case 'auth/weak-password':
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_EPS_WEAK_PASSWORD,
-      };
+      return {status: ERROR, message: S_E_EPS_WEAK_PASSWORD};
     default:
-      return {
-        status: ERROR,
-        data: null,
-        message: S_E_UNEXPECTED_ERROR,
-      };
+      return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }
 };
 
