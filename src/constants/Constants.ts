@@ -25,7 +25,7 @@ export const FS_WON_PRIZES_COLLECTION_KEY = 'won-prizes';
 export const FS_USER_WON_PRIZES_COLLECTION_KEY = 'user-prizes';
 export const FS_CONTEST_PRIZES_COLLECTION_KEY = 'contest-prizes';
 export const FS_USERS_COLLECTION_KEY = 'users';
-export const FS_PRIZE_CLAIMED_FIELD_KEY = 'prizeClaimed'
+export const FS_PRIZE_CLAIMED_FIELD_KEY = 'prizeClaimed';
 
 /** REALTIME DATABASE CONSTANTS */
 export const RTDB_GLOBAL_COUNT_KEY = 'global-count';
@@ -41,7 +41,6 @@ export const PCT_TRANSFER = 'transfer'; // the product is a cash prize, no shipm
 export const PCT_NONE = 'none'; // the product is claimable by the user without need for me
 
 /** CLOUD FUNCTION NAMES */
-export const CFN_DELETE_FROM_MAILING_LIST = 'deleteFromMailingList';
 export const CFN_SEND_ME_EMAIL = 'sendMeEmail';
 export const CFN_ADD_TO_EMAIL_LIST = 'addToMailingList';
 export const CFN_UPDATE_USER_EMAIL = 'updateUserEmail';
