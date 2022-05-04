@@ -1,30 +1,38 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const { printDevLogs } = require("../util/printDevLogs");
+const { S_UUA_E_PATH, S_UUA_E_INFO } = require("../../constants/Strings");
+const { FS_USER_COLLECTION_KEY } = require("../constants/Constants");
 
 /**
- *
+ * Updates the user's authentication token to match the newly inserted data into the firebase database
+ * @param snapshot ({email: string, registered: string, username: string | null}) The document snapshot
+ * @param context (any) The context this call was made from
+ * @trigger update to firebase users/{userId} document
  * @note context.auth.uid is not available for the onUpdate function. https://stackoverflow.com/questions/46912161/getting-the-user-id-from-a-firestore-trigger-in-cloud-functions-for-firebase
  */
 exports.updateUserAuth = functions.firestore
-  .document("users/{userId}")
+  .document(`${FS_USER_COLLECTION_KEY}/{userId}`)
   .onUpdate(async (snapshot, context) => {
     const oldValues = snapshot.before.data();
     const currentValues = snapshot.after.data();
 
     if (oldValues.username != currentValues.username) {
       try {
-        _updateUserAuthUsername(context.params.userId, currentValues.username);
-      } catch (e) {
-        console.log(`auth error updateUsername ${e}`);
-        throw new functions.https.HttpsError(
-          "unknown",
-          `failed to update auth displayName: ${e} ${context.auth.uid} ${values.email}`
+        await _updateUserAuthUsername(
+          context.params.userId,
+          currentValues.username
         );
+        return true;
+      } catch (e) {
+        printDevLogs(
+          S_UUA_E_PATH,
+          S_UUA_E_INFO,
+          `ERROR: failed to update auth().displayName --> ${e} &&&& DATA: snapshot: ${snapshot}, old document: ${oldValues}, current document: ${currentValues}, UID: ${context.params.userId}, context object: ${context}`
+        );
+        return false;
       }
     }
-
-    console.log("Update User Auth Ran Successfully");
-    return true;
   });
 
 /**

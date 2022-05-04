@@ -1,38 +1,57 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const { printDevLogs } = require("../util/printDevLogs");
+const { S_UUE_E_PATH, S_UUE_E_INFO } = require("../constants/Strings");
+const { isEmailValid } = require("../util/isEmailValid");
 
 const userRef = admin.firestore().collection("users");
 
 /**
  * Updates the user's email address.
- * Do it on the serever so that they don't get an email from firebase allowing them to change it back
+ * Do it on the server so that they don't get an email from firebase allowing them to change it back
+ * @param data ({email: string}) Contains the message to be sent in the email
+ * @param context (any) The context this call was made from
+ * @trigger onCall from client
  */
 exports.updateUserEmail = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
-    throw new functions.https.HttpsError(
-      "unauthenticated",
-      "User trying to update email while unauthenticated"
+    printDevLogs(
+      S_UUE_E_PATH,
+      S_UUE_E_INFO,
+      `ERROR:  failed to update email --> User is unauthenticated &&&& DATA: context object: ${context}, data object: ${data}`
     );
+    throw new functions.https.HttpsError("unauthenticated", "");
+  }
+
+  if (!data.email || !isEmailValid(data.email)) {
+    printDevLogs(
+      S_UUE_E_PATH,
+      S_UUE_E_INFO,
+      `ERROR: failed to update email --> the passed email is either null or invalid &&&& DATA: email: ${data.email}, context object: ${context}, data object: ${data}`
+    );
+    throw new functions.https.HttpsError("invalid-argument", "");
   }
 
   try {
     await userRef.doc(context.auth.uid).update({ email: data.email });
   } catch (e) {
-    console.error(`firebase error update email: ${e}`);
-    throw new functions.https.HttpsError(
-      "unknown",
-      `failed to update database email: ${e} ${context.auth.uid} ${data.email}`
+    printDevLogs(
+      S_UUE_E_PATH,
+      S_UUE_E_INFO,
+      `failed to update database email: ERROR: ${e} DATA: uid: ${context.auth.uid}, email: ${data.email}, context object: ${context}`
     );
+    throw new functions.https.HttpsError("unknown", "");
   }
 
   try {
     await _updateUserAuthEmail(context.auth.uid, data.email);
   } catch (e) {
-    console.log(`auth error update email ${e}`);
-    throw new functions.https.HttpsError(
-      "unknown",
-      `failed to update auth email: ${e} ${context.auth.uid} ${values.email}`
+    printDevLogs(
+      S_UUE_E_PATH,
+      S_UUE_E_INFO,
+      `failed to update auth email (but database email was updated, this is a big problem): ERROR: ${e} DATA: uid: ${context.auth.uid}, email: ${data.email}, context object: ${context}`
     );
+    throw new functions.https.HttpsError("unknown", "");
   }
 
   return true;
