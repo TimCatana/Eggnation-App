@@ -1,5 +1,5 @@
 import database from '@react-native-firebase/database';
-import { RTDB_GLOBAL_COUNT_KEY } from '../../../constants/Constants';
+import {RTDB_GLOBAL_COUNT_KEY} from '../../../constants/Constants';
 
 /**
  * Increments the global count in the realtime database.

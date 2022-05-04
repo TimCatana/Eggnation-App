@@ -15,6 +15,7 @@ import doSubscribeToMailingList from '../../backend/cloud-functions/doSubscribeT
  * Attempts to register a new user account given an email and a password.
  * @param email (string) The users email address.
  * @param password (string) The users password.
+ * @param isSubbedToMailingList (boolean) If the user opted to sign up for the mailing list
  * @error auth/email-already-in-use Thrown if there already exists an account with the given email address.
  * @error SHOULD NEVER BE THROWN auth/invalid-email Thrown if the email address is not valid.
  * @error SHOULD NEVER BE THROWN auth/weak-password Thrown if the password is not strong enough.
@@ -28,6 +29,26 @@ const registerUserUC = async (
   password: string,
   isSubbedToMailingList: boolean,
 ): Promise<Result> => {
+  try {
+    await doRegister(email, password);
+    // Cloud Function automatically adds user to database
+    await _addUserToMailingList(isSubbedToMailingList, email);
+    return {status: SUCCESS, message: ''};
+  } catch (e: any) {
+    return _getErrorResponse(e);
+  }
+};
+
+/**
+ * Adds the user to the mailing list if they opted in for it.
+ * @param isSubbedToMailingList (boolean) If the user opted to sign up for the mailing list
+ * @param email (string) The users email address.
+ * @note Errors should be caught here, they should not propagate up since the registration already was successful so I want to return a success
+ */
+const _addUserToMailingList = async (
+  isSubbedToMailingList: boolean,
+  email: string,
+) => {
   if (isSubbedToMailingList) {
     try {
       await doSubscribeToMailingList(email);
@@ -36,35 +57,6 @@ const registerUserUC = async (
         console.log(`failed to sub to mailing list --> ${e}`);
       }
     }
-  }
-
-  try {
-    await doRegister(email, password);
-    // Cloud Function automatically adds user to database
-  } catch (e: any) {
-    return _deleteFromMailingList(email, e);
-  }
-
-  return {status: SUCCESS, message: ''};
-};
-
-/**
- * TODO - might just add the user to the list even if the registration fails... probably do that
- * I need to add to  mailing list before I register the user due to the way the auth
- * changes the stack right when the firebase auth token becomes valid.
- * So if the registration fails, I need to delete from the mailing list.
- * This operation can also throw an error, so I need to make sure the correct error get's
- * propagated.
- * @param email (string) The user email
- * @param e (error) The error that was thrown from doRegister
- * @returns {status: ERROR, message: string}
- */
-const _deleteFromMailingList = (email: string, e: any) => {
-  try {
-    doSubscribeToMailingList(email); // TODO - change this to delete
-    return _getErrorResponse(e);
-  } catch (_e) {
-    return _getErrorResponse(_e);
   }
 };
 

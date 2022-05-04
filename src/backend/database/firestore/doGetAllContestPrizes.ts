@@ -5,7 +5,6 @@ import {ContestPrizeArray} from '../../../constants/typeAliases';
 /**
  * Get's the list of all of the contest prizes.
  * The userId is used to identify which contest prizes collection to query.
- * @param userId (string) The userId of the user
  * @returns ( { prizeId: string,
  *              prizeTitle: string,
  *              prizeDesc: string,

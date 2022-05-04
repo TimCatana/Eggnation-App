@@ -30,9 +30,9 @@ const doAddWonPrizeToUserAccount = async (
       prizeDesc: `${prizeToAdd.prizeDesc}`,
       prizeType: `${prizeToAdd.prizeType}`,
       prizeTier: `${prizeToAdd.prizeTier}`,
+      prizeClaimType: `${prizeToAdd.prizeClaimType}`,
       prizeWonDate: `${Date()}`,
       prizeClaimed: false,
-      prizeClaimType: `${prizeToAdd.prizeClaimType}`,
       prizeDelivered: false,
       prizeWinnerId: `${userId}`,
     });
