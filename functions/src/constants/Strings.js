@@ -42,10 +42,10 @@ exports.S_ATML_E_PATH = "src/sib/addToMailingList.js";
 exports.S_ATML_E_INFO =
   "addToMailingList (trigger is on call from client)";
 
-/*********************************/
-/***** removeFromMailingList *****/
-/*********************************/
+/**************************************/
+/***** updateContactInMailingList *****/
+/**************************************/
 
-exports.S_RFML_E_PATH = "src/sib/removeFromMailingList.js";
-exports.S_RFML_E_INFO =
-  "removeFromMailingList (trigger is on call from client)";
+exports.S_UCIMM_E_PATH = "src/sib/updateContactInMailingList.js";
+exports.S_UCIMM_E_INFO =
+  "updateContactInMailingList (trigger is on call from client)";

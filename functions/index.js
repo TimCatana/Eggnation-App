@@ -21,6 +21,9 @@ const {
 const { updateUserEmail } = require("./src/firestore/updateUserEmail");
 
 const { addToMailingList } = require("./src/sib/addToMailingList");
+const {
+  updateContactInMailingList,
+} = require("./src/sib/updateContactInMailingList");
 
 /** EXPORT FUNCTIONS */
 exports.updateUserAuth = updateUserAuth;
@@ -32,3 +35,4 @@ exports.removeUserFromFirestore = removeUserFromFirestore;
 exports.updateUserEmail = updateUserEmail;
 
 exports.addToMailingList = addToMailingList;
+exports.updateContactInMailingList = updateContactInMailingList;
