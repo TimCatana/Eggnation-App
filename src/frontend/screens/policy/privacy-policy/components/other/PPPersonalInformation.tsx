@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {
+  S_PP_PERSONAL_INFORMATION_CONTENT,
+  S_PP_PERSONAL_INFORMATION_TITLE,
+} from '../../../../../../constants/Strings';
 import {PolicySection} from '../../../../../common/components';
 
-const PPPersonalInformation = () => {
+const PPPersonalInformation: FC = () => {
   return (
     <PolicySection
-      title="Personal Information"
-      content={`When using Eggnation, you may be required to provide us with certain personal identifiable information. This information will never be used by us in a manner that does not conform to this Privacy Policy.`}
+      title={S_PP_PERSONAL_INFORMATION_TITLE}
+      content={S_PP_PERSONAL_INFORMATION_CONTENT}
     />
   );
 };

@@ -1,5 +1,4 @@
-import React, {FC, useState, useEffect} from 'react';
-import {Alert, BackHandler} from 'react-native';
+import React, {FC} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {HomeScreen, WonPrizesScreen, AvailablePrizesScreen} from '../screens';
 import {Screens} from '../../constants/NavigationConstants';

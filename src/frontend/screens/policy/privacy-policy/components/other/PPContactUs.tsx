@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {
+  S_PP_CONTACT_US_CONTENT,
+  S_PP_CONTACT_US_TITLE,
+} from '../../../../../../constants/Strings';
 import {PolicySection} from '../../../../../common/components';
 
-const PPContactUs = () => {
+const PPContactUs: FC = () => {
   return (
     <PolicySection
-      title="Contact Us"
-      content={`If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at eggnationapp@gmail.com.`}
+      title={S_PP_CONTACT_US_TITLE}
+      content={S_PP_CONTACT_US_CONTENT}
     />
   );
 };

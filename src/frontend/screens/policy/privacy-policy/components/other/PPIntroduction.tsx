@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {
+  S_PP_INTRODUCTION_CONTENT,
+  S_PP_INTRODUCTION_TITLE,
+} from '../../../../../../constants/Strings';
 import {PolicySection} from '../../../../../common/components';
 
-const PPIntroduction = () => {
+const PPIntroduction: FC = () => {
   return (
     <PolicySection
-      title="Introduction"
-      content={`This Privacy Policy describes how Eggnation and Applicnation (collectively the “App”, “we”, “our”, “us”) collects, uses, and discloses your Personal Information when you open and use our app.`}
+      title={S_PP_INTRODUCTION_TITLE}
+      content={S_PP_INTRODUCTION_CONTENT}
     />
   );
 };

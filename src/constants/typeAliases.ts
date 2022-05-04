@@ -78,7 +78,7 @@ export type Regions = {
   shortCode?: string;
 }[];
 
-export type Region= {
+export type Region = {
   name: string;
   shortCode?: string;
 };
@@ -96,5 +96,3 @@ export type Country = {
   // postalCodeFormat: string;
   // regions: Regions;
 };
-
-

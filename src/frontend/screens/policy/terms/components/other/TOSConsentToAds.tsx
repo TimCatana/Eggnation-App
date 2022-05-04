@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {
+  S_TS_CONSENT_TO_ADS_CONTENT,
+  S_TS_CONSENT_TO_ADS_TITLE,
+} from '../../../../../../constants/Strings';
 import {PolicySection} from '../../../../../common/components';
 
-const TOSConsentToAds = () => {
+const TOSConsentToAds: FC = () => {
   return (
     <PolicySection
-      title="Consent to Advertisements"
-      content={`Eggnation uses advertisements to generate revenue. These funds will be used to keep the Platform running. By using our application, you consent to allowing us to show you ads. Every time you open the application, you consent to allowing us to show you ads. If you do not wish to view ads, then please do not use our Platform.`}
+      title={S_TS_CONSENT_TO_ADS_TITLE}
+      content={S_TS_CONSENT_TO_ADS_CONTENT}
     />
   );
 };

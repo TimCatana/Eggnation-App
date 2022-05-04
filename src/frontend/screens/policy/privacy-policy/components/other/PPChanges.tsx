@@ -1,14 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {
+  S_PP_CHANGES_CONTENT,
+  S_PP_CHANGES_TITLE,
+} from '../../../../../../constants/Strings';
 import {PolicySection} from '../../../../../common/components';
 
-const PPChanges = () => {
+const PPChanges: FC = () => {
   return (
-    <PolicySection
-      title="Changes to This Privacy Policy"
-      content={`We may update our Privacy Policy from time to time without your knowledge. Thus, you are advised to review this page periodically for any changes. 
-
-This policy is effective as of 2022-04-28`}
-    />
+    <PolicySection title={S_PP_CHANGES_TITLE} content={S_PP_CHANGES_CONTENT} />
   );
 };
 

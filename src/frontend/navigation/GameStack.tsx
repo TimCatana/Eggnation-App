@@ -28,7 +28,7 @@ const GameStack: FC = () => {
       <Stack.Screen
         name={Screens.CLAIM_PRIZE_SCREEN}
         component={ClaimPrizeScreen}
-        initialParams={{prizeId: ''}}
+        initialParams={{prizeId: '', prizeClaimType: ''}}
       />
       <Stack.Screen name={Screens.SETTINGS_SCREEN} component={SettingsScreen} />
       <Stack.Screen
@@ -48,12 +48,12 @@ const GameStack: FC = () => {
         component={EditLanguageScreen}
       />
       <Stack.Screen
-        name={Screens.PRIVACY_POLICY_SCREEN}
-        component={PrivacyPolicyScreen}
-      />
-      <Stack.Screen
         name={Screens.HOW_TO_PLAY_SCREEN}
         component={HowToPlayScreen}
+      />
+      <Stack.Screen
+        name={Screens.PRIVACY_POLICY_SCREEN}
+        component={PrivacyPolicyScreen}
       />
       <Stack.Screen name={Screens.TERMS_SCREEN} component={TermsScreen} />
     </Stack.Navigator>

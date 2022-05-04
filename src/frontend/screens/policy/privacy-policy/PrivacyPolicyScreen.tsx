@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../../constants/Colors';
+import {PressableIcon} from '../../../common/components';
 import PPIntroduction from './components/other/PPIntroduction';
 import PPTerminology from './components/other/PPTerminology';
 import PPPersonalInformation from './components/other/PPPersonalInformation';
@@ -19,8 +20,6 @@ import PPChildrenPrivacy from './components/other/PPChildrenPrivacy';
 import PPChanges from './components/other/PPChanges';
 import PPContactUs from './components/other/PPContactUs';
 import usePrivacyPolicyScreen from './usePrivacyPolicyScreen';
-import {ScrollView} from 'react-native-gesture-handler';
-import {PressableIcon} from '../../../common/components';
 
 const PrivacyPolicyScreen: FC = () => {
   const {navigateBack} = usePrivacyPolicyScreen();
@@ -28,14 +27,11 @@ const PrivacyPolicyScreen: FC = () => {
   return (
     <ScrollView
       style={styles.body}
-      contentContainerStyle={{
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-      }}>
+      contentContainerStyle={styles.bodyContent}>
       <PressableIcon
         icon={'arrow-left'}
         onPress={navigateBack}
-        iconSize={hp('3.5%')}
+        iconSize={hp('3.6%')}
         iconColor={C_ICON_LIGHT}
         viewStyle={styles.icon}
         iconStyle={{}}
@@ -65,9 +61,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: C_BACKGROUND_DARK,
   },
+  bodyContent: {
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
   icon: {
-    marginLeft: hp('0.5%'),
-    marginTop: hp('0.5%'),
+    paddingLeft: hp('0.6%'),
+    paddingTop: hp('0.6%'),
     marginBottom: hp('1%'),
   },
 });

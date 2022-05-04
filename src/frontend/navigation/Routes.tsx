@@ -8,6 +8,7 @@ import AuthStack from './AuthStack';
 const Routes: FC = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+
   /**
    * on mount create a subscriber that listens to changes in the firebase authentication state.
    * When the authentication state changes the onAuthStateChanged callback function is fired.

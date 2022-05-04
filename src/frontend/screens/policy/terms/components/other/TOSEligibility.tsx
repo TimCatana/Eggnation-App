@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {
+  S_TS_ELIGIBILITY_CONTENT,
+  S_TS_ELIGIBILITY_TITLE,
+} from '../../../../../../constants/Strings';
 import {PolicySection} from '../../../../../common/components';
 
-const TOSEligibility = () => {
+const TOSEligibility: FC = () => {
   return (
     <PolicySection
-      title="Eligibility"
-      content={`In order to access or use our Service, you must be at least 13 years of age. If you are younger than 13 and register an account with us, your account will be eligible for termination, and all prizes won by the terminated account will be revoked.`}
+      title={S_TS_ELIGIBILITY_TITLE}
+      content={S_TS_ELIGIBILITY_CONTENT}
     />
   );
 };

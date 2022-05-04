@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {
+  S_TS_PLATFORM_CHANGES_CONTENT,
+  S_TS_PLATFORM_CHANGES_TITLE,
+} from '../../../../../../constants/Strings';
 import {PolicySection} from '../../../../../common/components';
 
-const TOSPlatformChanges = () => {
+const TOSPlatformChanges: FC = () => {
   return (
     <PolicySection
-      title="Modification of the Platform"
-      content={`Eggnation and Applicnation may at any time make changes to the Platform at their own discretion without your knowledge.`}
+      title={S_TS_PLATFORM_CHANGES_TITLE}
+      content={S_TS_PLATFORM_CHANGES_CONTENT}
     />
   );
 };
