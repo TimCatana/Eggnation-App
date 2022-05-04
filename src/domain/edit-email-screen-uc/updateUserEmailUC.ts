@@ -12,6 +12,7 @@ import printDevLogs from '../printDevLogs';
 import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 import doReauthenticate from '../../backend/auth/doReauthenticate';
 import doUpdateUserEmailByCloudFunction from '../../backend/cloud-functions/doUpdateUserEmailByCloudFunction';
+import doUpdateEmailInMailingList from '../../backend/cloud-functions/doUpdateEmailInMailingList';
 
 /**
  * Attempts to update the user's login email.
@@ -54,6 +55,14 @@ const updateUserEmailUC = async (
     await doUpdateUserEmailByCloudFunction(newEmail);
   } catch (e: any) {
     return _getUpdateEmailErrorResponse(e);
+  }
+
+  try {
+    await doUpdateEmailInMailingList(email, newEmail);
+  } catch (e: any) {
+    if (__DEV__) {
+      console.error(`Failed to update user email in mailing list --> ${e}`);
+    }
   }
 
   try {

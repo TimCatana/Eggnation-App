@@ -142,7 +142,7 @@ const useSettingsScreen = () => {
   /** Navigates to edit password screen if no process is currently running. */
   const navToEggnationShop = () => {
     if (!isLoading) {
-      const url = 'https://mynzaclothing.com/password';
+      const url = 'https://eggnationshop.com';
       Linking.openURL(url);
     }
   };

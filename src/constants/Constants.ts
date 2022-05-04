@@ -43,4 +43,5 @@ export const PCT_NONE = 'none'; // the product is claimable by the user without 
 /** CLOUD FUNCTION NAMES */
 export const CFN_SEND_ME_EMAIL = 'sendMeEmail';
 export const CFN_ADD_TO_EMAIL_LIST = 'addToMailingList';
+export const CFN_UPDATE_MAILING_LIST_EMAIL = 'updateContactInMailingList';
 export const CFN_UPDATE_USER_EMAIL = 'updateUserEmail';

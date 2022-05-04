@@ -52,9 +52,9 @@ const _addUserToMailingList = async (
   if (isSubbedToMailingList) {
     try {
       await doSubscribeToMailingList(email);
-    } catch (e) {
+    } catch (e: any) {
       if (__DEV__) {
-        console.log(`failed to sub to mailing list --> ${e}`);
+        console.error(`failed to sub to mailing list --> ${e}`);
       }
     }
   }
