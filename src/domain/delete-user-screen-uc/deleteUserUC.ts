@@ -1,9 +1,9 @@
+import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {Result} from '../../constants/typeAliases';
 import doReauthenticate from '../../backend/auth/doReauthenticate';
 import doDeleteUser from '../../backend/auth/doDeleteUser';
-import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
-import printDevLogs from '../printDevLogs';
 import doGetUserEmail from '../../backend/auth/deGetUserEmail';
-import {Result} from '../../constants/typeAliases';
+import printDevLogs from '../printDevLogs';
 import {
   S_E_INVALID_CREDENTIALS,
   S_E_INVALID_EMAIL,
@@ -16,7 +16,7 @@ import {
  * Attempts to delete the currently logged in user's account.
  * The user must re-authenticate themselves by entering their current password first
  * as a security measure.
- * @param password The current login password used to reauthenticate the user.
+ * @param password (string) The current login password used to reauthenticate the user.
  * @REAUTHENTICATION Below are errors thrown by the re-authentication function
  * @error auth/user-mismatch Thrown if the credential given does not correspond to the user.
  * @error auth/user-not-found Thrown if the credential given does not correspond to any existing user.
@@ -63,8 +63,8 @@ const deleteUserUC = async (password: string): Promise<Result> => {
 const _getReauthenticateErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/edit-password-screen-uc/updateUserPasswordUC.js',
-      'updateUserPasswordUC/doReauthenticate',
+      'domain/delete-user-screen-uc/deleteUserUC.ts',
+      'deleteUserUC/doReauthenticate',
       `${error}`,
     );
   }

@@ -3,7 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import {DeleteAccountScreenProp} from '../../../navigation/ScreenProps';
 import {ERROR} from '../../../../constants/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
-import deleteUserUC from '../../../../domain/settings-screen-uc/deleteUserUC';
+import deleteUserUC from '../../../../domain/delete-user-screen-uc/deleteUserUC';
 
 const useDeleteAccountScreen = () => {
   /******************/

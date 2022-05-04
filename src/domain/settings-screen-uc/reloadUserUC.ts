@@ -5,13 +5,9 @@ import {Result} from '../../constants/typeAliases';
 const reloadUserUC = async (): Promise<Result> => {
   try {
     await doReloadUser();
-    return {
-      status: SUCCESS,
-      data: null,
-      message: 'Reloaded user successfully!',
-    };
+    return {status: SUCCESS, message: ''};
   } catch (error) {
-    return {status: ERROR, data: null, message: 'Failed to reload user!'};
+    return {status: ERROR, message: ''};
   }
 };
 

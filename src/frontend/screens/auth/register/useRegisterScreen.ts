@@ -38,7 +38,7 @@ const useRegisterScreen = () => {
   /***********************/
   /***** USE EFFECTS *****/
   /***********************/
-  
+
   /**
    * Checks to see if current email is a valid email address.
    * @dependent email

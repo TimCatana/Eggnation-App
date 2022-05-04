@@ -25,6 +25,7 @@ export const C_BUTTON_DISABLED = 'gray'; // '#808080'
 export const C_BUTTON_ENABLED = 'pink'; // '#ffc0cb'
 export const C_BUTTON_ENABLED_SETTINGS = '#1c1c1e';
 export const C_BUTTON_LIGHT = 'white';
+export const C_BUTTON_TRANSPARENT = 'transparent';
 
 /** ACTIVITY INDICATOR */
 export const C_ACTIVITY_INDICATOR = 'pink'; // '#ffc0cb'

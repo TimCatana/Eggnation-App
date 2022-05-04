@@ -1,7 +1,10 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {PCT_TRANSFER, PCT_DELIVERABLE} from '../../../../../constants/Constants';
+import {
+  PCT_TRANSFER,
+  PCT_DELIVERABLE,
+} from '../../../../../constants/Constants';
 import {
   PrizeDisplayContentTopView,
   PrizeDisplayContentTopCenterView,
@@ -44,7 +47,7 @@ const PrizeDisplayContent: FC<Props> = props => {
 
   return (
     <View style={styles.body}>
-      <ScrollView style={{flex: 1}}>
+      <ScrollView style={styles.scrollView}>
         <PrizeDisplayContentTopView displayImage={displayImage} />
 
         <PrizeDisplayContentTopCenterView prizeTitle={prizeTitle} />
@@ -79,6 +82,9 @@ const styles = StyleSheet.create({
   body: {
     flex: 13, // Need this because it shares space with the bookshelf top image
     display: 'flex',
+  },
+  scrollView: {
+    flex: 1,
   },
 });
 

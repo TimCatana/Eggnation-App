@@ -34,6 +34,16 @@ const useEditPasswordScreen = () => {
   /***********************/
 
   /**
+   * Checks to see if current currentPassword input is a valid password.
+   * @dependent password
+   */
+  useEffect(() => {
+    currentPassword.length > 0
+      ? setIsCurrentPasswordError(false)
+      : setIsCurrentPasswordError(true);
+  }, [currentPassword]);
+
+  /**
    * Checks to see if current newPassword input is a valid password.
    * Also checks to see if confirm password password matches new inputted password.
    * @dependent newPassword
@@ -56,16 +66,6 @@ const useEditPasswordScreen = () => {
   }, [confirmPassword]);
 
   /**
-   * Checks to see if current currentPassword input is a valid password.
-   * @dependent password
-   */
-  useEffect(() => {
-    currentPassword.length > 0
-      ? setIsCurrentPasswordError(false)
-      : setIsCurrentPasswordError(true);
-  }, [currentPassword]);
-
-  /**
    * Displays a Snackbar showing a message.
    * Usually used for error messages.
    * @dependent showSnackbar
@@ -84,6 +84,14 @@ const useEditPasswordScreen = () => {
   /***********************/
 
   /**
+   * Updates the current currentPassword state when user inputs a value into a textInput
+   * @param value (string) The value inputted into the textInput
+   */
+  const handleCurrentPasswordChange = (value: string) => {
+    setCurrentPassword(value);
+  };
+
+  /**
    * Updates the current newPassword state when user inputs a value into a textInput
    * @param value (string) The value inputted into the textInput
    */
@@ -97,14 +105,6 @@ const useEditPasswordScreen = () => {
    */
   const handleConfirmPasswordChange = (value: string) => {
     setConfirmPassword(value);
-  };
-
-  /**
-   * Updates the current currentPassword state when user inputs a value into a textInput
-   * @param value (string) The value inputted into the textInput
-   */
-  const handleCurrentPasswordChange = (value: string) => {
-    setCurrentPassword(value);
   };
 
   /*************************/
@@ -129,8 +129,8 @@ const useEditPasswordScreen = () => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /** 
-   * Navigates back to the login screen if no process is currently running. 
+  /**
+   * Navigates back to the login screen if no process is currently running.
    */
   const navigateBack = () => {
     if (!isLoading) {
@@ -138,8 +138,8 @@ const useEditPasswordScreen = () => {
     }
   };
 
-  /** 
-   * Navigates back to the login screen if no process is currently running. 
+  /**
+   * Navigates back to the login screen if no process is currently running.
    */
   const updatePasswordAndNavBackIfSuccess = async () => {
     const status = await handleUpdatePasswordClick();

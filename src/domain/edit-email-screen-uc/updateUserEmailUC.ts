@@ -1,9 +1,9 @@
+import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {Result} from '../../constants/typeAliases';
 import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 import doReauthenticate from '../../backend/auth/doReauthenticate';
 import doUpdateUserEmailByCloudFunction from '../../backend/cloud-functions/doUpdateUserEmailByCloudFunction';
-import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import printDevLogs from '../printDevLogs';
-import {Result} from '../../constants/typeAliases';
 import {
   S_E_EES_EMAIL_IN_USE,
   S_E_INVALID_CREDENTIALS,
@@ -62,7 +62,7 @@ const updateUserEmailUC = async (
     return {status: SUCCESS, message: S_S_EES_EMAIL_UPDATED};
   }
 
-  return {status: SUCCESS, data: null, message: S_S_EES_EMAIL_UPDATED};
+  return {status: SUCCESS, message: S_S_EES_EMAIL_UPDATED};
 };
 
 /**
@@ -74,7 +74,7 @@ const updateUserEmailUC = async (
 const _getReauthenticateErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/edit-email-screen-uc/updateUserEmailUC.js',
+      'domain/edit-email-screen-uc/updateUserEmailUC.ts',
       'updateUserEmailUC/doReauthenticate',
       `${error}`,
     );

@@ -114,8 +114,8 @@ const useLoginScreen = () => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /** 
-   * Navigates to forgot password screen if no process is currently running. 
+  /**
+   * Navigates to forgot password screen if no process is currently running.
    */
   const navToForgotPasswordScreen = () => {
     if (!isLoading) {
@@ -127,8 +127,8 @@ const useLoginScreen = () => {
     }
   };
 
-  /** 
-   * Navigates to register screen if no process is currently running. 
+  /**
+   * Navigates to register screen if no process is currently running.
    */
   const navToRegisterScreen = () => {
     if (!isLoading) {

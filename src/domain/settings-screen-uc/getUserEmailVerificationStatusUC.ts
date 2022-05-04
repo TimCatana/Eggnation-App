@@ -3,6 +3,8 @@ import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
 
+//TODO - I wanted to add this in the first release, but encountered to many problems. May add this in future releases. But this needs cleaning up before release
+
 /**
  * Attempts to get the currently logged in user's email verification status.
  * @error null-email-verification-status SHOULD NEVER OCCUR The user email verification status is null

@@ -5,7 +5,6 @@ import {backgroundAuth} from '../../../../../assets';
 import {C_ACTIVITY_INDICATOR} from '../../../../constants/Colors';
 import LoginScreenTopView from './components/top-view/LoginScreenTopView';
 import LoginScreenBottomView from './components/bottom-view/LoginScreenBottomView';
-
 import useLoginScreen from './useLoginScreen';
 
 const LoginScreen: FC = () => {

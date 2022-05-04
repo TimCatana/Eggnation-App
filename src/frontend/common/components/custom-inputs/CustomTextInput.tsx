@@ -99,6 +99,7 @@ const CustomTextInput: FC<Props> = props => {
             setIsFocused(false);
           }}
         />
+
         {isPassword && (
           <View style={styles.icon}>
             <Pressable onPress={togglePasswordView} disabled={disabled}>

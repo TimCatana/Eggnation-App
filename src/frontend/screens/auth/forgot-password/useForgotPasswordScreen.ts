@@ -79,8 +79,8 @@ const useForgotPasswordScreen = () => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /** 
-   * Navigates back to the login screen if no process is currently running. 
+  /**
+   * Navigates back to the login screen if no process is currently running.
    */
   const navigateBack = () => {
     if (!isLoading) {

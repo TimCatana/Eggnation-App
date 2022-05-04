@@ -1,9 +1,6 @@
 import React, {FC} from 'react';
 import {ImageBackground, ActivityIndicator, StyleSheet} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {backgroundAuth} from '../../../../../assets';
 import {
   C_ICON_PRIMARY,
@@ -11,7 +8,6 @@ import {
 } from '../../../../constants/Colors';
 import {PressableIcon} from '../../../common/components';
 import ForgotPasswordScreenCenterView from './components/center-view/ForgotPasswordScreenCenterView';
-
 import useForgotPasswordScreen from './useForgotPasswordScreen';
 
 const ForgotPasswordScreen: FC = () => {

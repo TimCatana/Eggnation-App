@@ -6,6 +6,7 @@ import {
   C_BUTTON_ENABLED,
   C_TEXT_INPUT_TEXT_LIGHT,
 } from '../../../../../constants/Colors';
+import {S_PCM_GO_BACK_BUTTON} from '../../../../../constants/Strings';
 import CustomButton from '../../custom-inputs/CustomButton';
 
 interface Props {
@@ -18,7 +19,7 @@ const PrizeClaimedModalBottomView: FC<Props> = props => {
   return (
     <View style={styles.body}>
       <CustomButton
-        label={'Go Back'}
+        label={S_PCM_GO_BACK_BUTTON}
         onPress={navigateBack}
         disabled={false}
         buttonEnabledColor={C_BUTTON_ENABLED}

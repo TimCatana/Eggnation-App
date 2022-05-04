@@ -9,6 +9,7 @@ import {
   S_SS_EMAIL,
   S_SS_PASSWORD,
   S_SS_LANGUAGE,
+  S_SS_PASSWORD_DOTS,
 } from '../../../../../../constants/Strings';
 import {C_BACKGROUND_SETTINGS_SECTION} from '../../../../../../constants/Colors';
 import SettingsItem from '../settings-item/SettingsItem';
@@ -33,25 +34,25 @@ const SettingsProfileSection: FC<Props> = props => {
           title={S_SS_EMAIL}
           content={email}
           icon={'edit'}
+          iconDisabled={false}
           isLast={false}
           onIconPress={navToEditEmailScreen}
-          iconDisabled={false}
         />
         <SettingsItem
           title={S_SS_PASSWORD}
-          content={'●●●●●●●'}
+          content={S_SS_PASSWORD_DOTS}
           icon={'edit'}
+          iconDisabled={false}
           isLast={false}
           onIconPress={navToEditPasswordScreen}
-          iconDisabled={false}
         />
         <SettingsItem
           title={S_SS_LANGUAGE}
           content={language}
           icon={'check'}
+          iconDisabled={false}
           isLast={true}
           onIconPress={() => {}}
-          iconDisabled={false}
         />
       </View>
     </View>

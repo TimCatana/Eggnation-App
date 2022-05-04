@@ -75,7 +75,7 @@ const updateUserPasswordUC = async (
 const _getReauthenticateErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/edit-password-screen-uc/updateUserPasswordUC.js',
+      'domain/edit-password-screen-uc/updateUserPasswordUC.ts',
       'updateUserPasswordUC/doReauthenticate',
       `${error}`,
     );
@@ -108,7 +108,7 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
 const _getUpdatePasswordErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/edit-password-screen-uc/updateUserPasswordUC.js',
+      'domain/edit-password-screen-uc/updateUserPasswordUC.ts',
       'updateUserPasswordUC/doUpdateUserPassword',
       `${error}`,
     );

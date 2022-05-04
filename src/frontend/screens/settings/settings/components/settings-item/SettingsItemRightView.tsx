@@ -16,7 +16,7 @@ const SettingsItemRightView: FC<Props> = props => {
   return (
     <View style={styles.body}>
       <Pressable disabled={iconDisabled} onPress={onIconPress}>
-        <IconMaterial style={styles.icon} name={icon} size={hp('2.5%')} />
+        <IconMaterial style={styles.icon} name={icon} size={hp('2.7%')} />
       </Pressable>
     </View>
   );

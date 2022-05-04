@@ -1,5 +1,9 @@
 /** @note some error texts are just empty strings, those are hard coded in. In case you're confused why sometimes the error text doesn't show up */
 
+/********************************************************************************/
+/******************************** AUTH SCREENS **********************************/
+/********************************************************************************/
+
 /**********************************/
 /***** FORGOT PASSWORD SCREEN *****/
 /**********************************/
@@ -29,6 +33,30 @@ export const S_RS_TERMS_OF_SERVICE = 'Terms of Service';
 export const S_RS_SUBSCRIBE_TO = 'Subscribe to';
 export const S_RS_EGGNATION_SHOP_COM = ' eggnationshop.com ';
 export const S_RS_EMAILS = 'emails';
+
+/************************************************************************************/
+/******************************** SETTINGS SCREENS **********************************/
+/************************************************************************************/
+
+/*********************************/
+/***** DELETE ACCOUNT SCREEN *****/
+/*********************************/
+
+export const S_DAS_DELETE_BUTTON = 'Delete Account';
+
+/*****************************/
+/***** EDIT EMAIL SCREEN *****/
+/*****************************/
+
+/********************************/
+/***** EDIT PASSWORD SCREEN *****/
+/********************************/
+
+/***************************/
+/***** SETTINGS SCREEN *****/
+/***************************/
+
+export const S_E_SS_FAILED_EMAIL_FETCH = 'Failed to get email';
 
 /***********************/
 /***** TEXT INPUTS *****/
@@ -162,3 +190,10 @@ export const S_PS_FAILED_PRIZE_FETCH = 'Failed to fetch prizes';
 export const S_PS_NO_AVAILABLE_PRIZES =
   'No Prizes Available. More Coming Soon!';
 export const S_PS_NO_WON_PRIZES = "You haven't won anything yet!";
+
+export const S_PCM_GO_BACK_BUTTON = 'Go Back';
+
+export const S_PDM_CLAIMED_BUTTON = 'Claimed';
+export const S_PDM_CLAIM_BUTTON = 'Claim';
+
+export const S_SS_PASSWORD_DOTS = '●●●●●●●';

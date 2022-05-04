@@ -1,19 +1,15 @@
 import React, {FC} from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   C_ACTIVITY_INDICATOR,
   C_BACKGROUND_DARK,
   C_ICON_LIGHT,
 } from '../../../../constants/Colors';
 import {PressableIcon} from '../../../common/components';
-
-import useDeleteAccountScreen from './useDeleteAccountScreen';
 import DeleteAccountTopView from './components/top-view/DeleteAccountTopView';
 import DeleteAccountBottomView from './components/bottom-view/DeleteAccountBottomView';
+import useDeleteAccountScreen from './useDeleteAccountScreen';
 
 const DeleteAccountScreen: FC = () => {
   const {

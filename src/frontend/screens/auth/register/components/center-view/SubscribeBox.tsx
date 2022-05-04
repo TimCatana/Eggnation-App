@@ -40,7 +40,7 @@ const SubscribeBox: FC<Props> = props => {
               : 'checkbox-blank-outline'
           }
           size={hp('3%')}
-          style={{marginRight: wp('2%')}}
+          style={styles.icon}
         />
       </Pressable>
 
@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
     marginTop: hp('1%'),
     marginBottom: hp('3%'),
     paddingRight: wp('1%'),
+  },
+  icon: {
+    marginRight: wp('2%'),
   },
   text: {
     fontSize: hp('2%'),

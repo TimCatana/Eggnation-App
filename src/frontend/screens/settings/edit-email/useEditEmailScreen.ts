@@ -99,8 +99,8 @@ const useEditEmailScreen = () => {
   /***** NAVIGATION HELPERS *****/
   /******************************/
 
-  /** 
-   * Navigates back to the login screen if no process is currently running. 
+  /**
+   * Navigates back to the login screen if no process is currently running.
    */
   const navigateBack = () => {
     if (!isLoading) {
@@ -108,8 +108,8 @@ const useEditEmailScreen = () => {
     }
   };
 
-  /** 
-   * Navigates back to the login screen if no process is currently running. 
+  /**
+   * Navigates back to the login screen if no process is currently running.
    */
   const updateEmailAndNavBackIfSuccess = async () => {
     const status = await handleUpdateEmailClick();

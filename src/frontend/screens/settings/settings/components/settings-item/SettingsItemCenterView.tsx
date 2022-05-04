@@ -15,7 +15,7 @@ const SettingsItemCenterView: FC<Props> = props => {
       <ScrollView
         horizontal={true}
         style={styles.scrollViewBody}
-        contentContainerStyle={{alignItems: 'center'}}>
+        contentContainerStyle={styles.scrollViewContent}>
         <Text style={styles.text} numberOfLines={1}>
           {content}
         </Text>
@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'row',
+  },
+  scrollViewContent: {
+    alignItems: 'center',
   },
   text: {
     width: '100%',

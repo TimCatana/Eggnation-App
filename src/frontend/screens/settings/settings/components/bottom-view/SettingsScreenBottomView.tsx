@@ -6,7 +6,7 @@ import {
   S_SS_DELETE_ACCOUNT_BUTTON,
 } from '../../../../../../constants/Strings';
 import {
-  C_BUTTON_ENABLED_SETTINGS,
+  C_BUTTON_TRANSPARENT,
   C_TEXT_ERROR,
   C_TEXT_LIGHT,
 } from '../../../../../../constants/Colors';
@@ -28,8 +28,8 @@ const SettingsScreenBottomView: FC<Props> = props => {
         onPress={logoutUser}
         disabled={isLoading}
         textColor={C_TEXT_LIGHT}
-        buttonEnabledColor={C_BUTTON_ENABLED_SETTINGS}
-        buttonDisabledColor={C_BUTTON_ENABLED_SETTINGS} // TODO find a disabled color that looks good
+        buttonEnabledColor={C_BUTTON_TRANSPARENT}
+        buttonDisabledColor={C_BUTTON_TRANSPARENT} // TODO find a disabled color that looks good
         fontSize={hp('2%')}
         marginBottom={hp('0.7%')}
       />
@@ -38,8 +38,8 @@ const SettingsScreenBottomView: FC<Props> = props => {
         onPress={navToDeleteAccountScreenScreen}
         disabled={isLoading}
         textColor={C_TEXT_ERROR}
-        buttonEnabledColor={C_BUTTON_ENABLED_SETTINGS}
-        buttonDisabledColor={C_BUTTON_ENABLED_SETTINGS} // TODO find a disabled color that looks good
+        buttonEnabledColor={C_BUTTON_TRANSPARENT}
+        buttonDisabledColor={C_BUTTON_TRANSPARENT} // TODO find a disabled color that looks good
         fontSize={hp('2%')}
       />
     </View>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     flex: 2,
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
 });
 

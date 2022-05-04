@@ -7,7 +7,6 @@ import {ERROR} from '../../../../constants/ResultsConstants';
 import Snackbar from 'react-native-snackbar';
 import getUserEmailUC from '../../../../domain/settings-screen-uc/getUserEmailUC';
 import logoutUserUC from '../../../../domain/settings-screen-uc/logoutUserUC';
-import deleteUserUC from '../../../../domain/settings-screen-uc/deleteUserUC';
 import reloadUserUC from '../../../../domain/settings-screen-uc/reloadUserUC';
 
 const useSettingsScreen = () => {
@@ -16,14 +15,14 @@ const useSettingsScreen = () => {
   /******************/
   const navigation = useNavigation<SettingsScreenProp>();
 
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [email, setEmail] = useState('');
-  const [language, setLanguage] = useState('EN');
+  const [email, setEmail] = useState<string>('');
+  const [language, setLanguage] = useState<string>('EN');
 
-  const [snackbarText, setSnackbarText] = useState('');
-  const [showSnackbar, setShowSnackbar] = useState(0); // each time this increments, the useEffect for snackbar is triggered
+  const [snackbarText, setSnackbarText] = useState<string>('');
+  const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -110,6 +109,22 @@ const useSettingsScreen = () => {
     }
   };
 
+  /** Navigates to edit password screen if no process is currently running. */
+  const navToEggnationFacebook = () => {
+    if (!isLoading) {
+      const url = 'https://www.facebook.com/eggnationapp';
+      Linking.openURL(url);
+    }
+  };
+
+  /** Navigates to edit password screen if no process is currently running. */
+  const navToEggnationInstagram = () => {
+    if (!isLoading) {
+      const url = 'https://instagram.com/eggnationapp';
+      Linking.openURL(url);
+    }
+  };
+
   /** Navigates to edit email screen if no process is currently running. */
   const navToEditEmailScreen = () => {
     if (!isLoading) {
@@ -173,6 +188,8 @@ const useSettingsScreen = () => {
     language,
     logoutUser,
     navigateBack,
+    navToEggnationFacebook,
+    navToEggnationInstagram,
     navToEditEmailScreen,
     navToEditPasswordScreen,
     navToDeleteAccountScreenScreen,

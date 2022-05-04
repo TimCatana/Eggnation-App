@@ -15,11 +15,11 @@ const PrizeDisplayContentBottomView: FC<Props> = props => {
 
 const styles = StyleSheet.create({
   text: {
+    fontSize: hp('2%'),
+    color: C_TEXT_PRIMARY,
+    textAlign: 'justify',
     paddingHorizontal: hp('2%'),
     paddingTop: hp('2%'),
-    fontSize: hp('2%'),
-    textAlign: 'justify',
-    color: C_TEXT_PRIMARY,
   },
 });
 

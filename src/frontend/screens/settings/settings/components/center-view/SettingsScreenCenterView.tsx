@@ -35,7 +35,6 @@ const SettingsScreenCenterView: FC<Props> = props => {
         navToEditEmailScreen={navToEditEmailScreen}
         navToEditPasswordScreen={navToEditPasswordScreen}
       />
-
       <SettingsContactSection
         navToEggnationShop={navToEggnationShop}
         navToContactUs={navToContactUs}

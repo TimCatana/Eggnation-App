@@ -1,5 +1,7 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {C_TEXT_PRIMARY} from '../../../../constants/Colors';
 import useEditLanguageScreen from './useEditLanguageScreen';
 
 const EditLanguageScreen: FC = () => {
@@ -19,7 +21,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 50,
+    fontSize: hp('2%'),
+    color: C_TEXT_PRIMARY,
   },
 });
 

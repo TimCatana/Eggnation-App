@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {S_DAS_DELETE_BUTTON} from '../../../../../../constants/Strings';
 import {
   C_BUTTON_ENABLED,
   C_BUTTON_DISABLED,
@@ -20,7 +21,7 @@ const DeleteAccountBottomView: FC<Props> = props => {
   return (
     <View style={styles.body}>
       <CustomButton
-        label={'Delete Account'}
+        label={S_DAS_DELETE_BUTTON}
         onPress={handleDeleteUserClick}
         disabled={isLoading || isPasswordError}
         buttonEnabledColor={C_BUTTON_ENABLED}

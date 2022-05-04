@@ -1,9 +1,6 @@
 import React, {FC} from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   C_ACTIVITY_INDICATOR,
   C_BACKGROUND_DARK,
@@ -12,7 +9,6 @@ import {
 import {PressableIcon} from '../../../common/components';
 import UpdateEmailScreenTopView from './components/top-view/UpdateEmailScreenTopView';
 import UpdateEmailScreenBottomView from './components/bottom-view/UpdateEmailScreenBottomView';
-
 import useEditEmailScreen from './useEditEmailScreen';
 
 const EditEmailScreen: FC = () => {
@@ -79,7 +75,7 @@ const styles = StyleSheet.create({
   },
   loading: {
     position: 'absolute',
-    top: hp('50%'),
+    top: hp('53%'),
     right: 0,
     left: 0,
     center: 0,

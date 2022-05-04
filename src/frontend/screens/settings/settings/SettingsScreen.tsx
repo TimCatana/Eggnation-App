@@ -1,9 +1,6 @@
 import React, {FC} from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   C_ACTIVITY_INDICATOR,
   C_BACKGROUND_DARK,
@@ -13,10 +10,8 @@ import {PressableIcon} from '../../../common/components';
 import SettingsScreenTopView from './components/top-view/SettingsScreenTopView';
 import SettingsScreenCenterView from './components/center-view/SettingsScreenCenterView';
 import SettingsScreenBottomView from './components/bottom-view/SettingsScreenBottomView';
-
 import useSettingsScreen from './useSettingsScreen';
 
-// TODO - there's something wrong with the way flex is working for the sections, I need to fix it later on
 const SettingsScreen: FC = () => {
   const {
     isInitialized,
@@ -25,6 +20,8 @@ const SettingsScreen: FC = () => {
     language,
     logoutUser,
     navigateBack,
+    navToEggnationFacebook,
+    navToEggnationInstagram,
     navToEditEmailScreen,
     navToEditPasswordScreen,
     navToDeleteAccountScreenScreen,
@@ -38,15 +35,11 @@ const SettingsScreen: FC = () => {
 
   return (
     <View style={styles.body}>
-      <PressableIcon
-        icon={'arrow-left'}
-        onPress={navigateBack}
-        iconSize={hp('3.5%')}
-        iconColor={C_ICON_LIGHT}
-        viewStyle={styles.icon}
-        iconStyle={{}}
+      <SettingsScreenTopView
+        isLoading={isLoading}
+        navToEggnationFacebook={navToEggnationFacebook}
+        navToEggnationInstagram={navToEggnationInstagram}
       />
-      <SettingsScreenTopView isLoading={isLoading} />
       <SettingsScreenCenterView
         email={email}
         language={language}
@@ -62,6 +55,14 @@ const SettingsScreen: FC = () => {
         logoutUser={logoutUser}
         navToDeleteAccountScreenScreen={navToDeleteAccountScreenScreen}
       />
+      <PressableIcon
+        icon={'arrow-left'}
+        onPress={navigateBack}
+        iconSize={hp('3.6%')}
+        iconColor={C_ICON_LIGHT}
+        viewStyle={styles.icon}
+        iconStyle={{}}
+      />
       <ActivityIndicator
         style={styles.loading}
         animating={isLoading}
@@ -76,15 +77,12 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     backgroundColor: C_BACKGROUND_DARK,
+    paddingTop: hp('5%'),
   },
   icon: {
-    flex: 0.5,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    width: '100%',
-    paddingLeft: wp('1%'),
-    paddingTop: hp('1%'),
+    position: 'absolute',
+    left: hp('0.6%'),
+    top: hp('0.6%'),
   },
   loading: {
     position: 'absolute',

@@ -3,6 +3,10 @@ import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {Screens} from '../../../../../constants/NavigationConstants';
 import {
+  S_PDM_CLAIMED_BUTTON,
+  S_PDM_CLAIM_BUTTON,
+} from '../../../../../constants/Strings';
+import {
   C_BUTTON_DISABLED,
   C_BUTTON_ENABLED,
   C_TEXT_LIGHT,
@@ -48,7 +52,7 @@ const PrizeDisplayContentBottomCenterView: FC<Props> = props => {
   return (
     <View style={styles.body}>
       <CustomButton
-        label={isClaimed ? 'Claimed' : 'Claim'}
+        label={isClaimed ? S_PDM_CLAIMED_BUTTON : S_PDM_CLAIM_BUTTON}
         onPress={navToClaimPrizeScreen}
         disabled={isClaimed}
         buttonEnabledColor={C_BUTTON_ENABLED}

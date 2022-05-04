@@ -29,17 +29,17 @@ const SettingsContactSection: FC<Props> = props => {
           title={S_SS_EGGNATION}
           content={''}
           icon={'chevron-right'}
+          iconDisabled={false}
           isLast={false}
           onIconPress={navToEggnationShop}
-          iconDisabled={false}
         />
         <SettingsItem
           title={S_SS_CONTACT_US}
           content={''}
           icon={'chevron-right'}
+          iconDisabled={false}
           isLast={true}
           onIconPress={navToContactUs}
-          iconDisabled={false}
         />
       </View>
     </View>

@@ -9,7 +9,6 @@ import {
 import {PressableIcon} from '../../../common/components';
 import UpdatePasswordScreenTopView from './components/top-view/UpdatePasswordScreenTopView';
 import UpdatePasswordScreenBottomView from './components/bottom-view/UpdatePasswordScreenBottomView';
-
 import useEditPasswordScreen from './useEditPasswordScreen';
 
 const EditPasswordScreen: FC = () => {

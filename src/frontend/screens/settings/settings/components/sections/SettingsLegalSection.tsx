@@ -29,17 +29,17 @@ const SettingsLegalSection: FC<Props> = props => {
           title={S_SS_PRIVACY_POLICY}
           content={''}
           icon={'chevron-right'}
+          iconDisabled={false}
           isLast={false}
           onIconPress={navToPrivacyPolicyScreen}
-          iconDisabled={false}
         />
         <SettingsItem
           title={S_SS_TERMS_AND_CONDITIONS}
           content={''}
           icon={'chevron-right'}
+          iconDisabled={false}
           isLast={true}
           onIconPress={navToTermsScreen}
-          iconDisabled={false}
         />
       </View>
     </View>

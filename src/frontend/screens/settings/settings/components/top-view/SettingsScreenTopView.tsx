@@ -4,13 +4,19 @@ import SettingsMediaSection from '../sections/SettingsMediaSection';
 
 interface Props {
   isLoading: boolean;
+  navToEggnationFacebook: () => void;
+  navToEggnationInstagram: () => void;
 }
 
 const SettingsScreenTopView: FC<Props> = props => {
-  const {isLoading} = props;
+  const {isLoading, navToEggnationFacebook, navToEggnationInstagram} = props;
   return (
     <View style={styles.body}>
-      <SettingsMediaSection isLoading={isLoading} />
+      <SettingsMediaSection
+        isLoading={isLoading}
+        navToEggnationFacebook={navToEggnationFacebook}
+        navToEggnationInstagram={navToEggnationInstagram}
+      />
     </View>
   );
 };
