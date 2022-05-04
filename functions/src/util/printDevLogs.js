@@ -6,8 +6,8 @@
  * @param functionName (string) The function where the error occurred
  * @param error (any) The error that occurred
  */
-export function printDevLogs(fileName, functionName, error) {
+exports.printDevLogs = (fileName, functionName, error) => {
   console.error(
     `file: ${fileName} --> function: ${functionName} --> An expected error occurred --> ${error}`
   );
-}
+};

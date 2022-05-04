@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { printDevLogs } = require("../util/printDevLogs");
-const { S_UUA_E_PATH, S_UUA_E_INFO } = require("../../constants/Strings");
+const { S_UUA_E_PATH, S_UUA_E_INFO } = require("../constants/Strings");
 const { FS_USER_COLLECTION_KEY } = require("../constants/Constants");
 
 /**
@@ -28,7 +28,7 @@ exports.updateUserAuth = functions.firestore
         printDevLogs(
           S_UUA_E_PATH,
           S_UUA_E_INFO,
-          `ERROR: failed to update auth().displayName --> ${e} &&&& DATA: snapshot: ${snapshot}, old document: ${oldValues}, current document: ${currentValues}, UID: ${context.params.userId}, context object: ${context}`
+          `ERROR: failed to update auth().displayName --> ${e} &&&& DATA: old username: ${oldValues.username}, current username: ${currentValues.username}, uid: ${context.params.userId}`
         );
         return false;
       }

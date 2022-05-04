@@ -10,26 +10,25 @@ let apiKey = defaultClient.authentications["api-key"];
 apiKey.apiKey = process.env.SEND_IN_BLUE_API_KEY;
 
 /** IMPORT FUNCTIONS */
-const updateUserAuth = require("./src/auth/updateUserAuth");
+const { updateUserAuth } = require("./src/auth/updateUserAuth");
 
-const sendMeEmail = require("./src/email/sendMeEmail");
+const { sendMeEmail } = require("./src/email/sendMeEmail");
 
-const addUserToFirestore = require("./src/firestore/addUserToFirestore");
-const removeUserFromFirestore = require("./src/firestore/removeUserFromFirestore");
-const updateUserEmail = require("./src/firestore/updateUserEmail");
+const { addUserToFirestore } = require("./src/firestore/addUserToFirestore");
+const {
+  removeUserFromFirestore,
+} = require("./src/firestore/removeUserFromFirestore");
+const { updateUserEmail } = require("./src/firestore/updateUserEmail");
 
-const addToMailingList = require("./src/sib/addToMailingList");
-const removeFromMailingList = require("./src/sib/removeFromMailingList");
+const { addToMailingList } = require("./src/sib/addToMailingList");
 
 /** EXPORT FUNCTIONS */
-exports.updateUserAuth = updateUserAuth.updateUserAuth;
+exports.updateUserAuth = updateUserAuth;
 
-exports.sendMeEmail = sendMeEmail.sendMeEmail;
+exports.sendMeEmail = sendMeEmail;
 
-exports.addUserToFirestore = addUserToFirestore.addUserToFireStore;
-exports.removeUserFromFirestore =
-  removeUserFromFirestore.removeUserFromFireStore;
-exports.updateUserEmail = updateUserEmail.updateUserEmail;
+exports.addUserToFirestore = addUserToFirestore;
+exports.removeUserFromFirestore = removeUserFromFirestore;
+exports.updateUserEmail = updateUserEmail;
 
-exports.addToMailingList = addToMailingList.addToMailingList;
-exports.removeFromMailingList = removeFromMailingList.removeFromMailingList;
+exports.addToMailingList = addToMailingList;

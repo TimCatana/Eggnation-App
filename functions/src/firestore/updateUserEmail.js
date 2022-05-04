@@ -18,7 +18,7 @@ exports.updateUserEmail = functions.https.onCall(async (data, context) => {
     printDevLogs(
       S_UUE_E_PATH,
       S_UUE_E_INFO,
-      `ERROR:  failed to update email --> User is unauthenticated &&&& DATA: context object: ${context}, data object: ${data}`
+      `ERROR:  failed to update email --> User is unauthenticated`
     );
     throw new functions.https.HttpsError("unauthenticated", "");
   }
@@ -27,7 +27,7 @@ exports.updateUserEmail = functions.https.onCall(async (data, context) => {
     printDevLogs(
       S_UUE_E_PATH,
       S_UUE_E_INFO,
-      `ERROR: failed to update email --> the passed email is either null or invalid &&&& DATA: email: ${data.email}, context object: ${context}, data object: ${data}`
+      `ERROR: failed to update email --> the passed email is either null or invalid &&&& DATA: email: ${data.email}`
     );
     throw new functions.https.HttpsError("invalid-argument", "");
   }
@@ -38,7 +38,7 @@ exports.updateUserEmail = functions.https.onCall(async (data, context) => {
     printDevLogs(
       S_UUE_E_PATH,
       S_UUE_E_INFO,
-      `failed to update database email: ERROR: ${e} DATA: uid: ${context.auth.uid}, email: ${data.email}, context object: ${context}`
+      `failed to update database email: ERROR: ${e} DATA: uid: ${context.auth.uid}, email: ${data.email}`
     );
     throw new functions.https.HttpsError("unknown", "");
   }
@@ -49,7 +49,7 @@ exports.updateUserEmail = functions.https.onCall(async (data, context) => {
     printDevLogs(
       S_UUE_E_PATH,
       S_UUE_E_INFO,
-      `failed to update auth email (but database email was updated, this is a big problem): ERROR: ${e} DATA: uid: ${context.auth.uid}, email: ${data.email}, context object: ${context}`
+      `ERROR: failed to update auth email (but database email was updated, this is a big problem) --> ${e} DATA: uid: ${context.auth.uid}, email: ${data.email}`
     );
     throw new functions.https.HttpsError("unknown", "");
   }

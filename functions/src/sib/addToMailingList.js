@@ -16,7 +16,7 @@ exports.addToMailingList = functions.https.onCall(async (data, context) => {
     printDevLogs(
       S_UUE_E_PATH,
       S_UUE_E_INFO,
-      `ERROR: failed to add user to the mailing list --> the passed email is either null or invalid &&&& DATA: email: ${data.email}, context object: ${context}, data object: ${data}`
+      `ERROR: failed to add user to the mailing list --> the passed email is either null or invalid &&&& DATA: email: ${data.email}`
     );
     throw new functions.https.HttpsError("invalid-argument", "");
   }
@@ -34,7 +34,7 @@ exports.addToMailingList = functions.https.onCall(async (data, context) => {
     printDevLogs(
       S_ATML_E_PATH,
       S_ATML_E_INFO,
-      `ERROR: ${e} &&&& DATA: data: ${data}, context: ${context} email: ${data.email}, SIBApiInstance: ${apiInstance}, SIBCreateContactInstance: ${createContact}`
+      `ERROR: Failed to add user to mailing list --> ${e} &&&& DATA: email: ${data.email}`
     );
     throw new functions.https.HttpsError("unknown", "");
   }

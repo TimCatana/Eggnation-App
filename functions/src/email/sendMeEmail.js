@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const nodemailer = require("nodemailer");
 const { printDevLogs } = require("../util/printDevLogs");
-const { S_SME_E_PATH, S_SME_E_INFO } = require("../../constants/Strings");
+const { S_SME_E_PATH, S_SME_E_INFO } = require("../constants/Strings");
 
 /**
  * Sends me an email to me saying that someone wants to claim a prize.
@@ -12,11 +12,7 @@ const { S_SME_E_PATH, S_SME_E_INFO } = require("../../constants/Strings");
  */
 exports.sendMeEmail = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
-    printDevLogs(
-      S_SME_E_PATH,
-      S_SME_E_INFO,
-      `ERROR: User is unauthenticated &&&& DATA: data object: ${data}, context object: ${context}`
-    );
+    printDevLogs(S_SME_E_PATH, S_SME_E_INFO, `ERROR: User is unauthenticated`);
     throw new functions.https.HttpsError("unauthenticated", "");
   }
 
@@ -33,7 +29,7 @@ exports.sendMeEmail = functions.https.onCall(async (data, context) => {
     printDevLogs(
       S_SME_E_PATH,
       S_SME_E_INFO,
-      `ERROR: Failed to send me claim prize email --> ${e} &&&& DATA: uid: ${context.auth.uid}, email: ${context.auth.token.email}, message: ${data.message}, transporter: ${transporter}, mailOptions: ${mailOptions}, context object: ${context}`
+      `ERROR: Failed to send me claim prize email --> ${e} &&&& DATA: uid: ${context.auth.uid}, email: ${context.auth.token.email}, message: ${data.message}`
     );
     throw new functions.https.HttpsError("unknown", "");
   }
