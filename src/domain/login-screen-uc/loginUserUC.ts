@@ -1,13 +1,13 @@
-import doLogin from '../../backend/auth/doLogin';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {Result} from '../../constants/typeAliases';
 import {
   S_E_INVALID_CREDENTIALS,
   S_E_LS_ACCOUNT_DISABLED,
   S_E_NOT_CONNECTED_TO_INTERNET,
   S_E_UNEXPECTED_ERROR,
 } from '../../constants/Strings';
-import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
+import doLogin from '../../backend/auth/doLogin';
 
 /**
  * Attempts to login the user given an email and a password.

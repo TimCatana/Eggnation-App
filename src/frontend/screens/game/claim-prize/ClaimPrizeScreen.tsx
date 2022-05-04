@@ -55,14 +55,12 @@ const ClaimPrizeScreen: FC = () => {
         showModalPicker={showModalPicker}
       />
       <ClaimPrizeScreenBottomView
-        disabled={
-          isLoading ||
-          isCountryError ||
-          isRegionError ||
-          isAddressError ||
-          isPostalCodeError ||
-          isPaypalEmailError
-        }
+        isLoading={isLoading}
+        isCountryError={isCountryError}
+        isRegionError={isRegionError}
+        isAddressError={isAddressError}
+        isPostalCodeError={isPostalCodeError}
+        isPaypalEmailError={isPaypalEmailError}
         handleClaimPrizeClick={handleClaimPrizeClick}
       />
       <PressableIcon

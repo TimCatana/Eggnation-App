@@ -1,25 +1,15 @@
-import doCheckInternetConnection from '../../backend/network-info/doCheckInternetConnection';
-import doGetAllContestPrizes from '../../backend/database/firestore/doGetAllContestPrizes';
-import doGetAllAvailablePrizes from '../../backend/database/firestore/deGetAllAvailablePrizes';
-import doGetUserId from '../../backend/auth/doGetUserId';
-import doAddWonPrizeToUserAccount from '../../backend/database/firestore/doAddWonPrizeToUserAccount';
-import doDeleteAvailablePrize from '../../backend/database/firestore/doDeleteAvailablePrize';
-import doDeleteContestPrize from '../../backend/database/firestore/doDeleteContestPrize';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {
+  AvailablePrizesArray,
+  ContestPrizeArray,
+  Result,
+} from '../../constants/typeAliases';
 import {
   DV_LOCAL_COUNT,
   MGL_RNG_RANGE,
   MGL_WIN_CHANCE,
   PCT_NONE,
 } from '../../constants/Constants';
-import {
-  AvailablePrizesArray,
-  ContestPrizeArray,
-  Result,
-} from '../../constants/typeAliases';
-import printDevLogs from '../printDevLogs';
-import doIncrementGlobalCount from '../../backend/database/realtime/doIncrementGlobalCount';
-import doGetWonPrize from '../../backend/database/firestore/doGetWonPrize';
 import {
   S_CPT_PRIZE_DESC,
   S_CPT_PRIZE_ID,
@@ -28,8 +18,19 @@ import {
   S_CPT_PRIZE_TYPE,
   S_E_HS_CONNECTIVITY_NOTICE,
 } from '../../constants/Strings';
+import printDevLogs from '../printDevLogs';
+import doIncrementGlobalCount from '../../backend/database/realtime/doIncrementGlobalCount';
+import doGetWonPrize from '../../backend/database/firestore/doGetWonPrize';
+import doCheckInternetConnection from '../../backend/network-info/doCheckInternetConnection';
+import doGetAllContestPrizes from '../../backend/database/firestore/doGetAllContestPrizes';
+import doGetAllAvailablePrizes from '../../backend/database/firestore/deGetAllAvailablePrizes';
+import doGetUserId from '../../backend/auth/doGetUserId';
+import doAddWonPrizeToUserAccount from '../../backend/database/firestore/doAddWonPrizeToUserAccount';
+import doDeleteAvailablePrize from '../../backend/database/firestore/doDeleteAvailablePrize';
+import doDeleteContestPrize from '../../backend/database/firestore/doDeleteContestPrize';
 
 /**
+ * @note All helper function errors BUBBLE UP to the 'mainGameLogicUC' function. DO NOT wrap content in helper functions in a try-catch
  * Does the main game logic.
  * @phase1 check internet connection.
  * @phase2 check if to do contest prize logic or rng logic
@@ -50,8 +51,8 @@ import {
  * @phase5 add prize to user account in database
  * @phase6 delete prize from database
  * @error All errors are unexpected.
- * @onSuccessReturn {status: SUCCESS, data: {isWon: true}, message: string}
- * @onErrorReturn {status: ERROR, data: {isWon: false}, message: string}
+ * @onSuccessReturn {status: SUCCESS, data: {isWon: true, isConnected: boolean}, message: string}
+ * @onErrorReturn {status: ERROR, data: {isWon: false, isConnected: boolean}, message: string}
  */
 const mainGameLogicUC = async (
   localCount: number,
@@ -62,7 +63,6 @@ const mainGameLogicUC = async (
      * @Phase1 Check internet connection.
      */
     const isConnected = await doCheckInternetConnection();
-    console.log(isConnected);
     if (!isConnected) {
       return {
         status: ERROR,
@@ -71,9 +71,15 @@ const mainGameLogicUC = async (
       };
     }
 
+    /**
+     * @phase2 decrement counter
+     */
     await decrementAndGetLocalCount();
     doIncrementGlobalCount();
 
+    /**
+     * @phase3 get user id
+     */
     const userId = doGetUserId();
     if (!userId) {
       return {
@@ -84,7 +90,7 @@ const mainGameLogicUC = async (
     }
 
     /**
-     * @Phase2 If localCount is 1, then do the contestPrize logic
+     * @Phase4 If localCount is 1, then do the contestPrize logic
      *         If localCount is not 1, then do the rng logic
      */
     if (localCount === 1) {
@@ -103,7 +109,7 @@ const mainGameLogicUC = async (
  * Get all of the contest prizes and check if the user is a winner.
  * The user only wins if contest prizes exist.
  * The first people to reach a localCount of 1 win.
- * @returns { status: SUCCESS || ERROR, data: {isWon: boolean}, message: string }
+ * @returns { status: SUCCESS || ERROR, data: {isWon: boolean, isConnected: true}, message: string }
  */
 const _contestPrizeLogic = async (userId: string): Promise<Result> => {
   const contestPrizes = await doGetAllContestPrizes();
@@ -124,13 +130,12 @@ const _contestPrizeLogic = async (userId: string): Promise<Result> => {
  * If rng % winChance === 0 then the user wins.
  * If the user wins, then do available prize logic.
  * If the available prize logic fails, then the user technically loses.
- * @returns { status: SUCCESS || ERROR, data: {isWon: boolean}, message: string }
+ * @returns { status: SUCCESS || ERROR, data: {isWon: boolean, isConnected: true}, message: string }
  */
 const _rngLogic = async (userId: string): Promise<Result> => {
   const rng = Math.floor(Math.random() * MGL_RNG_RANGE);
 
   if (rng % MGL_WIN_CHANCE !== 0) {
-    console.log('lost');
     return {
       status: SUCCESS,
       data: {isWon: false, isConnected: true},
@@ -148,7 +153,7 @@ const _rngLogic = async (userId: string): Promise<Result> => {
  * to the user's collection, then the user is considered to have lost.
  * If the available prize manages to get to the user's collection, then the user
  * is considered to have won.
- * @returns { status: SUCCESS || ERROR, data: {isWon: boolean}, message: string }
+ * @returns { status: SUCCESS || ERROR, data: {isWon: boolean, isConnected: true}, message: string }
  */
 const _availablePrizeLogic = async (userId: string): Promise<Result> => {
   const prizes = await doGetAllAvailablePrizes();
@@ -172,7 +177,7 @@ const _availablePrizeLogic = async (userId: string): Promise<Result> => {
  * @phase4 delete prize from database
  * @param prizes (contestPrize or availablePrize) that the user has won.
  * @param isAvailablePrizes (boolean Determines whether to doDeleteAvailablePrize or doDeleteContestPrize
- * @returns
+ * @returns { status: SUCCESS || ERROR, data: {isWon: boolean, prize: AvailablePrize, isConnected: true}, message: string }
  */
 const _winPrizeLogic = async (
   userId: string,
@@ -197,7 +202,6 @@ const _winPrizeLogic = async (
   //   ? await doDeleteAvailablePrize(prize.prizeId)
   //   : await doDeleteContestPrize(prize.prizeId);
 
-  console.log('won');
   return {
     status: SUCCESS,
     data: {isWon: true, prize: prize, isConnected: true},
@@ -206,28 +210,10 @@ const _winPrizeLogic = async (
 };
 
 /**
- * Get's the correct error message to return to the UI.
- * Prints dev logs if in DEV mode.
- * @param error The error
- * @returns {status: ERROR, data: int, message: string}
- */
-const _getErrorResponse = (error: any): Result => {
-  if (__DEV__) {
-    printDevLogs(
-      'domain/home-screen-uc/mainGameLogicUC.js',
-      'mainGameLogicUC',
-      `${error}`,
-    );
-  }
-
-  return {status: ERROR, data: {isWon: false, isConnected: true}, message: ''};
-};
-
-/**
  * Get all of the contest prizes and check if the user is a winner.
  * The user only wins if contest prizes exist.
  * The first people to reach a localCount of 1 win.
- * @returns { status: SUCCESS || ERROR, data: {isWon: boolean}, message: string }
+ * @returns { status: SUCCESS || ERROR, data: {isWon: boolean, isConnected: true}, message: string }
  */
 const _storePromotionPrizeLogic = async (userId: string): Promise<Result> => {
   const result = await doGetWonPrize(userId, S_CPT_PRIZE_ID);
@@ -260,6 +246,24 @@ const _storePromotionPrizeLogic = async (userId: string): Promise<Result> => {
     },
     message: '',
   };
+};
+
+/**
+ * Get's the correct error message to return to the UI.
+ * Prints dev logs if in DEV mode.
+ * @param error The error
+ * @returns {status: ERROR,data: {isWon: boolean,  isConnected: true}, message: string}
+ */
+const _getErrorResponse = (error: any): Result => {
+  if (__DEV__) {
+    printDevLogs(
+      'domain/home-screen-uc/mainGameLogicUC.js',
+      'mainGameLogicUC',
+      `${error}`,
+    );
+  }
+
+  return {status: ERROR, data: {isWon: false, isConnected: true}, message: ''};
 };
 
 export default mainGameLogicUC;

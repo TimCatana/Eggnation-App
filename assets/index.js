@@ -21,7 +21,6 @@ import tablet from './items/tablet.png';
 
 import LostAnimation from './lottie/lost.json';
 import WonAnimation from './lottie/won.json';
-import Particles from './lottie/particles.json';
 import PresentPlaceholder from './lottie/present-placeholder.json';
 
 export {
@@ -44,6 +43,5 @@ export {
   tablet,
   LostAnimation,
   WonAnimation,
-  Particles,
   PresentPlaceholder,
 };

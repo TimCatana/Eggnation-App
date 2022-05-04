@@ -1,9 +1,9 @@
+import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {Result} from '../../constants/typeAliases';
+import {KC_LOCAL_COUNT, DV_LOCAL_COUNT} from '../../constants/Constants';
+import printDevLogs from '../printDevLogs';
 import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
 import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
-import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
-import {KC_LOCAL_COUNT, DV_LOCAL_COUNT} from '../../constants/Constants';
-import {Result} from '../../constants/typeAliases';
-import printDevLogs from '../printDevLogs';
 
 /**
  * Attempts to get the local count from Async Storage.
@@ -34,7 +34,7 @@ const getLocalCountUC = async (): Promise<Result> => {
 const _getErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/home-screen-uc/getLocalCountUC.js',
+      'domain/home-screen-uc/getLocalCountUC.ts',
       'getLocalCountUC',
       `${error}`,
     );

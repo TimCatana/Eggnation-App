@@ -1,19 +1,34 @@
-import doGetUserId from '../../backend/auth/doGetUserId';
-import doSendMeEmail from '../../backend/cloud-functions/doSendMeEmail';
-import doUpdatePrizeClaimedValue from '../../backend/database/firestore/doUpdatePrizeClaimedValue';
-import doGetWonPrize from '../../backend/database/firestore/doGetWonPrize';
 import {ERROR, SUCCESS} from '../../constants/ResultsConstants';
 import {Result} from '../../constants/typeAliases';
-import printDevLogs from '../printDevLogs';
+import {
+  S_E_CPS_FAILED_TO_CLAIM_PRIZE,
+  S_E_CPS_PRIZE_ALREADY_CLAIMED,
+} from '../../constants/Strings';
 import {
   PCT_DELIVERABLE,
   PCT_NONE,
   PCT_TRANSFER,
 } from '../../constants/Constants';
+import printDevLogs from '../printDevLogs';
+import doGetUserId from '../../backend/auth/doGetUserId';
+import doSendMeEmail from '../../backend/cloud-functions/doSendMeEmail';
+import doUpdatePrizeClaimedValue from '../../backend/database/firestore/doUpdatePrizeClaimedValue';
+import doGetWonPrize from '../../backend/database/firestore/doGetWonPrize';
 
 /**
- * @returns
- * TODO Finish this
+ * Attempts to claim a prize.
+ * Claiming a prize should send me an email saying that the user claimed their prize, from there I will
+ * manually send the prize to the user.
+ * @param prizeClaimType (string) The claim type of the prize. Will determine the email sent to me
+ * @param prizeId (string) The id of the prize wanting to be claimed
+ * @param country (string) The country to ship to
+ * @param region (string) The region to ship to
+ * @param address (string) The address to ship to
+ * @param postalCode (string) The postal code to ship to
+ * @param paypalEmail (string) The email to transfer money to
+ * @onSuccessReturn {status: SUCCESS, message: string}
+ * @onErrorReturn {status: ERROR, data: [], message: string}
+ *
  */
 const claimPrizeUC = async (
   prizeClaimType: string,
@@ -26,35 +41,23 @@ const claimPrizeUC = async (
 ): Promise<Result> => {
   const userId = doGetUserId();
   if (!userId) {
-    return {
-      status: ERROR,
-      data: null,
-      message: 'Failed to claim prize. If error persists please contact us',
-    };
+    return {status: ERROR, message: S_E_CPS_FAILED_TO_CLAIM_PRIZE};
   }
 
   try {
     const prize = await doGetWonPrize(userId, prizeId);
 
     if (!prize) {
-      return {
-        status: ERROR,
-        data: null,
-        message: 'Failed to claim prize. If error persists please contact us',
-      };
+      return {status: ERROR, message: S_E_CPS_FAILED_TO_CLAIM_PRIZE};
     }
 
     if (prize.prizeClaimed) {
-      return {
-        status: ERROR,
-        data: null,
-        message: 'This prize has already been claimed.',
-      };
+      return {status: ERROR, message: S_E_CPS_PRIZE_ALREADY_CLAIMED};
     }
 
     const emailMessage = _createEmailMessage(
-      prizeId,
       prizeClaimType,
+      prizeId,
       country,
       region,
       address,
@@ -64,15 +67,28 @@ const claimPrizeUC = async (
 
     await doSendMeEmail(emailMessage);
     await doUpdatePrizeClaimedValue(userId, prizeId);
-    return {status: SUCCESS, data: null, message: ''};
+    return {status: SUCCESS, message: ''};
   } catch (e) {
     return _getErrorResponse(e);
   }
 };
 
+/**
+ * Attempts to construct a string that will be emailed to me based on how to give the user their prize.
+ * These strings should be kept here as they will always be in english
+ * No need to refactor them to the Strings constants file.
+ * @param prizeClaimType (string) The claim type of the prize. Will determine the email sent to me
+ * @param prizeId (string) The id of the prize wanting to be claimed
+ * @param country (string) The country to ship to
+ * @param region (string) The region to ship to
+ * @param address (string) The address to ship to
+ * @param postalCode (string) The postal code to ship to
+ * @param paypalEmail (string) The email to transfer money to
+ * @returns message (string) The message that will be emailed to me
+ */
 const _createEmailMessage = (
-  prizeId: string,
   prizeClaimType: string,
+  prizeId: string,
   country: string,
   region: string,
   address: string,
@@ -141,22 +157,18 @@ User Entered Information:
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
  * @param error The error
- * @returns {status: ERROR, data: null, message: string}
+ * @returns {status: ERROR, message: string}
  */
 const _getErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/claim-prize-screen-uc/claimPrizeUC.js',
+      'domain/claim-prize-screen-uc/claimPrizeUC.ts',
       'claimPrizeUC',
       `${error}`,
     );
   }
 
-  return {
-    status: ERROR,
-    data: null,
-    message: 'Failed to claim prize. If error persists please contact us',
-  };
+  return {status: ERROR, message: S_E_CPS_FAILED_TO_CLAIM_PRIZE};
 };
 
 export default claimPrizeUC;

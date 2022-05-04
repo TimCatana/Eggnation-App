@@ -1,4 +1,3 @@
-import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../constants/typeAliases';
 import {
@@ -6,6 +5,7 @@ import {
   S_E_UNEXPECTED_ERROR,
 } from '../../constants/Strings';
 import printDevLogs from '../printDevLogs';
+import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 
 /**
  * Attempts to get the currently logged in user's email address.
@@ -30,7 +30,6 @@ const getUserEmailUC = (): Result => {
 /**
  * Get's the correct error message to return to the UI.
  * Prints dev logs if in DEV mode.
- * @param error The error
  * @returns {status: ERROR, data: string, message: string}
  */
 const _getErrorResponse = (): Result => {

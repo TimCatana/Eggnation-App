@@ -1,8 +1,8 @@
-import doLogout from '../../backend/auth/doLogout';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../constants/typeAliases';
 import {S_E_UNEXPECTED_ERROR} from '../../constants/Strings';
 import printDevLogs from '../printDevLogs';
+import doLogout from '../../backend/auth/doLogout';
 
 /**
  * Attempts to log the user out of their account.

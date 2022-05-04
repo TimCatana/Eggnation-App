@@ -7,7 +7,10 @@ export type Result = {
   message: string;
 };
 
-/** WON PRIZES */
+/**********************/
+/***** WON PRIZES *****/
+/**********************/
+
 export type WonPrize = {
   prizeId: string;
   prizeWinnerId: string;
@@ -34,7 +37,10 @@ export type WonPrizesArray = {
   prizeDelivered: boolean;
 }[];
 
-/** AVAILABLE PRIZES */
+/****************************/
+/***** AVAILABLE PRIZES *****/
+/****************************/
+
 export type AvailablePrize = {
   prizeId: string;
   prizeTitle: string;
@@ -53,7 +59,10 @@ export type AvailablePrizesArray = {
   prizeClaimType: string;
 }[];
 
-/** CONTEST PRIZES */
+/**************************/
+/***** CONTEST PRIZES *****/
+/**************************/
+
 export type ContestPrize = {
   prizeId: string;
   prizeTitle: string;
@@ -72,16 +81,9 @@ export type ContestPrizeArray = {
   prizeClaimType: string;
 }[];
 
-/** COUNTRIES AND REGIONS  */
-export type Regions = {
-  name: string;
-  shortCode?: string;
-}[];
-
-export type Region = {
-  name: string;
-  shortCode?: string;
-};
+/*********************************/
+/***** COUNTRIES AND REGIONS *****/
+/*********************************/
 
 export type Countries = {
   name: string;
@@ -95,4 +97,14 @@ export type Country = {
   countryShortCode: string;
   // postalCodeFormat: string;
   // regions: Regions;
+};
+
+export type Regions = {
+  name: string;
+  shortCode?: string;
+}[];
+
+export type Region = {
+  name: string;
+  shortCode?: string;
 };

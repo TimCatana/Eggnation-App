@@ -34,94 +34,57 @@ export const S_RS_SUBSCRIBE_TO = 'Subscribe to';
 export const S_RS_EGGNATION_SHOP_COM = ' eggnationshop.com ';
 export const S_RS_EMAILS = 'emails';
 
+/********************************************************************************/
+/******************************** GAME SCREENS **********************************/
+/********************************************************************************/
+
+/***********************************/
+/***** AVAILABLE PRIZES SCREEN *****/
+/***********************************/
+
+export const S_APS_TITLE = 'Available Prizes';
+
+/***********************/
+/***** HOME SCREEN *****/
+/***********************/
+
+/*****************************/
+/***** WON PRIZES SCREEN *****/
+/*****************************/
+
+export const S_WPS_TITLE = 'Won Prizes';
+
+/**************************/
+/***** PRIZES SCREEN *****/
+/**************************/
+// These are for both won prizes and available prizes screens
+
+export const S_PS_FAILED_PRIZE_FETCH = 'Failed to fetch prizes';
+export const S_PS_NO_AVAILABLE_PRIZES =
+  'No Prizes Available. More Coming Soon!';
+export const S_PS_NO_WON_PRIZES = "You haven't won anything yet!";
+
+/******************************/
+/***** CLAIM PRIZE SCREEN *****/
+/******************************/
+
+export const S_CPS_CLAIM_BUTTON = 'Claim';
+export const S_CPS_SHIPPING_ADDRESS_TITLE = 'Shipping Address';
+export const S_CPS_PAYPAL_EMAIL_TITLE = 'PayPal Email';
+
 /************************************************************************************/
 /******************************** SETTINGS SCREENS **********************************/
 /************************************************************************************/
-
-/*********************************/
-/***** DELETE ACCOUNT SCREEN *****/
-/*********************************/
-
-export const S_DAS_DELETE_BUTTON = 'Delete Account';
-
-/*****************************/
-/***** EDIT EMAIL SCREEN *****/
-/*****************************/
-
-/********************************/
-/***** EDIT PASSWORD SCREEN *****/
-/********************************/
 
 /***************************/
 /***** SETTINGS SCREEN *****/
 /***************************/
 
-export const S_E_SS_FAILED_EMAIL_FETCH = 'Failed to get email';
-
-/***********************/
-/***** TEXT INPUTS *****/
-/***********************/
-
-export const S_TI_EMAIL_PLACEHOLDER = 'email';
-export const S_TI_PASSWORD_PLACEHOLDER = 'password';
-export const S_TI_CURRENT_PASSWORD_PLACEHOLDER = 'current password';
-export const S_TI_CONFIRM_PASSWORD_PLACEHOLDER = 'confirm password';
-export const S_TI_NEW_EMAIL_PLACEHOLDER = 'new email';
-export const S_TI_NEW_PASSWORD_PLACEHOLDER = 'new password';
-export const S_TI_CONFIRM_NEW_PASSWORD_PLACEHOLDER = 'confirm new password';
-export const S_TI_ADDRESS_PLACEHOLDER = 'address';
-export const S_TI_POSTAL_CODE_PLACEHOLDER = 'postal code';
-export const S_TI_PAYPAL_EMAIL_PLACEHOLDER = 'paypal email';
-
-export const S_TI_EMAIL_ERROR_TEXT = 'please enter a valid email';
-export const S_TI_PASSWORD_ERROR_TEXT =
-  'password must be at least 8 characters long, contain numbers, uppercase and lowercase letters and no whitespace';
-export const S_TI_CONFIRM_PASSWORD_ERROR_TEXT = 'passwords must match';
-
-/*****************************/
-/***** UI ERROR MESSAGES *****/
-/*****************************/
-
-export const S_E_INVALID_CREDENTIALS = 'Invalid Credentials!';
-export const S_E_INVALID_EMAIL = 'Invalid email address!';
-export const S_E_INVALID_PASSWORD = 'Invalid password!';
-export const S_E_UNEXPECTED_ERROR = 'An unexpected error occurred!';
-export const S_E_NOT_CONNECTED_TO_INTERNET =
-  "You're not connected to the internet!";
-export const S_E_FPS_EMAIL_NOT_FOUND =
-  'Email not found! Did you register an account yet?';
-export const S_E_LS_ACCOUNT_DISABLED = "Account disabled. Can't login";
-export const S_E_RS_EMAIL_IN_USE = 'Email already in use!';
-export const S_E_APS_FAILED_TO_FETCH_PRIZES =
-  'Failed to fetch available prizes';
-export const S_E_WPS_FAILED_TO_FETCH_PRIZES = 'Failed to fetch won prizes';
-export const S_E_CPS_FAILED_TO_FETCH_PRIZE =
-  'Failed to fetch prize, you will be redirected back to the won prize screen. If error persists please contact us';
-export const S_E_EES_EMAIL_IN_USE = 'Email already in use!';
-export const S_E_EPS_WEAK_PASSWORD = 'Please enter a stronger password!';
-
-/*******************************/
-/***** UI SUCCESS MESSAGES *****/
-/*******************************/
-export const S_S_EES_EMAIL_UPDATED = 'Email updated successfully!';
-export const S_S_EPS_PASSWORD_UPDATED = 'Password updated successfully!';
-
-/*******************************/
-/***** UI SUCCESS MESSAGES *****/
-/*******************************/
-
-export const S_S_FPS_EMAIL_SENT =
-  "Email sent successfully! If you can't find it, check your spam folder";
-
-/** FORGOT PASSWORD SCREEN */
-
-/** REGISTER SCREEN */
-
-/** SETTINGS SCREEN */
 export const S_SS_PROFILE_HEADING = 'PROFILE';
 export const S_SS_EMAIL = 'Email';
 export const S_SS_EMAIL_VERIFIED = 'Verified';
 export const S_SS_PASSWORD = 'Password';
+export const S_SS_PASSWORD_DOTS = '●●●●●●●';
 export const S_SS_LANGUAGE = 'Language';
 
 export const S_SS_LEGAL_HEADING = 'LEGAL';
@@ -135,70 +98,31 @@ export const S_SS_CONTACT_US = 'Contact Us';
 export const S_SS_LOGOUT_BUTTON = 'Logout';
 export const S_SS_DELETE_ACCOUNT_BUTTON = 'Delete Account';
 
-/** EDIT EMAIL SCREEN */
+/*********************************/
+/***** DELETE ACCOUNT SCREEN *****/
+/*********************************/
+
+export const S_DAS_DELETE_BUTTON = 'Delete Account';
+
+/*****************************/
+/***** EDIT EMAIL SCREEN *****/
+/*****************************/
+
 export const S_EES_UPDATE_EMAIL_BUTTON = 'Update Email';
 
-/** EDIT PASSWORD SCREEN */
+/********************************/
+/***** EDIT PASSWORD SCREEN *****/
+/********************************/
+
 export const S_EPS_UPDATE_PASSWORD_BUTTON = 'Update Password';
 
-/** PRIZE DISPLAY MODAL */
-export const S_PDM_CLAIM_PRIZE_BUTTON = 'Claim';
+/**********************************************************************************/
+/******************************** POLICY SCREENS **********************************/
+/**********************************************************************************/
 
-/** PASSWORD MODAL */
-export const S_PM_CANCEL_BUTTON = 'Cancel';
-export const S_PM_CONFIRM_BUTTON = 'Confirm';
-
-/** AVAILABLE PRIZES SCREEN */
-export const S_APS_TITLE = 'Available Prizes';
-
-/** WON PRIZES SCREEN */
-export const S_WPS_TITLE = 'Won Prizes';
-
-/** CLAIM PRIZE SCREEN */
-export const S_CPS_CLAIM_BUTTON = 'Claim';
-
-/** COUPON PRIZE TEXT */
-export const S_CPT_PRIZE_ID = 'eggnation-promo-code';
-export const S_CPT_PRIZE_TITLE = 'Eggnation Shop Coupon';
-export const S_CPT_PRIZE_DESC =
-  'Use the discount code EGGNATIONMERCH get 10% off of anu product on eggnationshop.com!';
-export const S_CPT_PRIZE_TYPE = 'shirt';
-export const S_CPT_PRIZE_TIER = 'gold';
-
-/** PRIZE TYPES */
-export const S_PT_PHONE = 'phone';
-export const S_PT_TABLET = 'tablet';
-export const S_PT_LAPTOP = 'laptop';
-export const S_PT_EARBUDS = 'earbuds';
-export const S_PT_SHIRT = 'shirt';
-export const S_PT_HOODIE = 'hoodie';
-export const S_PT_CASH = 'cash';
-
-/** ERROR MESSAGES */
-
-export const S_E_HS_CONNECTIVITY_NOTICE =
-  'You need to be connected to the internet to play';
-
-/** SUCCESS MESSAGES */
-
-/** PRIZE CLAIMED MODAL */
-export const S_PCM_CONGRATULATIONS = 'Congratulations!';
-export const S_PCM_INFO_TEXT = `Your prize has been claimed. We will be emailing your currently registered email with further details. Please keep an eye out for an email from eggnationprizes@outlook.com. Contact us using this address if you do not receive anything within a week.`;
-
-/** PRIZES SCREEM */
-export const S_PS_FAILED_PRIZE_FETCH = 'Failed to fetch prizes';
-export const S_PS_NO_AVAILABLE_PRIZES =
-  'No Prizes Available. More Coming Soon!';
-export const S_PS_NO_WON_PRIZES = "You haven't won anything yet!";
-
-export const S_PCM_GO_BACK_BUTTON = 'Go Back';
-
-export const S_PDM_CLAIMED_BUTTON = 'Claimed';
-export const S_PDM_CLAIM_BUTTON = 'Claim';
-
-export const S_SS_PASSWORD_DOTS = '●●●●●●●';
-
-/*** PRIVACY POLICY */
+/*********************************/
+/***** PRIVACY POLICY SCREEN *****/
+/*********************************/
 
 export const S_PP_INTRODUCTION_TITLE = 'Introduction';
 export const S_PP_INTRODUCTION_CONTENT = `This Privacy Policy describes how Eggnation and Applicnation (collectively the “App”, “we”, “our”, “us”) collects, uses, and discloses your Personal Information when you open and use our app.`;
@@ -263,7 +187,9 @@ This policy is effective as of 2022-04-28`;
 export const S_PP_CONTACT_US_TITLE = 'Contact Us';
 export const S_PP_CONTACT_US_CONTENT = `If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at eggnationapp@gmail.com.`;
 
-/** TERMS SCREEN */
+/************************/
+/***** TERMS SCREEN *****/
+/************************/
 
 export const S_TS_INTRODUCTION_TITLE = 'Introduction';
 export const S_TS_INTRODUCTION_CONTENT = `These Eggnation and Applicnation Terms of Use (the "Terms") govern your access to and use of our website and mobile application (collectively, the "Platform"), and associated content, features, software and applications in the Platform (collectively, the "Service"). These Terms also include our Privacy Policy, which is located under the Privacy Policy screen.
@@ -314,3 +240,130 @@ export const S_TS_CONSENT_TO_ADS_CONTENT = `Eggnation uses advertisements to gen
 
 export const S_TS_CHANGES_TITLE = 'Changes to these Terms';
 export const S_TS_CHANGES_CONTENT = `We may revise these Terms from time to time, without prior notice. You are bound by any changes to these Terms upon our posting of such changes on the Service. You should check these Terms often to make certain that you are aware of the most current Terms.`;
+
+/************************************************************************************/
+/******************************** OTHER COMPONENTS **********************************/
+/************************************************************************************/
+
+/***********************/
+/***** TEXT INPUTS *****/
+/***********************/
+
+export const S_TI_EMAIL_PLACEHOLDER = 'email';
+export const S_TI_PASSWORD_PLACEHOLDER = 'password';
+export const S_TI_CURRENT_PASSWORD_PLACEHOLDER = 'current password';
+export const S_TI_CONFIRM_PASSWORD_PLACEHOLDER = 'confirm password';
+export const S_TI_NEW_EMAIL_PLACEHOLDER = 'new email';
+export const S_TI_NEW_PASSWORD_PLACEHOLDER = 'new password';
+export const S_TI_CONFIRM_NEW_PASSWORD_PLACEHOLDER = 'confirm new password';
+export const S_TI_ADDRESS_PLACEHOLDER = 'address';
+export const S_TI_POSTAL_CODE_PLACEHOLDER = 'postal code';
+export const S_TI_PAYPAL_EMAIL_PLACEHOLDER = 'paypal email';
+
+export const S_TI_EMAIL_ERROR_TEXT = 'please enter a valid email';
+export const S_TI_PASSWORD_ERROR_TEXT =
+  'password must be at least 8 characters long, contain numbers, uppercase and lowercase letters and no whitespace';
+export const S_TI_CONFIRM_PASSWORD_ERROR_TEXT = 'passwords must match';
+
+/*******************************/
+/***** PRIZE DISPLAY MODAL *****/
+/*******************************/
+
+export const S_PDM_CLAIMED_BUTTON = 'Claimed';
+export const S_PDM_CLAIM_BUTTON = 'Claim';
+
+/***************************/
+/*****  PASSWORD MODAL *****/
+/***************************/
+
+export const S_PM_CANCEL_BUTTON = 'Cancel';
+export const S_PM_CONFIRM_BUTTON = 'Confirm';
+
+/*******************************/
+/***** PRIZE CLAIMED MODAL *****/
+/*******************************/
+
+export const S_PCM_CONGRATULATIONS = 'Congratulations!';
+export const S_PCM_INFO_TEXT = `Your prize has been claimed. We will be emailing your currently registered email with further details. Please keep an eye out for an email from eggnationprizes@outlook.com. Contact us using this address if you do not receive anything within a week.`;
+export const S_PCM_GO_BACK_BUTTON = 'Go Back';
+
+/*************************************************************************/
+/******************************** OTHER **********************************/
+/*************************************************************************/
+
+/*****************************/
+/***** COUPON PRIZE TEXT *****/
+/*****************************/
+
+export const S_CPT_PRIZE_ID = 'eggnation-promo-code';
+export const S_CPT_PRIZE_TITLE = 'Eggnation Shop Coupon';
+export const S_CPT_PRIZE_DESC =
+  'Use the discount code EGGNATIONMERCH get 10% off of anu product on eggnationshop.com!';
+export const S_CPT_PRIZE_TYPE = 'shirt';
+export const S_CPT_PRIZE_TIER = 'gold';
+
+/***********************/
+/***** PRIZE TYPES *****/
+/***********************/
+
+export const S_PT_PHONE = 'phone';
+export const S_PT_TABLET = 'tablet';
+export const S_PT_LAPTOP = 'laptop';
+export const S_PT_EARBUDS = 'earbuds';
+export const S_PT_SHIRT = 'shirt';
+export const S_PT_HOODIE = 'hoodie';
+export const S_PT_CASH = 'cash';
+
+/*******************************************************************************/
+/******************************** UI MESSAGES **********************************/
+/*******************************************************************************/
+
+/**************************/
+/***** ERROR MESSAGES *****/
+/**************************/
+
+export const S_E_INVALID_CREDENTIALS = 'Invalid Credentials!';
+export const S_E_INVALID_EMAIL = 'Invalid email address!';
+export const S_E_INVALID_PASSWORD = 'Invalid password!';
+export const S_E_UNEXPECTED_ERROR = 'An unexpected error occurred!';
+export const S_E_NOT_CONNECTED_TO_INTERNET =
+  "You're not connected to the internet!";
+
+export const S_E_FPS_EMAIL_NOT_FOUND =
+  'Email not found! Did you register an account yet?';
+
+export const S_E_LS_ACCOUNT_DISABLED = "Account disabled. Can't login";
+
+export const S_E_RS_EMAIL_IN_USE = 'Email already in use!';
+
+export const S_E_APS_FAILED_TO_FETCH_PRIZES =
+  'Failed to fetch available prizes';
+
+export const S_E_HS_CONNECTIVITY_NOTICE =
+  'You need to be connected to the internet to play';
+
+export const S_E_WPS_FAILED_TO_FETCH_PRIZES = 'Failed to fetch won prizes';
+
+export const S_E_CPS_FAILED_TO_FETCH_PRIZE =
+  'Failed to fetch prize, you will be redirected back to the won prize screen. If error persists please contact us';
+export const S_E_CPS_FAILED_TO_CLAIM_PRIZE =
+  'Failed to claim prize. If error persists please contact us';
+export const S_E_CPS_PRIZE_ALREADY_CLAIMED =
+  'This prize has already been claimed.';
+
+export const S_E_SS_FAILED_EMAIL_FETCH = 'Failed to get email';
+
+export const S_E_EES_EMAIL_IN_USE = 'Email already in use!';
+
+export const S_E_EPS_WEAK_PASSWORD = 'Please enter a stronger password!';
+
+/****************************/
+/***** SUCCESS MESSAGES *****/
+/****************************/
+
+export const S_S_EES_EMAIL_UPDATED = 'Email updated successfully!';
+
+export const S_S_EPS_PASSWORD_UPDATED = 'Password updated successfully!';
+
+export const S_S_FPS_EMAIL_SENT =
+  "Email sent successfully! If you can't find it, check your spam folder";

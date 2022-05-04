@@ -1,7 +1,5 @@
-import doGetUserEmail from '../../backend/auth/deGetUserEmail';
-import doReauthenticate from '../../backend/auth/doReauthenticate';
-import doUpdateUserPassword from '../../backend/auth/doUpdateUserPassword';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {Result} from '../../constants/typeAliases';
 import {
   S_E_EPS_WEAK_PASSWORD,
   S_E_INVALID_CREDENTIALS,
@@ -11,8 +9,10 @@ import {
   S_E_UNEXPECTED_ERROR,
   S_S_EPS_PASSWORD_UPDATED,
 } from '../../constants/Strings';
-import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
+import doGetUserEmail from '../../backend/auth/deGetUserEmail';
+import doReauthenticate from '../../backend/auth/doReauthenticate';
+import doUpdateUserPassword from '../../backend/auth/doUpdateUserPassword';
 
 /**
  * Attempts to update the user's login password.

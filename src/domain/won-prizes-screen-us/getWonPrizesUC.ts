@@ -1,9 +1,9 @@
-import doGetUserId from '../../backend/auth/doGetUserId';
-import doGetAllWonPrizes from '../../backend/database/firestore/doGetAllWonPrizes';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../constants/typeAliases';
 import {S_E_WPS_FAILED_TO_FETCH_PRIZES} from '../../constants/Strings';
 import printDevLogs from '../printDevLogs';
+import doGetUserId from '../../backend/auth/doGetUserId';
+import doGetAllWonPrizes from '../../backend/database/firestore/doGetAllWonPrizes';
 
 /**
  * Attempts to fetch won prizes from the database.

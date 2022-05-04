@@ -7,10 +7,10 @@ import {
 import {backgroundHome} from '../../../../../assets';
 import {C_ICON_PRIMARY} from '../../../../constants/Colors';
 import {PressableIcon, PrizeDisplayModal} from '../../../common/components';
+import {Flash} from '../../../common/animation-components';
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
 import useHomeScreen from './useHomeScreen';
-import {Flash} from '../../../common/animation-components';
 
 const HomeScreen: FC = () => {
   const {
@@ -39,14 +39,7 @@ const HomeScreen: FC = () => {
     navToHowToPlayScreen,
   } = useHomeScreen();
 
-  if (!isInitialized)
-    return (
-      <ImageBackground
-        style={styles.body}
-        source={backgroundHome}
-        resizeMode="cover"
-      />
-    );
+  if (!isInitialized) return null;
 
   return (
     <ImageBackground

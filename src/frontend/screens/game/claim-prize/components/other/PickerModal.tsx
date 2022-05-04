@@ -9,24 +9,30 @@ import {PressableIcon} from '../../../../../common/components';
 import DropdownOption from './DropdownOptions';
 import {Country, Region} from '../../../../../../constants/typeAliases';
 
-interface PickerModalProps {
+interface Props {
   hideModalPicker: () => void;
   isModalVisible: boolean;
   data: any; // TODO - make this a specific country | region type
   onSelect: (index: number) => void;
 }
 
-const PickerModal: FC<PickerModalProps> = props => {
+const PickerModal: FC<Props> = props => {
   const {hideModalPicker, isModalVisible, data, onSelect} = props;
   const ITEM_HEIGHT = hp('5%');
 
+  /**
+   * Render this here to make the FlatList more efficient
+   * @param param0
+   * @returns
+   */
   const renderItem = ({item, index}: {item: any; index: number}) => (
     <DropdownOption item={item} index={index} onSelect={onSelect} />
   );
 
   /**
    * Adding this stops the list from getting blocked while scrolling,
-   * but leaves gaps in the list if you scroll too fast
+   * but leaves gaps in the list if you scroll too fast.
+   * TODO Keeping this here for potential future uses
    * @param data
    * @param index
    * @returns

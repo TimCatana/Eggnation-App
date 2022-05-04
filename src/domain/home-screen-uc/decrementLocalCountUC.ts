@@ -1,9 +1,9 @@
-import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
-import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {Result} from '../../constants/typeAliases';
 import {KC_LOCAL_COUNT} from '../../constants/Constants';
 import printDevLogs from '../printDevLogs';
-import {Result} from '../../constants/typeAliases';
+import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
+import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
 
 /**
  * Attempts to decrement the local counter by 1.
@@ -15,12 +15,12 @@ const decrementLocalCountUC = async (): Promise<Result> => {
     const count = await doGetAsyncValue(KC_LOCAL_COUNT);
 
     if (count === null) {
-      return {status: ERROR, data: null, message: ''};
+      return {status: ERROR, message: ''};
     }
 
     await doSetAsyncValue(KC_LOCAL_COUNT, `${parseInt(count) - 1}`);
 
-    return {status: SUCCESS, data: null, message: ''};
+    return {status: SUCCESS, message: ''};
   } catch (e: any) {
     return _getErrorResponse(e);
   }
@@ -35,13 +35,13 @@ const decrementLocalCountUC = async (): Promise<Result> => {
 const _getErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/home-screen-uc/decrementLocalCountUC.js',
+      'domain/home-screen-uc/decrementLocalCountUC.ts',
       'decrementLocalCountUC',
       `${error}`,
     );
   }
 
-  return {status: ERROR, data: null, message: ''};
+  return {status: ERROR, message: ''};
 };
 
 export default decrementLocalCountUC;

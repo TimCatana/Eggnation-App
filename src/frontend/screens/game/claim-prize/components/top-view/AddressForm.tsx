@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
+  S_CPS_SHIPPING_ADDRESS_TITLE,
   S_TI_ADDRESS_PLACEHOLDER,
   S_TI_POSTAL_CODE_PLACEHOLDER,
 } from '../../../../../../constants/Strings';
@@ -40,32 +41,32 @@ const AddressForm: FC<Props> = props => {
 
   return (
     <>
-      <Text style={styles.headingText}>Shipping Address</Text>
+      <Text style={styles.headingText}>{S_CPS_SHIPPING_ADDRESS_TITLE}</Text>
       <CustomDropdownMenu
         value={selectedCountry}
-        disabled={isLoading}
-        width={'100%'}
-        height={hp('6.5%')}
-        marginBottom={hp('2%')}
-        fontSize={hp('2%')}
-        textColor="white"
-        borderColor="gray"
         handleIconPress={() => {
           showModalPicker(true);
         }}
+        disabled={isLoading}
+        width={'100%'}
+        height={hp('6.5%')}
+        fontSize={hp('2%')}
+        marginBottom={hp('2%')}
+        textColor={C_TEXT_LIGHT}
+        borderColor={C_UNFOCUSED_BORDER_COLOR}
       />
       <CustomDropdownMenu
         value={selectedRegion}
+        handleIconPress={() => {
+          showModalPicker(false);
+        }}
         disabled={isLoading}
         width={'100%'}
         height={hp('6.5%')}
         marginBottom={hp('2%')}
         fontSize={hp('2%')}
-        textColor="white"
-        borderColor="gray"
-        handleIconPress={() => {
-          showModalPicker(false);
-        }}
+        textColor={C_TEXT_LIGHT}
+        borderColor={C_UNFOCUSED_BORDER_COLOR}
       />
       <CustomTextInput
         value={address}

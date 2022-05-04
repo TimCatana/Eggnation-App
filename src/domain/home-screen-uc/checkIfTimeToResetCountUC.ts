@@ -1,7 +1,6 @@
-import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
-import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
 import dayjs from 'dayjs';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {Result} from '../../constants/typeAliases';
 import {
   KC_LOCAL_COUNT,
   KC_LAST_RESET_TIME,
@@ -9,8 +8,9 @@ import {
   DV_LAST_RESET_TIME,
   MGL_RESET_TIME_IN_HOURS,
 } from '../../constants/Constants';
-import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
+import doGetAsyncValue from '../../backend/async-storage/doGetAsyncValue';
+import doSetAsyncValue from '../../backend/async-storage/doSetAsyncValue';
 
 /**
  * Checks to see if it's time to reset the local count.
@@ -25,7 +25,7 @@ const checkIfTimeToResetCountUC = async (): Promise<Result> => {
 
     if (!storedTime) {
       await doSetAsyncValue(KC_LAST_RESET_TIME, DV_LAST_RESET_TIME);
-      return {status: SUCCESS, data: null, message: ''};
+      return {status: SUCCESS, message: ''};
     }
 
     const currentTime = dayjs();
@@ -36,7 +36,7 @@ const checkIfTimeToResetCountUC = async (): Promise<Result> => {
       await doSetAsyncValue(KC_LAST_RESET_TIME, DV_LAST_RESET_TIME);
     }
 
-    return {status: SUCCESS, data: null, message: ''};
+    return {status: SUCCESS, message: ''};
   } catch (e: any) {
     return _getErrorResponse(e);
   }
@@ -51,13 +51,13 @@ const checkIfTimeToResetCountUC = async (): Promise<Result> => {
 const _getErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/home-screen-uc/checkIfTimeToResetCountUC.js',
+      'domain/home-screen-uc/checkIfTimeToResetCountUC.ts',
       'checkIfTimeToResetCountUC',
       `${error}`,
     );
   }
 
-  return {status: ERROR, data: null, message: ''};
+  return {status: ERROR, message: ''};
 };
 
 export default checkIfTimeToResetCountUC;

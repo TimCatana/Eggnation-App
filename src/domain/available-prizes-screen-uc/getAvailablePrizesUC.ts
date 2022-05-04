@@ -1,8 +1,8 @@
-import deGetAllAvailablePrizes from '../../backend/database/firestore/deGetAllAvailablePrizes';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
-import {S_E_APS_FAILED_TO_FETCH_PRIZES} from '../../constants/Strings';
 import {Result} from '../../constants/typeAliases';
+import {S_E_APS_FAILED_TO_FETCH_PRIZES} from '../../constants/Strings';
 import printDevLogs from '../printDevLogs';
+import deGetAllAvailablePrizes from '../../backend/database/firestore/deGetAllAvailablePrizes';
 
 /**
  * Attempts to fetch available prizes from the database.

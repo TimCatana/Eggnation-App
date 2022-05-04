@@ -144,7 +144,6 @@ const useClaimPrizeScreen = () => {
    * @dependent email
    */
   useEffect(() => {
-    console.log('sfd');
     if (route.params.prizeClaimType === PCT_TRANSFER) {
       setIsPaypalEmailError(!isEmailValid(paypalEmail));
     }

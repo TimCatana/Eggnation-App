@@ -1,9 +1,5 @@
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../constants/typeAliases';
-import doReauthenticate from '../../backend/auth/doReauthenticate';
-import doDeleteUser from '../../backend/auth/doDeleteUser';
-import doGetUserEmail from '../../backend/auth/deGetUserEmail';
-import printDevLogs from '../printDevLogs';
 import {
   S_E_INVALID_CREDENTIALS,
   S_E_INVALID_EMAIL,
@@ -11,6 +7,10 @@ import {
   S_E_NOT_CONNECTED_TO_INTERNET,
   S_E_UNEXPECTED_ERROR,
 } from '../../constants/Strings';
+import printDevLogs from '../printDevLogs';
+import doReauthenticate from '../../backend/auth/doReauthenticate';
+import doDeleteUser from '../../backend/auth/doDeleteUser';
+import doGetUserEmail from '../../backend/auth/deGetUserEmail';
 
 /**
  * Attempts to delete the currently logged in user's account.
@@ -96,7 +96,7 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
 const _getDeleteUserErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/settings-screen-uc/deleteUserUC.js',
+      'domain/settings-screen-uc/deleteUserUC.ts',
       'deleteUserUC',
       `${error}`,
     );

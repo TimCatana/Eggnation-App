@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
+  S_CPS_PAYPAL_EMAIL_TITLE,
   S_TI_EMAIL_ERROR_TEXT,
   S_TI_PAYPAL_EMAIL_PLACEHOLDER,
 } from '../../../../../../constants/Strings';
@@ -10,10 +11,7 @@ import {
   C_TEXT_LIGHT,
   C_UNFOCUSED_BORDER_COLOR,
 } from '../../../../../../constants/Colors';
-import {
-  CustomDropdownMenu,
-  CustomTextInput,
-} from '../../../../../common/components';
+import {CustomTextInput} from '../../../../../common/components';
 
 interface Props {
   isLoading: boolean;
@@ -28,7 +26,7 @@ const CashTransferForm: FC<Props> = props => {
 
   return (
     <>
-      <Text style={styles.headingText}>PayPal Email</Text>
+      <Text style={styles.headingText}>{S_CPS_PAYPAL_EMAIL_TITLE}</Text>
       <CustomTextInput
         value={paypalEmail}
         onValueChange={handlePaypalEmailChange}

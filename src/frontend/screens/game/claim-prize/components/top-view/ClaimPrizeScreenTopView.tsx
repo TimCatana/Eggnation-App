@@ -1,22 +1,15 @@
 import React, {FC} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {
-  S_TI_ADDRESS_KEYBOARD_TYPE,
-  S_TI_ADDRESS_PLACEHOLDER,
-  S_TI_POSTAL_CODE_KEYBOARD_TYPE,
-  S_TI_POSTAL_CODE_PLACEHOLDER,
-} from '../../../../../../constants/Strings';
+  PCT_TRANSFER,
+  PCT_DELIVERABLE,
+} from '../../../../../../constants/Constants';
 import {C_TEXT_LIGHT} from '../../../../../../constants/Colors';
-import {
-  CustomTextInput,
-  CustomDropdownMenu,
-} from '../../../../../common/components';
 import AddressForm from './AddressForm';
-import {PCT_TRANSFER, PCT_DELIVERABLE} from '../../../../../../constants/Constants';
 import CashTransferForm from './CashTransferForm';
 
 interface Props {
@@ -49,8 +42,6 @@ const ClaimPrizeScreenTopView: FC<Props> = props => {
     isPaypalEmailError,
     showModalPicker,
   } = props;
-
-  console.log(prizeClaimType);
 
   return (
     <View style={styles.formView}>
@@ -86,11 +77,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  headingText: {
-    marginBottom: hp('4%'),
-    fontSize: hp('4%'),
-    color: C_TEXT_LIGHT,
   },
 });
 

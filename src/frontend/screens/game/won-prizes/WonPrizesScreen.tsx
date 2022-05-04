@@ -1,20 +1,16 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   C_BACKGROUND_BOOKSHELF,
   C_ICON_BOOKSHELF,
 } from '../../../../constants/Colors';
 import {PrizeDisplayModal, PressableIcon} from '../../../common/components';
-
-import TEST_DATA from '../../../../../test-data/availablePrizes.json';
 import BookShelfLeftView from '../../../common/components/bookshelf-background/BookShelfLeftView';
 import BookShelfRightView from '../../../common/components/bookshelf-background/BookShelfRightView';
 import PrizeScreenCenterView from '../../../common/components/bookshelf-background/PrizeScreenCenterView';
+import TEST_DATA from '../../../../../test-data/availablePrizes.json'; // TODO - get rid of this after
 import usePrizeScreen from '../../../common/states/usePrizeScreen';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
 
 const WonPrizesScreen: FC = () => {
   const {

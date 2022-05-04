@@ -1,9 +1,9 @@
 /** TEXT */
 export const C_TEXT_HEADING = '#64757f';
 export const C_TEXT_PRIMARY = 'dimgray'; // '#60717a'
-export const C_TEXT_LIGHT = 'white';
+export const C_TEXT_LIGHT = 'white'; // '#ffffff'
 export const C_TEXT_LINK_PRIMARY = 'pink'; // '#ffc0cb'
-export const C_TEXT_LINK_DARK = 'black';
+export const C_TEXT_LINK_DARK = 'black'; // '#000000'
 export const C_TEXT_ERROR = '#ae0000';
 export const C_TEXT_SETTINGS_LIGHT = '#e2e2e2';
 export const C_TEXT_BOOKSHELF_TITLE = '#53351e';

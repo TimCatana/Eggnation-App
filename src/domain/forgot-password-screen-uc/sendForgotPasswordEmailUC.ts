@@ -1,5 +1,5 @@
-import doSendForgotPasswordEmail from '../../backend/auth/doSendForgotPasswordEmail';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {Result} from '../../constants/typeAliases';
 import {
   S_E_FPS_EMAIL_NOT_FOUND,
   S_E_INVALID_EMAIL,
@@ -7,11 +7,11 @@ import {
   S_E_UNEXPECTED_ERROR,
   S_S_FPS_EMAIL_SENT,
 } from '../../constants/Strings';
-import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
+import doSendForgotPasswordEmail from '../../backend/auth/doSendForgotPasswordEmail';
 
 /**
- * Sends a password reset email to the given email address.
+ * Attempts to send a password reset email to the given email address.
  * @param email (string) The users email address.
  * @error auth/network-request-failed Thrown if the email address is not valid.
  * @error SHOULD NEVER BE THROWN auth/invalid-email Thrown if the email address is not valid.

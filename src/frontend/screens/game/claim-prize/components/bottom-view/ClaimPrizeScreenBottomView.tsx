@@ -10,13 +10,23 @@ import {
 import {CustomButton} from '../../../../../common/components';
 
 interface Props {
-  disabled: boolean;
+  isLoading: boolean;
+  isCountryError: boolean;
+  isRegionError: boolean;
+  isAddressError: boolean;
+  isPostalCodeError: boolean;
+  isPaypalEmailError: boolean;
   handleClaimPrizeClick: () => void;
 }
 
 const ClaimPrizeScreenBottomView: FC<Props> = props => {
   const {
-    disabled,
+    isLoading,
+    isCountryError,
+    isRegionError,
+    isAddressError,
+    isPostalCodeError,
+    isPaypalEmailError,
     handleClaimPrizeClick,
   } = props;
 
@@ -25,7 +35,14 @@ const ClaimPrizeScreenBottomView: FC<Props> = props => {
       <CustomButton
         label={S_CPS_CLAIM_BUTTON}
         onPress={handleClaimPrizeClick}
-        disabled={disabled}
+        disabled={
+          isLoading ||
+          isCountryError ||
+          isRegionError ||
+          isAddressError ||
+          isPostalCodeError ||
+          isPaypalEmailError
+        }
         buttonEnabledColor={C_BUTTON_ENABLED}
         buttonDisabledColor={C_BUTTON_DISABLED}
         textColor={C_TEXT_LIGHT}

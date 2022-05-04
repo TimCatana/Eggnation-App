@@ -1,9 +1,5 @@
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {Result} from '../../constants/typeAliases';
-import doGetUserEmail from '../../backend/auth/deGetUserEmail';
-import doReauthenticate from '../../backend/auth/doReauthenticate';
-import doUpdateUserEmailByCloudFunction from '../../backend/cloud-functions/doUpdateUserEmailByCloudFunction';
-import printDevLogs from '../printDevLogs';
 import {
   S_E_EES_EMAIL_IN_USE,
   S_E_INVALID_CREDENTIALS,
@@ -12,6 +8,10 @@ import {
   S_E_UNEXPECTED_ERROR,
   S_S_EES_EMAIL_UPDATED,
 } from '../../constants/Strings';
+import printDevLogs from '../printDevLogs';
+import doGetUserEmail from '../../backend/auth/deGetUserEmail';
+import doReauthenticate from '../../backend/auth/doReauthenticate';
+import doUpdateUserEmailByCloudFunction from '../../backend/cloud-functions/doUpdateUserEmailByCloudFunction';
 
 /**
  * Attempts to update the user's login email.
@@ -107,7 +107,7 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
 const _getUpdateEmailErrorResponse = (error: any): Result => {
   if (__DEV__) {
     printDevLogs(
-      'domain/edit-email-screen-uc/updateUserEmailUC.js',
+      'domain/edit-email-screen-uc/updateUserEmailUC.ts',
       'updateUserEmailUC/doUpdateUserEmailByCloudFunction',
       `${error}`,
     );

@@ -1,6 +1,5 @@
-import doRegister from '../../backend/auth/doRegister';
-import doSubscribeToMailingList from '../../backend/cloud-functions/doSubscribeToMailingList';
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
+import {Result} from '../../constants/typeAliases';
 import {
   S_E_INVALID_CREDENTIALS,
   S_E_INVALID_PASSWORD,
@@ -8,8 +7,9 @@ import {
   S_E_RS_EMAIL_IN_USE,
   S_E_UNEXPECTED_ERROR,
 } from '../../constants/Strings';
-import {Result} from '../../constants/typeAliases';
 import printDevLogs from '../printDevLogs';
+import doRegister from '../../backend/auth/doRegister';
+import doSubscribeToMailingList from '../../backend/cloud-functions/doSubscribeToMailingList';
 
 /**
  * Attempts to register a new user account given an email and a password.
@@ -49,6 +49,7 @@ const registerUserUC = async (
 };
 
 /**
+ * TODO - might just add the user to the list even if the registration fails... probably do that
  * I need to add to  mailing list before I register the user due to the way the auth
  * changes the stack right when the firebase auth token becomes valid.
  * So if the registration fails, I need to delete from the mailing list.
@@ -60,7 +61,7 @@ const registerUserUC = async (
  */
 const _deleteFromMailingList = (email: string, e: any) => {
   try {
-    doSubscribeToMailingList(email);
+    doSubscribeToMailingList(email); // TODO - change this to delete
     return _getErrorResponse(e);
   } catch (_e) {
     return _getErrorResponse(_e);
