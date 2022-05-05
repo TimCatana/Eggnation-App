@@ -72,6 +72,18 @@ export const S_CPS_CLAIM_BUTTON = 'Claim';
 export const S_CPS_SHIPPING_ADDRESS_TITLE = 'Shipping Address';
 export const S_CPS_PAYPAL_EMAIL_TITLE = 'PayPal Email';
 
+/******************************/
+/***** HOW TO PLAY SCREEN *****/
+/******************************/
+
+export const S_HTPS_TAP_EGG = 'Tap The Egg';
+export const S_HTPS_LOSE = 'Lose';
+export const S_HTPS_WIN = 'Win';
+export const S_HTPS_AD = 'Ad';
+export const S_HTPS_CLAIM_WON_PRIZES = 'Claim Won Prizes';
+export const S_HTPS_WE_DELIVER_THE_PRIZE = 'We Deliver The Prize';
+export const S_HTPS_YOU_RECEIVE_THE_PRIZE = 'You Receive The Prize';
+
 /************************************************************************************/
 /******************************** SETTINGS SCREENS **********************************/
 /************************************************************************************/

@@ -23,16 +23,14 @@ import LostAnimation from './lottie/lost.json';
 import WonAnimation from './lottie/won.json';
 import PresentPlaceholder from './lottie/present-placeholder.json';
 
-import post from './post.jpg'
+import post from './post.jpg';
 
-import HTPTap from './how-to-play-icons/tap.png'
-import HTPLose from './how-to-play-icons/lose.png'
-import HTPWin from './how-to-play-icons/win.png'
-import HTPAd from './how-to-play-icons/ad.png'
-import HTPDelivery from './how-to-play-icons/delivery.png'
-import HTPDelivered from './how-to-play-icons/delivered.png'
-
-import howToPlay from './how-to-play.png'
+import HTPTap from './how-to-play-icons/tap.png';
+import HTPLose from './how-to-play-icons/lose.png';
+import HTPWin from './how-to-play-icons/win.png';
+import HTPAd from './how-to-play-icons/ad.png';
+import HTPDelivery from './how-to-play-icons/delivery.png';
+import HTPDelivered from './how-to-play-icons/delivered.png';
 
 export {
   backgroundAuth,
@@ -62,5 +60,4 @@ export {
   HTPAd,
   HTPDelivery,
   HTPDelivered,
-  howToPlay
 };

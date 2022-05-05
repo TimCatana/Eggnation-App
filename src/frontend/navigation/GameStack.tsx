@@ -14,6 +14,7 @@ import {
 } from '../screens';
 import {GameStackParamList} from './ScreenProps';
 import HowToPlayScreen from '../screens/game/how-to-play/HowToPlayScreen';
+import {C_BACKGROUND_DARK} from '../../constants/Colors';
 
 const Stack = createStackNavigator<GameStackParamList>();
 
@@ -23,6 +24,7 @@ const GameStack: FC = () => {
       initialRouteName={Screens.GAME_TABS}
       screenOptions={{
         header: () => null,
+        cardStyle: {backgroundColor: C_BACKGROUND_DARK},
       }}>
       <Stack.Screen name={Screens.GAME_TABS} component={GameTabs} />
       <Stack.Screen

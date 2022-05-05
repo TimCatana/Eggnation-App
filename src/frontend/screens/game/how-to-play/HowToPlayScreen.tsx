@@ -1,19 +1,90 @@
 import React, {FC} from 'react';
-import {Text, StyleSheet, View, Image} from 'react-native';
+import {Text, StyleSheet, View, Image, ScrollView} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_BACKGROUND_BOOKSHELF, C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../../constants/Colors';
+import {
+  C_BACKGROUND_BOOKSHELF,
+  C_ICON_LIGHT,
+} from '../../../../constants/Colors';
 
 import usePrivacyPolicyScreen from './useHowToPlayScreen';
 import {PressableIcon} from '../../../common/components';
-import {howToPlay} from '../../../../../assets';
+import {
+  HTPAd,
+  HTPDelivered,
+  HTPDelivery,
+  HTPLose,
+  HTPTap,
+  HTPWin,
+} from '../../../../../assets';
+import HowToPlayScreenIconTextView from './components/HowToPlayScreenIconTextView';
+import {
+  S_HTPS_AD,
+  S_HTPS_CLAIM_WON_PRIZES,
+  S_HTPS_LOSE,
+  S_HTPS_TAP_EGG,
+  S_HTPS_WE_DELIVER_THE_PRIZE,
+  S_HTPS_WIN,
+  S_HTPS_YOU_RECEIVE_THE_PRIZE,
+} from '../../../../constants/Strings';
 
 const HowToPlayScreen: FC = () => {
   const {navigateBack} = usePrivacyPolicyScreen();
 
   return (
-    <View style={styles.body}>
-      <Text style={styles.headingText}>How To Play</Text>
-      <Image source={howToPlay} style={styles.image} resizeMode={'contain'} />
+    <ScrollView
+      style={styles.body}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}>
+      <Text style={[styles.headingText, {marginBottom: hp('5%')}]}>
+        How To Play
+      </Text>
+
+      <HowToPlayScreenIconTextView
+        image={HTPTap}
+        text={S_HTPS_TAP_EGG}
+        height={hp('20%')}
+        width={'100%'}
+      />
+
+      <View style={{display: 'flex', flexDirection: 'row'}}>
+        <HowToPlayScreenIconTextView
+          image={HTPLose}
+          text={S_HTPS_LOSE}
+          height={hp('20%')}
+          width={'33%'}
+        />
+        <HowToPlayScreenIconTextView
+          image={HTPWin}
+          text={S_HTPS_WIN}
+          height={hp('20%')}
+          width={'33%'}
+        />
+        <HowToPlayScreenIconTextView
+          image={HTPAd}
+          text={S_HTPS_AD}
+          height={hp('20%')}
+          width={'33%'}
+        />
+      </View>
+      <HowToPlayScreenIconTextView
+        image={HTPTap}
+        text={S_HTPS_CLAIM_WON_PRIZES}
+        height={hp('20%')}
+        width={'100%'}
+      />
+      <HowToPlayScreenIconTextView
+        image={HTPDelivery}
+        text={S_HTPS_WE_DELIVER_THE_PRIZE}
+        height={hp('20%')}
+        width={'100%'}
+      />
+      <HowToPlayScreenIconTextView
+        image={HTPDelivered}
+        text={S_HTPS_YOU_RECEIVE_THE_PRIZE}
+        height={hp('20%')}
+        width={'100%'}
+      />
+
       <PressableIcon
         icon={'arrow-left'}
         onPress={navigateBack}
@@ -22,7 +93,7 @@ const HowToPlayScreen: FC = () => {
         viewStyle={styles.icon}
         iconStyle={{}}
       />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -36,7 +107,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: hp('5%'),
     color: 'white',
-    paddingTop: hp('2%')
+    paddingTop: hp('2%'),
+  },
+  descText: {
+    alignSelf: 'center',
+    fontSize: hp('3%'),
+    color: 'white',
+    paddingTop: hp('2%'),
   },
   image: {
     flex: 1,
