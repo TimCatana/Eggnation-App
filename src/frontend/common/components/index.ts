@@ -1,5 +1,6 @@
 import CustomButton from './custom-inputs/CustomButton';
 import CustomDropdownMenu from './custom-inputs/CustomDropdownMenu';
+import CustomPressableImage from './custom-inputs/CustomPressableImage';
 import CustomTextInput from './custom-inputs/CustomTextInput';
 
 import BookShelfLeftView from './bookshelf-background/BookShelfLeftView';
@@ -30,6 +31,7 @@ import PolicySection from './policy-section/PolicySection';
 export {
   CustomButton,
   CustomDropdownMenu,
+  CustomPressableImage,
   CustomTextInput,
   BookShelfLeftView,
   BookShelfRightView,

@@ -1,16 +1,29 @@
 import React, {FC} from 'react';
-import {View, ImageBackground, StyleSheet} from 'react-native';
+import {
+  View,
+  ImageBackground,
+  StyleSheet,
+  Image,
+  Text,
+  Pressable,
+} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {backgroundHome} from '../../../../../assets';
 import {C_ICON_PRIMARY} from '../../../../constants/Colors';
-import {PressableIcon, PrizeDisplayModal} from '../../../common/components';
+import {
+  CustomPressableImage,
+  PressableIcon,
+  PrizeDisplayModal,
+} from '../../../common/components';
 import {Flash} from '../../../common/animation-components';
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
 import useHomeScreen from './useHomeScreen';
+
+import {post} from '../../../../../assets';
 
 const HomeScreen: FC = () => {
   const {
@@ -75,23 +88,23 @@ const HomeScreen: FC = () => {
         iconStyle={{}}
       />
 
-      <PressableIcon
-        icon={'chevron-left'}
-        onPress={navToAvailablePrizesTab}
-        iconSize={hp('8%')}
-        iconColor={C_ICON_PRIMARY}
-        viewStyle={styles.leftArrowView}
-        iconStyle={{}}
-      />
+      <View style={styles.rightArrowView}>
+        <CustomPressableImage
+          disabled={false}
+          image={post}
+          onPress={navToWonPrizesTab}
+          style={{flex: 1}}
+        />
+      </View>
 
-      <PressableIcon
-        icon={'chevron-right'}
-        onPress={navToWonPrizesTab}
-        iconSize={hp('8%')}
-        iconColor={C_ICON_PRIMARY}
-        viewStyle={styles.rightArrowView}
-        iconStyle={{}}
-      />
+      <View style={styles.leftArrowView}>
+        <CustomPressableImage
+          disabled={false}
+          image={post}
+          onPress={navToAvailablePrizesTab}
+          style={{flex: 1}}
+        />
+      </View>
 
       {isFlashAnimationPlaying && (
         <Flash
@@ -142,19 +155,21 @@ const styles = StyleSheet.create({
   },
   leftArrowView: {
     position: 'absolute',
-    top: '50%',
+    bottom: 0,
+    left: 0,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    left: wp('1%'),
+    backgroundColor: 'red',
+    width: wp('25%'),
+    height: hp('16%'),
   },
   rightArrowView: {
     position: 'absolute',
-    top: '50%',
+    bottom: -hp('2%'),
+    right: 0,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    right: wp('1%'),
+    backgroundColor: 'red',
+    width: wp('25%'),
+    height: hp('16%'),
   },
   flashView: {
     position: 'absolute',

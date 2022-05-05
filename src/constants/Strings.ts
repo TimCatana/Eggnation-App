@@ -298,7 +298,7 @@ export const S_PCM_GO_BACK_BUTTON = 'Go Back';
 export const S_CPT_PRIZE_ID = 'eggnation-promo-code';
 export const S_CPT_PRIZE_TITLE = 'Eggnation Shop Coupon';
 export const S_CPT_PRIZE_DESC =
-  'Use the discount code EGGNATIONMERCH get 10% off of anu product on eggnationshop.com!';
+  'Use the discount code EGGNATIONMERCH get 10% off of any product on eggnationshop.com!';
 export const S_CPT_PRIZE_TYPE = 'shirt';
 export const S_CPT_PRIZE_TIER = 'gold';
 

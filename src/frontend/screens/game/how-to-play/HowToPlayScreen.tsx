@@ -1,44 +1,52 @@
 import React, {FC} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet, View, Image} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../../constants/Colors';
+import {C_BACKGROUND_BOOKSHELF, C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../../constants/Colors';
 
 import usePrivacyPolicyScreen from './useHowToPlayScreen';
-import {ScrollView} from 'react-native-gesture-handler';
 import {PressableIcon} from '../../../common/components';
+import {howToPlay} from '../../../../../assets';
 
 const HowToPlayScreen: FC = () => {
   const {navigateBack} = usePrivacyPolicyScreen();
 
   return (
-    <ScrollView
-      style={styles.body}
-      contentContainerStyle={{
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-      }}>
+    <View style={styles.body}>
+      <Text style={styles.headingText}>How To Play</Text>
+      <Image source={howToPlay} style={styles.image} resizeMode={'contain'} />
       <PressableIcon
         icon={'arrow-left'}
         onPress={navigateBack}
-        iconSize={hp('3.5%')}
+        iconSize={hp('3.6%')}
         iconColor={C_ICON_LIGHT}
         viewStyle={styles.icon}
         iconStyle={{}}
       />
-      <Text style={{fontSize: 100}}>lol</Text>
-    </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: C_BACKGROUND_DARK,
+    display: 'flex',
+    backgroundColor: C_BACKGROUND_BOOKSHELF,
+  },
+  headingText: {
+    alignSelf: 'center',
+    fontSize: hp('5%'),
+    color: 'white',
+    paddingTop: hp('2%')
+  },
+  image: {
+    flex: 1,
+    height: undefined,
+    width: undefined,
   },
   icon: {
-    marginLeft: hp('0.5%'),
-    marginTop: hp('0.5%'),
-    marginBottom: hp('1%'),
+    position: 'absolute',
+    left: hp('0.6%'),
+    top: hp('0.6%'),
   },
 });
 

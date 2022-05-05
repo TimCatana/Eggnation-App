@@ -7,6 +7,7 @@ export const C_TEXT_LINK_DARK = 'black'; // '#000000'
 export const C_TEXT_ERROR = '#ae0000';
 export const C_TEXT_SETTINGS_LIGHT = '#e2e2e2';
 export const C_TEXT_BOOKSHELF_TITLE = '#53351e';
+export const C_TEXT_DISPLAY_CASE_DESC = '#8C8889';
 
 /** TEXT INPUTS */
 export const C_TEXT_INPUT_TEXT_PRIMARY = '#64757f'; // '#808080'

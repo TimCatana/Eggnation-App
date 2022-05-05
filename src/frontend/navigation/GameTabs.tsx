@@ -16,7 +16,7 @@ const GameTabs: FC = () => {
         tabBarStyle: {display: 'none'},
         swipeEnabled: false,
       }}
-      backBehavior="none">
+      backBehavior="initialRoute">
       <Tab.Screen
         name={Screens.AVAILABLE_PRIZES_SCREEN}
         component={AvailablePrizesScreen}
