@@ -4,17 +4,28 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {C_BACKGROUND_DARK, C_ICON_LIGHT} from '../../../../constants/Colors';
 import {PressableIcon} from '../../../common/components';
 import TOSIntroduction from './components/other/TOSIntroduction';
-import TOSEligibility from './components/other/TOSEligibility';
+import TOSApplicationTerms from './components/other/TOSApplicationTerms';
+import TOSGeneralConditions from './components/other/TOSGeneralConditions';
 import TOSAccount from './components/other/TOSAccount';
-import TOSLicense from './components/other/TOSLicense';
-import TOSProhibitedActivities from './components/other/TOSProhibitedActivities';
-import TOSFeedback from './components/other/TOSFeedback';
+import TOSConsentToAds from './components/other/TOSConsentToAds';
 import TOSPrizeShipment from './components/other/TOSPrizeShipment';
+import TOSPresentedInformation from './components/other/TOSPresentedInformation';
+import TOSPlatformChanges from './components/other/TOSServiceChanges';
+import TOSProductsOrServices from './components/other/TOSProductsOrServices';
+import TOSOptionalTools from './components/other/TOSOptionalTools';
+import TOSThirdPartyLinks from './components/other/TOSThirdPartyLinks';
+import TOSComments from './components/other/TOSComments';
+import TOSPersonalInfo from './components/other/TOSPersonalInfo';
+import TOSErrors from './components/other/TOSErrors';
+import TOSProhibitedUses from './components/other/TOSProhibitedUses';
 import TOSDisclaimer from './components/other/TOSDisclaimer';
 import TOSIndemnification from './components/other/TOSIndemnification';
-import TOSPlatformChanges from './components/other/TOSPlatformChanges';
-import TOSConsentToAds from './components/other/TOSConsentToAds';
+import TOSSeverability from './components/other/TOSSeverability';
+import TOSTermination from './components/other/TOSTermination';
+import TOSEntireAgreement from './components/other/TOSEntireAgreement';
+import TOSGoverningLaw from './components/other/TOSGoverningLaw';
 import TOSChanges from './components/other/TOSChanges';
+
 import useTermsScreen from './useTermsScreen';
 
 const TermsScreen: FC = () => {
@@ -31,16 +42,26 @@ const TermsScreen: FC = () => {
         iconStyle={{}}
       />
       <TOSIntroduction />
-      <TOSEligibility />
+      <TOSApplicationTerms />
+      <TOSGeneralConditions />
       <TOSAccount />
-      <TOSLicense />
-      <TOSProhibitedActivities />
-      <TOSFeedback />
+      <TOSConsentToAds />
       <TOSPrizeShipment />
+      <TOSPresentedInformation />
+      <TOSPlatformChanges />
+      <TOSProductsOrServices />
+      <TOSOptionalTools />
+      <TOSThirdPartyLinks />
+      <TOSComments />
+      <TOSPersonalInfo />
+      <TOSErrors />
+      <TOSProhibitedUses />
       <TOSDisclaimer />
       <TOSIndemnification />
-      <TOSPlatformChanges />
-      <TOSConsentToAds />
+      <TOSSeverability />
+      <TOSTermination />
+      <TOSEntireAgreement />
+      <TOSGoverningLaw />
       <TOSChanges />
     </ScrollView>
   );

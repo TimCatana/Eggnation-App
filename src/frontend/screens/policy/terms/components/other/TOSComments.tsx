@@ -1,17 +1,17 @@
 import React, {FC} from 'react';
 import {
-  S_TS_FEEDBACK_CONTENT,
-  S_TS_FEEDBACK_TITLE,
+  S_TS_COMMENTS_CONTENT,
+  S_TS_COMMENTS_TITLE,
 } from '../../../../../../constants/Strings';
 import {PolicySection} from '../../../../../common/components';
 
-const TOSFeedback: FC = () => {
+const TOSComments: FC = () => {
   return (
     <PolicySection
-      title={S_TS_FEEDBACK_TITLE}
-      content={S_TS_FEEDBACK_CONTENT}
+      title={S_TS_COMMENTS_TITLE}
+      content={S_TS_COMMENTS_CONTENT}
     />
   );
 };
 
-export default TOSFeedback;
+export default TOSComments;

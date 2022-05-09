@@ -1,17 +1,17 @@
 import React, {FC} from 'react';
 import {
-  S_TS_ELIGIBILITY_CONTENT,
-  S_TS_ELIGIBILITY_TITLE,
+  S_TS_TERMINATION_CONTENT,
+  S_TS_TERMINATION_TITLE,
 } from '../../../../../../constants/Strings';
 import {PolicySection} from '../../../../../common/components';
 
-const TOSEligibility: FC = () => {
+const TOSTermination: FC = () => {
   return (
     <PolicySection
-      title={S_TS_ELIGIBILITY_TITLE}
-      content={S_TS_ELIGIBILITY_CONTENT}
+      title={S_TS_TERMINATION_TITLE}
+      content={S_TS_TERMINATION_CONTENT}
     />
   );
 };
 
-export default TOSEligibility;
+export default TOSTermination;
