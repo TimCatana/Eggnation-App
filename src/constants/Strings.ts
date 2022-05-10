@@ -1,5 +1,7 @@
 /** @note some error texts are just empty strings, those are hard coded in. In case you're confused why sometimes the error text doesn't show up */
 
+import {DV_LOCAL_COUNT} from './Constants';
+
 /********************************************************************************/
 /******************************** AUTH SCREENS **********************************/
 /********************************************************************************/
@@ -76,7 +78,7 @@ export const S_CPS_PAYPAL_EMAIL_TITLE = 'PayPal Email';
 /***** HOW TO PLAY SCREEN *****/
 /******************************/
 
-export const S_HTPS_TAP_EGG = 'Tap The Egg';
+export const S_HTPS_TAP_EGG = `Tap The Egg (${DV_LOCAL_COUNT}/day)`;
 export const S_HTPS_LOSE = 'Lose';
 export const S_HTPS_WIN = 'Win';
 export const S_HTPS_AD = 'Ad';
