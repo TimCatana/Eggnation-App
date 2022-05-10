@@ -47,7 +47,10 @@ const PrizeDisplayContent: FC<Props> = props => {
 
   return (
     <View style={styles.body}>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView
+        style={styles.scrollView}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}>
         <PrizeDisplayContentTopView displayImage={displayImage} />
 
         <PrizeDisplayContentTopCenterView prizeTitle={prizeTitle} />

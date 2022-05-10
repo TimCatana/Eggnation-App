@@ -61,7 +61,6 @@ const useHomeScreen = () => {
    * @dependent onMount
    */
   useEffect(() => {
-    // doSetAsyncValue(KC_LOCAL_COUNT, '5000');
     initCounter();
   }, []);
 
@@ -195,7 +194,7 @@ const useHomeScreen = () => {
   const handlePopulateDisplayPrize = (prize: AvailablePrize | ContestPrize) => {
     handleDisplayPrizeIdChange(prize.prizeId);
     handleDisplayPrizeTitleChange(prize.prizeTitle);
-    handleDisplayPrizeDescChange(prize.prizeTitle);
+    handleDisplayPrizeDescChange(prize.prizeDesc);
     handleDisplayPrizeTypeChange(prize.prizeType);
     handleDisplayPrizeTierChange(prize.prizeTier);
     handleDisplayPrizeClaimTypeChange(prize.prizeClaimType);

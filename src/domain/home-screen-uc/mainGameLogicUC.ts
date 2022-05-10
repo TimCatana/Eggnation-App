@@ -194,7 +194,6 @@ const _winPrizeLogic = async (
    */
   await doAddWonPrizeToUserAccount(userId, prize);
 
-  // TODO - uncomment after
   /**
    * @phase3
    */
