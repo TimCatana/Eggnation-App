@@ -166,7 +166,6 @@ const styles = StyleSheet.create({
     bottom: -hp('3%'),
     right: hp('1%'),
     flex: 1,
-    backgroundColor: 'red',
     width: wp('25%'),
     height: hp('15%'),
   },
