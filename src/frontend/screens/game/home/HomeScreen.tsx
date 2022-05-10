@@ -23,7 +23,7 @@ import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
 import useHomeScreen from './useHomeScreen';
 
-import {post} from '../../../../../assets';
+import { signLeft, signRight } from '../../../../../assets';
 
 const HomeScreen: FC = () => {
   const {
@@ -91,7 +91,7 @@ const HomeScreen: FC = () => {
       <View style={styles.rightArrowView}>
         <CustomPressableImage
           disabled={false}
-          image={post}
+          image={signRight}
           onPress={navToWonPrizesTab}
           style={{flex: 1}}
         />
@@ -100,7 +100,7 @@ const HomeScreen: FC = () => {
       <View style={styles.leftArrowView}>
         <CustomPressableImage
           disabled={false}
-          image={post}
+          image={signLeft}
           onPress={navToAvailablePrizesTab}
           style={{flex: 1}}
         />
@@ -155,21 +155,20 @@ const styles = StyleSheet.create({
   },
   leftArrowView: {
     position: 'absolute',
-    bottom: 0,
-    left: 0,
+    bottom: -hp('3%'),
+    left: hp('2%'),
     flex: 1,
-    backgroundColor: 'red',
     width: wp('25%'),
-    height: hp('16%'),
+    height: hp('15%'),
   },
   rightArrowView: {
     position: 'absolute',
-    bottom: -hp('2%'),
-    right: 0,
+    bottom: -hp('3%'),
+    right: hp('1%'),
     flex: 1,
     backgroundColor: 'red',
     width: wp('25%'),
-    height: hp('16%'),
+    height: hp('15%'),
   },
   flashView: {
     position: 'absolute',

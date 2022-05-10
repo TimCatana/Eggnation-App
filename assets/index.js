@@ -6,6 +6,9 @@ import bookShelfRight from './backgrounds/bookshelf/book-shelf-right.png';
 import bookShelfTop from './backgrounds/bookshelf/book-shelf-top.png';
 import bookShelfTopFlat from './backgrounds/bookshelf/book-shelf-top-flat.png';
 
+import signLeft from './backgrounds/sign-posts/sign_left.png'
+import signRight from './backgrounds/sign-posts/sign_right.png'
+
 import singleShelfFirstHalf from './bookshelf/firstHalfShelf.png';
 import singleShelfSecondHalf from './bookshelf/secondHalfShelf.png';
 import singleShelfFull from './bookshelf/fullShelf.png';
@@ -22,8 +25,6 @@ import tablet from './items/tablet.png';
 import LostAnimation from './lottie/lost.json';
 import WonAnimation from './lottie/won.json';
 import PresentPlaceholder from './lottie/present-placeholder.json';
-
-import post from './post.jpg';
 
 import HTPTap from './how-to-play-icons/tap.png';
 import HTPLose from './how-to-play-icons/lose.png';
@@ -42,6 +43,8 @@ export {
   singleShelfFirstHalf,
   singleShelfSecondHalf,
   singleShelfFull,
+  signLeft,
+  signRight,
   cash,
   earbuds,
   hoodie,
@@ -53,7 +56,6 @@ export {
   LostAnimation,
   WonAnimation,
   PresentPlaceholder,
-  post,
   HTPTap,
   HTPLose,
   HTPWin,
