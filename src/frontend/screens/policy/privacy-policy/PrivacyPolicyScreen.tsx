@@ -18,7 +18,6 @@ import PPCookies from './components/other/PPCookies';
 import PPInfoRetention from './components/other/PPInfoRetenrion';
 import PPChildrenPrivacy from './components/other/PPChildrenPrivacy';
 import PPChanges from './components/other/PPChanges';
-import PPContactUs from './components/other/PPContactUs';
 import usePrivacyPolicyScreen from './usePrivacyPolicyScreen';
 
 const PrivacyPolicyScreen: FC = () => {
@@ -51,7 +50,6 @@ const PrivacyPolicyScreen: FC = () => {
       <PPInfoRetention />
       <PPChildrenPrivacy />
       <PPChanges />
-      <PPContactUs />
     </ScrollView>
   );
 };

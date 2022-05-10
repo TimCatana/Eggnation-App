@@ -198,9 +198,6 @@ export const S_PP_CHANGES_CONTENT = `We may update our Privacy Policy from time 
 
 This policy is effective as of 2022-04-28`;
 
-export const S_PP_CONTACT_US_TITLE = 'Contact Us';
-export const S_PP_CONTACT_US_CONTENT = `If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at eggnationapp@gmail.com.`;
-
 /************************/
 /***** TERMS SCREEN *****/
 /************************/
