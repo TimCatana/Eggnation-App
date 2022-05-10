@@ -6,7 +6,7 @@ import Login from "../pages/login/Login.js";
 import Home from "../pages/home/Home.js";
 import { Route, Routes } from "react-router-dom";
 
-const RRoutes = () => {
+const AppRoutes = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
 
@@ -22,4 +22,4 @@ const RRoutes = () => {
   );
 };
 
-export default RRoutes;
+export default AppRoutes;

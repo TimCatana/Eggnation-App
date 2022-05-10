@@ -1,5 +1,5 @@
 import React from "react";
-import Routes from "./Routes.js";
+import AppRoutes from "./Routes.js";
 
 /**
  * There are two stacks, the AuthStack and the AppStack.
@@ -8,7 +8,7 @@ import Routes from "./Routes.js";
  * handles whether the user is logged in or not
  */
 const Providers = () => {
-  return <Routes />;
+  return <AppRoutes />;
 };
 
 export default Providers;

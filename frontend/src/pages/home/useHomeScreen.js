@@ -130,9 +130,6 @@ const useHomeScreen = () => {
   /*************************/
 
   const handleAddPrizeToDB = async () => {
-    console.log(prizeIdError);
-    console.log(prizeId);
-
     if (
       !prizeIdError &&
       !prizeTitleError &&
@@ -152,7 +149,11 @@ const useHomeScreen = () => {
   };
 
   const handleLogout = async () => {
-    await signOut(FBAuth);
+    try {
+      await signOut(FBAuth);
+    } catch (e) {
+      console.log(`Failed to sign out --> ${e}`);
+    }
   };
 
   /*************************/

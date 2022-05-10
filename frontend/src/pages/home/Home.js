@@ -87,8 +87,8 @@ const Home = () => {
           onChange={handlePrizeTitleChange}
         ></PrizeTitleInput>
         <PrizeDescInput
-        rows={20}
-        cols={20}
+          rows={20}
+          cols={20}
           placeholder="prizeDesc"
           onChange={handlePrizeDescChange}
         ></PrizeDescInput>

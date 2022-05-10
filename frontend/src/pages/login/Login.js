@@ -49,7 +49,7 @@ const Login = () => {
           onClick={handleAuthenticate}
           disabled={emailError || passwordError}
         >
-          Add Prize To DB
+          Login
         </Button>
       </Wrapper>
     </Container>

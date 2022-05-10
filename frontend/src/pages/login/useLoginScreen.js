@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { FBAuth, FBFirestore } from "../../firebase-config.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 const useLoginScreen = () => {
@@ -55,19 +55,15 @@ const useLoginScreen = () => {
     }
   };
 
+  /*************************/
+  /***** CLICK HELPERS *****/
+  /*************************/
+
   const _isUserAdmin = async () => {
     const adminDoc = doc(FBFirestore, `admins/${email}`);
     const result = await getDoc(adminDoc);
     return result.exists();
   };
-
-  /**********************/
-  /***** ANIMATIONS *****/
-  /**********************/
-
-  /******************************/
-  /***** NAVIGATION HELPERS *****/
-  /******************************/
 
   /*******************/
   /***** RETURNS *****/
