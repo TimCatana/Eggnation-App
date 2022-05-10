@@ -6,13 +6,15 @@ import {useInterstitialAd, TestIds} from '@react-native-admob/admob';
 import {
   MGL_AD_FREQUENCY,
   DV_LOCAL_COUNT,
+  KC_LOCAL_COUNT,
 } from '../../../../constants/Constants';
+import {AvailablePrize, ContestPrize} from '../../../../constants/typeAliases';
 import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';
 import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIfTimeToResetCountUC';
 import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
 import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
-import {AvailablePrize, ContestPrize} from '../../../../constants/typeAliases';
 import Snackbar from 'react-native-snackbar';
+import doSetAsyncValue from '../../../../backend/async-storage/doSetAsyncValue';
 
 const useHomeScreen = () => {
   /******************/
@@ -59,6 +61,7 @@ const useHomeScreen = () => {
    * @dependent onMount
    */
   useEffect(() => {
+    // doSetAsyncValue(KC_LOCAL_COUNT, '5000');
     initCounter();
   }, []);
 
@@ -165,7 +168,9 @@ const useHomeScreen = () => {
       await decrementLocalCountUC();
       await getLocalCount();
     } catch (e) {
-      console.log('failed to update local count');
+      if (__DEV__) {
+        console.log('failed to update local count');
+      }
     }
   };
 

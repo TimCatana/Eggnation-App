@@ -18,7 +18,9 @@ const decrementLocalCountUC = async (): Promise<Result> => {
       return {status: ERROR, message: ''};
     }
 
-    await doSetAsyncValue(KC_LOCAL_COUNT, `${parseInt(count) - 1}`);
+    if (parseInt(count) > 0) {
+      await doSetAsyncValue(KC_LOCAL_COUNT, `${parseInt(count) - 1}`);
+    }
 
     return {status: SUCCESS, message: ''};
   } catch (e: any) {

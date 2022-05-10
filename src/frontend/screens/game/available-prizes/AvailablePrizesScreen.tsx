@@ -10,7 +10,6 @@ import {PrizeDisplayModal, PressableIcon} from '../../../common/components';
 import BookShelfLeftView from '../../../common/components/bookshelf-background/BookShelfLeftView';
 import BookShelfRightView from '../../../common/components/bookshelf-background/BookShelfRightView';
 import PrizeScreenCenterView from '../../../common/components/bookshelf-background/PrizeScreenCenterView';
-import TEST_DATA from '../../../../../test-data/availablePrizes.json'; // TODO - get rid of this after...
 import usePrizeScreen from '../../../common/states/usePrizeScreen';
 
 const AvailablePrizesScreen: FC = () => {
@@ -44,7 +43,7 @@ const AvailablePrizesScreen: FC = () => {
         isLoading={isLoading}
         isPrizeFetchFailed={isPrizeFetchFailed}
         prizeFetchFailedText={prizeFetchFailedText}
-        data={TEST_DATA}
+        data={prizes}
         handleShowPrize={handleShowPrize}
         title={S_APS_TITLE}
       />
