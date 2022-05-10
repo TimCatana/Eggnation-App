@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import useHomeScreen from "./useHomeScreen";
+import useHomeScreen from "./useHomeScreen.js";
 
 const Container = styled.div`
   width: 100vw;
@@ -29,7 +29,7 @@ const PrizeTitleInput = styled.input`
   margin-bottom: 1rem;
 `;
 
-const PrizeDescInput = styled.input`
+const PrizeDescInput = styled.textarea`
   margin-bottom: 1rem;
 `;
 
@@ -47,7 +47,9 @@ const PrizeClaimTypeSelection = styled.select`
 
 const Option = styled.option``;
 
-const Button = styled.button``;
+const Button = styled.button`
+  margin-bottom: 1rem;
+`;
 
 const Home = () => {
   const {
@@ -66,6 +68,7 @@ const Home = () => {
     prizeClaimTypeError,
     handlePrizeClaimTypeChange,
     handleAddPrizeToDB,
+    handleLogout,
   } = useHomeScreen();
 
   return (
@@ -75,9 +78,20 @@ const Home = () => {
           <Option value="available-prizes">available-prizes</Option>
           <Option value="contest-prizes">contest-prizes</Option>
         </CollectionSelection>
-        <PrizeIdInput onChange={handlePrizeIdChange}></PrizeIdInput>
-        <PrizeTitleInput onChange={handlePrizeTitleChange}></PrizeTitleInput>
-        <PrizeDescInput onChange={handlePrizeDescChange}></PrizeDescInput>
+        <PrizeIdInput
+          placeholder="prizeId"
+          onChange={handlePrizeIdChange}
+        ></PrizeIdInput>
+        <PrizeTitleInput
+          placeholder="prizeTitle"
+          onChange={handlePrizeTitleChange}
+        ></PrizeTitleInput>
+        <PrizeDescInput
+        rows={20}
+        cols={20}
+          placeholder="prizeDesc"
+          onChange={handlePrizeDescChange}
+        ></PrizeDescInput>
         <PrizeTierSelection onChange={handlePrizeTierChange}>
           <Option value="bronze">bronze</Option>
           <Option value="silver">silver</Option>
@@ -114,6 +128,7 @@ const Home = () => {
         >
           Add Prize To DB
         </Button>
+        <Button onClick={handleLogout}>Logout</Button>
       </Wrapper>
     </Container>
   );

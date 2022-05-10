@@ -9,7 +9,6 @@ app.use(express.json());
  * Route setup.
  * Order of precedence matters
  */
-app.use("/home", require("./routes/home"));
 app.use("/", (req, res) => {
   console.log("root");
   res.send();

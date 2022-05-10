@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { FBAuth, FBFirestore } from "../../firebase-config.js";
+import { signOut } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 const useHomeScreen = () => {
-  const URL = "http://localhost:4400";
-
   const [collection, setCollection] = useState("available-prizes");
   const [collectionError, setCollectionError] = useState(true);
 
@@ -28,8 +28,12 @@ const useHomeScreen = () => {
   /***********************/
   /***** USE EFFECTS *****/
   /***********************/
+  // useEffect(() => {
+  //   signOut(FBAuth)
+  // }, [])
+
   useEffect(() => {
-    console.log(collection);
+    // console.log(collection);
 
     collection != null && collection.length > 6
       ? setCollectionError(false)
@@ -37,8 +41,8 @@ const useHomeScreen = () => {
   }, [collection]);
 
   useEffect(() => {
-    console.log(prizeId);
-    console.log(prizeIdError);
+    // console.log(prizeId);
+    // console.log(prizeIdError);
 
     prizeId != null && prizeId.length > 6
       ? setPrizeIdError(false)
@@ -46,8 +50,8 @@ const useHomeScreen = () => {
   }, [prizeId]);
 
   useEffect(() => {
-    console.log(prizeTitle);
-    console.log(prizeTitleError);
+    // console.log(prizeTitle);
+    // console.log(prizeTitleError);
 
     prizeTitle != null && prizeTitle.length > 0
       ? setPrizeTitleError(false)
@@ -55,8 +59,8 @@ const useHomeScreen = () => {
   }, [prizeTitle]);
 
   useEffect(() => {
-    console.log(prizeDesc);
-    console.log(prizeDescError);
+    // console.log(prizeDesc);
+    // console.log(prizeDescError);
 
     prizeDesc != null && prizeDesc.length > 0
       ? setPrizeDescError(false)
@@ -64,8 +68,8 @@ const useHomeScreen = () => {
   }, [prizeDesc]);
 
   useEffect(() => {
-    console.log(prizeTier);
-    console.log(prizeTierError);
+    // console.log(prizeTier);
+    // console.log(prizeTierError);
 
     prizeTier != null && prizeTier.length > 0
       ? setPrizeTierError(false)
@@ -73,8 +77,8 @@ const useHomeScreen = () => {
   }, [prizeTier]);
 
   useEffect(() => {
-    console.log(prizeType);
-    console.log(prizeTypeError);
+    // console.log(prizeType);
+    // console.log(prizeTypeError);
 
     prizeType != null && prizeType.length > 0
       ? setPrizeTypeError(false)
@@ -82,8 +86,8 @@ const useHomeScreen = () => {
   }, [prizeType]);
 
   useEffect(() => {
-    console.log(prizeClaimType);
-    console.log(prizeClaimTypeError);
+    // console.log(prizeClaimType);
+    // console.log(prizeClaimTypeError);
 
     prizeClaimType != null && prizeClaimType.length > 0
       ? setPrizeClaimTypeError(false)
@@ -137,19 +141,39 @@ const useHomeScreen = () => {
       !prizeTypeError &&
       !prizeClaimTypeError
     ) {
-      await axios.get(
-        `${URL}/home/addPrizeToDatabase/${collection}/${prizeId}?prizeTitle=${prizeTitle}&prizeDesc=${prizeDesc}&prizeTier=${prizeTier}&prizeType=${prizeType}&prizeClaimType=${prizeClaimType}`
-      );
+      try {
+        console.log("Adding to firestore...");
+        await _addToFirestore();
+        console.log("Added prize successfully");
+      } catch (e) {
+        console.log(`Failed to add to firestore --> ${e}`);
+      }
     }
   };
 
-  /**********************/
-  /***** ANIMATIONS *****/
-  /**********************/
+  const handleLogout = async () => {
+    await signOut(FBAuth);
+  };
 
-  /******************************/
-  /***** NAVIGATION HELPERS *****/
-  /******************************/
+  /*************************/
+  /***** CLICK HELPERS *****/
+  /*************************/
+
+  const _addToFirestore = async () => {
+    const document =
+      collection === "available-prizes"
+        ? doc(FBFirestore, `available-prizes/${prizeId}`)
+        : doc(FBFirestore, `contest-prizes/${prizeId}`);
+
+    await setDoc(document, {
+      prizeId: prizeId,
+      prizeTitle: prizeTitle,
+      prizeDesc: prizeDesc,
+      prizeTier: prizeTier,
+      prizeType: prizeType,
+      prizeClaimType: prizeClaimType,
+    });
+  };
 
   /*******************/
   /***** RETURNS *****/
@@ -171,6 +195,7 @@ const useHomeScreen = () => {
     prizeClaimTypeError,
     handlePrizeClaimTypeChange,
     handleAddPrizeToDB,
+    handleLogout,
   };
 };
 
