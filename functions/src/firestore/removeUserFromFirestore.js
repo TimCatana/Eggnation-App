@@ -6,6 +6,7 @@ const {
   FS_USER_COLLECTION_KEY,
   FS_WON_PRIZES_COLLECTION_KEY,
 } = require("../constants/Constants");
+const { firestore } = require("firebase-admin");
 
 const userRef = admin.firestore().collection(FS_USER_COLLECTION_KEY);
 const wonPrizesRef = admin.firestore().collection(FS_WON_PRIZES_COLLECTION_KEY);
@@ -39,7 +40,7 @@ exports.removeUserFromFirestore = functions.auth
     }
 
     try {
-      await wonPrizesRef.doc(user.uid).delete();
+      await admin.firestore().recursiveDelete(wonPrizesRef.doc(user.uid));
     } catch (e) {
       printDevLogs(
         S_RUFF_E_PATH,
