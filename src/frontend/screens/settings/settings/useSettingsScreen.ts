@@ -151,7 +151,7 @@ const useSettingsScreen = () => {
   const navToContactUs = () => {
     if (!isLoading) {
       const url =
-        'mailto:contactapplicnation@gmail.com?subject=Enter your subject here&body=Enter your message here';
+        'mailto:eggnationapp@gmail.com?subject=Enter your subject here&body=Enter your message here';
       Linking.openURL(url);
     }
   };

@@ -1,17 +1,10 @@
 import React, {FC} from 'react';
-import {
-  View,
-  ImageBackground,
-  StyleSheet,
-  Image,
-  Text,
-  Pressable,
-} from 'react-native';
+import {View, ImageBackground, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {backgroundHome} from '../../../../../assets';
+import {backgroundHome, signLeft, signRight} from '../../../../../assets';
 import {C_ICON_PRIMARY} from '../../../../constants/Colors';
 import {
   CustomPressableImage,
@@ -22,8 +15,6 @@ import {Flash} from '../../../common/animation-components';
 import HomeScreenCounter from './components/center-view/HomeScreenCounter';
 import HomeScreenEgg from './components/bottom-view/HomeScreenEgg';
 import useHomeScreen from './useHomeScreen';
-
-import { signLeft, signRight } from '../../../../../assets';
 
 const HomeScreen: FC = () => {
   const {
@@ -125,9 +116,9 @@ const HomeScreen: FC = () => {
         prizeType={displayPrizeType}
         prizeClaimType={displayPrizeClaimType}
         prizeClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
-        prizeDelivered={false}
-        prizeWonDate={''}
-        isWonPrize={false}
+        prizeDelivered={false} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
+        prizeWonDate={''} // Prize just won, won date is irrelevant as of now. May change in future updates
+        isWonPrize={false} // So that the claim button does not show up here
         isModalVisible={isShowingPrize}
         handleHidePrize={handleHidePrize}
         navigation={navigation}

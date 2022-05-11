@@ -46,7 +46,7 @@ const ForgotPasswordScreenCenterView: FC<Props> = props => {
           errorText={S_TI_EMAIL_ERROR_TEXT}
           isError={isEmailError && email.length > 0}
           disabled={isLoading}
-          maxLength={100}
+          maxLength={120}
           width={'100%'}
           height={hp('6.5%')}
           marginBottom={hp('1.5%')}

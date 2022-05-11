@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {C_TEXT_LIGHT} from '../../../../../../constants/Colors';
 import {
   S_RS_AND,
   S_RS_BY_REGISTERING_NOTICE,
 } from '../../../../../../constants/Strings';
+import {C_TEXT_LIGHT} from '../../../../../../constants/Colors';
 import PrivacyPolicyText from './PrivacyPolicyText';
 import TermsText from './TermsText';
 

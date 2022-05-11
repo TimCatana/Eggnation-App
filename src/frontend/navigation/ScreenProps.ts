@@ -85,7 +85,7 @@ export type ClaimPrizeRouteProp = RouteProp<
   Screens.CLAIM_PRIZE_SCREEN
 >;
 
-export type HowToPlayScreenRouteProp = RouteProp<
+export type HowToPlayScreenRouteProp = StackNavigationProp<
   GameStackParamList,
   Screens.HOW_TO_PLAY_SCREEN
 >;

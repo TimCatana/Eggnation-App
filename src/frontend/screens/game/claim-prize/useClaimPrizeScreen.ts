@@ -1,16 +1,16 @@
 import {useState, useEffect} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {ERROR} from '../../../../constants/ResultsConstants';
-import Snackbar from 'react-native-snackbar';
-import countriesData from '../../../../util/countries.json';
 import {
   ClaimPrizeScreenProp,
   ClaimPrizeRouteProp,
 } from '../../../navigation/ScreenProps';
 import {Countries, Regions} from '../../../../constants/typeAliases';
+import {PCT_TRANSFER, PCT_DELIVERABLE} from '../../../../constants/Constants';
+import Snackbar from 'react-native-snackbar';
+import countriesData from '../../../../util/countries.json';
 import claimPrizeUC from '../../../../domain/claim-prize-screen-uc/claimPrizeUC';
 import isEmailValid from '../../../common/helpers/isEmailValid';
-import {PCT_TRANSFER, PCT_DELIVERABLE} from '../../../../constants/Constants';
 
 const useClaimPrizeScreen = () => {
   /******************/

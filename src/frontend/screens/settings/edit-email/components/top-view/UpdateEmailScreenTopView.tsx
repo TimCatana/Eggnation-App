@@ -46,7 +46,7 @@ const UpdateEmailScreenTopView: FC<Props> = props => {
         errorText={''}
         isError={isPasswordError && password.length > 0}
         disabled={isLoading}
-        maxLength={100}
+        maxLength={30}
         width={'100%'}
         height={hp('6.5%')}
         marginBottom={hp('2%')}
@@ -65,7 +65,7 @@ const UpdateEmailScreenTopView: FC<Props> = props => {
         errorText={S_TI_EMAIL_ERROR_TEXT}
         isError={isNewEmailError && newEmail.length > 0}
         disabled={isLoading}
-        maxLength={100}
+        maxLength={120}
         width={'100%'}
         height={hp('6.5%')}
         fontSize={hp('2%')}

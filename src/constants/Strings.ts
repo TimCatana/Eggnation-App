@@ -17,7 +17,7 @@ export const S_FPS_SEND_BUTTON = 'Send';
 /************************/
 
 export const S_LS_LOGIN_HEADING = 'LOGIN';
-export const S_LS_FORGOT_PASSWORD = 'Forgot password?';
+export const S_LS_FORGOT_PASSWORD = 'Forgot Password?';
 export const S_LS_LOGIN_BUTTON = 'Login';
 export const S_LS_DONT_HAVE_AN_ACCOUNT = "Don't have an account? ";
 export const S_LS_REGISTER_HERE = 'Register here';
@@ -101,13 +101,13 @@ export const S_SS_PASSWORD = 'Password';
 export const S_SS_PASSWORD_DOTS = '●●●●●●●';
 export const S_SS_LANGUAGE = 'Language';
 
-export const S_SS_LEGAL_HEADING = 'LEGAL';
-export const S_SS_PRIVACY_POLICY = 'Privacy Policy';
-export const S_SS_TERMS_AND_CONDITIONS = 'Terms & Conditions';
-
 export const S_SS_CONTACT_HEADING = 'CONTACT';
 export const S_SS_EGGNATION = 'Eggnation Shop';
 export const S_SS_CONTACT_US = 'Contact Us';
+
+export const S_SS_LEGAL_HEADING = 'LEGAL';
+export const S_SS_PRIVACY_POLICY = 'Privacy Policy';
+export const S_SS_TERMS_AND_CONDITIONS = 'Terms & Conditions';
 
 export const S_SS_LOGOUT_BUTTON = 'Logout';
 export const S_SS_DELETE_ACCOUNT_BUTTON = 'Delete Account';
@@ -361,13 +361,6 @@ export const S_TI_CONFIRM_PASSWORD_ERROR_TEXT = 'passwords must match';
 export const S_PDM_CLAIMED_BUTTON = 'Claimed';
 export const S_PDM_CLAIM_BUTTON = 'Claim';
 
-/***************************/
-/*****  PASSWORD MODAL *****/
-/***************************/
-
-export const S_PM_CANCEL_BUTTON = 'Cancel';
-export const S_PM_CONFIRM_BUTTON = 'Confirm';
-
 /*******************************/
 /***** PRIZE CLAIMED MODAL *****/
 /*******************************/
@@ -387,7 +380,7 @@ export const S_PCM_GO_BACK_BUTTON = 'Go Back';
 export const S_CPT_PRIZE_ID = 'eggnation-promo-code';
 export const S_CPT_PRIZE_TITLE = 'Eggnation Shop Coupon';
 export const S_CPT_PRIZE_DESC =
-  'Use the discount code EGGNATIONMERCH get 10% off of any product on eggnationshop.com!';
+  'Use the discount code EGGNATIONAPPMERCH get 50% off of the Original Eggnation Tee on eggnationshop.com!';
 export const S_CPT_PRIZE_TYPE = 'shirt';
 export const S_CPT_PRIZE_TIER = 'gold';
 
@@ -438,7 +431,7 @@ export const S_E_CPS_FAILED_TO_FETCH_PRIZE =
 export const S_E_CPS_FAILED_TO_CLAIM_PRIZE =
   'Failed to claim prize. If error persists please contact us';
 export const S_E_CPS_PRIZE_ALREADY_CLAIMED =
-  'This prize has already been claimed.';
+  'This prize has already been claimed';
 
 export const S_E_SS_FAILED_EMAIL_FETCH = 'Failed to get email';
 

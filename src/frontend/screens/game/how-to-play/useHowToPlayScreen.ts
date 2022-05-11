@@ -1,11 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
-import {PrivacyPolicyScreenProp} from '../../../navigation/ScreenProps';
+import {HowToPlayScreenRouteProp} from '../../../navigation/ScreenProps';
 
 const useHowToPlayScreen = () => {
   /******************/
   /***** STATES *****/
   /******************/
-  const navigation = useNavigation<PrivacyPolicyScreenProp>();
+  const navigation = useNavigation<HowToPlayScreenRouteProp>();
 
   /**
    * Navigates back to the login screen if no process is currently running.

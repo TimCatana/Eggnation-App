@@ -6,7 +6,6 @@ import {useInterstitialAd, TestIds} from '@react-native-admob/admob';
 import {
   MGL_AD_FREQUENCY,
   DV_LOCAL_COUNT,
-  KC_LOCAL_COUNT,
 } from '../../../../constants/Constants';
 import {AvailablePrize, ContestPrize} from '../../../../constants/typeAliases';
 import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';
@@ -14,7 +13,6 @@ import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIf
 import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
 import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
 import Snackbar from 'react-native-snackbar';
-import doSetAsyncValue from '../../../../backend/async-storage/doSetAsyncValue';
 
 const useHomeScreen = () => {
   /******************/
@@ -27,7 +25,9 @@ const useHomeScreen = () => {
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [localCount, setLocalCount] = useState<number>(1000);
+  const [localCount, setLocalCount] = useState<number>(
+    parseInt(DV_LOCAL_COUNT),
+  );
 
   const [isAnimationPlaying, setIsAnimationPlaying] = useState<boolean>(false);
   const winAnimationRef = useRef<any>(null);

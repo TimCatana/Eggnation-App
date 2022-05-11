@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Text, StyleSheet, View, Image, ScrollView} from 'react-native';
+import {Text, StyleSheet, View, ScrollView} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
   C_BACKGROUND_BOOKSHELF,
@@ -35,9 +35,7 @@ const HowToPlayScreen: FC = () => {
       style={styles.body}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}>
-      <Text style={[styles.headingText, {marginBottom: hp('5%')}]}>
-        How To Play
-      </Text>
+      <Text style={styles.headingText}>How To Play</Text>
 
       <HowToPlayScreenIconTextView
         image={HTPTap}
@@ -46,7 +44,7 @@ const HowToPlayScreen: FC = () => {
         width={'100%'}
       />
 
-      <View style={{display: 'flex', flexDirection: 'row'}}>
+      <View style={styles.loseWinAdRow}>
         <HowToPlayScreenIconTextView
           image={HTPLose}
           text={S_HTPS_LOSE}
@@ -66,18 +64,21 @@ const HowToPlayScreen: FC = () => {
           width={'33%'}
         />
       </View>
+
       <HowToPlayScreenIconTextView
         image={HTPTap}
         text={S_HTPS_CLAIM_WON_PRIZES}
         height={hp('20%')}
         width={'100%'}
       />
+
       <HowToPlayScreenIconTextView
         image={HTPDelivery}
         text={S_HTPS_WE_DELIVER_THE_PRIZE}
         height={hp('20%')}
         width={'100%'}
       />
+
       <HowToPlayScreenIconTextView
         image={HTPDelivered}
         text={S_HTPS_YOU_RECEIVE_THE_PRIZE}
@@ -108,17 +109,11 @@ const styles = StyleSheet.create({
     fontSize: hp('5%'),
     color: 'white',
     paddingTop: hp('2%'),
+    marginBottom: hp('5%'),
   },
-  descText: {
-    alignSelf: 'center',
-    fontSize: hp('3%'),
-    color: 'white',
-    paddingTop: hp('2%'),
-  },
-  image: {
-    flex: 1,
-    height: undefined,
-    width: undefined,
+  loseWinAdRow: {
+    display: 'flex',
+    flexDirection: 'row',
   },
   icon: {
     position: 'absolute',

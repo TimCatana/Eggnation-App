@@ -1,15 +1,18 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {S_WPS_TITLE} from '../../../../constants/Strings';
 import {
   C_BACKGROUND_BOOKSHELF,
   C_ICON_BOOKSHELF,
 } from '../../../../constants/Colors';
-import {PrizeDisplayModal, PressableIcon} from '../../../common/components';
-import BookShelfLeftView from '../../../common/components/bookshelf-background/BookShelfLeftView';
-import BookShelfRightView from '../../../common/components/bookshelf-background/BookShelfRightView';
-import PrizeScreenCenterView from '../../../common/components/bookshelf-background/PrizeScreenCenterView';
-import TEST_DATA from '../../../../../test-data/availablePrizes.json'; // TODO - get rid of this after
+import {
+  PrizeDisplayModal,
+  PressableIcon,
+  BookShelfLeftView,
+  BookShelfRightView,
+  PrizeScreenCenterView,
+} from '../../../common/components';
 import usePrizeScreen from '../../../common/states/usePrizeScreen';
 
 const WonPrizesScreen: FC = () => {
@@ -46,7 +49,7 @@ const WonPrizesScreen: FC = () => {
         prizeFetchFailedText={prizeFetchFailedText}
         data={prizes}
         handleShowPrize={handleShowPrize}
-        title={'Won Prizes'}
+        title={S_WPS_TITLE}
       />
 
       <PrizeDisplayModal

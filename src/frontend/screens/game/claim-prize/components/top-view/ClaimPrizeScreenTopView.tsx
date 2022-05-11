@@ -1,14 +1,10 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {
   PCT_TRANSFER,
   PCT_DELIVERABLE,
 } from '../../../../../../constants/Constants';
-import {C_TEXT_LIGHT} from '../../../../../../constants/Colors';
 import AddressForm from './AddressForm';
 import CashTransferForm from './CashTransferForm';
 

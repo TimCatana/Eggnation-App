@@ -54,7 +54,7 @@ const UpdatePasswordScreenTopView: FC<Props> = props => {
         errorText={''}
         isError={isCurrentPasswordError && currentPassword.length > 0}
         disabled={isLoading}
-        maxLength={100}
+        maxLength={30}
         width={'100%'}
         height={hp('6.5%')}
         marginBottom={hp('2%')}

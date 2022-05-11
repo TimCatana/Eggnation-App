@@ -6,10 +6,13 @@ import {
   C_BACKGROUND_BOOKSHELF,
   C_ICON_BOOKSHELF,
 } from '../../../../constants/Colors';
-import {PrizeDisplayModal, PressableIcon} from '../../../common/components';
-import BookShelfLeftView from '../../../common/components/bookshelf-background/BookShelfLeftView';
-import BookShelfRightView from '../../../common/components/bookshelf-background/BookShelfRightView';
-import PrizeScreenCenterView from '../../../common/components/bookshelf-background/PrizeScreenCenterView';
+import {
+  PrizeDisplayModal,
+  PressableIcon,
+  BookShelfLeftView,
+  BookShelfRightView,
+  PrizeScreenCenterView,
+} from '../../../common/components';
 import usePrizeScreen from '../../../common/states/usePrizeScreen';
 
 const AvailablePrizesScreen: FC = () => {
@@ -28,8 +31,6 @@ const AvailablePrizesScreen: FC = () => {
     displayPrizeTier,
     displayPrizeType,
     displayPrizeClaimType,
-    displayPrizeDelivered,
-    displayPrizeWonDate,
     navigation,
     navToHomeTab,
   } = usePrizeScreen(true);
@@ -57,8 +58,8 @@ const AvailablePrizesScreen: FC = () => {
         prizeType={displayPrizeType}
         prizeClaimType={displayPrizeClaimType}
         prizeClaimed={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
-        prizeDelivered={displayPrizeDelivered}
-        prizeWonDate={displayPrizeWonDate}
+        prizeDelivered={true} // In case something goes wrong, then this will prevent user from claiming prize they didn't win
+        prizeWonDate={''} // Available prizes have no won date since they were not won yet
         isWonPrize={false}
         isModalVisible={isShowingPrize}
         handleHidePrize={handleHidePrize}

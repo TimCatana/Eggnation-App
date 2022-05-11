@@ -42,6 +42,7 @@ const AddressForm: FC<Props> = props => {
   return (
     <>
       <Text style={styles.headingText}>{S_CPS_SHIPPING_ADDRESS_TITLE}</Text>
+
       <CustomDropdownMenu
         value={selectedCountry}
         handleIconPress={() => {
@@ -55,6 +56,7 @@ const AddressForm: FC<Props> = props => {
         textColor={C_TEXT_LIGHT}
         borderColor={C_UNFOCUSED_BORDER_COLOR}
       />
+
       <CustomDropdownMenu
         value={selectedRegion}
         handleIconPress={() => {
@@ -68,6 +70,7 @@ const AddressForm: FC<Props> = props => {
         textColor={C_TEXT_LIGHT}
         borderColor={C_UNFOCUSED_BORDER_COLOR}
       />
+
       <CustomTextInput
         value={address}
         onValueChange={handleAddressChange}
@@ -87,6 +90,7 @@ const AddressForm: FC<Props> = props => {
         keyboardType={'default'}
         isPassword={false}
       />
+      
       <CustomTextInput
         value={postalCode}
         onValueChange={handlePostalCodeChange}
