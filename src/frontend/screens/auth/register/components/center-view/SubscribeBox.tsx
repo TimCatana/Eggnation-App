@@ -17,6 +17,7 @@ import {
 } from '../../../../../../constants/Strings';
 
 interface Props {
+  isLoading: boolean;
   isSubbedToMailingList: boolean;
   handleIsSubbedToMailingListChange: () => void;
   handleEggnationShopLinkClick: () => void;
@@ -24,6 +25,7 @@ interface Props {
 
 const SubscribeBox: FC<Props> = props => {
   const {
+    isLoading,
     isSubbedToMailingList,
     handleIsSubbedToMailingListChange,
     handleEggnationShopLinkClick,
@@ -31,7 +33,9 @@ const SubscribeBox: FC<Props> = props => {
 
   return (
     <View style={styles.body}>
-      <Pressable onPress={handleIsSubbedToMailingListChange}>
+      <Pressable
+        disabled={isLoading}
+        onPress={handleIsSubbedToMailingListChange}>
         <IconMaterialCommunity
           color={C_ICON_PRIMARY}
           name={
@@ -46,7 +50,7 @@ const SubscribeBox: FC<Props> = props => {
 
       <Text style={styles.text}>{S_RS_SUBSCRIBE_TO}</Text>
 
-      <Pressable onPress={handleEggnationShopLinkClick}>
+      <Pressable disabled={isLoading} onPress={handleEggnationShopLinkClick}>
         <Text style={styles.linkText}>{S_RS_EGGNATION_SHOP_COM}</Text>
       </Pressable>
 

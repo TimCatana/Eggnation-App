@@ -114,6 +114,7 @@ const RegisterForm: FC<Props> = props => {
       />
 
       <SubscribeBox
+        isLoading={isLoading}
         isSubbedToMailingList={isSubbedToMailingList}
         handleIsSubbedToMailingListChange={handleIsSubbedToMailingListChange}
         handleEggnationShopLinkClick={handleEggnationShopLinkClick}

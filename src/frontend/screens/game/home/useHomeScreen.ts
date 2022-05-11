@@ -6,6 +6,7 @@ import {useInterstitialAd, TestIds} from '@react-native-admob/admob';
 import {
   MGL_AD_FREQUENCY,
   DV_LOCAL_COUNT,
+  KC_LOCAL_COUNT,
 } from '../../../../constants/Constants';
 import {AvailablePrize, ContestPrize} from '../../../../constants/typeAliases';
 import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';

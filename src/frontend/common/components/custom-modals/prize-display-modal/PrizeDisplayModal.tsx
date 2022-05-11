@@ -11,7 +11,6 @@ import {
   BookShelfRightView,
 } from '../../index';
 import PrizeDisplayModalCenterView from './PrizeDisplayModalCenterView';
-
 import usePrizeDisplayModal from './usePrizeDisplayModal';
 
 interface Props {
