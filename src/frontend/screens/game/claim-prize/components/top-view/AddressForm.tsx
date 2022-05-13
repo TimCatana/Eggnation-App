@@ -78,7 +78,7 @@ const AddressForm: FC<Props> = props => {
         errorText={''}
         isError={false}
         disabled={isLoading}
-        maxLength={30}
+        maxLength={200}
         width={'100%'}
         height={hp('6.5%')}
         marginBottom={hp('2%')}
@@ -86,7 +86,7 @@ const AddressForm: FC<Props> = props => {
         textColor={C_TEXT_LIGHT}
         unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
         focusedBorderColor={C_FOCUSED_BORDER_COLOR}
-        returnKeyType={'done'}
+        returnKeyType={'next'}
         keyboardType={'default'}
         isPassword={false}
       />

@@ -59,7 +59,7 @@ const PickerModal: FC<Props> = props => {
           onPress={hideModalPicker}
           viewStyle={styles.icon}
           iconStyle={{}}
-          iconSize={hp('3.5%')}
+          iconSize={hp('4%')}
           iconColor={C_ICON_LIGHT}
         />
         <View style={styles.topView}>

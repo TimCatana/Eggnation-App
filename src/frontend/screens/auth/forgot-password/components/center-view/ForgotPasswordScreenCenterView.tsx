@@ -54,7 +54,7 @@ const ForgotPasswordScreenCenterView: FC<Props> = props => {
           textColor={C_TEXT_INPUT_TEXT_PRIMARY}
           unfocusedBorderColor={C_UNFOCUSED_BORDER_COLOR}
           focusedBorderColor={C_FOCUSED_BORDER_COLOR}
-          keyboardType={'default'}
+          keyboardType={'email-address'}
           returnKeyType={'done'}
           isPassword={false}
         />

@@ -144,9 +144,7 @@ const useEditPasswordScreen = () => {
   const updatePasswordAndNavBackIfSuccess = async () => {
     const status = await handleUpdatePasswordClick();
 
-    setTimeout(() => {
-      setShowSnackbar(showSnackbar + 1);
-    }, 250);
+    setShowSnackbar(showSnackbar + 1);
 
     if (status === SUCCESS) {
       navigation.pop();

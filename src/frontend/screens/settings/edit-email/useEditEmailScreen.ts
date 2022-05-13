@@ -114,9 +114,7 @@ const useEditEmailScreen = () => {
   const updateEmailAndNavBackIfSuccess = async () => {
     const status = await handleUpdateEmailClick();
 
-    setTimeout(() => {
-      setShowSnackbar(showSnackbar + 1);
-    }, 250);
+    setShowSnackbar(showSnackbar + 1);
 
     if (status === SUCCESS) {
       navigation.pop();

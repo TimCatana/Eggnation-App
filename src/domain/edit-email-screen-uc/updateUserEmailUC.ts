@@ -4,6 +4,7 @@ import {
   S_E_EES_EMAIL_IN_USE,
   S_E_INVALID_CREDENTIALS,
   S_E_INVALID_EMAIL,
+  S_E_INVALID_PASSWORD,
   S_E_NOT_CONNECTED_TO_INTERNET,
   S_E_UNEXPECTED_ERROR,
   S_S_EES_EMAIL_UPDATED,
@@ -101,7 +102,7 @@ const _getReauthenticateErrorResponse = (error: any): Result => {
     case 'auth/invalid-email':
       return {status: ERROR, message: S_E_INVALID_EMAIL};
     case 'auth/wrong-password':
-      return {status: ERROR, message: S_E_INVALID_EMAIL};
+      return {status: ERROR, message: S_E_INVALID_PASSWORD};
     default:
       return {status: ERROR, message: S_E_UNEXPECTED_ERROR};
   }

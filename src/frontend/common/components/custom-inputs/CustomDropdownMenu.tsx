@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 7.5,
     paddingLeft: wp('1.5%'),
+    paddingBottom: hp('1.5%')
   },
   icon: {
     flex: 1,

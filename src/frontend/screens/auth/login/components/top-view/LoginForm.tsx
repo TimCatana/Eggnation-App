@@ -81,8 +81,8 @@ const LoginForm: FC<Props> = props => {
 
 const styles = StyleSheet.create({
   headingText: {
-    marginBottom: hp('2%'),
     fontSize: hp('5%'),
+    marginBottom: hp('2%'),
     color: C_TEXT_HEADING,
   },
 });

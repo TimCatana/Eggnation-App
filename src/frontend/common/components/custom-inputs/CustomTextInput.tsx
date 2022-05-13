@@ -92,6 +92,7 @@ const CustomTextInput: FC<Props> = props => {
           editable={!disabled}
           returnKeyType={returnKeyType}
           placeholderTextColor={textColor}
+          underlineColorAndroid={'transparent'}
           onFocus={() => {
             setIsFocused(true);
           }}
@@ -132,6 +133,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 7.5, // To push any icon to the right
     paddingLeft: wp('1.5%'),
+    paddingBottom: hp('1.5%')
   },
   icon: {
     flex: 1,

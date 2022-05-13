@@ -38,10 +38,11 @@ const PrizeList: FC<Props> = props => {
   const renderItem = ({item, index}: {item: any; index: number}) => {
     let bgShelfImage = SI_FULL_SHELF;
 
-    if (index === data.length - 1) {
-      bgShelfImage = SI_FULL_SHELF;
+    if (index % 2 === 0) {
+      bgShelfImage =
+        index === data.length - 1 ? SI_FULL_SHELF : SI_FIRST_HALF_SHELF;
     } else {
-      bgShelfImage = index % 2 ? SI_SECOND_HALF_SHELF : SI_FIRST_HALF_SHELF;
+      bgShelfImage = SI_SECOND_HALF_SHELF;
     }
 
     return (

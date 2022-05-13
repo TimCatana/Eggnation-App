@@ -63,7 +63,7 @@ const RegisterScreen: FC = () => {
       <PressableIcon
         icon={'arrow-left'}
         onPress={navigateBack}
-        iconSize={hp('3.5%')}
+        iconSize={hp('4%')}
         iconColor={C_ICON_PRIMARY}
         viewStyle={styles.icon}
         iconStyle={{}}
