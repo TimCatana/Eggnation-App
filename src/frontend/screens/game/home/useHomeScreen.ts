@@ -6,7 +6,7 @@ import {useInterstitialAd, TestIds} from '@react-native-admob/admob';
 import {
   MGL_AD_FREQUENCY,
   DV_LOCAL_COUNT,
-  KC_LOCAL_COUNT,
+  ADS_INTERSTITIAL_ID,
 } from '../../../../constants/Constants';
 import {AvailablePrize, ContestPrize} from '../../../../constants/typeAliases';
 import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';
@@ -49,9 +49,8 @@ const useHomeScreen = () => {
   const [snackbarText, setSnackbarText] = useState<string>('');
   const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
 
-  const {adLoaded, adDismissed, adShowing, show, load} = useInterstitialAd(
-    TestIds.INTERSTITIAL,
-  );
+  const {adLoaded, adDismissed, adShowing, show, load} =
+    useInterstitialAd(ADS_INTERSTITIAL_ID);
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -330,7 +329,7 @@ const useHomeScreen = () => {
 
   /** Plays an Ad if one is loaded. */
   const playAd = () => {
-    if (adLoaded && localCount != parseInt(DV_LOCAL_COUNT)) {
+    if (adLoaded && localCount != parseInt(DV_LOCAL_COUNT) && localCount != 0) {
       show();
     }
   };

@@ -197,9 +197,9 @@ const _winPrizeLogic = async (
   /**
    * @phase3
    */
-  // isAvailablePrizes
-  //   ? await doDeleteAvailablePrize(prize.prizeId)
-  //   : await doDeleteContestPrize(prize.prizeId);
+  isAvailablePrizes
+    ? await doDeleteAvailablePrize(prize.prizeId)
+    : await doDeleteContestPrize(prize.prizeId);
 
   return {
     status: SUCCESS,

@@ -1,5 +1,8 @@
 import dayjs from 'dayjs';
 
+/** ADS IDS */
+export const ADS_INTERSTITIAL_ID = 'ca-app-pub-7503631457339866/5393636134';
+
 /** ASYNC STORAGE KEYS */
 export const KC_LOCAL_COUNT = 'localCount';
 export const KC_LAST_RESET_TIME = 'lastResetTime';
@@ -10,8 +13,8 @@ export const DV_LAST_RESET_TIME = dayjs().toString();
 
 /** MAIN GAME LOGIC CONSTANTS */
 export const MGL_RESET_TIME_IN_HOURS = 12; // how often to reset the local count
-export const MGL_RNG_RANGE = 2_000_000; // rng number
-export const MGL_WIN_CHANCE = 500_000; // rng(0 - MGL_RNG_RANGE) % MGL_WIN_CHANCE === 0 means a win 200000
+export const MGL_RNG_RANGE = 4000000; // rng number
+export const MGL_WIN_CHANCE = 1000000; // rng(0 - MGL_RNG_RANGE) % MGL_WIN_CHANCE === 0 means a win 200000
 export const MGL_AD_FREQUENCY = 50; // every 50 taps is an ad
 
 /** BOOKSHELF UI CONSTANTS */
