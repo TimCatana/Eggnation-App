@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Eggnation</string>
+  <string name="app_name">Eggnation</string>
+  <string name="facebook_app_id">2871149103187254</string>
+  <string name="facebook_client_token">4daf3483eecbe9bc083c383e247f0c81</string>
 </resources>

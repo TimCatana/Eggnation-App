@@ -1,5 +1,6 @@
 import {SUCCESS, ERROR} from '../../constants/ResultsConstants';
 import {
+  AvailablePrize,
   AvailablePrizesArray,
   ContestPrizeArray,
   Result,
@@ -94,11 +95,11 @@ const mainGameLogicUC = async (
      *         If localCount is not 1, then do the rng logic
      */
     if (localCount === 1) {
-      return _contestPrizeLogic(userId);
+      return await _contestPrizeLogic(userId);
     } else if (localCount === parseInt(DV_LOCAL_COUNT) - 5) {
-      return _storePromotionPrizeLogic(userId);
+      return await _storePromotionPrizeLogic(userId);
     } else {
-      return _rngLogic(userId);
+      return await _rngLogic(userId);
     }
   } catch (e: any) {
     return _getErrorResponse(e);
@@ -142,7 +143,7 @@ const _rngLogic = async (userId: string): Promise<Result> => {
       message: '',
     };
   } else {
-    return _availablePrizeLogic(userId);
+    return await _availablePrizeLogic(userId);
   }
 };
 

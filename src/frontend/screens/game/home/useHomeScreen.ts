@@ -2,7 +2,7 @@ import {useState, useEffect, useRef} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {HomeScreenProp} from '../../../navigation/ScreenProps';
 import {Screens} from '../../../../constants/NavigationConstants';
-import {useInterstitialAd, TestIds} from '@react-native-admob/admob';
+import {useInterstitialAd} from '@react-native-admob/admob';
 import {
   MGL_AD_FREQUENCY,
   DV_LOCAL_COUNT,
