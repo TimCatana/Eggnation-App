@@ -20,7 +20,7 @@ const HomeScreen: FC = () => {
   const {
     isInitialized,
     isLoading,
-    adShowing,
+    isShowing,
     playGame,
     localCount,
     isAnimationPlaying,
@@ -54,7 +54,7 @@ const HomeScreen: FC = () => {
 
       <HomeScreenEgg
         isLoading={isLoading}
-        adShowing={adShowing}
+        adShowing={isShowing}
         playGame={playGame}
         isAnimationPlaying={isAnimationPlaying}
         winAnimationRef={winAnimationRef}

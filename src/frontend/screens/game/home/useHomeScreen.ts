@@ -2,7 +2,7 @@ import {useState, useEffect, useRef} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {HomeScreenProp} from '../../../navigation/ScreenProps';
 import {Screens} from '../../../../constants/NavigationConstants';
-import {useInterstitialAd} from '@react-native-admob/admob';
+import {useInterstitialAd, TestIds} from 'react-native-google-mobile-ads';
 import {
   MGL_AD_FREQUENCY,
   DV_LOCAL_COUNT,
@@ -49,8 +49,9 @@ const useHomeScreen = () => {
   const [snackbarText, setSnackbarText] = useState<string>('');
   const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
 
-  const {adLoaded, adDismissed, adShowing, show, load} =
-    useInterstitialAd(ADS_INTERSTITIAL_ID);
+  const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : ADS_INTERSTITIAL_ID;
+  const {isLoaded, isClosed, isShowing, load, show} =
+    useInterstitialAd(adUnitId);
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -322,14 +323,15 @@ const useHomeScreen = () => {
 
   /** Loads an Ad from AdMob server if an Ad is not loaded yet. */
   const loadAd = () => {
-    if (adDismissed || !adLoaded) {
+    if (isClosed || !isLoaded) {
       load();
     }
   };
 
   /** Plays an Ad if one is loaded. */
   const playAd = () => {
-    if (adLoaded && localCount != parseInt(DV_LOCAL_COUNT) && localCount != 0) {
+    if (isLoaded && localCount != parseInt(DV_LOCAL_COUNT) && localCount != 0) {
+      console.log('showing');
       show();
     }
   };
@@ -342,7 +344,7 @@ const useHomeScreen = () => {
    * Navigates back to the settings screen if no process is currently running.
    */
   const navToSettingsScreen = () => {
-    if (!isLoading && !isAnimationPlaying && !adShowing) {
+    if (!isLoading && !isAnimationPlaying && !isShowing) {
       navigation.navigate(Screens.SETTINGS_SCREEN);
     }
   };
@@ -351,7 +353,7 @@ const useHomeScreen = () => {
    * Navigates back to the how to play screen if no process is currently running.
    */
   const navToHowToPlayScreen = () => {
-    if (!isLoading && !isAnimationPlaying && !adShowing) {
+    if (!isLoading && !isAnimationPlaying && !isShowing) {
       navigation.navigate(Screens.HOW_TO_PLAY_SCREEN);
     }
   };
@@ -360,7 +362,7 @@ const useHomeScreen = () => {
    * Navigates back to the available prizes tab if no process is currently running.
    */
   const navToAvailablePrizesTab = () => {
-    if (!isLoading && !isAnimationPlaying && !adShowing) {
+    if (!isLoading && !isAnimationPlaying && !isShowing) {
       navigation.jumpTo(Screens.AVAILABLE_PRIZES_SCREEN);
     }
   };
@@ -369,7 +371,7 @@ const useHomeScreen = () => {
    * Navigates back to the won prizes tab if no process is currently running.
    */
   const navToWonPrizesTab = () => {
-    if (!isLoading && !isAnimationPlaying && !adShowing) {
+    if (!isLoading && !isAnimationPlaying && !isShowing) {
       navigation.jumpTo(Screens.WON_PRIZES_SCREEN);
     }
   };
@@ -381,7 +383,7 @@ const useHomeScreen = () => {
   return {
     isInitialized,
     isLoading,
-    adShowing,
+    isShowing,
     playGame,
     localCount,
     isAnimationPlaying,
