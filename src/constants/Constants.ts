@@ -13,8 +13,8 @@ export const DV_LAST_RESET_TIME = dayjs().toString();
 
 /** MAIN GAME LOGIC CONSTANTS */
 export const MGL_RESET_TIME_IN_HOURS = 12; // how often to reset the local count
-export const MGL_RNG_RANGE = 4000000; // rng number
-export const MGL_WIN_CHANCE = 1000000; // rng(0 - MGL_RNG_RANGE) % MGL_WIN_CHANCE === 0 means a win 200000
+export const MGL_RNG_RANGE = 50000000; // rng number
+export const MGL_WIN_CHANCE = 25000000; // rng(0 - MGL_RNG_RANGE) % MGL_WIN_CHANCE === 0 means a win 200000
 export const MGL_AD_FREQUENCY = 100; // every 120 taps is an ad
 
 /** BOOKSHELF UI CONSTANTS */
