@@ -2,11 +2,9 @@ import {useState, useEffect, useRef} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {HomeScreenProp} from '../../../navigation/ScreenProps';
 import {Screens} from '../../../../constants/NavigationConstants';
-import {useInterstitialAd, TestIds} from 'react-native-google-mobile-ads';
 import {
   MGL_AD_FREQUENCY,
   DV_LOCAL_COUNT,
-  ADS_INTERSTITIAL_ID,
 } from '../../../../constants/Constants';
 import {AvailablePrize, ContestPrize} from '../../../../constants/typeAliases';
 import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';
@@ -14,6 +12,7 @@ import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIf
 import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
 import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
 import Snackbar from 'react-native-snackbar';
+import useAdMob from '../../../common/states/ads/useAdMob';
 
 const useHomeScreen = () => {
   /******************/
@@ -49,9 +48,7 @@ const useHomeScreen = () => {
   const [snackbarText, setSnackbarText] = useState<string>('');
   const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
 
-  const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : ADS_INTERSTITIAL_ID;
-  const {isLoaded, isClosed, isShowing, load, show} =
-    useInterstitialAd(adUnitId);
+  const {loadAdMobAd, playAdMobAd, isShowing} = useAdMob();
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -137,10 +134,10 @@ const useHomeScreen = () => {
       localCount % MGL_AD_FREQUENCY === 0 &&
       localCount != parseInt(DV_LOCAL_COUNT)
     ) {
-      playAd();
+      playAdMobAd(localCount);
       await decrementAndGetLocalCount();
     } else {
-      loadAd();
+      loadAdMobAd(localCount);
       const result = await mainGameLogicUC(
         localCount,
         decrementAndGetLocalCount,
@@ -321,20 +318,7 @@ const useHomeScreen = () => {
   /***** ADS *****/
   /***************/
 
-  /** Loads an Ad from AdMob server if an Ad is not loaded yet. */
-  const loadAd = () => {
-    if (isClosed || !isLoaded) {
-      load();
-    }
-  };
-
-  /** Plays an Ad if one is loaded. */
-  const playAd = () => {
-    if (isLoaded && localCount != parseInt(DV_LOCAL_COUNT) && localCount != 0) {
-      console.log('showing');
-      show();
-    }
-  };
+ 
 
   /******************************/
   /***** NAVIGATION HELPERS *****/

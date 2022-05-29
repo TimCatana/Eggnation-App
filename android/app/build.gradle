@@ -1,7 +1,12 @@
 apply plugin: "com.android.application"
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'applovin-quality-service'
 
 import com.android.build.OutputFile
+
+applovin {
+  apiKey "S_hc9bw13b63NZBe9VQ5MiH3GuCKt3keSKFdqEIcGQkXueVqUCtxF09kyK86G0Xc2QVSKBDiDUXVHN22F1o88G"    
+}
 
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
@@ -77,6 +82,7 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
+ 
 
 project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
@@ -135,8 +141,8 @@ android {
         applicationId "com.applicnation.eggnation"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 7
-        versionName "1.6"
+        versionCode 8
+        versionName "1.7"
     }
     splits {
         abi {
@@ -234,6 +240,9 @@ dependencies {
     
     // Facebook SDK
     implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
+
+    // applovin SDK
+    implementation 'com.applovin:applovin-sdk:+'
 }
 
 // Run this once to be able to run the application with BUCK
