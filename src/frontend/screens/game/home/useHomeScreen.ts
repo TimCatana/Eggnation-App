@@ -6,13 +6,19 @@ import {
   MGL_AD_FREQUENCY,
   DV_LOCAL_COUNT,
 } from '../../../../constants/Constants';
+import {
+  S_HS_OUT_OF_TAPS_FAILED_TO_GET_RESET_TIME,
+  S_HS_OUT_OF_TAPS_MESSAGE_GOT_RESET_TIME,
+} from '../../../../constants/Strings';
 import {AvailablePrize, ContestPrize} from '../../../../constants/typeAliases';
 import getLocalCountUC from '../../../../domain/home-screen-uc/getLocalCountUC';
 import checkIfTimeToResetCountUC from '../../../../domain/home-screen-uc/checkIfTimeToResetCountUC';
 import decrementLocalCountUC from '../../../../domain/home-screen-uc/decrementLocalCountUC';
 import mainGameLogicUC from '../../../../domain/home-screen-uc/mainGameLogicUC';
 import Snackbar from 'react-native-snackbar';
-import useAdMob from '../../../common/states/ads/useAdMob';
+import useAppLovin from '../../../common/states/ads/useApplovin';
+import getTimeUntilResetCountUC from '../../../../domain/home-screen-uc/getTimeUntilResetCountUC';
+import {SUCCESS} from '../../../../constants/ResultsConstants';
 
 const useHomeScreen = () => {
   /******************/
@@ -30,6 +36,8 @@ const useHomeScreen = () => {
   );
 
   const [isAnimationPlaying, setIsAnimationPlaying] = useState<boolean>(false);
+  const [isAnimationAd, setIsAnimationAd] = useState<boolean>(false);
+
   const winAnimationRef = useRef<any>(null);
 
   const [isFlashAnimationPlaying, setIsFlashAnimationPlaying] =
@@ -48,7 +56,12 @@ const useHomeScreen = () => {
   const [snackbarText, setSnackbarText] = useState<string>('');
   const [showSnackbar, setShowSnackbar] = useState<number>(0); // each time this increments, the useEffect for snackbar is triggered
 
-  const {loadAdMobAd, playAdMobAd, isShowing} = useAdMob();
+  const {
+    initializeApplovinAd,
+    playApplovinAd,
+    getApplovinAdLoadStatus,
+    isShowing,
+  } = useAppLovin();
 
   /***********************/
   /***** USE EFFECTS *****/
@@ -59,6 +72,7 @@ const useHomeScreen = () => {
    * @dependent onMount
    */
   useEffect(() => {
+    initializeApplovinAd();
     initCounter();
   }, []);
 
@@ -130,14 +144,26 @@ const useHomeScreen = () => {
   const playGame = async () => {
     setIsLoading(true);
 
-    if (
+    if (localCount == 0) {
+      const result = await getTimeUntilResetCountUC();
+
+      if (result.status == SUCCESS) {
+        setSnackbarText(
+          `${S_HS_OUT_OF_TAPS_MESSAGE_GOT_RESET_TIME} ${result.data} hour(s)`,
+        );
+      } else {
+        setSnackbarText(S_HS_OUT_OF_TAPS_FAILED_TO_GET_RESET_TIME);
+      }
+      setShowSnackbar(showSnackbar + 1);
+    } else if (
       localCount % MGL_AD_FREQUENCY === 0 &&
       localCount != parseInt(DV_LOCAL_COUNT)
     ) {
-      playAdMobAd(localCount);
+      if (getApplovinAdLoadStatus() == true) {
+        playAnimation(true);
+      }
       await decrementAndGetLocalCount();
     } else {
-      loadAdMobAd(localCount);
       const result = await mainGameLogicUC(
         localCount,
         decrementAndGetLocalCount,
@@ -150,7 +176,7 @@ const useHomeScreen = () => {
 
       if (result.data.isWon) {
         handlePopulateDisplayPrize(result.data.prize);
-        playAnimation();
+        playAnimation(false);
       }
     }
 
@@ -253,7 +279,8 @@ const useHomeScreen = () => {
   /**
    * Sets the playing animation state to true.
    */
-  const playAnimation = () => {
+  const playAnimation = (isAd: boolean) => {
+    setIsAnimationAd(isAd);
     setIsAnimationPlaying(true);
   };
 
@@ -294,7 +321,11 @@ const useHomeScreen = () => {
    * Triggered when the won animation is finished
    */
   const handleFlashAnimationFinished = () => {
-    handleShowPrize();
+    if (!isAnimationAd) {
+      handleShowPrize();
+    } else {
+      playApplovinAd();
+    }
     setTimeout(() => {
       _hideFlashAnimation();
     }, 500);
@@ -313,12 +344,6 @@ const useHomeScreen = () => {
   const _hideFlashAnimation = () => {
     setIsFlashAnimationPlaying(false);
   };
-
-  /***************/
-  /***** ADS *****/
-  /***************/
-
- 
 
   /******************************/
   /***** NAVIGATION HELPERS *****/

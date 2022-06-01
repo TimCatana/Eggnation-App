@@ -50,6 +50,10 @@ export const S_APS_TITLE = 'Available Prizes';
 /***** HOME SCREEN *****/
 /***********************/
 
+export const S_HS_OUT_OF_TAPS_FAILED_TO_GET_RESET_TIME = 'you are out of taps for today';
+export const S_HS_OUT_OF_TAPS_MESSAGE_GOT_RESET_TIME = 'Your taps will reset in';
+
+
 /*****************************/
 /***** WON PRIZES SCREEN *****/
 /*****************************/

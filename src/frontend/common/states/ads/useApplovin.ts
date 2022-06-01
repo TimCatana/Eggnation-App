@@ -12,6 +12,7 @@ const useAppLovin = () => {
   });
 
   const [retryAttempt, setRetryAttempt] = useState(0);
+  const [isShowing, setIsShowing] = useState(false);
 
   /*************************/
   /***** FUNCTIONALITY *****/
@@ -26,33 +27,41 @@ const useAppLovin = () => {
       setRetryAttempt(retryAttempt + 1);
       var retryDelay = Math.pow(2, Math.min(6, retryAttempt));
       setTimeout(function () {
-        loadApplovinAd();
+        _loadApplovinAd();
       }, retryDelay * 1000);
     });
 
     AppLovinMAX.addEventListener('OnInterstitialClickedEvent', () => {});
-    AppLovinMAX.addEventListener('OnInterstitialDisplayedEvent', () => {});
+    AppLovinMAX.addEventListener('OnInterstitialDisplayedEvent', () => {
+      setIsShowing(true);
+    });
     AppLovinMAX.addEventListener('OnInterstitialAdFailedToDisplayEvent', () => {
-      loadApplovinAd();
+      _loadApplovinAd();
     });
     AppLovinMAX.addEventListener('OnInterstitialHiddenEvent', () => {
-      loadApplovinAd();
+      setIsShowing(false);
+      _loadApplovinAd();
     });
 
     // Load the first interstitial
-    loadApplovinAd();
+    _loadApplovinAd();
   };
 
   /** Loads an Ad from AdMob server if an Ad is not loaded yet. */
-  const loadApplovinAd = () => {
+  const _loadApplovinAd = () => {
     AppLovinMAX.loadInterstitial(INTERSTITIAL_AD_UNIT_ID);
   };
 
-  /** Plays an Ad if one is loaded. */
+  /** Plays an Ad if one is loaded.
+   *  before the code gets here, I already check to make sure that an ad is loaded
+   */
   const playApplovinAd = () => {
-    if (AppLovinMAX.isInterstitialReady(INTERSTITIAL_AD_UNIT_ID)) {
-      AppLovinMAX.showInterstitial(INTERSTITIAL_AD_UNIT_ID);
-    }
+    AppLovinMAX.showInterstitial(INTERSTITIAL_AD_UNIT_ID);
+  };
+
+  /** Checks to see if ad is loaded */
+  const getApplovinAdLoadStatus = () => {
+    return AppLovinMAX.isInterstitialReady(INTERSTITIAL_AD_UNIT_ID);
   };
 
   /*******************/
@@ -60,8 +69,10 @@ const useAppLovin = () => {
   /*******************/
 
   return {
-    loadApplovinAd,
+    initializeApplovinAd,
     playApplovinAd,
+    getApplovinAdLoadStatus,
+    isShowing,
   };
 };
 
