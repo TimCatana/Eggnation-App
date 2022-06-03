@@ -6,9 +6,16 @@ import {
   AvailablePrizesArray,
   WonPrizesArray,
 } from '../../../../constants/typeAliases';
-import {C_TEXT_LIGHT} from '../../../../constants/Colors';
+import {
+  C_BACKGROUND_BOOKSHELF,
+  C_BUTTON_DISABLED,
+  C_BUTTON_ENABLED,
+  C_TEXT_LIGHT,
+  C_TEXT_PRIMARY,
+} from '../../../../constants/Colors';
 import {PresentPlaceholder} from '../../../../../assets';
 import {PrizeList} from '../index';
+import CustomButton from '../custom-inputs/CustomButton';
 
 interface Props {
   isInitialized: boolean;
@@ -46,20 +53,33 @@ const BookshelfContent: FC<Props> = props => {
   return (
     <View style={styles.body}>
       {isInitialized && !isLoading && isPrizeFetchFailed && (
-        <View style={styles.errorView}>
-          <View style={styles.placeholderView}>
-            <LottieView
-              style={styles.placeholderLottie}
-              source={PresentPlaceholder}
-              autoPlay={true}
-              loop={false}
-              resizeMode={'cover'}
+        <>
+          <View style={styles.errorView}>
+            <View style={styles.placeholderView}>
+              <LottieView
+                style={styles.placeholderLottie}
+                source={PresentPlaceholder}
+                autoPlay={true}
+                loop={false}
+                resizeMode={'cover'}
+              />
+            </View>
+            <View style={styles.textView}>
+              <Text style={styles.text}>{prizeFetchFailedText}</Text>
+            </View>
+          </View>
+          <View style={styles.refreshView}>
+            <CustomButton
+              label={'Refresh'}
+              onPress={handleRefresh}
+              disabled={isLoading || !isInitialized || isRefreshing}
+              buttonEnabledColor={C_BUTTON_ENABLED}
+              buttonDisabledColor={C_BUTTON_DISABLED}
+              textColor={C_TEXT_PRIMARY}
+              fontSize={hp('2.2%')}
             />
           </View>
-          <View style={styles.textView}>
-            <Text style={styles.text}>{prizeFetchFailedText}</Text>
-          </View>
-        </View>
+        </>
       )}
 
       {isInitialized && !isLoading && !isPrizeFetchFailed && (
@@ -90,7 +110,7 @@ const styles = StyleSheet.create({
     height: hp('45%'),
   },
   errorView: {
-    flex: 1,
+    flex: 7,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -98,6 +118,13 @@ const styles = StyleSheet.create({
   textView: {
     flex: 1,
     width: '100%',
+  },
+  refreshView: {
+    flex: 1,
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     fontSize: hp('3%'),
