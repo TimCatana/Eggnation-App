@@ -12,6 +12,8 @@ import {
 import {PrizeShelfCard} from '../index';
 interface Props {
   data: AvailablePrizesArray | WonPrizesArray | [];
+  isRefreshing: boolean;
+  handleRefresh: () => void;
   handleShowPrize: (
     prizeId: string,
     prizeTitle: string,
@@ -26,7 +28,7 @@ interface Props {
 }
 
 const PrizeList: FC<Props> = props => {
-  const {data, handleShowPrize} = props;
+  const {data, isRefreshing, handleRefresh, handleShowPrize} = props;
 
   /**
    * The item to be rendered.
@@ -63,6 +65,8 @@ const PrizeList: FC<Props> = props => {
       showsHorizontalScrollIndicator={false}
       renderItem={renderItem}
       keyExtractor={item => item.prizeId}
+      refreshing={isRefreshing}
+      onRefresh={handleRefresh}
     />
   );
 };

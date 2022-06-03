@@ -19,10 +19,12 @@ const WonPrizesScreen: FC = () => {
   const {
     isInitialized,
     isLoading,
+    isRefreshing,
     isPrizeFetchFailed,
     prizeFetchFailedText,
     isShowingPrize,
     prizes,
+    handleRefresh,
     handleShowPrize,
     handleHidePrize,
     displayPrizeId,
@@ -45,9 +47,11 @@ const WonPrizesScreen: FC = () => {
       <PrizeScreenCenterView
         isInitialized={isInitialized}
         isLoading={isLoading}
+        isRefreshing={isRefreshing}
         isPrizeFetchFailed={isPrizeFetchFailed}
         prizeFetchFailedText={prizeFetchFailedText}
         data={prizes}
+        handleRefresh={handleRefresh}
         handleShowPrize={handleShowPrize}
         title={S_WPS_TITLE}
       />

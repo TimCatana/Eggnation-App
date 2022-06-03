@@ -96,7 +96,7 @@ const mainGameLogicUC = async (
      */
     if (localCount === 1) {
       return await _contestPrizeLogic(userId);
-    } else if (localCount === parseInt(DV_LOCAL_COUNT) - 5) {
+    } else if (localCount === parseInt(DV_LOCAL_COUNT) - 20) {
       return await _storePromotionPrizeLogic(userId);
     } else {
       return await _rngLogic(userId);

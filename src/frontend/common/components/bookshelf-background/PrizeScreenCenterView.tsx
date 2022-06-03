@@ -14,9 +14,11 @@ import {BookshelfContent, BookShelfTopView} from '../index';
 interface Props {
   isInitialized: boolean;
   isLoading: boolean;
+  isRefreshing: boolean;
   isPrizeFetchFailed: boolean;
   prizeFetchFailedText: string;
   data: AvailablePrizesArray | WonPrizesArray | [];
+  handleRefresh: () => void;
   handleShowPrize: (
     prizeId: string,
     prizeTitle: string,
@@ -35,9 +37,11 @@ const PrizeScreenCenterView: FC<Props> = props => {
   const {
     isInitialized,
     isLoading,
+    isRefreshing,
     isPrizeFetchFailed,
     prizeFetchFailedText,
     data,
+    handleRefresh,
     handleShowPrize,
     title,
   } = props;
@@ -49,15 +53,17 @@ const PrizeScreenCenterView: FC<Props> = props => {
       <BookshelfContent
         isInitialized={isInitialized}
         isLoading={isLoading}
+        isRefreshing={isRefreshing}
         isPrizeFetchFailed={isPrizeFetchFailed}
         prizeFetchFailedText={prizeFetchFailedText}
         data={data}
+        handleRefresh={handleRefresh}
         handleShowPrize={handleShowPrize}
       />
 
       <ActivityIndicator
         style={styles.loading}
-        animating={!isInitialized || (isInitialized && isLoading)}
+        animating={!isInitialized || (isInitialized && isLoading) || (isInitialized && isLoading)}
         size={hp('10%')}
         color={C_ACTIVITY_INDICATOR}
       />

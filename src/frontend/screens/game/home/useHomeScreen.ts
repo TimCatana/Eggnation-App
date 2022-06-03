@@ -145,42 +145,61 @@ const useHomeScreen = () => {
     setIsLoading(true);
 
     if (localCount == 0) {
-      const result = await getTimeUntilResetCountUC();
-
-      if (result.status == SUCCESS) {
-        setSnackbarText(
-          `${S_HS_OUT_OF_TAPS_MESSAGE_GOT_RESET_TIME} ${result.data} hour(s)`,
-        );
-      } else {
-        setSnackbarText(S_HS_OUT_OF_TAPS_FAILED_TO_GET_RESET_TIME);
-      }
-      setShowSnackbar(showSnackbar + 1);
+      await _handleNoTapsLeft();
     } else if (
       localCount % MGL_AD_FREQUENCY === 0 &&
       localCount != parseInt(DV_LOCAL_COUNT)
     ) {
-      if (getApplovinAdLoadStatus() == true) {
-        playAnimation(true);
-      }
-      await decrementAndGetLocalCount();
+      await _handlePlayAdLogic();
     } else {
-      const result = await mainGameLogicUC(
-        localCount,
-        decrementAndGetLocalCount,
-      );
-
-      if (!result.data.isConnected) {
-        setSnackbarText(result.message);
-        setShowSnackbar(showSnackbar + 1);
-      }
-
-      if (result.data.isWon) {
-        handlePopulateDisplayPrize(result.data.prize);
-        playAnimation(false);
-      }
+      await _handleMainTapLogic();
     }
 
     setIsLoading(false);
+  };
+
+  /**
+   * Does the logic for when the user has no taps left
+   */
+  const _handleNoTapsLeft = async () => {
+    const result = await getTimeUntilResetCountUC();
+
+    if (result.status == SUCCESS) {
+      setSnackbarText(
+        `${S_HS_OUT_OF_TAPS_MESSAGE_GOT_RESET_TIME} ${result.data} hour(s)`,
+      );
+    } else {
+      setSnackbarText(S_HS_OUT_OF_TAPS_FAILED_TO_GET_RESET_TIME);
+    }
+    setShowSnackbar(showSnackbar + 1);
+  };
+
+  /**
+   * Does the logic for when it's time to show an ad
+   */
+  const _handlePlayAdLogic = async () => {
+    if (getApplovinAdLoadStatus() == true) {
+      playAnimation(true);
+    }
+    await decrementAndGetLocalCount();
+  };
+
+  /**
+   * Does the main tap logic.
+   * The user has a chance to win on these taps.
+   */
+  const _handleMainTapLogic = async () => {
+    const result = await mainGameLogicUC(localCount, decrementAndGetLocalCount);
+
+    if (!result.data.isConnected) {
+      setSnackbarText(result.message);
+      setShowSnackbar(showSnackbar + 1);
+    }
+
+    if (result.data.isWon) {
+      handlePopulateDisplayPrize(result.data.prize);
+      playAnimation(false);
+    }
   };
 
   /**

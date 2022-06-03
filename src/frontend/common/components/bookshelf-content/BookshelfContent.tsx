@@ -13,9 +13,11 @@ import {PrizeList} from '../index';
 interface Props {
   isInitialized: boolean;
   isLoading: boolean;
+  isRefreshing: boolean;
   isPrizeFetchFailed: boolean;
   prizeFetchFailedText: string;
   data: AvailablePrizesArray | WonPrizesArray | [];
+  handleRefresh: () => void;
   handleShowPrize: (
     prizeId: string,
     prizeTitle: string,
@@ -33,9 +35,11 @@ const BookshelfContent: FC<Props> = props => {
   const {
     isInitialized,
     isLoading,
+    isRefreshing,
     isPrizeFetchFailed,
     prizeFetchFailedText,
     data,
+    handleRefresh,
     handleShowPrize,
   } = props;
 
@@ -59,7 +63,12 @@ const BookshelfContent: FC<Props> = props => {
       )}
 
       {isInitialized && !isLoading && !isPrizeFetchFailed && (
-        <PrizeList data={data} handleShowPrize={handleShowPrize} />
+        <PrizeList
+          data={data}
+          isRefreshing={isRefreshing}
+          handleRefresh={handleRefresh}
+          handleShowPrize={handleShowPrize}
+        />
       )}
     </View>
   );

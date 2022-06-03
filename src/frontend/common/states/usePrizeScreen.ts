@@ -29,6 +29,7 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
 
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
   const [isPrizeFetchFailed, setIsPrizeFetchFailed] = useState<boolean>(true);
   const [prizeFetchFailedText, setIsPrizeFetchFailedText] = useState<string>(
@@ -96,6 +97,18 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
       } else {
         setIsPrizeFetchFailed(false);
       }
+    }
+  };
+
+  /**
+   * Re-fetches the prizes from the database.
+   * Should be called on "pull to refresh"
+   */
+  const handleRefresh = async () => {
+    if (isInitialized && !isLoading && !isRefreshing) {
+      setIsRefreshing(true);
+      await getPrizes();
+      setIsRefreshing(false);
     }
   };
 
@@ -230,10 +243,12 @@ const usePrizeScreen = (isAvailablePrizeScreen: boolean) => {
   return {
     isInitialized,
     isLoading,
+    isRefreshing,
     isPrizeFetchFailed,
     prizeFetchFailedText,
     isShowingPrize,
     prizes,
+    handleRefresh,
     handleShowPrize,
     handleHidePrize,
     displayPrizeId,
