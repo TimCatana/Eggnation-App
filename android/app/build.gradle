@@ -141,8 +141,8 @@ android {
         applicationId "com.applicnation.eggnation"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 11
-        versionName "2.0.0"
+        versionCode 13
+        versionName "2.0.2"
     }
     splits {
         abi {
@@ -237,10 +237,10 @@ dependencies {
 
     // Added by me for Admob
     implementation 'com.google.android.gms:play-services-ads:20.6.0'
-    
-    // Facebook SDK
-    implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
 
+    // Facebook SDK
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+    
     // applovin SDK
     implementation 'com.applovin:applovin-sdk:+'
 }
